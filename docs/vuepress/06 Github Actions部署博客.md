@@ -15,6 +15,8 @@ typora-root-url: ..\.vuepress\public
 
 :::
 
+> github actions的自动构建部署的好处就是，每次提交文件到github之后，它就会帮我们build和部署，网站的内容就会自动更新，非常方便
+
 使用github actions来部署vuepress，将官网的提供的文件复制进来
 
 <img src="/images/vuepress/image-20211126110724435.png" alt="image-20211126110724435" style="zoom:50%;" />
