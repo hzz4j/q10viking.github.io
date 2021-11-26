@@ -1,0 +1,21 @@
+{
+  "name": "q10viking.github.io",
+  "version": "1.0.0",
+  "description": "vuepress博客",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Q10Viking/q10viking.github.io.git"
+  },
+  "author": "静默",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Q10Viking/q10viking.github.io/issues"
+  },
+  "homepage": "https://github.com/Q10Viking/q10viking.github.io#readme"
+}
