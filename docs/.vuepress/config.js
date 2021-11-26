@@ -5,6 +5,7 @@
 const autoGenSidebar = require('./autoSiderbar/DiffRouteDifSidebar')
 const navbar = require('./config/navBar');
 const sidebar = autoGenSidebar();
+const path = require('path');
 
 module.exports = {
   lang: 'zh-CN',
@@ -18,7 +19,13 @@ module.exports = {
     sidebar,
     navbar
   },
-  // plugins: [
+   plugins: [
+    [
+      '@vuepress/register-components',
+      {
+        componentsDir: path.resolve(__dirname, './components'),
+      },
+    ]
   //   [
   //     '@vuepress/plugin-search',
   //     {
@@ -30,5 +37,5 @@ module.exports = {
   //     apiKey: '',
   //     indexName: ''
   //   }]
-  // ]
+   ]
 }

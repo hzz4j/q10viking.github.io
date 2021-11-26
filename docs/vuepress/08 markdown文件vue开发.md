@@ -1,3 +1,13 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /vuepress/
+typora-root-url: ..\.vuepress\public
+---
+
+
 ::: tip 
 
 Markdown文件最终被Vuepress处理成html文件，所以可以使用vue的单页面开发
