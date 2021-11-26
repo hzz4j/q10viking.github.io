@@ -92,7 +92,7 @@ jobs:
 
 以上步骤是使用github actions的自动构建功能，但是不能访问页面，需要设置github pages的信息
 
-<img src="/images/vuepress/image-20211126134911648.png" alt="image-20211126134911648" style="zoom:80%;" />
+<img src="/images/vuepress/image-20211126140058431.png" alt="image-20211126140058431" style="zoom:70%;" />
 
 到此为止，进行访问 https://q10viking.github.io/
 
