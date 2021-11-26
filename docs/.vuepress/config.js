@@ -18,4 +18,10 @@ module.exports = {
     sidebar,
     navbar
   },
+  plugins:[
+    [ '@vuepress/docsearch',{
+      apiKey: '',
+      indexName: ''
+    }]
+  ]
 }
