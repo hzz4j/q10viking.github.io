@@ -21,7 +21,7 @@ typora-root-url: ..\.vuepress\public
 
 <img src="/images/vuepress/image-20211126110724435.png" alt="image-20211126110724435" style="zoom:50%;" />
 
-> vuepress指南-部署，提供的文件
+> vuepress指南-部署，提供的文件，自己做了一些修改如node.js版本，去掉cache dependcies,使用npm而不是yarn来构建
 
 ```yml
 name: docs
@@ -47,18 +47,18 @@ jobs:
         uses: actions/setup-node@v1
         with:
           # 选择要使用的 node 版本
-          node-version: '14'
+          node-version: '14.17.6'
 
       # 缓存 node_modules
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        id: yarn-cache
-        with:
-          path: |
-            **/node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+      # - name: Cache dependencies
+      #   uses: actions/cache@v2
+      #   id: yarn-cache
+      #   with:
+      #     path: |
+      #       **/node_modules
+      #     key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-yarn-
 
       # 如果缓存没有命中，安装依赖
       - name: Install dependencies
@@ -67,7 +67,7 @@ jobs:
 
       # 运行构建脚本
       - name: Build VuePress site
-        run: yarn docs:build
+        run: npm run docs:build
 
       # 查看 workflow 的文档来获取更多信息
       # @see https://github.com/crazy-max/ghaction-github-pages
