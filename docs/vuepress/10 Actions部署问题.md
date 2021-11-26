@@ -27,4 +27,4 @@ typora-root-url: ..\.vuepress\public
 
 <img src="https://gitee.com/q10viking/PictureRepos/raw/master/images/image-20211127071510990.png" alt="image-20211127071510990" style="zoom:80%;" />
 
-等部署成功之后再将这个缓存打开
+尝试，等部署成功之后再将这个缓存打开，依然报错。所以还是将缓存的依赖继续注释掉
