@@ -18,7 +18,14 @@ module.exports = {
     sidebar,
     navbar
   },
-  // plugins:[
+  // plugins: [
+  //   [
+  //     '@vuepress/plugin-search',
+  //     {
+  //       // 排除首页
+  //       isSearchable: (page) => page.path !== '/',
+  //     },
+  //   ],
   //   [ '@vuepress/docsearch',{
   //     apiKey: '',
   //     indexName: ''
