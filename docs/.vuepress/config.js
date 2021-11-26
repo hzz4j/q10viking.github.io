@@ -5,7 +5,7 @@
 const autoGenSidebar = require('./autoSiderbar/DiffRouteDifSidebar')
 const navbar = require('./config/navBar');
 const sidebar = autoGenSidebar();
-const path = require('path');
+const { path } = require('@vuepress/utils')
 
 module.exports = {
   lang: 'zh-CN',
