@@ -13,5 +13,5 @@ typora-root-url: ..\.vuepress\public
 
 :::
 
-<img src="/images/vuepress/test_picture.png" alt="VuePress Logo">
+<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images/202111270010151.png" alt="VuePress Logo">
 
