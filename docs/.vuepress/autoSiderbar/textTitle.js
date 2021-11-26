@@ -9,7 +9,8 @@
 
 const titles = {
     'vuepress': 'Vuepress博客搭建',
-    'topicNav': '📗目录'
+    'topicNav': '📗目录',
+    'vue3': 'Vue3 学习'
 };
 
 
