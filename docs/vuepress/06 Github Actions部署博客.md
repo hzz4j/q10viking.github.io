@@ -1,4 +1,9 @@
 ---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /vuepress/
 typora-root-url: ..\.vuepress\public
 ---
 
@@ -90,4 +95,10 @@ jobs:
 到此为止，进行访问 https://q10viking.github.io/
 
 <img src="/images/vuepress/image-20211126135116578.png" alt="image-20211126135116578" style="zoom:50%;" />
+
+
+
+## 参考
+
+[部署 | VuePress (vuejs.org)](https://v2.vuepress.vuejs.org/zh/guide/deployment.html#github-pages)
 
