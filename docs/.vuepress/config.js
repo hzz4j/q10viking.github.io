@@ -12,7 +12,7 @@ module.exports = {
   description: '静默的Vuepress Blog',
   head: [['link', { rel: 'icon', href: '/images/favicon-32x32.png' }]], // icon设置
   themeConfig: {
-    logo: '/images/logo.png',
+    logo: 'https://gitee.com/q10viking/PictureRepos/raw/master/images/202111270249540.png',
     lastUpdated: false,   // 禁用显示更新时间
     contributors: false,   // 禁用显示贡献者
     sidebar,

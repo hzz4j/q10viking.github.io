@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /images/logo.png
+heroImage: https://gitee.com/q10viking/PictureRepos/raw/master/images/202111270249540.png
 heroText: '🏷️Hi : )🏷️'
 tagline: '静默的Vuepress Blog'
 actions:
@@ -8,7 +8,6 @@ actions:
     link: /topicNav/
     type: primary
 ---
-
 
 
 
