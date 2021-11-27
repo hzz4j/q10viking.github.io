@@ -1,3 +1,13 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /vuepress/
+---
+
+
+
 ## 取消全局用户配置
 
 查看当前是否使用了全局用户配置
@@ -39,13 +49,13 @@ touch id_rsa.gitee
 ssh-keygen -t rsa -f id_rsa.gitee -C "1193094618@qq.com" 
 ```
 
-<img src="C:\Users\11930\AppData\Roaming\Typora\typora-user-images\image-20211127094023991.png" alt="image-20211127094023991" style="zoom: 80%;" />
+<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111271126733.png" alt="image-20211127094023991" style="zoom: 80%;" />
 
 ## 配置SSH Key到Github和Gitee
 
 **id_rsa.gitee.pub**和 **id_rsa.github.pub**的内容分别配置到gitee和github
 
-<img src="C:\Users\11930\AppData\Roaming\Typora\typora-user-images\image-20211127095712624.png" alt="image-20211127095712624" style="zoom:80%;" />
+<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111271126276.png" alt="image-20211127095712624" style="zoom:80%;" />
 
 ### 配置config文件
 
