@@ -97,8 +97,8 @@ Hi Q10Viking! You've successfully authenticated, but GitHub does not provide she
 
 ## 设置用户全局信息
 
-```
-git config --global --unset user.name "zhuangzhuang-huang"
-git config --global --unset user.email "cau1403090523@gmail.com"
+```sh
+git config --global  user.name "静默"
+git config --global  user.email "cau1403090523@gmail.com"
 ```
 
