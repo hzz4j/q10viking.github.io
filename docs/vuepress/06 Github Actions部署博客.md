@@ -23,7 +23,7 @@ typora-root-url: ..\.vuepress\public
 
 > vuepress指南-部署，提供的文件，自己做了一些修改如node.js版本，去掉cache dependcies,使用npm而不是yarn来构建
 
-```yml
+```yml {26-35}
 name: docs
 
 on:
