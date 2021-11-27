@@ -10,6 +10,12 @@ prev:
 
 ## 封装组件
 
+::: tip
+
+[静默 on CodePen](https://codepen.io/Q10Viking)
+
+:::
+
 在引入codepen embed的时候，总是一堆代码，为了维护简单，封装了一个`codepen-snippet.vue`
 
 <img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111271454395.png" alt="image-20211127145355047" style="zoom:80%;" />
