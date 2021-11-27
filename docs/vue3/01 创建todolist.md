@@ -66,5 +66,22 @@ app.mount('#root');
 
 
 
+## vue应用分析
+
+createApp 表示创建一个Vue应用，传入的参数表示，这个应用最外层的组件，应该如何展示，
+
+```js
+app = Vue.createApp({...})
+```
+
+采用mvvm设计模式，m->model数据，v->view视图，vm->viewModel视图数据连接层
+
+```js
+// vm代表的就是vue应用的根组件
+const vm = app.mount('#root');
+```
+
+<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111280616562.png" alt="image-20211128061600334" style="zoom: 67%;" />
+
 
 
