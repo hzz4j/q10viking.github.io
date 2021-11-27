@@ -7,7 +7,8 @@ prev:
 
 
 ::: tip 提示
-学习 vue3之旅
+学习 vue3之旅  [介绍 | Vue.js (vuejs.org)](https://v3.cn.vuejs.org/guide/introduction.html)
+
 :::
 
 

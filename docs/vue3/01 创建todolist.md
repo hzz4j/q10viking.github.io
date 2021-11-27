@@ -81,7 +81,7 @@ app = Vue.createApp({...})
 const vm = app.mount('#root');
 ```
 
-<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111280616562.png" alt="image-20211128061600334" style="zoom: 67%;" />
+​										<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111280616562.png" alt="image-20211128061600334" style="zoom: 67%;" />
 
 
 
