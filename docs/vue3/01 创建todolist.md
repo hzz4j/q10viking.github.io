@@ -10,24 +10,18 @@ prev:
 
 ## todoList
 
-融合了一下知识点
+融合了一下vue的知识点
 
-1. v-model
-2. v-for
-3. methods
-4. data
-5. template
+1. vue的数据驱动
+2. 组件封装
 
 > vue引入到普通页面的方式
 
 ::: details 点击查看代码
 
-```js {5,31}
-<div id="root">
-</div>
+```js {2,33,38}
 
-<script>
-Vue.createApp({
+const app = Vue.createApp({
   data(){
     return {
       inputValue: '',
@@ -39,7 +33,10 @@ Vue.createApp({
       <input v-model="inputValue" />
       <button @click="handleAddItem">增加</button>
       <ul>
-        <li v-for="item of items">{{item}}</li>
+        <todo-item v-for="(item,index) of items"
+          :content="item"
+          :index="index"
+        />
       </ul>
     </div>
   `,
@@ -53,9 +50,14 @@ Vue.createApp({
       this.inputValue = '';
     }
   }
-}).mount('#root');
+});
 
-</script>
+app.component('todo-item',{
+  props: ['content','index'],
+  template: `<li>{{index}} ---  {{content}}</li>`
+});
+
+app.mount('#root');
 ```
 
 :::
