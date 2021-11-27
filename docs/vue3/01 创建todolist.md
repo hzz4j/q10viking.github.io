@@ -79,6 +79,9 @@ app = Vue.createApp({...})
 ```js
 // vm代表的就是vue应用的根组件
 const vm = app.mount('#root');
+
+// 可以通过vm.$data的方式来访问数据
+vm.$data.inputValue
 ```
 
 ​										<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111280616562.png" alt="image-20211128061600334" style="zoom: 67%;" />
