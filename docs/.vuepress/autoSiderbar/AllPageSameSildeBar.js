@@ -7,6 +7,7 @@ const dirTree = require("directory-tree");
 const titles = require('./textTitle');
 const SRC_PATH = path.resolve(__dirname, "../../");
 var fs = require('fs');
+const pathEnds = require('./IgnorePathOnIndexPage');
 
 
 /**
@@ -58,10 +59,12 @@ function toSidebarOption(tree = []) {
  */
 function removeDotvuepress(srcDir){
     return srcDir.children.filter(node => {
-
-      if(node.path.endsWith('.vuepress')){
-        return false;
-      }else if(node.path.endsWith('topicNav')){
+      // 如： "d:/Github/vlog/docs/.vuepress" 则返回19
+      const lastIndex = node.path.lastIndexOf('/');
+      // 截取出末尾的名字 .vuepress
+      const name = node.path.substr(lastIndex+1);
+      
+      if(pathEnds.includes(name)){
         return false;
       }
       return true;
