@@ -141,7 +141,7 @@ D:\Github\docsearch-scraper> touch .env
 APPLICATION_ID=在aloglia上配置的应用ID
 API_KEY=在aloglia配置的api key
 # 配置chrome的驱动
-CHROMEDRIVER_PATH=C:/Users/11930/Downloads/chromedriver.exe
+CHROMEDRIVER_PATH=E:/chromedriver/chromedriver.exe
 ```
 
 ### 配置config.json文件
@@ -246,7 +246,7 @@ npm i -D @vuepress/plugin-docsearch@next
 
 config.js文件中配置插件
 
-```js
+```js {5-7}
 plugins: [
 	[
       '@vuepress/docsearch',  // alogolia docsearch
@@ -266,6 +266,8 @@ plugins: [
 <img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111290536972.png" alt="image-20211129053629226" style="zoom:80%;" />
 
 ## 参考
+
+[aloglia 官网](https://www.algolia.com/) :star:
 
 [docSearch配置](https://v2.vuepress.vuejs.org/zh/reference/plugin/docsearch.html#%E5%AE%89%E8%A3%85)
 
