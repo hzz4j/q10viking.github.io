@@ -8,6 +8,10 @@ navbar = [
     {
         text: titles['topicNav'],
         link: '/topicNav/',
+    },
+    {
+        text: 'Github',
+        link: 'https://github.com/Q10Viking/q10viking.github.io'
     }
 ]
 
