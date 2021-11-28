@@ -22,6 +22,14 @@ npm run docs:dev
 
 
 
+## 构建
+
+```sh
+npm run docs:build
+```
+
+
+
 ## 功能💡
 
 
