@@ -10,6 +10,10 @@ navbar = [
         link: '/topicNav/',
     },
     {
+        text: titles['aboutme'],
+        link: '/aboutme/'
+    },
+    {
         text: 'Github',
         link: 'https://github.com/Q10Viking/q10viking.github.io'
     }
