@@ -37,3 +37,4 @@ npm run docs:dev
 - [x] codepen组件封装
 - [x] gitee+PicGo图床使用
 - [x] 网站首页添加联系方式
+- [ ] 首页优化成命令窗口欢迎的形式
