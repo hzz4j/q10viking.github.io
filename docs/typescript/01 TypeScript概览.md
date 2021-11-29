@@ -6,7 +6,9 @@ prev:
   link: /typescript/
 ---
 
+## TypeScript
 
+![image (1)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202111300357843.jpg)
 
 ## TypeScript与JavaScript
 
