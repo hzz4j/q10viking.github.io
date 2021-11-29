@@ -23,6 +23,8 @@ prev:
 - TypeScript兼容JavaScript的所有特性，并且在这基础上提供了强大的**TypeScript‘s type system**
 - 另外TypeScript能够在程序执行前能够识别错误的代码行为，降低bugs的产生
 
+<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111300318592.png" alt="image-20211130031747250"  />
+
 ### 类型推断
 
 能够自动进行类型推断
