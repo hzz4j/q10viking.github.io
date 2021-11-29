@@ -11,7 +11,7 @@
 > Keep learning,keep updating : ) 😊
 
 - [Vue框架学习](https://q10viking.github.io/vue3/)
-- [Vuepress博客搭建](https://q10viking.github.io/vuepress/)
+- [Vuepress2博客搭建](https://q10viking.github.io/vuepress/)
 - [TypeScript学习](https://q10viking.github.io/typescript/)
 
 
