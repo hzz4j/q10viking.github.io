@@ -8,7 +8,9 @@ prev:
 
 
 
-```sh
+## 安装
+
+```sh {2}
 # 安装
 npm install -g typescript
 # 检查，tsc -> typescript compiler
