@@ -38,3 +38,5 @@ prev:
 
 ![](https://raw.githubusercontent.com/vn7n24fzkq/vn7n24fzkq/master/profile-summary-card-output/solarized/3-stats.svg)
 
+[akramnarejo/frontend-projects: Frontend projects from basic to advance level. (github.com)](https://github.com/akramnarejo/frontend-projects)
+
