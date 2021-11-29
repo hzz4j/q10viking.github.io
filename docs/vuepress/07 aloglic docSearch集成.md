@@ -67,7 +67,7 @@ typora-root-url: ..\.vuepress\public\images\vuepress
 
 新生成的api key 应该如下所示，**api key用于爬虫上传数据的凭证**
 
-<img src="/C:/Users/11930/AppData/Roaming/Typora/typora-user-images/image-20211129062438055.png" alt="image-20211129062438055" style="zoom: 80%;" />
+<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111290900539.png" alt="image-20211129062438055" style="zoom: 80%;" />
 
 ### 安装pipenv
 
@@ -95,7 +95,7 @@ C:\Users\你的用户名\AppData\Roaming\Python\Python38\Scripts
 
 配置该环境变量
 
-<img src="/C:/Users/11930/AppData/Roaming/Typora/typora-user-images/image-20211128175701146.png" alt="image-20211128175701146" style="zoom:80%;" />
+<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111290900049.png" alt="image-20211128175701146" style="zoom:80%;" />
 
 ```sh
 # 验证
@@ -148,7 +148,7 @@ CHROMEDRIVER_PATH=E:/chromedriver/chromedriver.exe
 
 ::: tip
 
-用于爬虫程序使用,在这里我直接爬取在自己机器上运行的博客，因为直接爬取 [https://q10viking.github.io)](https://q10viking.github.io/) 网速较慢
+用于爬虫程序使用,爬取 [https://q10viking.github.io)](https://q10viking.github.io/) 
 
 config.json文件如下，我放在了.vuepress文件夹下
 
