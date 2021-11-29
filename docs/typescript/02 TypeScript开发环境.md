@@ -27,3 +27,18 @@ tsc --version
 3. Path Intellisense
 4. Prettier-Code formatter
 5. TSLint
+
+## VSCode开发
+
+```sh
+npm init
+# 让html自动更新
+npm install --save-dev lite-server
+```
+
+```js
+"scripts": {
+	"start": "lite-server"
+}
+```
+
