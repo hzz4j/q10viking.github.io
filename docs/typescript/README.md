@@ -1,5 +1,5 @@
 ---
-sidebarDepth: 3
+sidebarDepth: 4
 sidebar: auto
 prev:
   text: Back To 目录
@@ -61,3 +61,93 @@ const user: User = {
 
 :::
 ::::
+
+
+
+### 类型构成
+
+#### Unions
+
+```typescript
+type MyBool = true | false;
+type WindowStates = "open" | "closed" | "minimized";
+type LockStates = "locked" | "unlocked";
+type PositiveOddNumbersUnderTen = 1 | 3 | 5 | 7 | 9;
+
+function getLength(obj: string | string[]) {
+  // 既能返回string.length也能返回Array.length
+  return obj.length;
+}
+```
+
+### Generics
+
+```typescript
+interface Backpack<Type> {
+  add: (obj: Type) => void;
+  get: () => Type;
+}
+
+declare const backpack: Backpack<string>;
+```
+
+
+
+### Structural Type System
+
+::: tip
+
+One of TypeScript’s core principles is that **type checking focuses on the *shape*** that values have
+
+:::
+
+```typescript
+interface Point {
+  x: number;
+  y: number;
+}
+ 
+function logPoint(p: Point) {
+  console.log(`${p.x}, ${p.y}`);
+}
+```
+
+:::: code-group
+::: code-group-item object
+
+```js
+const point = {x: 23,y: 32};
+logPoint(point);
+// focus on shape
+const rect = { x: 33, y: 3, width: 30, height: 80 };
+logPoint(rect);
+```
+
+:::
+::: code-group-item class
+
+```js
+class VirtualPoint {
+  x: number;
+  y: number;
+ 
+  constructor(x: number, y: number) {
+    this.x = x;
+    this.y = y;
+  }
+}
+ 
+const newVPoint = new VirtualPoint(13, 56);
+// function logPoint(p: Point)
+logPoint(newVPoint);
+```
+
+:::
+::::
+
+---------
+
+
+
+## TypeScript对比Java
+
