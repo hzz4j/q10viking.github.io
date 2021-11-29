@@ -15,7 +15,7 @@ typora-root-url: ..\.vuepress\public
 
 :::
 
-<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images/202111270136489.png" alt="image-20211127012507173" style="zoom:80%;" />
 
 
+![girl](https://gitee.com/q10viking/PictureRepos/raw/master/images//202111291258902.jpg)
 
