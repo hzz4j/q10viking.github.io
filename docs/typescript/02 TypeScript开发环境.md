@@ -23,10 +23,21 @@ tsc --version
 ## VScode插件
 
 1. ESLint
+
 2. Material icon Theme
+
 3. Path Intellisense
+
 4. Prettier-Code formatter
+
+   ```js
+   // PicGo快捷键会占用，把它禁止掉
+   ctrl+shift+p ---> format document
+   ```
+
 5. TSLint
+
+
 
 ## VSCode开发
 
