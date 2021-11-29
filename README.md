@@ -2,11 +2,11 @@
 ![](https://img.shields.io/github/license/Q10Viking/q10viking.github.io)
 ## 博客展示
 
-基于vuepress2构建的博客地址
+基于vuepress2构建的笔记文档
 
 [静默的Vlog https://q10viking.github.io/](https://q10viking.github.io/)
 
-## 博客内容📗
+## 笔记内容📗
 
 > Keep learning,keep updating : ) 😊
 
