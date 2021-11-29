@@ -20,3 +20,7 @@ prev:
 
 <img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111300318592.png" alt="image-20211130031747250"  />
 
+[themaximehardy/understanding-typescript: Notes from Maximilian Schwarzmüller's course (github.com)](https://github.com/themaximehardy/understanding-typescript)
+
+[PacktPublishing/Understanding-TypeScript-2020-Edition: Code Repository for Understanding TypeScript – 2020 Edition, published by Packt (github.com)](https://github.com/PacktPublishing/Understanding-TypeScript-2020-Edition)
+
