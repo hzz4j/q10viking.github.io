@@ -48,4 +48,5 @@ npm run docs:build
 - [x] gitee+PicGo图床使用
 - [x] 网站首页添加联系方式
 - [x] 博客搜索爬虫
+- [x] 添加Google分析
 - [ ] 首页优化成命令窗口欢迎的形式
