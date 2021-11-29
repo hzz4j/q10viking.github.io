@@ -1,3 +1,13 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /vuepress/
+---
+
+
+
 ## npm卸载依赖
 
 ```sh

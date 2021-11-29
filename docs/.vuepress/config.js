@@ -26,6 +26,12 @@ module.exports = {
         apiKey: '25cd701e07d0762388df4474cbf8c05d', // Set it to your own *search* API key
         indexName: 'docs'
       }
+    ],
+    [
+      '@vuepress/plugin-google-analytics',
+      {
+        id: 'G-9Q8QRJLSGZ',
+      }
     ]
    ],
   themeConfig: {
