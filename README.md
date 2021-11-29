@@ -1,3 +1,5 @@
+
+![](https://img.shields.io/github/license/Q10Viking/q10viking.github.io)
 ## 博客展示
 
 基于vuepress2构建的博客地址
