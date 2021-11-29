@@ -196,7 +196,7 @@ config.json文件如下，我放在了.vuepress文件夹下
 
 
 
-### 执行爬虫
+### 执行爬虫:star:
 
 ::: tip
 
@@ -240,7 +240,7 @@ pipenv shell
 npm i -D @vuepress/plugin-docsearch@next
 ```
 
-注意官网推荐的版本，看看自己下载的版本是不是符合，因为如果使用的镜像源的话，下载的版本版本有可能落后，我此时安装docsearch插件的时候，淘宝的npm源是2.0.0-beta.27
+注意官网推荐的版本，看看自己下载的版本是不是符合，因为如果使用的镜像源的话，下载的版本版本有可能落后，我此时安装docsearch插件的时候，淘宝的npm源是2.0.0-beta.26
 
 <img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111290524749.png" alt="image-20211129052353828" style="zoom:80%;" />
 
