@@ -1,6 +1,4 @@
 ---
-sidebarDepth: 4
-sidebar: auto
 prev:
   text: Back To 目录
   link: /topicNav/
