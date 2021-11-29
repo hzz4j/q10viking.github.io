@@ -7,7 +7,7 @@ typora-root-url: ..\.vuepress\public
 
 ::: tip 
 
-![](https://img.shields.io/github/license/Q10Viking/q10viking.github.io)
+![](https://gitee.com/q10viking/PictureRepos/raw/master/images//202111291253058.svg+xml;charset=utf-8)
 
 笔记专题总览
 
