@@ -151,3 +151,53 @@ logPoint(newVPoint);
 
 ## TypeScript对比Java
 
+在Typescript中处理的类型与Java之中强一致性的类型有很大的不同
+
+```typescript
+class Car {
+  drive() {
+    // hit the gas
+  }
+}
+class Golfer {
+  drive() {
+    // hit the ball far
+  }
+}
+// No error
+let w: Car = new Golfer();
+```
+
+### Types as Sets
+
+In Java, it’s meaningful to think of a one-to-one correspondence between runtime types and their compile-time declarations.
+
+In TypeScript, **it’s better to think of a type as a *set of values* that share something in common**. Because types are just sets, **a particular value can belong to *many* sets at the same time**.
+
+```typescript
+interface Pointlike {
+  x: number;
+  y: number;
+}
+interface Named {
+  name: string;
+}
+ 
+function logPoint(point: Pointlike) {
+  console.log("x = " + point.x + ", y = " + point.y);
+}
+ 
+function logName(x: Named) {
+  console.log("Hello, " + x.name);
+}
+ 
+const obj = {
+  x: 0,
+  y: 0,
+  name: "Origin",
+};
+ 
+logPoint(obj);
+logName(obj);
+```
+
