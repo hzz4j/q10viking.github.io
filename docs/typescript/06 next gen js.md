@@ -1,3 +1,11 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /typescript/
+---
+
 
 
 ## Rest paramter
@@ -60,4 +68,25 @@ console.log(printOut2('Hello World'));
 ```
 
 
+
+## 解构
+
+### 数组
+
+```typescript {2}
+const hobbies = ["Sport", "Reading"];
+const [hobby1, hobby2, ...remainingHobbies] = hobbies;
+console.log(hobbies, hobby1, hobby2, remainingHobbies);
+```
+
+### 对象
+
+```typescript {6}
+const person = {
+  name: "静默",
+  developer: "Java",
+};
+
+const { name: nameAlias, developer } = person;
+```
 
