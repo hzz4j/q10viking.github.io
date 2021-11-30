@@ -41,6 +41,7 @@ tsc
 用于配置tsc如何编译ts文件
 
 ```json
+"target": "es6", /*指定typescript compiler编译的版本*/
 "sourceMap": true, /* 用于debug ts文件⭐*/
 "outDir": "./dist", /*编译后的js文件存放根目录*/
 "rootDir": "./src", /*指定要编译的文件所在的根目录*/
