@@ -47,12 +47,18 @@ let user1: Person = {
 
 ## class 实现 interface
 
+::: tip
+
+接口中可以使用readonly修饰
+
+:::
+
 :::: code-group
 ::: code-group-item 接口规范
 
-```typescript
+```typescript {2}
 interface Greetable {
-  name: string;
+  readonly name: string;
   greet(phrase: string): void;
 }
 ```
@@ -87,3 +93,20 @@ user1.greet('Hi there,I\'m ');
 :::
 
 ::::
+
+---------
+
+## Interface as Function Type
+
+```typescript {1-2}
+// type AddFn = (number1:number,number2:number)=>number;
+interface AddFn{
+    (number1:number,number2:number):number;
+}
+
+let add:AddFn;
+add = (number1,number2)=>number1+number2;
+
+console.log(add(1,2));
+```
+
