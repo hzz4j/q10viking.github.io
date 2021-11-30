@@ -200,4 +200,15 @@ accountingDepartment.printReports();
 
 
 
-## 
+## static method & properties
+
+```typescript {2,4}
+class Department {
+  static fiscalYear = 2021;
+  constructor(private id: string, private name: string) {}
+  static createEmployee(name: string) {
+    return { name };
+  }
+}
+```
+
