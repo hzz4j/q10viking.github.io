@@ -16,7 +16,8 @@ prev:
 
 :::
 
-```typescript {6}
+```typescript {7}
+// 传入的参数constructor取决于decorator使用在哪里，这里是构造函数
 function Logging(constructor: Function) {
   console.log("logging...");
   console.log(constructor);
@@ -63,6 +64,9 @@ class Person {
 
 :::
 
+:::: code-group
+::: code-group-item decorator
+
 ```typescript {3,6,13}
 function withTemplate(template: string, hookId: string) {
   return function (constructor: any) {
@@ -82,3 +86,117 @@ class Person {
 }
 ```
 
+:::
+
+::: code-group-item html
+
+```html
+<div id="app"></div>
+```
+
+:::
+
+::::
+
+---------
+
+
+
+## Decorator使用的位置
+
+::: tip
+
+除了在class上使用，还可以在Property,Accessor(setter,getter),Method,Parameter
+
+:::
+
+
+
+:::: code-group
+::: code-group-item 使用
+
+```typescript {2,6,20-21}
+class Product {
+  @LogProperty
+  title: string;
+  private _price: number;
+
+  @LogAccessor
+  set price(val: number) {
+    if (val >= 0) {
+      this._price = val;
+    } else {
+      throw new Error("Invalid price - should be positive!");
+    }
+  }
+
+  constructor(n: string, p: number) {
+    this.title = n;
+    this._price = p;
+  }
+
+  @LogMethod
+  getPricewithTax(@LogParameter tax: number) {
+    return this._price * (1 + tax);
+  }
+}
+```
+
+::: 
+
+::: code-group-item LogProperty
+
+```typescript {1}
+function LogProperty(target: any, name: string) {
+  console.log("Property Decorator");
+  console.log(target);
+  console.log(name);
+}
+```
+
+::: 
+
+::: code-group-item LogAccessor
+
+```typescript {1}
+function LogAccessor(
+  target: any,
+  name: string,
+  descriptor: PropertyDescriptor
+) {
+  console.log("Accessor Decorator");
+  console.log(target);
+  console.log(name);
+  console.log(descriptor);
+}
+```
+
+::: 
+
+::: code-group-item  LogMethod
+
+```typescript {1}
+function LogMethod(target: any, name: string, descriptor: PropertyDescriptor) {
+  console.log("Method Decorator");
+  console.log(target);
+  console.log(name);
+  console.log(descriptor);
+}
+```
+
+::: 
+
+::: code-group-item LogParameter
+
+```typescript {1}
+function LogParameter(target: any, name: string, position: number) {
+  console.log("Parameter Decorator");
+  console.log(target);
+  console.log(name);
+  console.log(position);
+}
+```
+
+::: 
+
+::::
