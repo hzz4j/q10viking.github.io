@@ -207,6 +207,12 @@ function LogParameter(target: any, name: string, position: number) {
 
 ## Returning(and changing) when a Class Decorator:star:
 
+::: tip
+
+这段代码太惊艳了
+
+:::
+
 ```typescript {4-5,10-11,18,31-32}
 function withTemplate(template: string, hookId: string) {
   console.log("Step 1");
