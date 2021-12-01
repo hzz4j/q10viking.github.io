@@ -205,11 +205,13 @@ function LogParameter(target: any, name: string, position: number) {
 
 
 
-## Returning(and changing) when a Class Decorator:star:
+## Returning (and changing) a class when a Class Decorator:star:
 
 ::: tip
 
 这段代码太惊艳了
+
+让修饰class的decorator返回一个新的class,来修改原来的class,这里修改构造函数
 
 :::
 
@@ -246,5 +248,58 @@ class Person {
 
 // step 3只会在实例化的时候才执行
 const person = new Person();
+```
+
+
+
+## Returing a PropertyDescriptor when a method decorator:star:
+
+::: tip
+
+让修饰方法的decorator返回一个PropertyDescriptor,来修改原来的方法
+
+:::
+
+自动绑定this的例子
+
+```typescript {8-10,16,20,26,34-38}
+function AutoBind(
+  target: any,
+  name: string,
+  propertyDescriptor: PropertyDescriptor
+): PropertyDescriptor {
+  console.log(propertyDescriptor);
+
+  const originalMethod = propertyDescriptor.value;
+  // 修改方法的描述
+  const adjDescriptor: PropertyDescriptor = {
+    // get是PropertyDescriptor接口的规范
+    get() {
+      console.log("xxx");
+      console.log(this); // 这个例子就是Printer,因为方法绑定了@AutoBind
+      // 给原来的方法绑定了this
+      const boundFn = originalMethod.bind(this); // this是只被调的实例，当然是被修饰的方法
+      return boundFn;
+    },
+  };
+  return adjDescriptor;
+}
+
+class Printer {
+  msg = "This works!";
+
+  @AutoBind
+  showMsg() {
+    console.log(this.msg);
+  }
+}
+
+const button = document.getElementById("app")!;
+const p = new Printer();
+// bind 让this指向p
+//button.addEventListener('click',p.showMsg.bind(p));
+
+// autobind
+button.addEventListener("click", p.showMsg);
 ```
 
