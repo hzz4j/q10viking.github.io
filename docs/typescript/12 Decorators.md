@@ -260,7 +260,7 @@ const person = new Person();
 
 :::
 
-自动绑定this的例子
+**自动绑定this的例子**
 
 ```typescript {8-10,16,20,26,34-38}
 function AutoBind(
