@@ -309,7 +309,7 @@ button.addEventListener("click", p.showMsg);
 
 ::: details 点击查看代码
 
-```typescript {3-5,11-14,20-22,38}
+```typescript {3-5,11-14,20-22,38,51,53}
 //=======================================================
 interface ValidConfig {
   [properties: string]: {
