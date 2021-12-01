@@ -12,6 +12,7 @@ const titles = {
     'topicNav': '📗Menu',
     'vue3': 'Vue3 学习',
     'typescript': 'TypeScript',
+    'javascript': 'JavaScript',
     'aboutme': 'AboutMe'
 };
 
