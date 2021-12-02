@@ -1,3 +1,13 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /vue3/
+---
+
+
+
 ## Quick start Vue
 
 ::: tip
@@ -66,3 +76,40 @@ const vm2 = Vue.createApp({}).mount("#app-test2");
 ::::
 
 ![image (4)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112021128352.jpg)
+
+
+
+## v-cloak
+
+::: tip
+
+当页面网速慢得时候，不希望在页面上看到未编译的 Mustache 标签，可以使用该指令
+
+:::
+
+[vue3-directives#v-cloak](https://v3.cn.vuejs.org/api/directives.html#v-cloak)
+
+这个指令保持在元素上直到关联组件实例结束编译。和 CSS 规则如 `[v-cloak] { display: none }` 一起用时，这个指令可以**隐藏未编译的 Mustache 标签**直到组件实例准备完毕。
+
+:::: code-group
+::: code-group-item html
+
+```html
+<div id="app" v-cloak>
+  {{ message }}
+</div>
+```
+
+:::
+
+::: code-group-item css
+
+```css
+[v-cloak] {
+  display: none;
+}
+```
+
+:::
+
+::::
