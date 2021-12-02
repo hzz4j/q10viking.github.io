@@ -28,7 +28,7 @@ Quick start Vue Project
 
 
 
-## Proxy:star:
+## Accessing the Instance Data:star:
 
 ```javascript {11}
 // Vue Model
@@ -113,3 +113,81 @@ const vm2 = Vue.createApp({}).mount("#app-test2");
 :::
 
 ::::
+
+
+
+## Two-way data binding:star:
+
+::: tip
+
+Reactivity is when any changes to the data immediately reflected on the page.
+
+:::
+
+<div id="app" v-cloak>
+    <section>
+      <h2>Hi {{userName}}</h2>
+      <p>{{description}}</p>
+    </section>
+    <hr/>
+    <label>UserName:</label>
+    <input type="text" v-model="userName"/>
+    <label>Description:</label>
+    <input type="text" v-model="description" placeholder="Please input some info"/>
+  </div>
+
+
+
+:::: code-group
+::: code-group-item html
+
+```html
+<div id="app" v-cloak>
+    <section>
+        <h2>Hi {{userName}}</h2>
+        <p>{{description}}</p>
+    </section>
+    <hr/>
+    <label>UserName:</label>
+    <input type="text" v-model="userName"/>
+    <label>Description:</label>
+    <input type="text" v-model="description" placeholder="Please input some info"/>
+</div>
+```
+
+:::
+
+::: code-group-item js
+
+```js
+// Vue Model
+const vm = Vue.createApp({
+    data(){
+        return {
+            userName: "静默",
+            description: "Learning Vue"
+        }
+    }
+}).mount("#app");
+```
+
+:::
+
+::::
+
+
+----------
+
+
+
+<script>
+    export default {
+    data(){
+        return {
+           userName: "静默",
+           description: "Learning Vue"
+        }
+    }
+}
+</script>
+
