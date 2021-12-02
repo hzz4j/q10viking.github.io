@@ -305,4 +305,13 @@ v-html存在跨站攻击的危险
     }
 }
 </script>
+<style scoped>
+input[type="text"] {
+  margin: 10px 0;
+  display: block;
+}
+</style>
+
+
+
 
