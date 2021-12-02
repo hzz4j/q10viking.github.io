@@ -18,7 +18,7 @@ Quick start Vue Project
 
 
 
-## Proxy
+## Proxy:star:
 
 ```javascript {11}
 // Vue Model
@@ -36,3 +36,33 @@ setTimeout(() => {
 ```
 
 ![image (3)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112021057333.jpg)
+
+
+
+## Multiple Vue Instances:star:
+
+:::: code-group
+::: code-group-item js
+
+```js
+// Vue Model
+const vm1 = Vue.createApp({}).mount("#app-test1");
+const vm2 = Vue.createApp({}).mount("#app-test2");
+```
+
+:::
+
+::: code-group-item html
+
+```js
+  <div id="app-test1">
+  </div>
+  <div id="app-test2">
+  </div>
+```
+
+:::
+
+::::
+
+![image (4)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112021128352.jpg)
