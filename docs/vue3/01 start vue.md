@@ -211,6 +211,44 @@ const vm = Vue.createApp({
 
 ::::
 
+## Outputting Raw HTML
+
+:::: code-group
+::: code-group-item html
+
+```html
+<p v-html="raw_url"></p>
+```
+
+:::
+
+::: code-group-item js
+
+```js
+// Vue Model
+const vm = Vue.createApp({
+  data() {
+    return {
+      raw_url: '<a href="https://q10viking.github.io" target="_blank">静默 Blog </a>',
+    };
+  },
+}).mount("#app");
+```
+
+:::
+
+::::
+
+::: tip
+
+v-html存在跨站攻击的危险
+
+:::
+
+
+
+![image (6)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112021343053.jpg)
+
 
 ----------
 
