@@ -175,6 +175,42 @@ const vm = Vue.createApp({
 
 ::::
 
+Vanilla Javascript来实现这种绑定
+
+![image (5)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112021320117.jpg)
+
+
+
+## Binding Attributes
+
+:::: code-group
+::: code-group-item html
+
+```html
+<p><a :href="blogLink" target="_blank">静默's Vlog</a></p>
+```
+
+:::
+
+::: code-group-item js
+
+```js
+// Vue Model
+const vm = Vue.createApp({
+    data(){
+        return {
+            userName: "静默",
+            description: "Learning Vue",
+            blogLink:'https://q10viking.github.io'
+        }
+    }
+}).mount("#app");
+```
+
+:::
+
+::::
+
 
 ----------
 
