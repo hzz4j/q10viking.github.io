@@ -222,6 +222,28 @@ const vm = Vue.createApp({
 
 ::::
 
+
+
+### v-model modifies
+
+::: tip
+
+number,lazy,trim用来处理input输入框的信息
+
+:::
+
+```html
+<div id="app" v-cloak>
+    {{count}} {{typeof count}} --- {{username}}
+    <!-- v-model.number 在处理数据的时候会忽略字母，只关心number -->
+    <input type="number" v-model.number="count" />
+    <!-- 不实时更新，当焦点移除的时候才更新 -->
+    <input v-model.lazy.trim()="username" />
+</div>
+```
+
+
+
 ## Binding Attributes
 
 :::: code-group
