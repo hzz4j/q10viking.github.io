@@ -67,3 +67,11 @@ https://getfreecourses.co/
 
 
 [RaquelLima7/30DaysOfCSS: Challenge to create 30 mini projects using HTML and CSS in 30 days. 🖌 (github.com)](https://github.com/RaquelLima7/30DaysOfCSS#id01) 很不错
+
+
+
+
+
+## Deeplearning
+
+https://www.deeplearning.ai/
