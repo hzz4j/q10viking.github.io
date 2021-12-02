@@ -8,7 +8,7 @@ prev:
 
 
 
-## class style
+## Binding Classes
 
 对css操作的数据形式
 
@@ -77,7 +77,7 @@ let vm = Vue.createApp({
 
 <common-codepen-snippet title="css style vue-1" slug="qBPdqjg"/> 
 
-## inline style
+## Binding Styles
 
 ```js
 styleString: 'color: yellow',
