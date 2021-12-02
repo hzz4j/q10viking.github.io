@@ -13,6 +13,8 @@ prev:
 
 :::
 
+![image (1)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112020913845.jpg)
+
 
 <div id="root">
     {{msg}}
