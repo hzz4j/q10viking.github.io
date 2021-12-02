@@ -181,6 +181,47 @@ Vanilla Javascript来实现这种绑定
 
 
 
+::: tip
+
+v-model可以使用v-bind+listening event来实现
+
+:::
+
+:::: code-group
+::: code-group-item html
+
+```html {2-4}
+<div id="app" v-cloak>
+    <input type="text" v-model="userName" />
+    <!-- 等价 -->
+    <input type="text" v-model="userName" @input="updateUserName" />
+</div>
+```
+
+:::
+::: code-group-item js
+
+```js
+// Vue Model
+const vm = Vue.createApp({
+  data() {
+    return {
+      userName: "静默",
+    };
+  },
+  methods: {
+    updateUserName(event) {
+      this.userName = event.target.value;
+    },
+  },
+}).mount("#app");
+
+```
+
+::
+
+::::
+
 ## Binding Attributes
 
 :::: code-group
