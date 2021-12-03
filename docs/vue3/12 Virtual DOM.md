@@ -29,3 +29,45 @@ The virtual DOM is JavaScript object.It is a lightweight copy of the actual DOM.
 **Updates using the Virtual DOM**
 
 ![image (11)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112031044795.jpg)
+
+
+
+## Reactivity with Proxies
+
+::: tip
+
+Vue使用Proxy的方式来动态更新数据
+
+:::
+
+
+
+:::: code-group
+::: code-group-item Javascript
+
+```js {5-10}
+const data = {
+  msg: "Hello Reactivity",
+};
+
+const proxy = new Proxy(data, {
+  set(target, key, value) {
+    document.getElementById("app").textContent = value;
+    target[key] = value;
+  },
+});
+
+proxy.msg = "Change Reactivity"
+console.log(proxy);
+
+```
+
+:::
+::: code-group-item html
+
+```html
+<div id="app"></div>
+```
+
+:::
+::::
