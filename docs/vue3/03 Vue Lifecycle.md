@@ -6,6 +6,12 @@ prev:
   link: /vue3/
 ---
 
-## 生命周期
+## LIfecycle
+
+::: tip
+
+Vue Lifecycle allows us to run code at certain points in application's lifecycle
+
+:::
 
 ![实例的生命周期](https://v3.cn.vuejs.org/images/lifecycle.svg)
