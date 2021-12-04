@@ -69,3 +69,35 @@ The following are the conditions that must be met before post **form data will b
 [hello, goodbye, world]
 ```
 
+### 两种请求类型的区别
+
+::: tip
+
+:one: `application/x-www-form-urlencoded`, the body of the HTTP message sent to the server is essentially one giant query string -- name/value pairs are separated by the ampersand (`&`), and names are separated from values by the equals symbol (`=`)
+
+:two: `multipart/form-data` transmitting name/value pairs, each pair is represented as a "part" in a MIME message.**Parts** are separated by a particular string **boundary** (chosen specifically so that this boundary string does not occur in any of the "value" payloads). Each part has its own set of MIME headers like `Content-Type`, and particularly `Content-Disposition`, which can give each part its "name." The value piece of each name/value pair is the payload of each part of the MIME message.
+
+:::
+
+参考：https://stackoverflow.com/a/4073451/7628578
+
+请求头传入：
+
+```json
+content-type: multipart/form-data; boundary=--------------------------188143036584739792660095
+```
+
+服务端收到
+
+```sh
+----------------------------188143036584739792660095
+Content-Disposition: form-data; name="a"
+
+goodbye
+----------------------------188143036584739792660095
+Content-Disposition: form-data; name="a"
+
+world
+----------------------------188143036584739792660095--
+```
+
