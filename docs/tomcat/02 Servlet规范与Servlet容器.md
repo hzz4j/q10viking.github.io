@@ -1,4 +1,16 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /tomcat/
+---
+
+
+
 ::: tip
+
+Java Servlet technology provides dynamic, user-oriented content in web applications using a request-response programming model.
 
 把 Servlet 简单理解为运行在服务端的 Java 小 程序，但是 **Servlet 没有 main 方法，不能独立运行**，因此必须把它部署到 Servlet 容器 中，由容器来实例化并调用 Servlet。
 
@@ -14,7 +26,17 @@ Tomcat就是一个“**HTTP 服务器 + Servlet 容器**”，我们也叫它们
 
 ## Servlet接口规范
 
+::: tip
+
+**Apache Tomcat version 8.5 implements the Servlet 3.1**
+
+[JAVA™ Servlet规范(oracle.com)](https://download.oracle.com/otn-pub/jcp/servlet-3_1-fr-spec/servlet-3_1-final.pdf?AuthParam=1638599308_cd92a269e7bc665ec5ae0fcd9287053b)
+
+:::
+
 HTTP 服 务器不直接跟业务类打交道，而是把请求交给 Servlet 容器去处理，Servlet 容器会将请求 转发到具体的 Servlet，如果这个 Servlet 还没创建，就加载并实例化这个 Servlet，然后调 用这个 Servlet 的接口方法。因此 **Servlet 接口其实是Servlet 容器跟具体业务类之间的接口**
+
+Servlet属于JavaEE的内容
 
 ![image (12)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112041337554.jpg)
 
