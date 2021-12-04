@@ -36,6 +36,18 @@ prev:
 
 ![image (18)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112042103887.jpg)
 
+## servlet-api依赖
+
+```xml
+<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <version>3.1.0</version>
+    <scope>provided</scope>
+</dependency>
+```
+
 
 
 ## 测试
