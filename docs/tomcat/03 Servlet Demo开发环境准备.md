@@ -8,12 +8,6 @@ prev:
 
 
 
-::: tip
-
-阅读Java™ Servlet Specification，加强理解Serlvet,先准被好环境
-
-:::
-
 ## 环境准备
 
 在聚合工程下新建一个子模块
