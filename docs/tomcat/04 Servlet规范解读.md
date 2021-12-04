@@ -46,13 +46,20 @@ world
 [hello]
 ```
 
-### post请求application/x-www-form-urlencoded
+### post请求application/x-www-form-urlencoded:star:
 
 ::: tip
 
 Data from the query string and the post body are aggregated into the request parameter set. Query string data is presented before post body data. For example, if a request is made with a query string of a=hello and a post body of a=goodbye&a=world, the resulting parameter set would be ordered a=(hello, goodbye, world).
 
 :::
+
+The following are the conditions that must be met before post **form data will be populated to the parameter set**:
+
+1. The request is an HTTP or HTTPS request.
+2. The HTTP method is POST.
+3. The content type is application/x-www-form-urlencoded.
+4. The servlet has made an initial call of any of the getParameter family of methods on the request object.
 
 ![image (20)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112050618418.jpg)
 
