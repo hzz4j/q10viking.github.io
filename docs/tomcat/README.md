@@ -12,6 +12,8 @@ tomcat源码分析
 
 :two: [javax.servlet (Java(TM) EE 7 Specification APIs) (oracle.com)](https://docs.oracle.com/javaee/7/api/javax/servlet/package-summary.html)
 
+:three: [JAVA™ Servlet规范(oracle.com)](https://download.oracle.com/otn-pub/jcp/servlet-3_1-fr-spec/servlet-3_1-final.pdf?AuthParam=1638599308_cd92a269e7bc665ec5ae0fcd9287053b)
+
 Apache Tomcat version 8.5 implements the Servlet 3.1
 
 :::
