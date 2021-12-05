@@ -105,6 +105,8 @@ world
 
 ## FileUpload
 
+![image (24)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112060630551.jpg)
+
 ```java
 // 用于getPart中part使用的
 @MultipartConfig(location = "D:\\Github\\learn-tomcat\\catalina-home\\webapps\\servlet-specification\\uploads")
@@ -115,6 +117,25 @@ public class FileUpload extends HttpServlet {
         Collection<Part> parts = req.getParts();
         for (Part part: parts){
             part.write(part.getSubmittedFileName());
+        }
+    }
+}
+```
+
+![image (23)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112060629324.jpg)
+
+## Attributes
+
+```java
+@WebServlet("/request/attributes")
+public class Attributes extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("developer.name","静默");
+        Enumeration<String> attributeNames = req.getAttributeNames();
+        while(attributeNames.hasMoreElements()){
+            String name = attributeNames.nextElement();
+            System.out.println(name + " = " + req.getAttribute(name));
         }
     }
 }
