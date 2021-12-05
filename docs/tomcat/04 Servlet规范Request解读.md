@@ -8,13 +8,11 @@ prev:
 
 ::: tip
 
-阅读Java™ Servlet Specification，加强理解Serlvet,先准被好环境
+阅读Java™ Servlet Specification，加强理解Serlvet,
 
 :::
 
-## Request
-
-### post请求multipart/form-data
+## post请求multipart/form-data
 
 ```java {6}
     @Override
@@ -46,7 +44,7 @@ world
 [hello]
 ```
 
-### post请求application/x-www-form-urlencoded:star:
+## post请求application/x-www-form-urlencoded:star:
 
 ::: tip
 
@@ -203,12 +201,32 @@ public class path extends HttpServlet {
 }
 ```
 
-
-
 ```
 contextPath = /servlet_specification
 servletPath = /request/path
 pathInfo = null
 requestURI = /servlet_specification/request/pathnull
+```
+
+
+
+---------
+
+```java
+@WebServlet("/request/pathTranslated")
+public class PathTranslation extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String requestURI = req.getRequestURI();
+        String realPath = req.getServletContext().getRealPath("");
+        String pathTranslated = req.getPathTranslated();
+        // pathTranslated = null
+        System.out.println("pathTranslated = " + pathTranslated);
+        // realPath = D:\Github\learn-tomcat\catalina-home\webapps\servlet-specification\
+        System.out.println("realPath = " + realPath);
+        // requestURI = /servlet_specification/request/pathTranslated
+        System.out.println("requestURI = " + requestURI);
+    }
+}
 ```
 
