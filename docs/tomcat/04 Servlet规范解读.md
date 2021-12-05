@@ -176,3 +176,39 @@ host = localhost:8888
 content-length = 0
 ```
 
+
+
+## Path
+
+::: tip
+
+http://localhost:8888/servlet_specification/request/path
+
+:::
+
+```java
+@WebServlet("/request/path")
+public class path extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String contextPath = req.getContextPath();
+        String servletPath = req.getServletPath();
+        String pathInfo = req.getPathInfo();
+        String requestURI = contextPath + servletPath + pathInfo;
+        System.out.println("contextPath = " + contextPath);
+        System.out.println("servletPath = " + servletPath);
+        System.out.println("pathInfo = " + pathInfo);
+        System.out.println("requestURI = " + requestURI);
+    }
+}
+```
+
+
+
+```
+contextPath = /servlet_specification
+servletPath = /request/path
+pathInfo = null
+requestURI = /servlet_specification/request/pathnull
+```
+
