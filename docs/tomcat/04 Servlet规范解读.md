@@ -101,3 +101,22 @@ world
 ----------------------------188143036584739792660095--
 ```
 
+
+
+## FileUpload
+
+```java
+// 用于getPart中part使用的
+@MultipartConfig(location = "D:\\Github\\learn-tomcat\\catalina-home\\webapps\\servlet-specification\\uploads")
+public class FileUpload extends HttpServlet {
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("=============FileUpload===================");
+        Collection<Part> parts = req.getParts();
+        for (Part part: parts){
+            part.write(part.getSubmittedFileName());
+        }
+    }
+}
+```
+
