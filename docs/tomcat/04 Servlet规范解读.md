@@ -126,6 +126,12 @@ public class FileUpload extends HttpServlet {
 
 ## Attributes
 
+::: tip
+
+自己设置的属性，用于后续处理
+
+:::
+
 ```java
 @WebServlet("/request/attributes")
 public class Attributes extends HttpServlet {
@@ -139,5 +145,34 @@ public class Attributes extends HttpServlet {
         }
     }
 }
+```
+
+## Headers
+
+```java
+@WebServlet("/request/headers")
+public class Headers extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Enumeration<String> headerNames = req.getHeaderNames();
+        while(headerNames.hasMoreElements()){
+            String name = headerNames.nextElement();
+            System.out.println(name + " = " + req.getHeader(name));
+        }
+    }
+}
+```
+
+
+
+```
+accept = */*
+accept-encoding = gzip, deflate, br
+accept-language = zh-CN
+user-agent = ApiPOST Runtime +https://www.apipost.cn
+connection = keep-alive
+content-type = multipart/form-data; boundary=--------------------------383670703119003940829799
+host = localhost:8888
+content-length = 0
 ```
 
