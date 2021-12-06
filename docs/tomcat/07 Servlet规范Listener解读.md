@@ -52,6 +52,40 @@ public class MyServletContextListener implements ServletContextListener {
 
 ![image (13)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112061410328.jpg)
 
+::: tip
+
+**HttpSessionBindingListener**
+
+:one: When an instance of this `ActiveUser` get set as a session attribute by `HttpSession#setAttribute()`, then the `valueBound()` will be invoked.
+
+:two: When it get removed by either `HttpSession#removeAttribute()`, or an invalidate of the session, or get replaced by another `HttpSession#setAttribute()`, then the `valueUnbound()` will be invoked.
+
+:::
+
+```java {1,12-20}
+public class Dog implements HttpSessionBindingListener {
+    private String breed;
+
+    public Dog(String breed) {
+        this.breed = breed;
+    }
+
+    public String getBreed() {
+        return breed;
+    }
+
+    @Override
+    public void valueBound(HttpSessionBindingEvent event) {
+        System.out.println("==================Value Bound==================");
+    }
+
+    @Override
+    public void valueUnbound(HttpSessionBindingEvent event) {
+
+    }
+}
+```
+
 
 
 ### ServletRequest Event
