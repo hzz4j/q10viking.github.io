@@ -27,3 +27,10 @@ git checkout main
 git checkout tomcat.7.0.109
 ```
 
+::: tip
+
+这样以后，也方便在idea中切换tomcat7与tomcat8的版本
+
+:::
+
+![image](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112070510497.jpg)
