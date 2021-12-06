@@ -140,7 +140,23 @@ public class FileDownload extends HttpServlet {
 
 ### 资源所处于的位置
 
+The getResourceAsStream() requires you to start with a forward slash (“/”) , which **represents the root of your web app.**
+
 ![image (8)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112061151532.jpg)
 
 ![image (7)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112061115307.jpg)
+
+### MIME
+
+You have to tell the browser what you’re sending back, so the browser can do the right thing: launch a “helper” app like a PDF viewer or video player, render the HTML, save the bytes of the response as a downloaded file, etc. And since you’re wondering, yes when we say content type we mean the same thing as MIME type.
+
+![image (9)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112061155723.jpg)
+
+
+
+
+
+
+
+
 
