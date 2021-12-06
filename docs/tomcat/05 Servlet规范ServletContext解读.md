@@ -97,3 +97,12 @@ public class ServletContextTest2 extends HttpServlet {
 }
 ```
 
+
+
+## Resources
+
+::: tip
+
+用一个文件下载的例子来理解
+
+:::
