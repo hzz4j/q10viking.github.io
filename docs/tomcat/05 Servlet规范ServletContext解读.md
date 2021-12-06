@@ -109,6 +109,8 @@ public class ServletContextTest2 extends HttpServlet {
 
 :::
 
+> http://localhost:8888/servlet_specification/servletContext/fileDown/bookCode.jar
+
 ```java {1,6,12,15}
 @WebServlet("/servletContext/fileDown/*")
 public class FileDownload extends HttpServlet {
