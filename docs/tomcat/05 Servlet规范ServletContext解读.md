@@ -106,3 +106,41 @@ public class ServletContextTest2 extends HttpServlet {
 用一个文件下载的例子来理解
 
 :::
+
+```java {1,6,12,15}
+@WebServlet("/servletContext/fileDown/*")
+public class FileDownload extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // pathInfo 是 /bookCode.jar
+        String filename = req.getPathInfo().substring(1);
+        ServletContext servletContext = this.getServletContext();
+        String mimeType = servletContext.getMimeType(filename);
+
+        // We want the browser to recognize that this is a JAR, not HTML, so we set the
+        //content type to “application/java-archive”.
+        resp.setContentType(mimeType);
+
+        // This just says, “give me an input stream for the resource named tomcat-i18n-zh-CN.jar”.
+        InputStream resourceAsStream = servletContext.getResourceAsStream("/"+filename);
+
+        int read = 0;
+        byte[] bytes = new byte[1024];
+        OutputStream outputStream = resp.getOutputStream();
+        while((read = resourceAsStream.read(bytes)) != -1) {
+            outputStream.write(bytes, 0, read);
+        }
+        outputStream.flush();
+        outputStream.close();
+    }
+}
+```
+
+
+
+### 资源所处于的位置
+
+![image (8)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112061151532.jpg)
+
+![image (7)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112061115307.jpg)
+
