@@ -140,3 +140,71 @@ public class ClientDemo {
 
 :::
 ::::
+
+
+
+
+
+## 浏览器访问服务端
+
+::: tip
+
+浏览器访问服务端，查看输出的http信息
+
+::: 
+
+```
+http://localhost:8082
+```
+
+
+
+```java {17-19}
+public class ServerDemo {
+    private static final int PORT = 8082;
+
+    public static void main(String[] args) {
+        try (ServerSocket serverSocket = new ServerSocket(PORT)) {
+            System.out.println("Server start up at port: " + PORT);
+            while (true) {
+                Socket socket = serverSocket.accept();
+                System.out.println("连接成功：" + socket.getInetAddress().getHostAddress()
+                        + " : " + socket.getPort());
+
+                System.in.read(); // 阻塞
+                System.out.println("开始读取RecvBuf的数据");
+                int read = 0;
+                byte[] bytes = new byte[1024 * 1024];
+                InputStream inputStream = socket.getInputStream();
+                while ((read = inputStream.read(bytes)) != -1) {
+                    System.out.println(new String(bytes, 0, read));
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+
+
+```
+GET / HTTP/1.1
+Host: localhost:8082
+Connection: keep-alive
+sec-ch-ua: " Not A;Brand";v="99", "Chromium";v="96", "Microsoft Edge";v="96"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Windows"
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.55 Safari/537.36 Edg/96.0.1054.43
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Sec-Fetch-Site: none
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: Hm_lvt_8b02a318fde5831da10426656a43d03c=1637624849; _ga=GA1.1.1405518053.1637624850; password=admin; username=admin
+```
+
