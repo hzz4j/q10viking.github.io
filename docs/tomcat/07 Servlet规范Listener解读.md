@@ -104,3 +104,41 @@ public class Dog implements HttpSessionBindingListener {
 
 
 
+## Session Count
+
+::: tip
+
+在线人数统计的小demo
+
+:::
+
+```java
+@WebListener
+public class OnlineUserCount implements HttpSessionListener{
+    private static final AtomicInteger totalUser = new AtomicInteger(0);
+    private static final AtomicInteger onlineUser = new AtomicInteger(0);
+    @Override
+    public void sessionCreated(HttpSessionEvent se) {
+        System.out.println("================User Login=====================");
+        totalUser.incrementAndGet();
+        onlineUser.incrementAndGet();
+    }
+
+    @Override
+    public void sessionDestroyed(HttpSessionEvent se) {
+        System.out.println("=============User Logout===================");
+        onlineUser.decrementAndGet();
+    }
+
+    public static int getTotalUser() {
+        return totalUser.get();
+    }
+
+    public static int getOnlineUser() {
+        return onlineUser.get();
+    }
+}
+```
+
+
+

@@ -58,3 +58,27 @@ session.isNew()
 
 ![image (19)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112061627210.jpg)
 
+## Setting session timeout
+
+### Configuring session timeout in the DD
+
+```xml {6}
+<web-app ...>
+    <servlet>
+        ...
+    </servlet> 
+    <session-config>
+    	<session-timeout>15</session-timeout>
+    </session-config>
+</web-app>
+```
+
+### Setting session timeout for a specifi c session
+
+```java
+// The argument to the method is in seconds,
+//so this says if the client doesn’t make any
+//requests on the session for 20 minutes, kill it.*
+session.setMaxInactiveInterval(20*60);
+```
+
