@@ -4,9 +4,9 @@
 
 :::
 
-## [Creating a new empty branch for a new project](https://stackoverflow.com/questions/13969050/creating-a-new-empty-branch-for-a-new-project)
+[Creating a new empty branch for a new project](https://stackoverflow.com/questions/13969050/creating-a-new-empty-branch-for-a-new-project)
 
-```
+```sh
 git checkout —orphan tomcat.7.0.109
 git rm -rf .
 git add new_file
