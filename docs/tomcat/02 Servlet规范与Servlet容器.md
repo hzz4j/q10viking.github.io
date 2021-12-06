@@ -6,17 +6,21 @@ prev:
   link: /tomcat/
 ---
 
-
+## Servlet Container
 
 ::: tip
 
 Java Servlet technology provides dynamic, user-oriented content in web applications using a request-response programming model.
+
+Servlets don’t have a main() method.They’re under the control of another Java application called a Container.
 
 把 Servlet 简单理解为运行在服务端的 Java 小 程序，但是 **Servlet 没有 main 方法，不能独立运行**，因此必须把它部署到 Servlet 容器 中，由容器来实例化并调用 Servlet。
 
 Tomcat就是一个“**HTTP 服务器 + Servlet 容器**”，我们也叫它们 Web 容器
 
 :::
+
+![image (2)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112061010707.jpg)
 
 ## Http请求过程
 

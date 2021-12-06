@@ -8,7 +8,7 @@ The ServletContext interface defines a servlet’s view of the Web application w
 
 :::
 
-
+![image (1)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112060918834.jpg)
 
 ## Initialization Parameters
 
