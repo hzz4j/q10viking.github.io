@@ -50,3 +50,8 @@ build->build actifact
 
 ![image (19)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112042105997.jpg)
 
+::: tip
+
+这样在启动tomcat源码的时候，也可以在servlet中打断点，进行调试，非常nice
+
+:::
