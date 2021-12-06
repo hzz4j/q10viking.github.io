@@ -61,3 +61,11 @@ Using the Deployment Descriptor to map URLs to servlets
 When you deploy your servlet into your web Container, you’ll create a fairly simple XML document called the **Deployment Descriptor (DD)** to tell the Container how to run your servlets.
 
 you’ll use the DD for more than just mapping names, you’ll use two XML elements to map URLs to servlets—one to map the client-known public URL name to your own internal name, and the other to map your own internal name to a fully-qualified class name.
+
+
+
+## GET vs POST
+
+![image (5)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112061039060.jpg)
+
+![image (6)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112061040240.jpg)

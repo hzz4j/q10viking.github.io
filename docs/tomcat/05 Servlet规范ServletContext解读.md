@@ -6,9 +6,18 @@ The ServletContext interface defines a servlet’s view of the Web application w
 
 服务器容器在启动时会为每个项目创建唯一的一个ServletContext对象，用于实现多个Servlet之间 的信息共享和通信
 
+One ServletContext per web app. (They should have named it AppContext.)
+
 :::
 
 ![image (1)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112060918834.jpg)
+
+### ServletConfig
+
+- One ServletConfig object per servlet.
+- Use it to pass deploy-time information to the servlet (a database or enterprise bean lookup name, for example) that you don’t want to hard-code into the servlet (servlet init parameters)
+
+
 
 ## Initialization Parameters
 
