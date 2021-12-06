@@ -22,6 +22,10 @@ Tomcat就是一个“**HTTP 服务器 + Servlet 容器**”，我们也叫它们
 
 ![image (2)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112061010707.jpg)
 
+![image (3)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112061011290.jpg)
+
+![image (4)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112061026358.jpg)
+
 ## Http请求过程
 
 ![image (11)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112041331328.jpg)
@@ -44,3 +48,16 @@ Servlet属于JavaEE的内容
 
 ![image (12)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112041337554.jpg)
 
+
+
+## web.xml
+
+::: tip
+
+Using the Deployment Descriptor to map URLs to servlets
+
+:::
+
+When you deploy your servlet into your web Container, you’ll create a fairly simple XML document called the **Deployment Descriptor (DD)** to tell the Container how to run your servlets.
+
+you’ll use the DD for more than just mapping names, you’ll use two XML elements to map URLs to servlets—one to map the client-known public URL name to your own internal name, and the other to map your own internal name to a fully-qualified class name.
