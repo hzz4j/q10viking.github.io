@@ -88,13 +88,11 @@ public class EchoServer {
 
 ::: code-group-item ClientHandler
 
-```java {20-12}
+```java {17}
 public class ClientHandler extends Thread {
     private final Socket socket;
     private final String hostname;
     private final int port;
-    private BufferedReader reader;
-    private PrintWriter writer;
 
     public ClientHandler(Socket socket) {
         this.socket = socket;
@@ -104,24 +102,18 @@ public class ClientHandler extends Thread {
 
     @Override
     public void run() {
-        try {
-            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            writer = new PrintWriter(socket.getOutputStream());
+        try (
+                BufferedReader reader = new BufferedReader(
+                        new InputStreamReader(socket.getInputStream()));
+                PrintWriter writer = new PrintWriter(socket.getOutputStream(),true)
+        ) {
             String line;
             // 判断socket停止的方法
             while ((line = reader.readLine()) != null) {
-                System.out.println(getClientInfo() + ": " + line);
-                writer.println("echo: "+line);
-                writer.flush();
+                writer.println(line);
             }
         } catch (IOException e) {
-            try {
-                reader.close();
-                writer.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-            System.out.println("客户端异常");
+            System.out.println("客户端" + getClientInfo() + "异常");
         } finally {
             try {
                 this.socket.close();
@@ -130,7 +122,6 @@ public class ClientHandler extends Thread {
             }
         }
         System.out.println("客户端退出");
-
     }
 
     private String getClientInfo() {
@@ -147,25 +138,32 @@ public class ClientHandler extends Thread {
 
 ## Client
 
-```java {4-6,9-10}
+```java {3-11}
 public class ClientDemo {
     public static void main(String[] args) throws IOException {
-        Socket socket = new Socket();
-        socket.connect(new InetSocketAddress(Inet4Address.getLocalHost(), 8380), 3000);
-        System.out.println("客户端: " + socket.getLocalAddress() + ":" + socket.getLocalPort());
-        System.out.println("服务端: " + socket.getInetAddress() + ":" + socket.getPort());
+        try (
+                Socket echoSocket = new Socket(Inet4Address.getLocalHost(),8380);
+                PrintWriter out = new PrintWriter(echoSocket.getOutputStream(),true);
+                BufferedReader in = new BufferedReader(
+                        new InputStreamReader(echoSocket.getInputStream()));
+                BufferedReader stdIn = new BufferedReader(
+                        new InputStreamReader(System.in));
 
-        // 得到Socket输出流，并转换为打印流
-        BufferedReader socketReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        PrintStream printStream = new PrintStream(socket.getOutputStream());
-        printStream.println("Hello Server");
-        printStream.flush();
-        String msg = socketReader.readLine();
-        System.out.println(msg);
-
-        printStream.close();
-        socketReader.close();
-        socket.close();
+        ) {
+            System.out.println("客户端: " + echoSocket.getLocalAddress() + ":" + echoSocket.getLocalPort());
+            System.out.println("服务端: " + echoSocket.getInetAddress() + ":" + echoSocket.getPort());
+            String userInput;
+            while((userInput = stdIn.readLine()) != null){
+                out.println(userInput);
+                System.out.println("echo "+in.readLine());
+            }
+        }catch (UnknownHostException e) {
+            System.err.println("Don't know about host ");
+            System.exit(1);
+        } catch (IOException e) {
+            System.err.println("Couldn't get I/O for the connection to ");
+            System.exit(1);
+        }
     }
 }
 ```
