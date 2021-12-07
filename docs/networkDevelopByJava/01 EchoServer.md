@@ -1,12 +1,32 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /networkDevelopByJava/
+---
+
+
+
+## Echo protocol
+
+::: tip
+
+[Echo protocol rfc862 (ietf.org)](https://datatracker.ietf.org/doc/html/rfc862) 
+
+A very useful debugging and measurement tool is an echo service.  An echo service simply sends back to the originating source any data it receives.
+
+::: 
+
 ## EchoServer
 
 ::: tip
 
-:one: 服务器如何优雅的关闭资源？
+**TCP Based Echo Service**
 
-:two: 如何优雅的处理与客户端的读写？
+One echo service is defined as a connection based application on TCP. A server listens for TCP connections on TCP port 7.  Once a connection is established any data received is sent back.  This continues until the calling user terminates the connection.
 
-:::
+::: 
 
 
 
@@ -150,3 +170,10 @@ public class ClientDemo {
 }
 ```
 
+::: tip
+
+:one: 服务器如何优雅的关闭资源？
+
+:two: 如何优雅的处理与客户端的读写？
+
+:::
