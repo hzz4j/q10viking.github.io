@@ -20,3 +20,13 @@ Apache Tomcat version 8.5 implements the Servlet 3.1
 
 ![image (10)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112041001730.jpg)
 
+
+
+[Simple HTTP server in Java using only Java SE API - Stack Overflow](https://stackoverflow.com/questions/3732109/simple-http-server-in-java-using-only-java-se-api)
+
+[Apache HttpComponents – HttpCore Overview](https://hc.apache.org/httpcomponents-core-5.1.x/index.html)
+
+[NanoHttpd/nanohttpd: Tiny, easily embeddable HTTP server in Java. (github.com)](https://github.com/NanoHttpd/nanohttpd)
+
+[JLHTTP - Java Lightweight HTTP Server (Web Server) (freeutils.net)](http://www.freeutils.net/source/jlhttp/)
+
