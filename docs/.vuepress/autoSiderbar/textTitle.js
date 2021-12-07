@@ -15,7 +15,8 @@ const titles = {
     'typescript': 'TypeScript',
     'javascript': 'JavaScript',
     'tomcat': 'Tomcat源码分析',
-    'aboutme': 'AboutMe'
+    'aboutme': 'AboutMe',
+    'networkDevelopByJava': 'NetWork Programming'
 };
 
 
