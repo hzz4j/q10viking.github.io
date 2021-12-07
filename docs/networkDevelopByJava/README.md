@@ -14,3 +14,15 @@ Network program with Java
 
 [cdapio/netty-http: Netty based HTTP service with JAX-RS (github.com)](https://github.com/cdapio/netty-http)
 
+
+
+
+
+
+
+[Introduction to Programming in Java · Computer Science (princeton.edu)](https://introcs.cs.princeton.edu/java/home/)
+
+[Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne (princeton.edu)](https://algs4.cs.princeton.edu/home/)
+
+https://github.com/EbookFoundation/free-programming-books/issues/3010
+

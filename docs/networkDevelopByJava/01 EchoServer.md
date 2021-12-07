@@ -177,3 +177,10 @@ public class ClientDemo {
 :two: 如何优雅的处理与客户端的读写？
 
 :::
+
+
+
+服务端接收到的socket的端口与客户端的端口
+
+[Lesson: All About Sockets (The Java™ Tutorials > Custom Networking) (oracle.com)](https://docs.oracle.com/javase/tutorial/networking/sockets/index.html)
+
