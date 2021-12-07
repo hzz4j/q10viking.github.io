@@ -16,7 +16,8 @@ const titles = {
     'javascript': 'JavaScript',
     'tomcat': 'Tomcat源码分析',
     'aboutme': 'AboutMe',
-    'networkDevelopByJava': 'NetWork Programming'
+    'networkDevelopByJava': 'NetWork Programming',
+    'golang': 'golang'
 };
 
 
