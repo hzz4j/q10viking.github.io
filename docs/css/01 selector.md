@@ -10,9 +10,13 @@ prev:
 
 ## id选择器
 
+![image (2)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112081217328.jpg)
+
 
 
 ## 类选择器
+
+![image](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112081215350.jpg)
 
 ### 玩法： Google样式
 
@@ -21,9 +25,13 @@ prev:
 
 <common-codepen-snippet title="类选择器" slug="VwjyREg" />
 
-#### 1.1.3 标签选择器
+## 标签选择器  
 
-#### 1.1.3 通配符*全选择器
+![image (14)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112081213294.jpg)
+
+## 通配符*全选择器
+
+![image (1)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112081216292.jpg)
 
 ### 1.2 高级选择器
 
@@ -82,29 +90,29 @@ div,p{
 
 
 
-## 2 CSS3选择器
+## 属性选择器
 
-### 2.1 属性选择器
+![image (3)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112081219231.jpg)
 
-#### 2.1.1 普通选择器
+### 普通选择器
 
 ```css
 E[attr="val"]
 ```
 
-#### 2.1.2 ^属性开头
+### ^属性开头
 
 ```css
 E[attr^="val"]  选择拥有attr属性且属性值为val开头的E元素
 ```
 
-#### 2.1.3 $属性结束
+### $属性结束
 
 ```css
 E[attr$="val"]  选择拥有attr属性且属性值以val结束的E元素
 ```
 
-#### 2.1.4 *包含属性
+### *包含属性
 
 ```css
 E[attr*="val"]   选择拥有attr属性且属性值中包含val的E元素
