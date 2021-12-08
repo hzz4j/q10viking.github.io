@@ -135,6 +135,8 @@ E[attr*="val"]   选择拥有attr属性且属性值中包含val的E元素
 
 ## Pseudo-classes 伪类选择器
 
+![image (3)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112081600641.jpg)
+
 ::: tip
 
 [Pseudo-classes - CSS: Cascading Style Sheets | MDN (mozilla.org)](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes)
@@ -185,7 +187,7 @@ E[attr*="val"]   选择拥有attr属性且属性值中包含val的E元素
 
 
 
-## 状态选择器
+### 状态选择器
 
 ```css
 input[type=radio]:checked
@@ -193,17 +195,7 @@ input[type=radio]:checked
 .wrap:nth-child(1):hover
 ```
 
-
-
-##  特殊选择器
-
-### selection 选中的元素
-
-```css
-::selection { background: yellow; }
-```
-
-## a标签的伪元素love hate原则
+### a标签的伪元素love hate原则
 
 ```css
 a:link{
@@ -232,6 +224,24 @@ a:hover .mask{
 	<div class="mask"></div>
 	<img src="path">
 </a>
+```
+
+
+
+##  Pseudo-elements
+
+::: tip
+
+[Pseudo-elements - CSS: Cascading Style Sheets | MDN (mozilla.org)](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements)
+
+:::
+
+![image (3)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112081600641.jpg)
+
+### selection 选中的元素
+
+```css
+::selection { background: yellow; }
 ```
 
 

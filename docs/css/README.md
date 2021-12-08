@@ -16,6 +16,8 @@ Learn css to build beautiful web page
 
 :three: [Pseudo-classes - CSS: Cascading Style Sheets | MDN (mozilla.org)](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes)
 
+:four: [Pseudo-elements - CSS: Cascading Style Sheets | MDN (mozilla.org)](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements)
+
 :::
 
 ![image (8)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112022154542.jpg)
