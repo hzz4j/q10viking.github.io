@@ -241,7 +241,7 @@ a:hover .mask{
 ### selection 选中的元素
 
 ```css
-::selection { background: yellow; }
+div::selection { background: yellow; }
 ```
 
 
