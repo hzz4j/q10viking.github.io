@@ -6,7 +6,7 @@ prev:
   link: /css/
 ---
 
-
+## Box model
 
 ::: tip
 
@@ -14,7 +14,7 @@ prev:
 
 :::   
 
-
+![image (5)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112081622568.jpg)
 
 ## margin collapsing
 
