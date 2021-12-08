@@ -10,7 +10,9 @@ prev:
 
 Learn css to build beautiful web page
 
-:one: [css reference](https://cssreference.io/)
+:one: [css reference(cssreference.io)](https://cssreference.io/)
+
+:two: [css reference(mozilla.org)](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)
 
 :::
 
