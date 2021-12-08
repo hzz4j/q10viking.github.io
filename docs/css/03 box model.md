@@ -47,3 +47,16 @@ In General: Use either **margin-top** or **margin-bottom**
 [详细解释 box-sizing - CSS Reference](https://cssreference.io/property/box-sizing/)
 
 ![image (2)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112081437884.jpg)
+
+
+
+## display
+
+::: tip
+
+:one: block :two: inline :three: inline-block
+
+:::
+
+
+

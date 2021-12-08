@@ -133,7 +133,13 @@ E[attr$="val"]  选择拥有attr属性且属性值以val结束的E元素
 E[attr*="val"]   选择拥有attr属性且属性值中包含val的E元素
 ```
 
-## 结构选择器（伪类选择器）
+## Pseudo-classes 伪类选择器
+
+::: tip
+
+[Pseudo-classes - CSS: Cascading Style Sheets | MDN (mozilla.org)](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes)
+
+:::
 
 ### :first-child 第一个元素
 
