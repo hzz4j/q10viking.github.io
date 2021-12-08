@@ -59,9 +59,19 @@ body {
 
 ::: tip
 
+**Overwrites** specifity and all other selectors
+
 **在直接作用在标签上的属性，通过`!important`可以提高权重**
 
 :::
+
+```css
+div {
+	color: red !important;
+}
+```
+
+
 
 ### 通过继承获得的样式属性
 

@@ -64,7 +64,17 @@ prev:
 
 ![image (6)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112081259877.jpg)
 
+### 交集选择器
 
+::: tip
+
+select a tag that has the class
+
+两个选择器之间**不能有空格**
+
+:::
+
+![image (6)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112081634183.jpg)
 
 ### 1.3 清除默认样式（重要）
 
@@ -117,15 +127,7 @@ E[attr$="val"]  选择拥有attr属性且属性值以val结束的E元素
 E[attr*="val"]   选择拥有attr属性且属性值中包含val的E元素
 ```
 
-## 交集选择器
 
-::: tip
-
-两个选择器之间**不能有空格**
-
-:::
-
-![image (6)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112081634183.jpg)
 
 ----------
 
