@@ -58,5 +58,7 @@ In General: Use either **margin-top** or **margin-bottom**
 
 :::
 
-
+- Control behavior (**block** vs **inline**) of elements
+- Mix behavior via **inline-block**
+- Hidden elements via **none**
 
