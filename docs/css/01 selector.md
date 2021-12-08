@@ -133,57 +133,71 @@ E[attr$="val"]  选择拥有attr属性且属性值以val结束的E元素
 E[attr*="val"]   选择拥有attr属性且属性值中包含val的E元素
 ```
 
-### 2.2 结构选择器（伪类选择器）
+## 结构选择器（伪类选择器）
 
-#### 2.2.1 :first-child 第一个元素
+### :first-child 第一个元素
 
-#### 2.2.2 :last-child 最后一个元素
+### :last-child 最后一个元素
 
-#### 2.2.3 :nth-child
+###  :nth-child
 
-##### 1. even偶数
+#### 1. even偶数
+
+::: tip
 
 四个单词的是偶数
 
-##### 2. odd 奇数
+:::
 
-##### 3. 表达式 a*n+b
+#### 2. odd 奇数
 
-##### 4. 数字
+#### 3. 表达式 a*n+b
 
-#### 2.2.4 :nth-last-child
+#### 4. 数字
+
+### :nth-last-child
 
 
 
-### 2.3 类型选择器
+### 类型选择器
 
-#### 2.3.1 :nth-of-type
+#### :nth-of-type
+
+::: tip
 
 参数同:nth-child
 
-#### 2.3.2 :nth-last-of-type
+:::
+
+#### :nth-last-of-type
+
+::: tip
 
 参数同:nth-child
 
-
-
-### 2.4 状态选择器
-
-#### 2.4.1 input[type=radio]:checked
-
-#### 24.2 .wrap:nth-child(1):hover
+:::
 
 
 
-## 3 特殊选择器
+## 状态选择器
 
-#### 3.1 selection 选中的元素
+```css
+input[type=radio]:checked
+
+.wrap:nth-child(1):hover
+```
+
+
+
+##  特殊选择器
+
+### selection 选中的元素
 
 ```css
 ::selection { background: yellow; }
 ```
 
-## 4 a标签的伪元素love hate原则
+## a标签的伪元素love hate原则
 
 ```css
 a:link{
@@ -200,25 +214,21 @@ a:active{
 }
 ```
 
+**玩法：**用a标签进行包裹，以便使用hover
+
+```html
+a:hover .mask{
+	display: block; // 显示
+}
+
+<a href="#">
+	<!-- 遮罩 -->
+	<div class="mask"></div>
+	<img src="path">
+</a>
+```
 
 
-### 4.1 应用
-
-1. 用a标签进行包裹，以便使用hover
-
-   ```html
-   a:hover .mask{
-   	display: block; // 显示
-   }
-   
-   <a href="#">
-   	<!-- 遮罩 -->
-   	<div class="mask"></div>
-   	<img src="path">
-   </a>
-   ```
-
-   
 
 ## css 优先级
 
