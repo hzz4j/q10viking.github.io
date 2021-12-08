@@ -53,14 +53,6 @@ prev:
 
 
 
-### 交集选择器
-
-1. 两个选择器之间**不能有空格**
-
-   ```css
-   h3.special{}
-   ```
-
 
 ### Adjacent Sibling相邻
 
@@ -125,7 +117,15 @@ E[attr$="val"]  选择拥有attr属性且属性值以val结束的E元素
 E[attr*="val"]   选择拥有attr属性且属性值中包含val的E元素
 ```
 
+## 交集选择器
 
+::: tip
+
+两个选择器之间**不能有空格**
+
+:::
+
+![image (6)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112081634183.jpg)
 
 ----------
 
