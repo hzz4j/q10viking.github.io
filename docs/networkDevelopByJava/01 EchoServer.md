@@ -186,6 +186,8 @@ public class ClientDemo {
 }
 ```
 
+## 资源释放处理
+
 ::: tip
 
 :one: 服务器如何优雅的关闭资源？
@@ -197,6 +199,31 @@ public class ClientDemo {
 use [`try`-with-resources](https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html) statement .
 
 The Java runtime automatically closes the input and output streams, the client socket, and the server socket because they have been created in the `try`-with-resources statement.
+
+```java {1-5,14,17}
+try (
+    PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+    BufferedReader in = new BufferedReader(
+        new InputStreamReader(socket.getInputStream()))
+) {
+    String inMsg, outMsg;
+    outMsg = protocol.processInput(null);
+    out.println(outMsg);
+
+    while ((inMsg = in.readLine()) != null) {
+        outMsg = protocol.processInput(inMsg);
+        out.println(outMsg);
+        if (outMsg.equals("Byte.")) {
+            break;
+        }
+    }
+    socket.close();
+} catch (IOException e) {
+    e.printStackTrace();
+}
+```
+
+
 
 ## Reference
 
