@@ -61,14 +61,6 @@ prev:
    h3.special{}
    ```
 
-### 并集选择器
-
-1. 并集选择器通常用于集体声明 ，**逗号隔开的（和的意思）**
-
-   ```css
-   .one, p , #test {color: #F00;}  
-   ```
-
 
 ### Adjacent Sibling相邻
 
@@ -132,6 +124,48 @@ E[attr$="val"]  选择拥有attr属性且属性值以val结束的E元素
 ```css
 E[attr*="val"]   选择拥有attr属性且属性值中包含val的E元素
 ```
+
+
+
+----------
+
+## Grouping Rule
+
+::: tip
+
+并集选择器通常用于集体声明 ，**逗号隔开的（和的意思）**
+
+share the same declaration set
+
+:::
+
+:::: code-group
+::: code-group-item Grouping Rule
+
+```css
+.main-nav__item a:hover, 
+.main-nav__item a:active{
+    color: white;
+}
+```
+
+:::
+::: code-group-item 等同于
+
+```css
+.main-nav__item a:hover{
+    color: white;
+}
+
+.main-nav__item a:active{
+    color: white;
+}
+```
+
+:::
+::::
+
+
 
 ## Pseudo-classes 伪类选择器
 
