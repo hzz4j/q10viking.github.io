@@ -194,7 +194,9 @@ public class ClientDemo {
 
 :::
 
-use [`try`-with-resources](https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html) statement 
+use [`try`-with-resources](https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html) statement .
+
+The Java runtime automatically closes the input and output streams, the client socket, and the server socket because they have been created in the `try`-with-resources statement.
 
 ## Reference
 
