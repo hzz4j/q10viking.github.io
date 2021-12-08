@@ -37,11 +37,9 @@ prev:
 
 ###  Descend后代选择器
 
-```css
-#product-overview h1{
-    
-}
-```
+![image (8)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112081301739.jpg)
+
+
 
 ### Child子选择器
 
