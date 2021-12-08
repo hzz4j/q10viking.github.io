@@ -18,6 +18,14 @@ A very useful debugging and measurement tool is an echo service.  An echo servic
 
 ::: 
 
+
+
+## Socket
+
+The communication that occurs between the client and the server must be reliable. That is, no data can be dropped and it must arrive on the client side in the same order in which the server sent it.
+
+**TCP provides a reliable, point-to-point communication channel** that client-server applications on the Internet use to communicate with each other. To communicate over TCP, a client program and a server program establish a connection to one another. Each program binds a socket to its end of the connection. To communicate, the client and the server each reads from and writes to the socket bound to the connection.
+
 ## EchoServer
 
 ::: tip
@@ -138,6 +146,16 @@ public class ClientHandler extends Thread {
 
 ## Client
 
+This client program is straightforward and simple because the echo server implements a simple protocol. The client sends text to the server, and the server echoes it back. When your client programs are talking to a more complicated server such as an HTTP server, your client program will also be more complicated. However, the basics are much the same as they are in this program:
+
+1. Open a socket.
+2. Open an input stream and output stream to the socket.
+3. :star:**Read from and write to the stream according to the server's protocol.**:star:
+4. Close the streams.
+5. Close the socket.
+
+Only step 3 differs from client to client, depending on the server. The other steps remain largely the same.
+
 ```java {3-11}
 public class ClientDemo {
     public static void main(String[] args) throws IOException {
@@ -176,9 +194,13 @@ public class ClientDemo {
 
 :::
 
+use [`try`-with-resources](https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html) statement 
+
+## Reference
 
 
-服务端接收到的socket的端口与客户端的端口
 
 [Lesson: All About Sockets (The Java™ Tutorials > Custom Networking) (oracle.com)](https://docs.oracle.com/javase/tutorial/networking/sockets/index.html)
+
+https://docs.oracle.com/javase/tutorial/networking/sockets/examples/EchoClient.java
 
