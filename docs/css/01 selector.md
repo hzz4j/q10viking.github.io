@@ -33,23 +33,29 @@ prev:
 
 ![image (1)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112081216292.jpg)
 
-### 1.2 高级选择器
+## Combinator组合
 
-#### 1.2.1 后代选择器
+###  Descend后代选择器
 
 ```css
-父级 子级{属性:属性值;属性:属性值;}
+#product-overview h1{
+    
+}
 ```
 
-#### 1.2.2 子选择器
+### Child子选择器
 
-1. 这里的子 指的是 亲儿子 不包含孙子 重孙子之类
+::: tip
 
-   ```css
-   .class>h3{属性:属性值;属性:属性值;}
-   ```
+这里的子 指的是 亲儿子 不包含孙子 重孙子之类
 
-#### 1.2.3 交集选择器
+:::
+
+![image (7)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112081300044.jpg)
+
+
+
+### 交集选择器
 
 1. 两个选择器之间**不能有空格**
 
@@ -57,7 +63,7 @@ prev:
    h3.special{}
    ```
 
-#### 1.2.4 并集选择器
+### 并集选择器
 
 1. 并集选择器通常用于集体声明 ，**逗号隔开的（和的意思）**
 
@@ -65,7 +71,18 @@ prev:
    .one, p , #test {color: #F00;}  
    ```
 
-   
+
+### Adjacent Sibling相邻
+
+![image (5)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112081257664.jpg)
+
+
+
+### General Sibling
+
+![image (6)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112081259877.jpg)
+
+
 
 ### 1.3 清除默认样式（重要）
 

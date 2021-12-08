@@ -22,7 +22,15 @@ css中有**一部分属性**可以被继承,盒子属性，如宽和高**不能�
 
 ```css
 body {
-	font-family: sans-serif
+	font-family: sans-serif;
+}
+```
+
+可以作为属性填入
+
+```css
+.section-title {
+	font-family: inherid;
 }
 ```
 
