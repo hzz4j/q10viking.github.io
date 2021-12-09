@@ -1,3 +1,13 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /mybatis/
+---
+
+
+
 ::: tip
 
 使用maven的方式搭建
