@@ -41,3 +41,10 @@
 
    
 
+## core tag
+
+- header
+- main
+- footer
+- nav
+- section

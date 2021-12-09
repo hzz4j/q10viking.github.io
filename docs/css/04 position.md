@@ -12,11 +12,11 @@ position能将所有元素改变为inline-block
 
 :one: static
 
-:two: absolute
+:two: absolute 如果祖先（ancestor）有position的类型则以最近的为参照来移动，否则直接参照html标签的位置
 
 :three: relative
 
-:four: fixed  depends on viewport
+:four: fixed  depends on **viewport**
 
 :five: sticky
 
@@ -50,6 +50,6 @@ Posting移动的位置需要有一个参照物，也就是refer to **Positioning
 
 ::: tip
 
-work when use position,因为元素脱离了文档流了，会产生覆盖的效果
+work when use position,因为元素脱离了文档流了，会产生覆盖的效果.默认是0
 
 :::
