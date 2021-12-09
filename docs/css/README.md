@@ -35,4 +35,6 @@ Learn css to build beautiful web page
 - [CSS 小技巧 | 一行代码实现头像与国旗的融合 - ChokCoco - 博客园 (cnblogs.com)](https://www.cnblogs.com/coco1s/p/15359476.html)
 - [SoulBasic/TravelNotes: 旅行足迹系统，后端为JavaMVC，前端AMapAPI+HTML+jQuery (github.com)](https://github.com/SoulBasic/TravelNotes)
 - https://github.com/gorgzhang/travel-map
+- [html - JavaScript How to Dynamically Move Div by Clicking and Dragging - Stack Overflow](https://stackoverflow.com/questions/24050738/javascript-how-to-dynamically-move-div-by-clicking-and-dragging)
+- [javascript - What is the difference between screenX/Y, clientX/Y and pageX/Y? - Stack Overflow](https://stackoverflow.com/questions/6073505/what-is-the-difference-between-screenx-y-clientx-y-and-pagex-y)
 

@@ -10,6 +10,8 @@ Learn JavaScript to build awesome interactive project
 
 [Eloquent JavaScript](https://eloquentjavascript.net/)
 
+[JavaScript Tutorial](https://www.javascripttutorial.net/)
+
 ![](https://img.shields.io/github/license/Q10Viking/q10viking.github.io)
 
 :::
