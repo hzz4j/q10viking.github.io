@@ -10,12 +10,12 @@ Build a modern e-commerce system with all the knowledge I have learned so far
 
 ## 开发工具
 
-| 开发工具      | 版本                       |
-| ------------- | -------------------------- |
-| IntelliJ IDEA | 2021.2.2(Ultimate Edition) |
-|               |                            |
-|               |                            |
-|               |                            |
+| 开发工具        | 版本                       |
+| --------------- | -------------------------- |
+| IntelliJ IDEA   | 2021.2.2(Ultimate Edition) |
+| Navicat Premium | 15.0.26                    |
+|                 |                            |
+|                 |                            |
 
 
 
