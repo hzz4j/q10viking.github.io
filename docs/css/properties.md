@@ -16,11 +16,28 @@
 
   ```css
   width: calc(100% - 73px); /* 注意有逗号分隔 */
+  width: 30%; /*有三个元素的时候，最好不用33.3% 因为元素之间还存在空白字符，也占据空间*/
   ```
 
 -  vertical-align
 
+-  text-align
+
 -  text-decoration
 
 -  border-radius
+
+-  font
+
+   ```css
+   font:inherit;
+   ```
+
+-  cursor
+
+   ```css
+   cursor: pointer;
+   ```
+
+   
 
