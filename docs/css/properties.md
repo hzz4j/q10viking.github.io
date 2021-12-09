@@ -22,3 +22,5 @@
 
 -  text-decoration
 
+-  border-radius
+
