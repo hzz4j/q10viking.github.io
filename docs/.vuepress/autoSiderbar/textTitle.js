@@ -17,7 +17,9 @@ const titles = {
     'tomcat': 'Tomcat源码分析',
     'aboutme': 'AboutMe',
     'networkDevelopByJava': 'NetWork Programming',
-    'golang': 'golang'
+    'golang': 'golang',
+    'mybatis': 'mybatis',
+    'modern-mall': 'modern-mall'
 };
 
 
