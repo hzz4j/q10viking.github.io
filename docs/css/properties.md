@@ -10,5 +10,13 @@
 
 ## Anthor properties
 
--  [box-sizing - CSS Reference](https://cssreference.io/property/box-sizing/)
+- [box-sizing - CSS Reference](https://cssreference.io/property/box-sizing/)
+
+- width
+
+  ```css
+  width: calc(100% - 73px); /* 注意有逗号分隔 */
+  ```
+
+  
 
