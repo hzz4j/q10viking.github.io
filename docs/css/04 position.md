@@ -12,7 +12,7 @@
 
 ::: tip
 
-Posting移动的位置需要有一个参照物，也就是refer to
+Posting移动的位置需要有一个参照物，也就是refer to **Positioning context**
 
 :::
 
