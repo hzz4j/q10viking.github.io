@@ -67,4 +67,10 @@ dynamic
 
 :::
 
-em会乘以一个value,如浏览器默认设置的字体大小medium是16px,那么**font-size: 2em;** 最终计算的大小是2x16  = 32px
+em会乘以一个value,如浏览器默认设置的字体大小medium是16px,那么**font-size: 1.1em;** 最终计算的大小是1.1x16  = 17.6px
+
+em会有继承的问题，这样会导致很混乱
+
+![image (9)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112101458816.jpg)
+
+rem的作用：take the font size that is set by the browser setting. r stands the root element
