@@ -98,3 +98,24 @@ width: 80vmin;
 ## Which Unit should choose
 
 ![image (11)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112101527492.jpg)
+
+
+
+## Use auto to center element
+
+::: tip
+
+"margin:auto" only works for block level elements with a explicitly assigned width length
+
+:::
+
+``` css {2-3}
+.plan__list {
+  width: 80vw;
+  margin: auto;
+  text-align: center;
+}
+```
+
+ 
+
