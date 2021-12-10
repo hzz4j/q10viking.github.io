@@ -24,7 +24,7 @@
 
 ![image (6)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112101334152.jpg)
 
-### Rule to Remeber fixed position
+### 3 Rules to 
 
 ![image (7)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112101336461.jpg)
 
