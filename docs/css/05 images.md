@@ -1,3 +1,13 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /css/
+---
+
+
+
 ::: tip
 
 Because a Picture says more than a Thousand Words.
