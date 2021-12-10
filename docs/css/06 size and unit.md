@@ -12,6 +12,12 @@
 
 ## How is the Size Calulated
 
+::: tip
+
+字体**font: 75%** 参照的是浏览器字体设置
+
+:::
+
 ![image (5)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112101332430.jpg)
 
 ## % Units Calculated
@@ -26,5 +32,30 @@
 
 ### 3 Rules to 
 
-![image (7)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112101336461.jpg)
+::: tip
+
+如果**position:abosulte;** 没有找到对应的ancestor则以viewport的大小作为百分比参考
+
+:::
+
+![image (8)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112101346383.jpg)
+
+## min-widthheight & max-widthheight
+
+::: tip
+
+结合 :one: width的相对值 :two: min max的绝对值 来控制展示效果
+
+:::
+
+```css {2-4}
+.testimonial__image-container {
+  width: 65%;
+  min-width: 350px;
+  max-width: 580px;
+  display: inline-block;
+  vertical-align: middle;
+  box-shadow: 3px 3px 5px 3px rgba(0, 0, 0, 0.3);
+}
+```
 
