@@ -74,3 +74,26 @@ em会有继承的问题，这样会导致很混乱
 ![image (9)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112101458816.jpg)
 
 rem的作用：take the font size that is set by the browser setting. r stands the root element
+
+## Viewport Unit vw & vh
+
+::: tip
+
+value代表的是percentage,refers to the viewport
+
+:one: vmin vmax 代表取当前窗口width,height中最笑最大值
+
+:::
+
+```css
+width: 80vw;
+height: 100vh;
+
+/* vmin vmax*/ 
+width: 80vmin;
+```
+
+
+
+## Which Unit should choose
+
