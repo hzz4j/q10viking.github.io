@@ -59,3 +59,12 @@
 }
 ```
 
+## font-size with rem & em
+
+::: tip
+
+dynamic
+
+:::
+
+em会乘以一个value,如浏览器默认设置的字体大小medium是16px,那么**font-size: 2em;** 最终计算的大小是2x16  = 32px
