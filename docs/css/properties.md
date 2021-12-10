@@ -39,7 +39,13 @@
    cursor: pointer;
    ```
 
-   
+- position
+
+- z-index
+
+- overflow
+
+- list-style
 
 ## core tag
 
