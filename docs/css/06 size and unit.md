@@ -69,6 +69,29 @@ prev:
 }
 ```
 
+```css {4-5,9}
+@media (min-width: 40rem) {
+  main {
+    font-size: 1.3rem;
+    max-width: 1200px;
+    margin: 3rem auto;
+  }
+}
+
+@media (min-width: 1200px) {
+  .package {
+    border-left: 4px solid #0e4f1f;
+    background-color: #ff5454;
+  }
+
+  #free {
+    border-right: 4px solid #0e4f1f;
+  }
+}
+```
+
+
+
 ## font-size with rem & em
 
 ::: tip
