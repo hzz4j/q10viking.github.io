@@ -33,7 +33,7 @@ need both to create responsive website
 }
 
 /* 可以设置多个*/
-@media (min-width: 60rem){
+@media (min-width: 6 0rem){
     /*选择器*/
 }
 ```

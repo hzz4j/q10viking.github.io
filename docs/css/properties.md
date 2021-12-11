@@ -54,3 +54,4 @@
 - footer
 - nav
 - section
+- article
