@@ -36,5 +36,10 @@ need both to create responsive website
 @media (min-width: 6 0rem){
     /*选择器*/
 }
+
+/* ipad旋转的时候 */
+@media (min-width: 40rem) and (orientation: landscape) {
+    /*选择器*/
+}
 ```
 
