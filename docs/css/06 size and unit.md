@@ -54,7 +54,7 @@ prev:
 
 ::: tip
 
-结合 :one: width的相对值 :two: min max的绝对值 来控制展示效果
+结合 :one: width的相对值 :two: min max的绝对值 来控制展示效果，如图片的展示
 
 :::
 
