@@ -12,9 +12,19 @@ Java拔高之路
 
 :::
 
+![steam.gif (133×200) (oracle.com)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112111636464.gif)
+
+
+
+
+
+
+
 ## Java生态博客
 
 [未读代码 (wdbyte.com)](https://www.wdbyte.com/)
 
 [素十八 (su18.org)](https://su18.org/)
+
+https://www.youtube.com/watch?v=ArTVfdHOB-M
 
