@@ -19,7 +19,9 @@ const titles = {
     'networkDevelopByJava': 'NetWork Programming',
     'golang': 'golang',
     'mybatis': 'mybatis',
-    'modern-mall': 'Modern-Mall'
+    'modern-mall': 'Modern-Mall',
+    'java': 'Java',
+    'spring': 'Spring'
 };
 
 
