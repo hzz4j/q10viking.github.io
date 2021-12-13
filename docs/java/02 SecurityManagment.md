@@ -143,3 +143,52 @@ Exception in thread "main" java.security.AccessControlException: access denied (
 */
 ```
 
+如果我们去看`FileInputStream`的构造方法，也可以看到类似上面的代码
+
+```java {3-6}
+    public FileInputStream(File file) throws FileNotFoundException {
+        String name = (file != null ? file.getPath() : null);
+        SecurityManager security = System.getSecurityManager();
+        if (security != null) {
+            security.checkRead(name);
+        }
+        if (name == null) {
+            throw new NullPointerException();
+        }
+        if (file.isInvalid()) {
+            throw new FileNotFoundException("Invalid file path");
+        }
+        fd = new FileDescriptor();
+        fd.attach(this);
+        path = name;
+        open(name);
+    }
+```
+
+## AccessController
+
+SecurityManager提供了权限检查的API，但是如果你去看SecurityManager的源码，你会发现，实际的权限检查是委托给了AccessController这个类去做的。AccessController本身不能被实例化，不过AccessController提供了一系列静态方法来进行权限检查、特权标记、获取权限访问控制上下文等操作。
+
+```java
+public void checkRead(String file) {
+    checkPermission(new FilePermission(file,
+        SecurityConstants.FILE_READ_ACTION));
+}
+
+public void checkPermission(Permission perm) {
+    java.security.AccessController.checkPermission(perm);
+}
+```
+
+可以看到，`checkRead`方法最终是调用了AccessController的`checkPermission`方法来进行文件权限检查，checkPermission的参数是一个`java.security.Permission`对象。
+
+::: tip
+
+ there are initially two elements on the **call stack**, ClassA and ClassB. ClassA invokes a method in ClassB, which then attempts to access the file */tmp/abc* by creating an instance of `java.io.FileInputStream.`
+
+ClassA and ClassB have different code characteristics – they come from different locations and have different signers. Each may have been granted a different set of permissions. The `AccessController` only grants access to the requested file if the `Policy` indicates that both classes have been granted the required `FilePermission`.
+
+:::
+
+![policy](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112132233043.jpg)
+
