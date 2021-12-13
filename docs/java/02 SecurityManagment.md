@@ -438,3 +438,9 @@ public interface PrivilegedExceptionAction<T> {
 
 试想，如果没有这种特权机制，而我们又需要调用一个访问受限资源的模块。为了实现这个功能，我们就需要对自己的代码也授予相同的权限（或者说，需要整个调用链路上的所有调用者都进行授权）才能成功地调用该模块的代码。而通过`AccessController.doPrivileged`机制，可以简化这个流程。这在一定程度上也是对权限粒度的控制，不至于权限放的太开。
 
+
+
+## 参考
+
+[Tech 101 ‐ AccessController.doPrivileged的作用](https://tech101.cn/2019/08/15/AccessController的doPrivileged方法的作用#/)
+
