@@ -118,3 +118,28 @@ if (security != null) {
     }
 ```
 
+一个文件读权限检查的例子
+
+```java
+/**
+ * @Author 静默
+ * @Email 1193094618@qq.com
+ */
+public class SecurityTest {
+    public static void main(String ...args) throws Exception {
+        if (System.getSecurityManager() == null) {
+            System.setSecurityManager(new SecurityManager());
+        }
+        System.getSecurityManager().checkRead("foo.txt");
+    }
+}
+/**output
+Exception in thread "main" java.security.AccessControlException: access denied ("java.io.FilePermission" "foo.txt" "read")
+	at java.security.AccessControlContext.checkPermission(AccessControlContext.java:472)
+	at java.security.AccessController.checkPermission(AccessController.java:886)
+	at java.lang.SecurityManager.checkPermission(SecurityManager.java:549)
+	at java.lang.SecurityManager.checkRead(SecurityManager.java:888)
+	at org.hzz.SecurityTest.main(SecurityTest.java:12)
+*/
+```
+
