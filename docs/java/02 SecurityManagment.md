@@ -60,3 +60,61 @@ JDK 1.1 introduced the concept of a "signed applet", as illustrated by the figur
 
 ![image (14)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112132208328.jpg)
 
+## SecurityManager
+
+`java.security.SecurityManager`是Java安全模型中很重要的一个API。正如其名，SecurityManager是一个管理器，它提供了一系列的API来实现权限的管理和控制。
+
+### 启动
+
+默认情况下，Java的安全模型是不启用的。为了使用Java的安全模型，需要通过初始化安全管理器（SecurityManager）来启用Java安全模型。
+
+```java
+// 获取安全管理器，如果安全管理器未安装，则返回null
+SecurityManager manager = System.getSecurityManager();
+if (manager == null) {
+  // 安装安全管理器
+  System.setSecurityManager(new SecurityManager());
+}
+```
+
+没有安装安全管理器的情况下，调用`System.getSecurityManager()`返回的是`null`。通过`System.setSecurityManager(new SecurityManager())`可以安装和初始化一个安全管理器。
+
+### 使用
+
+**SecurityManager** 提供了一系列供用户调用的API来做权限检查。SecurityManager的典型用法如下
+
+```java
+SecurityManager security = System.getSecurityManager();
+if (security != null) {
+    security.checkXXX(argument,  . . . );
+}
+```
+
+```java
+
+    /**
+     * Throws a <code>SecurityException</code> if the
+     * calling thread is not allowed to read the file specified by the
+     * string argument.
+     * <p>
+     * This method calls <code>checkPermission</code> with the
+     * <code>FilePermission(file,"read")</code> permission.
+     * <p>
+     * If you override this method, then you should make a call to
+     * <code>super.checkRead</code>
+     * at the point the overridden method would normally throw an
+     * exception.
+     *
+     * @param      file   the system-dependent file name.
+     * @exception  SecurityException if the calling thread does not have
+     *             permission to access the specified file.
+     * @exception  NullPointerException if the <code>file</code> argument is
+     *             <code>null</code>.
+     * @see        #checkPermission(java.security.Permission) checkPermission
+     */
+    public void checkRead(String file) {
+        checkPermission(new FilePermission(file,
+            SecurityConstants.FILE_READ_ACTION));
+    }
+```
+
