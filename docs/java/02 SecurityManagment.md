@@ -1,3 +1,13 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /java/
+---
+
+
+
 ::: tip
 
 在Tomcat中看到创建类加载器时使用了AccessController.doPrivileged的方法，准备研究一下
@@ -34,6 +44,14 @@ JDK 1.1 introduced the concept of a "signed applet", as illustrated by the figur
 
 ## 域模型
 
+::: tip
+
+当前Java的安全模型是使用域模型来实现的
+
+基于域模型的Java安全模型来进行权限访问控制
+
+:::
+
 在当前最新的Java安全模型中，引入了 **域（Domain）** 的概念。虚拟机会将所有代码加载到不同的域中。其中系统域负责和操作系统的资源进行交互，而各个应用域对系统资源的访问需要通过系统域的代理来实现受限访问。JVM中的不同域关联了不同的权限，处于域中的类将拥有这个域所包含的所有权限。
 
 ![java_security_4](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112132207047.png)
@@ -41,3 +59,4 @@ JDK 1.1 introduced the concept of a "signed applet", as illustrated by the figur
 
 
 ![image (14)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112132208328.jpg)
+
