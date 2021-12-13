@@ -1,6 +1,6 @@
 ::: tip
 
-Java拔高之路
+Java
 
 [Java Platform Standard Edition 8 Documentation (oracle.com)](https://docs.oracle.com/javase/8/docs/)
 
