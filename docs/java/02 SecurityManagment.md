@@ -58,7 +58,7 @@ JDK 1.1 introduced the concept of a "signed applet", as illustrated by the figur
 
 
 
-![image (14)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112132208328.jpg)
+![java_security_5](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112132239725.png)
 
 ## SecurityManager
 
@@ -191,4 +191,222 @@ ClassA and ClassB have different code characteristics – they come from differe
 :::
 
 ![policy](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112132233043.jpg)
+
+### 实现访问控制的基础
+
+::: tip
+
+有了这四个基础，具体的访问控制逻辑就可以由AccessController来实现了
+
+:::
+
+1. 代码源(code source)：加载Java类的地址
+2. 权限（permission）：封装特定操作的请求
+3. 策略（policy）：授权的规则
+4. 保护域（protection domain）：封装代码和代码所拥有的权限
+
+#### 代码源
+
+代码源表示类的来源URL地址，代码源由类加载器负责创建和管理。
+
+```java
+/**
+ * Constructs a CodeSource and associates it with the specified
+ * location and set of certificates.
+ *
+ * @param url the location (URL).
+ *
+ * @param certs the certificate(s). It may be null. The contents of the
+ * array are copied to protect against subsequent modification.
+ */
+public CodeSource(URL url, java.security.cert.Certificate certs[]) {
+    this.location = url;
+
+    // Copy the supplied certs
+    if (certs != null) {
+        this.certs = certs.clone();
+    }
+}
+```
+
+#### 权限
+
+权限使用Permission表示，AccessController通过对Permission的判断来进行权限控制。Permission是一个抽象类，不同的权限有具体的Permission实现。关于permission对象的详细信息可以参看文档 [Permission](https://docs.oracle.com/javase/6/docs/technotes/guides/security/permissions.html)。
+
+#### 策略
+
+AccessController使用安全策略（Policy）表示一个代码源的具体访问规则。JVM默认的策略文件位于`${JAVA_HOME}/jre/lib/security/java.policy`。当然，也可以在启动JVM的时候通过`-Djava.security.policy=policy_filename`来指定安全策略文件。安全策略文件的格式一般如下：
+
+```
+grant codebase {
+  permission PermissionClass target, action
+};
+```
+
+如tomcat中的`catalina.policy`
+
+```
+// These permissions apply to the daemon code
+grant codeBase "file:${catalina.home}/bin/commons-daemon.jar" {
+        permission java.security.AllPermission;
+};
+```
+
+#### 保护域
+
+保护域（Protection Domain）可以理解为是代码源和权限映射关系的集合。一个类如果属于一个保护域，那么这个类将拥有这个域中的所有权限。
+
+
+
+### 访问控制的机制
+
+```java
+FilePermission perm = new FilePermission("path/file", "read");
+AccessController.checkPermission(perm);
+```
+
+那么，AccessController是如何判断是否有读权限的呢？
+
+首先，AccessController判断权限的主体是调用者（Caller）。基于访问控制的规则，AccessController在进行权限判断的时候，它不仅仅检查当前Caller是否拥有权限，而是对整个调用链上的所有Caller进行权限检查。对调用链上的每个Caller，都会基于它们各自所属的Protection Domain中的权限集合进行检查。当满足下面的二个条件，则表示访问被授权：
+
+1. 在当前调用链上，从当前的Caller到初始Caller之间的所有Caller都能被各自所属的ProtectionDomain中的权限授权。
+2. 在当前调用链上，从当前的Caller到初始Caller之间的所有Caller都能被各自所属的ProtectionDomain中的权限授权。
+
+如果上述的二点有任何一点不满足，则`AccessController.checkPermission()`会抛出`AccessControlException`。
+
+![java_security_6](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112132320905.png)
+
+在第一点中可以看到，这个判断过程需要对调用链上所有已经经过的Caller都进行判断。这个过程一般可以分为两种执行策略。一种是每次调用的时候都进行权限判断，如上图左边部分所示。还有一种，是只有当遇到调用`AccessController.checkPermission()`进行权限判断的时候，从当前Caller开始，顺着调用链向上回溯，过程可以参考上图右边部分。试想，当整个调用链中没有遇到权限检查的时候，第一种方案仍然需要进行权限检查，而后一种方案则更加高效。当前AccessController的权限检查策略，采用的就是后一种方案。具体的逻辑可以用伪代码表示：
+
+```java
+i = m;
+while (i > 0) {
+    if (caller i in its domain does not have the permission)
+        throw AccessControlException
+    else if (caller i is marked as privileged) 
+        return;
+    i = i - 1;
+};
+```
+
+在第二点中提到，一个Caller可以被标记为privilege。这里就有一个问题，一个Caller怎么才算被标记为privilege呢？这个privilege标记和doPrivileged()之间是什么关系呢？下面我们就来介绍doPrivileged()的作用原理。
+
+## doPrivileged的作用
+
+AccessController引入了一个`doPrivileged()`静态方法，只要Caller执行了doPrivileged()方法，那么这个Caller就会被标记为privilege，Java安全模型就不会去检查这个Caller的权限。也就是说，调用`doPrivileged()`的Caller被授予了特权，这个Caller可以免去权限检查。在进行权限检查的时候，回溯调用链的过程中，一旦遇到被标记为privilege的Caller，那么AccessController将停止向上回溯，权限检查通过。
+
+![java_security_7](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112132325857.png)
+
+doPrivileged方法一般使用方式如下（如在tomcat中创建classLoader）
+
+```java
+return AccessController.doPrivileged(
+    new PrivilegedAction<URLClassLoader>() {
+        @Override
+        public URLClassLoader run() {
+            if (parent == null)
+                return new URLClassLoader(array);
+            else
+                return new URLClassLoader(array, parent);
+        }
+    });
+```
+
+PrivilegedAction是一个接口，只有一个`run`方法。`doPrivileged(PrivilegedAction<T> action)`支持一个`PrivilegedAction`类型的参数，当Caller被标记特权后会执行PrivilegedAction的`run`方法，返回`run()`方法的返回值。
+
+```java
+
+/**
+ * A computation to be performed with privileges enabled.  The computation is
+ * performed by invoking {@code AccessController.doPrivileged} on the
+ * {@code PrivilegedAction} object.  This interface is used only for
+ * computations that do not throw checked exceptions; computations that
+ * throw checked exceptions must use {@code PrivilegedExceptionAction}
+ * instead.
+ *
+ * @see AccessController
+ * @see AccessController#doPrivileged(PrivilegedAction)
+ * @see PrivilegedExceptionAction
+ */
+
+public interface PrivilegedAction<T> {
+    /**
+     * Performs the computation.  This method will be called by
+     * {@code AccessController.doPrivileged} after enabling privileges.
+     *
+     * @return a class-dependent value that may represent the results of the
+     *         computation. Each class that implements
+     *         {@code PrivilegedAction}
+     *         should document what (if anything) this value represents.
+     * @see AccessController#doPrivileged(PrivilegedAction)
+     * @see AccessController#doPrivileged(PrivilegedAction,
+     *                                     AccessControlContext)
+     */
+    T run();
+}
+```
+
+如果PrivilegedAction中的`run`方法执行过程中会抛出检查异常，则可以用`PrivilegedExceptionAction`代替。
+
+```java
+somemethod() throws FileNotFoundException {
+     ...
+   try {
+     FileInputStream fis = (FileInputStream)
+      AccessController.doPrivileged(
+       new PrivilegedExceptionAction<InputStream>() {
+         public InputStream run() throws FileNotFoundException {
+             return new FileInputStream("someFile");
+         }
+       }
+     );
+   } catch (PrivilegedActionException e) {
+     // e.getException() should be an instance of
+     // FileNotFoundException,
+     // as only "checked" exceptions will be "wrapped" in a
+     // <code>PrivilegedActionException</code>.
+     throw (FileNotFoundException) e.getException();
+   }
+     ...
+}
+```
+
+PrivilegedExceptionAction定义如下：
+
+```java
+public interface PrivilegedExceptionAction<T> {
+    /**
+     * Performs the computation.  This method will be called by
+     * {@code AccessController.doPrivileged} after enabling privileges.
+     *
+     * @return a class-dependent value that may represent the results of the
+     *         computation.  Each class that implements
+     *         {@code PrivilegedExceptionAction} should document what
+     *         (if anything) this value represents.
+     * @throws Exception an exceptional condition has occurred.  Each class
+     *         that implements {@code PrivilegedExceptionAction} should
+     *         document the exceptions that its run method can throw.
+     * @see AccessController#doPrivileged(PrivilegedExceptionAction)
+     * @see AccessController#doPrivileged(PrivilegedExceptionAction,AccessControlContext)
+     */
+
+    T run() throws Exception;
+}
+```
+
+
+
+## 例子
+
+
+
+## 总结
+
+;;; tip
+
+`AccessController.doPrivileged`机制的存在，**可以允许我们在自己的代码没有授权，而调用模块代码被授权的情况下进行受限资源的访问。**
+
+:::
+
+试想，如果没有这种特权机制，而我们又需要调用一个访问受限资源的模块。为了实现这个功能，我们就需要对自己的代码也授予相同的权限（或者说，需要整个调用链路上的所有调用者都进行授权）才能成功地调用该模块的代码。而通过`AccessController.doPrivileged`机制，可以简化这个流程。这在一定程度上也是对权限粒度的控制，不至于权限放的太开。
 
