@@ -66,6 +66,16 @@ JDK 1.1 introduced the concept of a "signed applet", as illustrated by the figur
 
 ### 启动
 
+::: tip
+
+⭐两种方式来开启安全模式⭐
+
+:one: System.setSecurityManager(new SecurityManager())
+
+:two: -Djava.security.manager
+
+:::
+
 默认情况下，Java的安全模型是不启用的。为了使用Java的安全模型，需要通过初始化安全管理器（SecurityManager）来启用Java安全模型。
 
 ```java
@@ -235,7 +245,7 @@ public CodeSource(URL url, java.security.cert.Certificate certs[]) {
 
 #### 策略
 
-AccessController使用安全策略（Policy）表示一个代码源的具体访问规则。JVM默认的策略文件位于`${JAVA_HOME}/jre/lib/security/java.policy`。当然，也可以在启动JVM的时候通过`-Djava.security.policy=policy_filename`来指定安全策略文件。安全策略文件的格式一般如下：
+AccessController使用安全策略（Policy）表示一个代码源的具体访问规则。JVM默认的策略文件位于`${JAVA_HOME}/jre/lib/security/java.policy`。当然，也可以在启动JVM的时候通过`**-Djava.security.policy=policy_filename**`来指定安全策略文件。安全策略文件的格式一般如下：
 
 ```
 grant codebase {
@@ -251,6 +261,17 @@ grant codeBase "file:${catalina.home}/bin/commons-daemon.jar" {
         permission java.security.AllPermission;
 };
 ```
+
+开启全部权限
+
+```
+// Grant everyone all permissions:
+grant {
+ permission java.security.AllPermission;
+};
+```
+
+
 
 #### 保护域
 
@@ -397,6 +418,13 @@ public interface PrivilegedExceptionAction<T> {
 
 
 ## 例子
+
+### IDEA开启安全模式调试
+
+```sh
+-Djava.security.manager
+-Djava.security.policy=catalina-home/conf/catalina.policy
+```
 
 
 
