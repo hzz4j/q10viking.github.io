@@ -44,7 +44,7 @@ typora-root-url: ..\.vuepress\public\images\vuepress
 ### Algolia环境配置
 
 
-在 [algolia](https://www.algolia.com)上的dashboad上创建一个应用
+在 [algolia](https://www.algolia.com) 使用github账号注册的上的dashboad上创建一个应用
 
 <img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111281559173.png" alt="image-20211128155851522"  />
 
