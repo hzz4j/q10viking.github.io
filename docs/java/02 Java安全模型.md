@@ -545,6 +545,8 @@ public class DemoDoPrivilege {
 
 为了理解doProvileged的作用，我们先对引入的jar包做授权的配置。注释掉了对DemoDoPrivilege的授权
 
+IDEA运行，配置vm参数 `-Djava.security.policy=test.policy`
+
 :::
 
 ::: details test.policy
