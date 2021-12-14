@@ -103,6 +103,8 @@ div,p{
 
 ![image (3)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112081219231.jpg)
 
+![image](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112142110428.jpg)
+
 ### 普通选择器
 
 ```css
