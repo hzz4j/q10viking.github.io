@@ -282,6 +282,23 @@ a:hover .mask{
 div::selection { background: yellow; }
 ```
 
+## not
+
+::: tip
+
+排除特定的选择器
+
+:::
+
+```css {1}
+.signup-form input:not([type="checkbox"]):focus,
+.signup-form select:focus{
+    outline: none;
+    background-color: #d8f3cf;
+    border: 1px solid #2ddf5c;
+}
+```
+
 
 
 ## css 优先级
