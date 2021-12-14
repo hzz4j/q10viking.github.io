@@ -10,3 +10,8 @@
 
 ![image (2)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112142322970.jpg)
 
+
+
+## 系统平台安装的字体
+
+可以从这里查询到 https://www.cssfontstack.com/
