@@ -636,7 +636,7 @@ makeFile success: /D:/Github/Learn-Java/projectY/temp2.txt
 
 ### 分析结果在线预览
 
-<iframe id="embed_dom" name="embed_dom" frameborder="0" style="display:block;width:625px; height:345px;" src="https://www.processon.com/embed/61b8656e637689712447357c"></iframe>
+<common-progresson-snippet src="https://www.processon.com/embed/61b8656e637689712447357c"/>
 
 ## 总结:star:
 
