@@ -10,7 +10,7 @@ prev:
 
 ::: tip
 
-在Tomcat中看到创建类加载器时使用了AccessController.doPrivileged的方法，准备研究一下
+在查看开源的项目时如Tomcat，Spring,总是会看到使用了AccessController.doPrivileged的方法，为了更好的理解，本文详细分析一下
 
 Java语言随着互联网的兴起而逐步走向成熟，最初是在使用Applet的时候，Java在设计之初就做了安全上的考虑。Java安全模型的设计需要考虑如何保证Java程序可以安全地访问资源，并进行可控的授权
 
