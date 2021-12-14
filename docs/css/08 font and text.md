@@ -26,6 +26,16 @@ font face 相当于font-weight
 
 ## from server
 
+::: tip
+
+:one: ttf TrueType/OpenType font that contains information 目前浏览器中都广泛使用
+
+:two: woff Web Open Font Format 他是压缩的compressed
+
+:three: woff2.0
+
+:::
+
 1. 下载字体
 2. 定义字体
 
@@ -39,6 +49,14 @@ font face 相当于font-weight
     font-family: "AnonymousePro";
 	src: url('./aonymousePro-Bold.ttf');
     font-weight: 700;
+}
+
+/*指定format*/
+@font-face {
+    font-family: "AnonymousePro";
+	src: url('./aonymousePro-Regular.woff2') format("woff2"),
+         url('./aonymousePro-Regular.woff') format("woff"),
+         url('./aonymousePro-Regular.ttf') format("truetype");
 }
 ```
 
@@ -56,3 +74,7 @@ font face 相当于font-weight
 
 - font-weight
 - font-style
+
+
+
+11
