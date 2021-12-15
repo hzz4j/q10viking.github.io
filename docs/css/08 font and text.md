@@ -73,8 +73,26 @@ font face 相当于font-weight
 ## font其他样式
 
 - font-weight
+
 - font-style
 
+- font-variant
+
+- font-strech
+
+- letter-spacing
+
+- white-space
+
+- line-height  可以相对与font-size [line-height - CSS: Cascading Style Sheets | MDN (mozilla.org)](https://developer.mozilla.org/en-US/docs/Web/CSS/line-height)
+
+- text-decoration
+
+  ```css
+  /*红色波浪线*/
+  text-decoration: underline wavy red;
+  ```
+
+- **text-shadow**
 
 
-11
