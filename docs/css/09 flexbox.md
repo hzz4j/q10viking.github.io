@@ -4,7 +4,7 @@ The modern way to change the way our elements are displayed
 
 :::
 
-### Understanding the Flexbox
+## Understanding the Flexbox
 
 ![image (3)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112150857259.jpg)
 
@@ -37,7 +37,9 @@ The modern way to change the way our elements are displayed
 
 ::: tip
 
-- justify-content  是main方向的
+- justify-content: space-between  是main方向的
 - align-items  是 cross方向的
 
 :::
+
+![image (4)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112150954144.jpg)
