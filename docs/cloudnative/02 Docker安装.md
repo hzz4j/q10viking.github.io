@@ -139,3 +139,12 @@ sudo systemctl restart docker
 
 
 
+## 卸载docker
+
+```sh
+yum remove -y docker*
+rm -rf /etc/systemd/system/docker.service.d
+rm -rf /var/lib/docker
+rm -rf /var/run/docker
+```
+
