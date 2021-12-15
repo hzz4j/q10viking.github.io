@@ -2,6 +2,10 @@
 
 [docker | Docker Documentation 命令](https://docs.docker.com/engine/reference/commandline/docker/) 
 
+:one: 镜像命令
+
+:two: 容器命令
+
 :::
 
 
@@ -159,4 +163,16 @@ docker run -d -p 91:80 nginx
 http://192.168.187.132:91/
 
 ![image (9)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112151838311.jpg)
+
+## **列出容器**
+
+::: tip
+
+列出**运行中**的容器
+
+:::
+
+```sh
+docker ps
+```
 
