@@ -142,6 +142,16 @@ java         8         d23bdf5b1b1b   4 years ago   643MB
 
 ### 运行nginx
 
+::: tip
+
+这样就能启动一个 Nginx容器。在本例中，为 docker run添加了两个参数，含义如下：
+
+-d 后台运行
+
+-p 宿主机端口:容器端口 #开放容器端口到宿主机端口
+
+:::
+
 ```sh
 docker run -d -p 91:80 nginx
 ```
