@@ -39,3 +39,93 @@ adorsys/java                       Java Runtime Image                           
 ```
 
 :::
+
+以上列表包含五列，含义如下：
+
+- NAME:镜像仓库名称。
+
+- DESCRIPTION:镜像仓库描述。
+
+- STARS：镜像仓库收藏数，表示该镜像仓库的受欢迎程度，类似于 GitHub的 stars0
+
+- OFFICAL:表示是否为官方仓库，该列标记为[0K]的镜像均由各软件的官方项目组创建和维护。
+
+- AUTOMATED：表示是否是自动构建的镜像仓库。
+
+
+
+## 下载镜像
+
+使用命令docker pull命令即可从 Docker Registry上下载镜像，执行该命令后，Docker会从 Docker Hub中的 java仓库下载最新版本的 Java镜像。如果要下载指定版本则在java后面加冒号指定版本，例如：
+
+```sh
+docker pull java:8
+```
+
+::: details
+
+```sh
+[root@localhost docker]# docker pull java:8
+8: Pulling from library/java
+5040bd298390: Pull complete
+fce5728aad85: Pull complete
+76610ec20bf5: Pull complete
+60170fec2151: Pull complete
+e98f73de8f0d: Pull complete
+11f7af24ed9c: Pull complete
+49e2d6393f32: Pull complete
+bb9cdec9c7f3: Pull complete
+Digest: sha256:c1ff613e8ba25833d2e1940da0940c3824f03f802c449f3d1815a66b7f8c0e9d
+Status: Downloaded newer image for java:8
+docker.io/library/java:8
+```
+
+:::
+
+不指定版本默认会下载latest版本
+
+```sh
+docker pull nginx
+```
+
+::: details
+
+```sh
+[root@localhost docker]# docker pull nginx
+Using default tag: latest
+latest: Pulling from library/nginx
+e5ae68f74026: Pull complete
+21e0df283cd6: Pull complete
+ed835de16acd: Pull complete
+881ff011f1c9: Pull complete
+77700c52c969: Pull complete
+44be98c0fab6: Pull complete
+Digest: sha256:9522864dd661dcadfd9958f9e0de192a1fdda2c162a35668ab6ac42b465f0603
+Status: Downloaded newer image for nginx:latest
+docker.io/library/nginx:latest
+```
+
+:::
+
+## **列出镜像**
+
+::: tip
+
+列出已下载的镜像
+
+:::
+
+```sh
+docker images
+```
+
+::: details
+
+```sh
+[root@localhost docker]# docker images
+REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+nginx        latest    f652ca386ed1   12 days ago   141MB
+java         8         d23bdf5b1b1b   4 years ago   643MB
+```
+
+:::
