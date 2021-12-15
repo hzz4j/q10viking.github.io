@@ -207,3 +207,61 @@ CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS       
 ```
 
 :::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## **删除容器**
+
+删除指定容器
+
+```sh
+# CONTAINER ID
+docker rm f0b1c8ab3633
+```
+
+该命令只能删除**已停止**的容器，如需删除正在运行的容器，可使用-f参数
+
+强制删除所有容器
+
+```sh
+docker rm -f $(docker ps -a -q)
+```
+
