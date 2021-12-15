@@ -64,8 +64,12 @@ yum install -y docker-ce-3:19.03.9-3.el7.x86_64
 
 ## 启动Docker
 
+
+
 ```sh
 systemctl start docker
+# 加入开机启动
+systemctl enable docker
 ```
 
 验证安装是否成功(有client和service两部分表示docker安装启动都成功了)
@@ -109,3 +113,29 @@ Server: Docker Engine - Community
 ```
 
 :::
+
+
+
+## 配置docke镜像加速器
+
+::: tip
+
+借助阿里云的镜像加速器，登录阿里云(https://cr.console.aliyun.com/#/accelerator)
+
+:::
+
+```sh
+sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json <<-'EOF'
+{
+  "registry-mirrors": ["https://u8x09gus.mirror.aliyuncs.com"]
+}
+EOF
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+
+![image (8)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112151759200.jpg)
+
+
+
