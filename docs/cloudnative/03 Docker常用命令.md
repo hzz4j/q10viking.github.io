@@ -1,3 +1,11 @@
+::: tip
+
+[docker | Docker Documentation 命令](https://docs.docker.com/engine/reference/commandline/docker/) 
+
+:::
+
+
+
 ## **搜索镜像**
 
 可使用 docker search命令搜索存放在 Docker Hub中的镜像。执行该命令后， Docker就会在Docker Hub中搜索含有 java这个关键词的镜像仓库。
@@ -129,3 +137,14 @@ java         8         d23bdf5b1b1b   4 years ago   643MB
 ```
 
 :::
+
+## 运行镜像
+
+### 运行nginx
+
+```sh
+docker run -d -p 91:80 nginx
+```
+
+http://192.168.187.132:91/
+
