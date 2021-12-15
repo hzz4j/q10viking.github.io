@@ -47,3 +47,65 @@ yum list docker-ce --showduplicates | sort -r
 ```
 
 ![image (7)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112151722103.jpg)
+
+## 安装docker
+
+::: tip
+
+用指定版本的方式安装
+
+:::
+
+```sh
+yum install -y docker-ce-3:19.03.9-3.el7.x86_64
+```
+
+
+
+## 启动Docker
+
+```sh
+systemctl start docker
+```
+
+验证安装是否成功(有client和service两部分表示docker安装启动都成功了)
+
+```sh
+docker version
+```
+
+::: details
+
+```sh
+[root@localhost ~]# docker version
+Client: Docker Engine - Community
+ Version:           20.10.12
+ API version:       1.40
+ Go version:        go1.16.12
+ Git commit:        e91ed57
+ Built:             Mon Dec 13 11:45:41 2021
+ OS/Arch:           linux/amd64
+ Context:           default
+ Experimental:      true
+
+Server: Docker Engine - Community
+ Engine:
+  Version:          19.03.9
+  API version:      1.40 (minimum version 1.12)
+  Go version:       go1.13.10
+  Git commit:       9d988398e7
+  Built:            Fri May 15 00:24:05 2020
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          1.4.12
+  GitCommit:        7b11cfaabd73bb80907dd23182b9347b4245eb5d
+ runc:
+  Version:          1.0.2
+  GitCommit:        v1.0.2-0-g52b36a2
+ docker-init:
+  Version:          0.18.0
+  GitCommit:        fec3683
+```
+
+:::
