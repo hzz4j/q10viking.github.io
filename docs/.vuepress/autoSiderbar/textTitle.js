@@ -18,10 +18,10 @@ const titles = {
     'aboutme': 'AboutMe',
     'networkDevelopByJava': 'NetWork Programming',
     'golang': 'golang',
-    'mybatis': 'mybatis',
-    'modern-mall': 'Modern-Mall',
+    'mybatis': 'Mybatis',
+    'modern-mall': 'Modern Mall',
     'java': 'Java',
-    'spring': 'Spring',
+    'spring': 'Spring Framework',
     'springmvc': 'Spring MVC',
     'springboot': 'Spring Boot'
 };
