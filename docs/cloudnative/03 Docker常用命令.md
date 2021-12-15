@@ -144,6 +144,28 @@ java         8         d23bdf5b1b1b   4 years ago   643MB
 
 ## 运行镜像
 
+### 容器的网络模式
+
+::: tip
+
+--net选项：指定网络模式，该选项有以下可选参数：
+
+​	--net=bridge:**默认选项**，表示连接到默认的网桥。
+
+​	--net=host:容器使用宿主机的网络。
+
+​	--net=container:NAME-or-ID：告诉 Docker让新建的容器使用已有容器的网络配置。
+
+​	--net=none：不配置该容器的网络，用户可自定义网络配置。
+
+:::
+
+
+
+
+
+
+
 ### 运行nginx
 
 ::: tip
@@ -168,7 +190,7 @@ http://192.168.187.132:91/
 
 ::: tip
 
-列出**运行中**的容器
+列出**运行中**的容器，其中可以获取到容器的ID(CONTAINER ID)
 
 :::
 
@@ -176,3 +198,12 @@ http://192.168.187.132:91/
 docker ps
 ```
 
+::: details
+
+```sh
+[root@localhost docker]# docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                NAMES
+13bc65da0321   nginx     "/docker-entrypoint.…"   12 minutes ago   Up 12 minutes   0.0.0.0:91->80/tcp   boring_kowalevski
+```
+
+:::
