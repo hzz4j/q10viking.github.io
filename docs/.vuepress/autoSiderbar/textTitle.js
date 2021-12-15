@@ -23,7 +23,8 @@ const titles = {
     'java': 'Java',
     'spring': 'Spring Framework',
     'springmvc': 'Spring MVC',
-    'springboot': 'Spring Boot'
+    'springboot': 'Spring Boot',
+    'cloudnative': 'Cloud Native'
 };
 
 
