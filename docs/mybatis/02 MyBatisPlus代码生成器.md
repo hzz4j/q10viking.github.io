@@ -2,7 +2,7 @@
 
 [MyBatis-Plus (baomidou.com)](https://baomidou.com/)
 
-[代码生成器（新） | MyBatis-Plus (baomidou.com)](https://baomidou.com/pages/779a6e/#安装)
+[代码生成器（旧） | MyBatis-Plus (baomidou.com)](https://baomidou.com/pages/d357af/#使用教程)
 
 处理能够生成mapper.xml文件，实体文件，还有service,controller，swagger2,lombok等
 
