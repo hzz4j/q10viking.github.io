@@ -25,6 +25,6 @@ Build a modern e-commerce system with all the knowledge I have learned so far
 | -------- | --------- |
 | Java     | 1.8.0_301 |
 | Maven    | 3.8.2     |
-|          |           |
+|  Spring Boot        |           |
 |          |           |
 

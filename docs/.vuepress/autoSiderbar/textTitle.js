@@ -21,7 +21,9 @@ const titles = {
     'mybatis': 'mybatis',
     'modern-mall': 'Modern-Mall',
     'java': 'Java',
-    'spring': 'Spring'
+    'spring': 'Spring',
+    'springmvc': 'Spring MVC',
+    'springboot': 'Spring Boot'
 };
 
 
