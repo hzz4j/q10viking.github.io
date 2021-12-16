@@ -1,3 +1,13 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /cloudnative/
+---
+
+
+
 ::: tip
 
 [docker | Docker Documentation 命令](https://docs.docker.com/engine/reference/commandline/docker/) 
@@ -144,6 +154,24 @@ java         8         d23bdf5b1b1b   4 years ago   643MB
 
 ## 运行镜像
 
+## 新建并启动容器
+
+使用以下docker run命令即可新建并启动一个容器，该命令是最常用的命令，它有很多选项，下面将列举一些常用的选项。
+
+- -d选项：表示后台运行
+
+- -P选项：随机端口映射
+
+- -p选项：指定端口映射，有以下四种格式。 
+
+  - -- ip:hostPort:containerPort 
+
+  - -- ip::containerPort
+
+  - -- hostPort:containerPort 
+
+  - -- containerPort
+
 ### 容器的网络模式
 
 ::: tip
@@ -240,11 +268,23 @@ CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS       
 
 
 
+## **删除本地镜像**
 
+::: tip
 
+删除指定镜像，强制删除加 -f
 
+:::
 
+```sh
+docker rmi java 
+```
 
+删除所有镜像
+
+```sh
+docker rmi $(docker images -q)
+```
 
 
 
