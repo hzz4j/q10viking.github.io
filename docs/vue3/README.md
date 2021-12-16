@@ -83,3 +83,7 @@ export default {
 
 [VueCook (liuwenxing1996.github.io)](https://liuwenxing1996.github.io/vue-cook/)
 
+## TODO
+
+[newbee-ltd/newbee-mall-vue-app: 🔥 🎉Vue2 全家桶 + Vant 搭建大型单页面商城项目。新蜂商城前后端分离版本-前端Vue项目源码 (github.com)](https://github.com/newbee-ltd/newbee-mall-vue-app)
+

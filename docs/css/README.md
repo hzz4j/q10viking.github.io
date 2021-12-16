@@ -44,3 +44,9 @@ Learn css to build beautiful web page
 
 [chokcoco/iCSS: 不止于 CSS (github.com)](https://github.com/chokcoco/iCSS)
 
+
+
+## Mini Project
+
+[zero-to-mastery/javascript20-projects: Student submissions for the JavaScript 20 projects (github.com)](https://github.com/zero-to-mastery/javascript20-projects)
+

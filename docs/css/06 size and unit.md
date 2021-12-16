@@ -96,7 +96,9 @@ prev:
 
 ::: tip
 
-dynamic
+dynamic for responsive design
+
+:one: rem relative size compared to the root element
 
 :::
 
