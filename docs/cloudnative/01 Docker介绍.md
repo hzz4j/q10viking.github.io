@@ -50,3 +50,48 @@ Docker 让开发者可以打包他们的应用以及依赖包到一个**可移�
 
 ![image (6)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112151649256.jpg)
 
+### **Docker daemon（ Docker守护进程）**
+
+::: tip
+
+Docker daemon是一个运行在宿主机（ DOCKER-HOST）的后台进程。可通过 Docker客户端与之通信。
+
+:::
+
+### **Client（ Docker客户端）**
+
+::: tip
+
+Docker客户端是 Docker的用户界面，它可以接受用户命令和配置标识，并与 Docker daemon通信。图中， docker build等都是 Docker的相关命令
+
+:::
+
+
+
+### **Images（ Docker镜像）**
+
+::: tip
+
+Docker镜像是一个只读模板，它包含创建 Docker容器的说明。**它和系统安装光盘有点像**，使用系统安装光盘可以安装系统，同理，使用Docker镜像可以运行 Docker镜像中的程序。
+
+:::
+
+### **Container（容器）**
+
+::: tip
+
+容器是镜像的可运行实例。**镜像和容器的关系有点类似于面向对象中，类和对象的关系**。可通过 Docker API或者 CLI命令来启停、移动、删除容器。
+
+:::
+
+### **Registry**
+
+::: tip
+
+Docker Registry是一个集中存储与分发镜像的服务。构建完 Docker镜像后，就可在当前宿主机上运行。但如果想要在其他机器上运行这个镜像，就需要手动复制。此时可借助 Docker Registry来避免镜像的手动复制。
+
+:::
+
+一个 Docker Registry可包含多个 Docker仓库，每个仓库可包含多个镜像标签，每个标签对应一个 Docker镜像。这跟 Maven的仓库有点类似，如果把 Docker Registry比作 Maven仓库的话，那么 Docker仓库就可理解为某jar包的路径，而镜像标签则可理解为jar包的版本号。
+
+Docker Registry可分为公有Docker Registry和私有Docker Registry。 最常⽤的Docker Registry莫过于官⽅的Docker Hub， 这也是默认的Docker Registry。 Docker Hub上存放着⼤量优秀的镜像， 我们可使⽤Docker命令下载并使⽤。
