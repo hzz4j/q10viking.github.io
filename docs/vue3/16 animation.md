@@ -84,3 +84,23 @@ export default {
 </style>
 ```
 
+
+
+## mode
+
+::: tip
+
+元素的进入/离开展示顺序
+
+:::
+
+```vue {3-6}
+<template>
+  <button @click="flag = !flag">Toggle Button</button>
+  <transition name="fade" mode="out-in">
+    <h1 v-if="flag" key="main">Hello Animation</h1>
+    <h1 v-else key="secondary">静默 learning Vue3</h1>
+  </transition>
+</template>
+```
+
