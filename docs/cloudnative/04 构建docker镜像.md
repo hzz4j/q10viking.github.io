@@ -143,3 +143,67 @@ docker run -e JAVA_OPTS='-Xms1028M -Xmx1028M -Xmn512M -Xss512K -XX:MetaspaceSize
 ```
 
 5. 访问http://Docker宿主机IP:8761/，可正常显示Eureka Server首页![image (11)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112160903821.jpg)
+
+## **发布到远程镜像仓库**
+
+::: tip
+
+我们制作好了微服务镜像，一般需要发布到镜像仓库供别人使用，我们可以选择自建镜像仓库，也可以直接使用docker官方镜像仓库，这里我们选择docker官方镜像仓库：[hub.docker.com](https://hub.docker.com/)
+
+首先，需要在docke官方镜像仓库里注册一个账号
+
+:::
+
+在linux服务器上用docker login命令登录镜像仓库
+
+::: details
+
+```sh
+[root@localhost eureka]# docker login
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: q10viking
+Password:
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+```
+
+:::
+
+要把镜像推送到镜像仓库，需要将镜像前面加个分组名(一般就是docker hub的账户名)，执行如下命令修改镜像名字
+
+```sh
+docker tag microservice-eureka-server:0.0.1 q10viking/microservice-eureka-server:0.0.1
+```
+
+最后将镜像推送到远程仓库
+
+```
+docker push q10viking/microservice-eureka-server:0.0.1
+```
+
+::: details
+
+```sh
+[root@localhost eureka]# docker push q10viking/microservice-eureka-server:0.0.1
+The push refers to repository [docker.io/q10viking/microservice-eureka-server]
+c8221a90fc10: Pushed
+35c20f26d188: Mounted from library/java
+c3fe59dd9556: Mounted from library/java
+6ed1a81ba5b6: Mounted from library/java
+a3483ce177ce: Mounted from library/java
+ce6c8756685b: Mounted from library/java
+30339f20ced0: Mounted from library/java
+0eb22bfb707d: Mounted from library/java
+a2ae92ffcd29: Mounted from library/java
+0.0.1: digest: sha256:841ff3c2ca40edd1c29acd986b4d071a83a5227cc2a552f37c9be04d4a46966d size: 2212
+```
+
+:::
+
+登录到docker镜像查看下刚刚推送的镜像，这样镜像就能给别人用了
+
+![image (12)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112160911455.jpg)
+
