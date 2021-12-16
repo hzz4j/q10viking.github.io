@@ -220,6 +220,22 @@ http://192.168.187.132:91/
 
 ![image (9)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112151838311.jpg)
 
+## 启动已停止的容器:star:
+
+::: tip
+
+使用docker run命令，即可**新建**并启动一个容器。对于已停止的容器，可使用 docker start命令来**启动**
+
+:::
+
+```sh
+docker start f0b1c8ab3633
+```
+
+
+
+
+
 ## **列出容器**
 
 ::: tip
@@ -242,13 +258,85 @@ CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS       
 
 :::
 
+如需列出所有容器（包括已停止的容器），可使用-a参数。该列表包含了7列，含义如下:
+
+- CONTAINER_ID：表示容器 ID。
+- IMAGE:表示镜像名称。
+- COMMAND：表示启动容器时运行的命令。
+- CREATED：表示容器的创建时间。 
+- STATUS：表示容器运行的状态。UP表示运行中， Exited表示已停止。 
+- PORTS:表示容器对外的端口号。 
+- NAMES:表示容器名称。该名称默认由 Docker自动生成，也可使用 docker run命令的--name选项自行指定。
 
 
 
+## 查看容器所有信息
+
+```sh
+docker inspect f0b1c8ab3633
+```
+
+## **查看容器日志**
+
+```sh
+docker container logs f0b1c8ab3633
+```
+
+## **查看容器里的进程**
+
+```sh
+docker top f0b1c8ab3633
+```
+
+## **容器与宿主机相互复制文件**
+
+- 从容器里面拷文件到宿主机
+
+  ```
+  docker cp 容器id:要拷贝的文件在容器里面的路径  宿主机的相应路径 
+  如：docker cp 7aa5dc458f9d:/etc/nginx/nginx.conf /mydata/nginx
+  ```
+
+- 从宿主机拷文件到容器里面：
+
+  ```
+  docker cp 要拷贝的宿主机文件路径 容器id:要拷贝到容器里面对应的路径
+  ```
 
 
 
+## 进入容器:star:
 
+使用docker exec命令用于进入一个正在运行的docker容器。如果docker run命令运行容器的时候，没有使用-it参数，就要用这个命令进入容器。一旦进入了容器，就可以在容器的 Shell 执行命令了
+
+```sh
+docker exec -it f0b1c8ab3633 /bin/bash  (有的容器需要把 /bin/bash 换成 sh)
+```
+
+## 容器内安装vim、ping、ifconfig等指令
+
+```sh
+apt-get update
+apt-get install vim           #安装vim
+apt-get install iputils-ping  #安装ping
+apt-get install net-tools     #安装ifconfig 
+```
+
+
+
+## **停止容器**
+
+```sh
+# CONTAINER ID 其中f0b1c8ab3633是容器 ID,当然也可使用 docker stop容器名称来停止指定容器
+docker stop f0b1c8ab3633
+```
+
+### **强制停止容器**
+
+```sh
+# 可使用 docker kill命令发送 SIGKILL信号来强制停止容器
+docker kill f0b1c8ab3633
+```
 
 
 
