@@ -10,6 +10,14 @@ prev:
 
 ## **Dockerfile常用指令**
 
+::: tip
+
+注意：RUN命令在 image 文件的构建阶段执行，执行结果都会打包进入 image 文件；CMD命令则是在容器启动后执行。另外，一个 Dockerfile 可以包含多个RUN命令，但是只能有一个CMD命令。
+
+注意，指定了CMD命令以后，docker container run命令就不能附加命令了（比如前面的/bin/bash），否则它会覆盖CMD命令。
+
+:::
+
 | 命令      | 用途                                                         |
 | --------- | ------------------------------------------------------------ |
 | FROM      | 基础镜像文件                                                 |
@@ -26,7 +34,7 @@ prev:
 
 
 
-## **使用Dockerfile构建Docker镜像**
+## 构建简单Docker镜像
 
 ::: tip
 
@@ -78,3 +86,60 @@ prev:
 
    ![image (10)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112160848130.jpg)
 
+
+
+## 构建微服务镜像:smile:
+
+1. 将jar包上传linux服务器/usr/local/docker-app/docker-demo/app/eureka目录，在jar包所在目录创建名为Dockerfile的文件
+
+::: details 效果
+
+```sh
+[root@localhost eureka]# pwd
+/usr/local/docker-demo/app/eureka
+[root@localhost eureka]# ls
+microservice-eureka-server-0.0.1-SNAPSHOT.jar
+```
+
+:::
+
+2. 在Dockerfile中添加以下内容
+
+```sh
+# 基于哪个镜像
+From java:8
+# 复制文件到容器
+ADD microservice-eureka-server-0.0.1-SNAPSHOT.jar /app.jar
+# 声明需要暴露的端口
+EXPOSE 8761
+# 配置容器启动后执行的命令
+ENTRYPOINT java ${JAVA_OPTS} -jar /app.jar
+```
+
+3. 使用docker build命令构建镜像
+
+
+```sh
+docker build -t microservice-eureka-server:0.0.1 .
+```
+
+4, 启动镜像，加-d可在后台启动
+
+```sh
+docker run -d -p 8761:8761 microservice-eureka-server:0.0.1
+```
+
+使用 -v 可以挂载一个主机上的目录到容器的目录:star:
+
+```
+docker run -d -p 8761:8761 -v /log:/container-log microservice-eureka-server:0.0.1
+```
+
+加上JVM参数
+
+```sh
+# --cap-add=SYS_PTRACE 这个参数是让docker能支持在容器里能执行jdk自带类似jinfo，jmap这些命令，如果不需要在容器里执行这些命令可以不加
+docker run -e JAVA_OPTS='-Xms1028M -Xmx1028M -Xmn512M -Xss512K -XX:MetaspaceSize=256M -XX:MaxMetaspaceSize=256M' --cap-add=SYS_PTRACE -d -p 8761:8761 microservice-eureka-server:0.0.1
+```
+
+5. 访问http://Docker宿主机IP:8761/，可正常显示Eureka Server首页![image (11)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112160903821.jpg)
