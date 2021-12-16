@@ -24,7 +24,8 @@ const titles = {
     'spring': 'Spring Framework',
     'springmvc': 'Spring MVC',
     'springboot': 'Spring Boot',
-    'cloudnative': 'Cloud Native'
+    'cloudnative': 'Cloud Native',
+    'minifrontendproject': 'Mini FrontEnd Pro😊'
 };
 
 
