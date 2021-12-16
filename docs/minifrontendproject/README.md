@@ -16,3 +16,7 @@
 
 [Hero Patterns | Free repeatable SVG background patterns for your web projects](https://heropatterns.com/)
 
+[API- Quotes and expressions. The most inspiring expressions of mankind. (forismatic.com)](https://forismatic.com/en/api/)
+
+[https://type.fit/api/quotes](https://type.fit/api/quotes)
+
