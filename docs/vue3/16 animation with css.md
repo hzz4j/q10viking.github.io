@@ -1,3 +1,13 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /vue3/
+---
+
+
+
 ::: tip
 
 [进入过渡 & 离开过渡 | Vue.js (vuejs.org)](https://v3.cn.vuejs.org/guide/transitions-enterleave.html#单元素-组件的过渡)
@@ -92,6 +102,8 @@ export default {
 
 元素的进入/离开展示顺序
 
+:one: 给v-if v-else绑定了key，方便vue进行track
+
 :::
 
 ```vue {3-6}
@@ -103,4 +115,10 @@ export default {
   </transition>
 </template>
 ```
+
+
+
+## 过渡结合动画效果
+
+<div><learnvue-transition-with-animation /></div>
 
