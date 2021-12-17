@@ -87,7 +87,7 @@ https://www.deeplearning.ai/
 
 [TsaiKoga/MyResume: Welcome to My Resume 我的简历 (github.com)](https://github.com/TsaiKoga/MyResume)
 
-
+[Border Animation CSS | Quick Animation - YouTube](https://www.youtube.com/watch?v=wqb0kaRdyyA)
 
 ## 电子书
 

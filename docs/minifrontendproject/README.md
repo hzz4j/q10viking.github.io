@@ -20,3 +20,8 @@
 
 [https://type.fit/api/quotes](https://type.fit/api/quotes)
 
+
+
+## TODO
+
+[Sidebar Menu Using HTML CSS & Javascript | Curved Outside in Active Tab | Navigation Menu Using Html - YouTube](https://www.youtube.com/watch?v=cb167kkWxEQ)

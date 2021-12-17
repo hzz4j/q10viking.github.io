@@ -48,6 +48,7 @@ tsc
 "noEmitOnError": true, /*如果报告任何类型检查错误，则禁用编译文件*/
 // =================严格模式================================
 "strictNullChecks": true  /*对于可能为null的进行检查*/
+"noUnusedLocals": true /*对声明却没有被使用的进行检查*/
 ```
 
 
