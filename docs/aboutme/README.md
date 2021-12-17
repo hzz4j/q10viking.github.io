@@ -86,3 +86,12 @@ https://www.deeplearning.ai/
 ## 优化
 
 [TsaiKoga/MyResume: Welcome to My Resume 我的简历 (github.com)](https://github.com/TsaiKoga/MyResume)
+
+
+
+## 电子书
+
+[书享家资源帝电子书导航_书享家在这里发现更多好书... (ziyuandi.cn)](http://shu.ziyuandi.cn/)
+
+[数字图书馆。搜索书籍。免费下载书籍 (1lib.pl)](https://zh.1lib.pl/)
+
