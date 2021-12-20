@@ -28,3 +28,10 @@ Build a modern e-commerce system with all the knowledge I have learned so far
 |  Spring Boot        |           |
 | mybatis-plus-generator | 3.5.1 |
 
+
+
+## TODO List
+
+
+
+vite+vue+typescript，构架项目
