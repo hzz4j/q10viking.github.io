@@ -87,3 +87,12 @@ export default {
 
 [newbee-ltd/newbee-mall-vue-app: 🔥 🎉Vue2 全家桶 + Vant 搭建大型单页面商城项目。新蜂商城前后端分离版本-前端Vue项目源码 (github.com)](https://github.com/newbee-ltd/newbee-mall-vue-app)
 
+
+
+https://github.com/anncwb/vue-vben-admin
+
+https://github.com/chuzhixin/vue-admin-beautiful-pro
+
+https://github.com/xiaoxian521/vue-pure-admin
+
+https://github.com/hiparker/opsli-boot
