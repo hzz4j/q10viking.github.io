@@ -9,7 +9,7 @@ prev:
 ::: tip 提示
 学习 vue3之旅  [介绍 | Vue.js (vuejs.org)](https://v3.cn.vuejs.org/guide/introduction.html)
 
-使用vuepress博客仿照vue的官网，进行交互式学习
+使用vuepress博客仿照vue的官网，进行交互式学习 
 
 :::
 
