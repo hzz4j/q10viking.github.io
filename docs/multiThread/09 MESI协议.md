@@ -33,3 +33,67 @@ prev:
 
 如果多个核的线程在操作同一个缓存行中的不同变量数据，**那么就会出现频繁的缓存失效**，即使在代码层面看这两个线程操作的数据之间完全没有关系。这种不合理的资源竞争情况就是伪共享（False Sharing）。
 
+![image-20220302143222798](https://gitee.com/q10viking/PictureRepos/raw/master/images//202203021432852.png)
+
+
+
+## 伪共享解决方案
+
+- 缓存行填充
+- 使用@sun.misc.Contented注解（Java8）注意需要配置jvm参数：-XX:-RestrictContended
+
+
+
+::: details
+
+```java
+package org.hzz;
+
+import sun.misc.Contended;
+
+/**
+ * @Author 静默
+ * @Email 1193094618@qq.com
+ */
+public class FalseSharingTest {
+    public static void main(String[] args) throws InterruptedException {
+        testPointer(new Pointer());
+    }
+
+    private static void testPointer(Pointer pointer) throws InterruptedException {
+        long start = System.currentTimeMillis();
+
+        Thread t1 = new Thread(()->{
+            for (int i = 0; i < 100000000; i++) {
+                pointer.x++;
+            } 
+        });
+
+        Thread t2 = new Thread(()->{
+            for (int i = 0; i < 100000000; i++) {
+                pointer.y++;
+            }
+        });
+
+        t1.start();
+        t2.start();
+        t1.join();
+        t2.join();
+
+        System.out.println(pointer.x+","+ pointer.y);
+        System.out.println("Total time: "+(System.currentTimeMillis()-start));
+    }
+}
+
+class Pointer{
+    // 避免伪共享： @Contended +  jvm参数：-XX:-RestrictContended  jdk8支持
+    //@Contended
+    volatile long x;
+    //避免伪共享： 缓存行填充
+    //long p1, p2, p3, p4, p5, p6, p7;
+    //@Contended
+    volatile long y;
+}
+```
+
+:::
