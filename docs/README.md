@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: https://gitee.com/q10viking/PictureRepos/raw/master/images/202111270249540.png
+heroImage: https://raw.githubusercontent.com/Q10Viking/PictureRepos/main/imgs/202111270249540.png
 heroText: '🏷️Hi : )🏷️'
 tagline: 'Love❤️Open Source'
 actions:
