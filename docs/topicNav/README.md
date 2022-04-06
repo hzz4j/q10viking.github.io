@@ -15,6 +15,8 @@ typora-root-url: ..\.vuepress\public
 
 :::
 
+测试图片显示问题
+
 ![girl](https://raw.githubusercontent.com/Q10Viking/PictureRepos/main/imgs/202111291258902.jpg)
 
 
