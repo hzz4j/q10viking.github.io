@@ -54,6 +54,8 @@ class UserServiceProxy extends UserService{
 
 ### 事务传播
 
+> Spring事务是否会失效的判断标准：某个加了@Transactional注解的方法被调用时，要判 断到底是不是直接被代理对象调用的，如果是则事务会生效，如果不是则失效
+
 1. **事务失效**的情况：思考方法被调用时是不是代理对象在执行
 
 解决方式：
