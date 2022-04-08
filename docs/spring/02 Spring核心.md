@@ -46,6 +46,25 @@ class UserServiceProxy extends UserService{
 事务的代理逻辑
 
 1. 是否有@Transactional
-2. 事务管理器创建一个dataSource
+2. 事务管理器创建一个数据库连接
 3. 设置conn.autocommit = false 关闭自动提交
+4. 业务执行成功conn.commit(),失败则conn.rollback();
 
+
+
+### 事务传播
+
+1. **事务失效**的情况：思考方法被调用时是不是代理对象在执行
+
+解决方式：
+
+1. 在另外一个类中写这个事务传播的方法
+2. 或者自己注入自己，然后通过这个代理对象执行该方法
+
+
+
+### @Configuration的作用
+
+在配置@Bean时，多次调用同一个方法，返回的是同一个对象，如dataSource();
+
+会生成一个代理对象，如AppConfig对象，在代理对象的方法中会从容器中来获取这个对象。
