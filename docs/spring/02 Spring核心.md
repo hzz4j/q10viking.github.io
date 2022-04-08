@@ -4,7 +4,7 @@ UserService.class--->无参构造方法（推断构造方法）--->普通对象-
 
 
 
-### 对象的创建
+## 对象的创建
 
 1. 无参构造方法
 2. 入参方法的参数bean
@@ -13,20 +13,39 @@ UserService.class--->无参构造方法（推断构造方法）--->普通对象-
 
 
 
-### 属性赋值
+## 属性赋值
 
 先根据类型，再根据名字
 
 
 
-### AOP
+## AOP
 
 cglib代理对象，继承关系，但是属性target中注入了普通对象的bean
 
 ```java
-UserServiceProxy extends UserService{
+class UserServiceProxy extends UserService{
 	private UserService target;
 	// ...
 }
 ```
+
+如何判断一个bean是否需要进行aop?
+
+1. 找出所有的切面bean
+2. 遍历所有的切面bean的方法，有没有@Before,@After这些方法
+3. 如果遍历的方法包含了当前的对象则进行代理
+4. 将切面方法缓存起来
+
+****
+
+
+
+## 事务
+
+事务的代理逻辑
+
+1. 是否有@Transactional
+2. 事务管理器创建一个dataSource
+3. 设置conn.autocommit = false 关闭自动提交
 
