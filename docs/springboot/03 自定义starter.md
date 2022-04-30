@@ -1,0 +1,3 @@
+自己定义一个spring.factories,key为EnbleautoConfiguration，配置一些条件使得这个配置类生效
+
+EnableAutoProperties(xxx.class) 也会将这个类注册成类，这个类上面有一个import方法，导入了一个类，该类实现了ImportRegister方法，在这个类中注册了一个后置处理器，这个处理器会将类上面有@ConfigrationProterties的类，注册成Bean,并将配置的信息，注入
