@@ -17,3 +17,6 @@
 1.  jvm层面 storeLoad内存屏障    ===>  x86   lock替代了mfence
 2.  上下文切换   Thread.yield();
 
+----------
+
+[Java中守护线程介绍及使用_java_脚本之家 (jb51.net)](https://www.jb51.net/article/234736.htm)
