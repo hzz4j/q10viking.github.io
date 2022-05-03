@@ -14,6 +14,8 @@ BIO尽管可以结合线程池，但是遇到磁盘IO还是不太能够支持高
 
 ## NIO的多路复用
 
+> NIO是同步非阻塞的
+
 BIO面向流，阻塞
 
 **NIO面向缓冲，非阻塞**
@@ -51,3 +53,15 @@ int epoll_wait(int epfd, struct epoll_event * events, int maxevents, int timeout
 > select，poll，epoll 都是 操作系统实现 IO 多路复用的机制。
 
 支持一个进程所能打开的最大连接数
+
+
+
+### epoll
+
+有一个实现了一个中间层eventpoll,里面有socket的链表，与进程的队列
+
+
+
+## 进程间六种通信方式
+
+信号(kill -9)，管道，共享内存，消息队列，domain socket
