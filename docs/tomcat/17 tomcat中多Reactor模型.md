@@ -21,12 +21,12 @@ socketChannel.setBlock(false)
    // 在处理请求体的时候，需要从主Selector中注销socketchannel的读事件
  
 // 那么如何处理获取请求体时的阻塞呢
-辅助的Select------线程Poller ----- while 看看这个select有没有就绪事件过来，解阻塞。
+辅助的Selector------线程BlockPoller ----- while 看看这个select有没有就绪事件过来，解阻塞（调用传进来的CountDownLatch进行countDown()。
 servlet层的read
-  1. socketchannel.read() // 没有读到数据才会走下面的
+  1. socketchannel.read() // 没有读到数据才会走下面的,读取到则返回
   2. 向辅助的selector注册一个读事件(selector就像是另外一个小本本)
-  3. 加锁阻塞
-  4. socketchannel.read()
+  3. 加锁阻塞 使用的是CountDownLatch  这个对象会交给辅助的BlockPoller线程。
+  4. socketchannel.read()  重复第一步
 ```
 
 ## 对象池
@@ -101,12 +101,16 @@ Poller在的run方法中
 2. 然后selector.selector查询就绪事件
 3. 处理就绪事件
 	3.1 如果就绪的是读事件，那么就会在selector中注销掉读事件，为的就是在后面处理请求体的时候，给辅助的selector注册读事件。
-	3.2 读取数据，封装为SocketProcessor
+	3.2 读取数据，封装为SocketProcessor任务，交给线程池去处理
 ```
+
+**KeyAttachment**
+
+里面有个access方法，每次去读数据的时候，就记录一下时间戳。这样有依据来判断相应的socket是否长时间没有收到数据。
 
 ### 处理读事件
 
-SocketProcessor（也是一个runnable），封装了socketchannel，以及相应的就绪事件,就会去处理解析http协议，请求体和响应体的处理
+new SocketProcessor（也是一个runnable），封装了NioSocketchannel，以及相应的就绪事件,就会去处理解析http协议，请求体和响应体的处理
 
 ![image-20220507232142617](/image-20220507232142617.png)
 
