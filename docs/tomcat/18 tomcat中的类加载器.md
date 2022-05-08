@@ -265,7 +265,16 @@ WebappLoader.java
 最后调用WebappLoader中的startInternal()方法，创建新的WebappClassLoader实例，然后开始重新加载应用。到此tomcat的热部署流程就完成了。
 ```
 
-在java中类的加载是jvm自动帮我们做的。那么在tomcat中自定义加载器之后，难道加载应用的类时。每次都去调用WebappClassLoader的loadClass方法吗？
+在java中类的加载是jvm自动帮我们做的。那么在tomcat中自定义加载器之后，难道加载应用的类时。每次都去调用WebappClassLoader的loadClass方法吗？**只需要loadClass一次，那么在这个类中所有new出来的对象都是由这个类加载加载的**
+
+```java
+// 如果我们通过自定义的类加载器加载一个类
+MyClassLoader1 myClassLoader1 = new MyClassLoader1();
+Class<?> aClass = myClassLoader1.loadClass("org.hzz.Test1");
+Object o = aClass.newInstance();  //在Test1的构造方法中A a = new A()对象，那么a.getClass().getClassLoader()还是我们自定的类加载器
+```
+
+
 
 ```
 Context
@@ -281,4 +290,14 @@ Context
 tomcat中应用的配置变更了
 
 会将context实例销毁掉，重新新生一个Context
+
+
+
+
+
+
+
+
+
+
 
