@@ -18,7 +18,7 @@ abstract ClassLoader {
 
 1. 继承抽象的ClassLoader类
 
-2. 指定父类加载器
+2. 指定父类加载器与Java系统关联起来
 
 3. 指定加载类的路径（在findClass中使用该路径）
 
@@ -26,10 +26,20 @@ abstract ClassLoader {
    findClass(String name){
        // 读取文件为字节
    	byte[] data = getBytes("指定目录下的类文件");
-       // 调用java中提供的defineClass方法将字节数据变成Java对象
+       // 调用java中提供的defineClass方法将字节数据变成Java对象，在这个方法中或进行类的沙箱保护机制
         Class clazz = this.defineClass(name,data,0,data.length);
        return clazz;
    }
    ```
 
-   
+4. 在loadClass方法中进行打破双亲委派
+
+   1. 需要注意到的点是**在加载一个类的过程中，这个类依赖到的其他类，那么这些类也是使用这个类加载器进行去加载，也就是说java系统就会再次调用我们自定义的类加载器去加载这个依赖的类，也就说重新调用自定义类加载器的loadClass方法**
+
+   2. java有**沙箱保护机制**，对于包名以java开头的类，会提供保护
+
+      ```java
+      Exception in thread "main" java.lang.SecurityException: Prohibited package name: java.lang
+      ```
+
+      
