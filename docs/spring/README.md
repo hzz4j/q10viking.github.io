@@ -42,3 +42,13 @@ echo %JAVA_HOME%
 echo $Env:JAVA_HOME
 ```
 
+
+
+
+
+----------
+
+## bean声明周期： 
+
+[Bean的生命周期源码流程图 | ProcessOn免费在线作图,在线流程图,在线思维导图 |](https://www.processon.com/view/5f748c817d9c0806f26104e3?fromnew=1)
+
