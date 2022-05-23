@@ -1,12 +1,30 @@
-## Bootstrap
+---
+typora-root-url: images
+---
 
-服务端ServerBootstrap可以支持两个EventLoopGrop,(一个接收接连，一个处理网络的IO读写)
 
-## EventLoop与EventGroup
 
-Eventloop 绑定一个线程，单线程的线程池
+## ChannelPipleline与ChannelHandler
 
-并发安全,控制，多线程处理，并发
+在运行时，入站和出站会能够区分入站事件和出站事件。
+
+AbstractChannelHandler 
+
+在分属出栈和入站不同的Handler,是可以不用考虑顺序的。
+
+
+
+**在同属于一个方向的Handler则是有顺序的**
+
+
+
+
+
+![image-20220523043133088](/image-20220523043133088.png)
+
+
+
+
 
 ## ChannelHandler与ChannelHandlerContext
 
