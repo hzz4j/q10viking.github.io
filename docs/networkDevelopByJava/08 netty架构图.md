@@ -44,7 +44,14 @@ DefaultChannelHandlerContext
 ```java
 // 方法重载  
 // https://blog.csdn.net/qq_57399395/article/details/122359009
-private boolean initChannel(ChannelHandlerContext ctx) throws Exception
-protected abstract void initChannel(C ch) throws Exception;
+public abstract class ChannelInitializer<C extends Channel>{
+    private boolean initChannel(ChannelHandlerContext ctx) throws Exception
+	protected abstract void initChannel(C ch) throws Exception;
+}
+
 ```
+
+
+
+
 
