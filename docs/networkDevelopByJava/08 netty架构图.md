@@ -51,7 +51,50 @@ public abstract class ChannelInitializer<C extends Channel>{
 
 ```
 
+----------
+
+
+
+## 客户端连接服务端处理
+
+1. 连接建立SocketChannel
+2. 创建pipe
+
+客户端发数据，服务端响应
+
+https://www.processon.com/view/link/628d07f00e3e747f1e8d0420
+
+-----------
+
+Netty零拷贝
 
 
 
 
+
+![image-20220525153611042](/image-20220525153611042.png)
+
+
+
+
+
+## 自己画一个netty线程模型图
+
+单线程没有任务跑哪里去了
+
+百万连接的分析处理
+
+
+
+
+
+## Java代码学习
+
+反射修改
+
+```
+interface = new Interface[12];
+
+```
+
+netty线程的流转
