@@ -84,9 +84,11 @@ Netty零拷贝
 
 百万连接的分析处理
 
+https://www.processon.com/view/link/628f12a0e0b34d41d954a181
 
 
 
+![netty线程模型](/netty线程模型.png)
 
 ## Java代码学习
 
