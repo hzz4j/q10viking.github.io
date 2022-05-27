@@ -10,16 +10,6 @@ RestResultResponseHandler 返回结果时时怎么处理泛型的？
 
 
 
-## NacosRestTempate分析
-
-
-
-响应分析
-
-```
-ResponseHandler
-```
-
 ## HttpURLConnection
 
 1. 基于http协议的
@@ -67,19 +57,7 @@ body-key2=body-val2&body-key1=body-val1&
 
 
 
-## Java代码学习
 
-单实例的方式
 
-```java
-public class NamingHttpClientManager{
-	private static class NamingHttpClientManagerInstance {
-        private static final NamingHttpClientManager INSTANCE = new NamingHttpClientManager();
-    }
-    
-    public static NamingHttpClientManager getInstance() {
-        return NamingHttpClientManagerInstance.INSTANCE;
-    }
-}
-```
+
 
