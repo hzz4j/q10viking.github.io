@@ -55,13 +55,38 @@ HashTable 并发问题出现在哪里,出现在什么场景？复习杨过老师
 
 
 
+
+
+## 设计思想
+
+bean初始化@postconstructor注册监听器
+
+异步解耦
+
+
+
 ## Java 代码学习
 
 ```
 map.values()是什么
-集合对象求交集
+集合对象求交集  Comparable
 ```
 
 
 
 两个服务实例？原本注册一个的
+
+
+
+
+
+
+
+```
+oldInstance: 192.168.1.4:8083:unknown:DEFAULT_1.0_true_false_DEFAULT
+
+newInstance: 
+192.168.1.4:8083:unknown:DEFAULT_1.0_false_false_DEFAULT
+192.168.1.4:8082:unknown:DEFAULT_1.0_true_false_DEFAULT
+```
+
