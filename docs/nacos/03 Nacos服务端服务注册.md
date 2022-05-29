@@ -63,6 +63,10 @@ bean初始化@postconstructor注册监听器
 
 异步解耦
 
+空架子搭建
+
+key的设计关联Service监听器，Instances（服务实例集合）
+
 
 
 ## Java 代码学习
