@@ -6,6 +6,13 @@ typora-root-url: images
 
 同步转异步解耦
 
+服务注册过程
+
+```
+ConcurrentSkipListMap
+ConcurrentLinkedQueue	监听器列表		
+```
+
 
 
 ## Nacos服务注册表
@@ -46,3 +53,15 @@ https://www.processon.com/view/link/629207cef346fb41eeb97dfb
 
 HashTable 并发问题出现在哪里,出现在什么场景？复习杨过老师的课程。
 
+
+
+## Java 代码学习
+
+```
+map.values()是什么
+集合对象求交集
+```
+
+
+
+两个服务实例？原本注册一个的
