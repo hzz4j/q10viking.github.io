@@ -4,6 +4,8 @@ typora-root-url: images
 
 ## 服务端注册服务
 
+[Nacos服务端注册服务 | ProcessOn免费在线作图,在线流程图,在线思维导图 |](https://www.processon.com/view/link/62938596e401fd2eed134f9a)
+
 同步转异步解耦
 
 服务注册过程
@@ -73,18 +75,10 @@ key的设计关联Service监听器，Instances（服务实例集合）
 
 ```
 map.values()是什么
-集合对象求交集  Comparable
+集合对象求交集  hashcode & equals
 ```
 
-
-
 两个服务实例？原本注册一个的
-
-
-
-
-
-
 
 ```
 oldInstance: 192.168.1.4:8083:unknown:DEFAULT_1.0_true_false_DEFAULT
