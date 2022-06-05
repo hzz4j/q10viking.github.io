@@ -66,6 +66,12 @@ bin/seata-server.sh
 
 
 
+## 项目代码
+
+D:\learncode\seata\learnSeata\MicroServices
+
+
+
 ```
 SeataAutoDataSourceProxyCreator : Auto proxy of [druidDataSource]
 ```
@@ -76,5 +82,12 @@ SeataAutoDataSourceProxyCreator : Auto proxy of [druidDataSource]
     <groupId>org.springframework.cloud</groupId>
     <artifactId>spring-cloud-starter-loadbalancer</artifactId>
 </dependency>
+```
+
+```
+jdbc:mysql://192.168.187.135:3306/seata_account?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&useSSL=false&serverTimezone=UTC
+
+jdbc:mysql://192.168.187.135:3306/seata_account?
+useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
 ```
 

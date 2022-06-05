@@ -15,3 +15,7 @@ LifeCycleProcessor 切入点nacos服务发现。
 ## 自动装配机制
 
 spring.factories
+
+
+
+## @PostConstruct 与InitializeBean
