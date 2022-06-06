@@ -1,3 +1,7 @@
+---
+typora-root-url: ..\.vuepress\public
+---
+
 ## 网络通信
 
 连接（客户端连接服务器，服务器等待和接收连接），读网络数据，写网络数据
@@ -34,7 +38,7 @@ BIO面向流，阻塞
 
 ## IO复用模型
 
-![image-20220502133810657](C:\Users\11930\AppData\Roaming\Typora\typora-user-images\image-20220502133810657.png)
+![image-20220502133810657](/images/netty/image-20220525153611042.png)
 
 ### epoll
 
