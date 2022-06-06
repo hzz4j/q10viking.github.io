@@ -98,7 +98,7 @@ typora-root-url: ..\.vuepress\public
   }
 ```
 
-
+主要原因是依赖更新了，还存在一些bug，会导致我自己写的组件失效。
 
 ## 参考
 
