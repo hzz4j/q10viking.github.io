@@ -2,6 +2,7 @@
 prev:
   text: Back To 目录
   link: /topicNav/
+typora-root-url: ..\.vuepress\public
 ---
 
 
@@ -13,7 +14,9 @@ prev:
 
 :::
 
-![image (1)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112020913845.jpg)
+
+
+![202112020913845](/images/vue3/202112020913845.jpg)
 
 
 <div id="root">

@@ -4,6 +4,7 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /vue3/
+typora-root-url: ..\.vuepress\public
 ---
 
 
@@ -24,9 +25,9 @@ Quick start Vue Project
 
 浏览器安装**Vue.js devtools**扩展
 
-![image (2)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112021044125.jpg)
 
 
+![202112021044125](/images/vue3/202112021044125.jpg)
 
 ## Accessing the Instance Data:star:
 
@@ -45,9 +46,9 @@ setTimeout(() => {
 }, 2000);
 ```
 
-![image (3)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112021057333.jpg)
 
 
+![202112021057333](/images/vue3/202112021057333.jpg)
 
 ## Multiple Vue Instances:star:
 
@@ -75,9 +76,7 @@ const vm2 = Vue.createApp({}).mount("#app-test2");
 
 ::::
 
-![image (4)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112021128352.jpg)
-
-
+![202112021128352](/images/vue3/202112021128352.jpg)
 
 ## v-cloak
 
@@ -177,9 +176,7 @@ const vm = Vue.createApp({
 
 Vanilla Javascript来实现这种绑定
 
-![image (5)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112021320117.jpg)
-
-
+![202112021320117](/images/vue3/202112021320117.jpg)
 
 ::: tip
 
@@ -310,7 +307,7 @@ v-html存在跨站攻击的危险
 
 
 
-![image (6)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112021343053.jpg)
+![202112021343053](/images/vue3/202112021343053.jpg)
 
 
 ----------

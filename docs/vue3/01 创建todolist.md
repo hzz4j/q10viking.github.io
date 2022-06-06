@@ -4,6 +4,7 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /vue3/
+typora-root-url: ..\.vuepress\public
 ---
 
 
@@ -84,7 +85,7 @@ const vm = app.mount('#root');
 vm.$data.inputValue
 ```
 
-​										<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111280616562.png" alt="image-20211128061600334" style="zoom: 67%;" />
+​										
 
-
+![202111280616562](/images/vue3/202111280616562.png)
 

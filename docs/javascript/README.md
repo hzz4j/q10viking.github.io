@@ -2,6 +2,7 @@
 prev:
   text: Back To 目录
   link: /topicNav/
+typora-root-url: ..\.vuepress\public
 ---
 
 ::: tip 
@@ -16,5 +17,6 @@ Learn JavaScript to build awesome interactive project
 
 :::
 
-![image](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112012109001.jpg)
 
+
+![202112012109001](/images/javascript/202112012109001.jpg)
