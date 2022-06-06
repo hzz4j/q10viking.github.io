@@ -4,19 +4,20 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /css/
+typora-root-url: ..\.vuepress\public
 ---
 
 
 
 ## Unit
 
-![image (3)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112101314216.jpg)
+![202112101314216](/images/css/202112101314216.jpg)
 
 
 
 ## Where Unit Matter
 
-![image (4)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112101319695.jpg)
+![202112101319695](/images/css/202112101319695.jpg)
 
 
 
@@ -28,7 +29,7 @@ prev:
 
 :::
 
-![image (5)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112101332430.jpg)
+![202112101332430](/images/css/202112101332430.jpg)
 
 ## % Units Calculated
 
@@ -38,7 +39,7 @@ prev:
 
 :::
 
-![image (6)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112101334152.jpg)
+![202112101334152](/images/css/202112101334152.jpg)
 
 ### 3 Rules to 
 
@@ -48,7 +49,7 @@ prev:
 
 :::
 
-![image (8)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112101346383.jpg)
+![202112101346383](/images/css/202112101346383.jpg)
 
 ## min-widthheight & max-widthheight
 
@@ -106,7 +107,7 @@ em会乘以一个value,如浏览器默认设置的字体大小medium是16px,那�
 
 em会有继承的问题，这样会导致很混乱
 
-![image (9)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112101458816.jpg)
+![202112101458816](/images/css/202112101458816.jpg)
 
 rem的作用：take the font size that is set by the browser setting. r stands the root element
 
@@ -132,9 +133,7 @@ width: 80vmin;
 
 ## Which Unit should choose
 
-![image (11)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112101527492.jpg)
-
-
+![202112101527492](/images/css/202112101527492.jpg)
 
 ## Use auto to center element
 
