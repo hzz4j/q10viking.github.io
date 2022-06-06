@@ -1,3 +1,7 @@
+---
+typora-root-url: ..\.vuepress\public
+---
+
 ::: tip
 
 Learn golang guide https://go.dev/
@@ -10,5 +14,4 @@ Learn golang guide https://go.dev/
 
 https://github.com/chapin666/books go书籍
 
-![image (1)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112071627577.jpg)
-
+![202112071627577](/images/golang/202112071627577.jpg)

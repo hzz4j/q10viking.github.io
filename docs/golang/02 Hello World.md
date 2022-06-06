@@ -4,6 +4,7 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /golang/
+typora-root-url: ..\.vuepress\public
 ---
 
 ## Code
@@ -22,11 +23,11 @@ func main() {
 
 ## How to run code
 
-![image (3)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112071836227.jpg)
+![202112071836227](/images/golang/202112071836227.jpg)
 
 ## package name
 
-![image (5)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112071941461.jpg)
+![202112071941461](/images/golang/202112071941461.jpg)
 
 ::: tip
 
@@ -34,7 +35,7 @@ func main() {
 
 :::
 
-![image (6)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112071944528.jpg)
+![202112071944528](/images/golang/202112071944528.jpg)
 
 ::: tip
 
@@ -42,4 +43,4 @@ func main() {
 
 :::
 
-![image (7)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112071946034.jpg)
+![202112071946034](/images/golang/202112071946034.jpg)
