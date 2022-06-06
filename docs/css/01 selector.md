@@ -6,3 +6,8 @@ prev:
   link: /css/
 typora-root-url: ..\.vuepress\public
 ---
+
+
+## id选择器
+
+![202112081217328](/images/css/202112081217328.jpg)
