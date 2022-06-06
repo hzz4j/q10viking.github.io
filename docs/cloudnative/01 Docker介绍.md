@@ -4,6 +4,7 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /cloudnative/
+typora-root-url: ..\.vuepress\public
 ---
 
 
@@ -18,7 +19,7 @@ prev:
 
 :::
 
-![image (5)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112151643391.jpg)
+![202112151643391](/images/cloudnative/202112151643391.jpg)
 
 ## Docker的优点
 
@@ -48,7 +49,7 @@ Docker 让开发者可以打包他们的应用以及依赖包到一个**可移�
 
 :::
 
-![image (6)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112151649256.jpg)
+![202112151649256](/images/cloudnative/202112151649256.jpg)
 
 ### **Docker daemon（ Docker守护进程）**
 
