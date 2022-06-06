@@ -2,6 +2,7 @@
 prev:
   text: Back To 目录
   link: /topicNav/
+typora-root-url: ..\.vuepress\public
 ---
 
 ::: tip 
@@ -20,7 +21,7 @@ Apache Tomcat version 8.5 implements the Servlet 3.1
 
 :::
 
-![image (10)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112041001730.jpg)
+![202112041001730](/images/tomcat/202112041001730.jpg)
 
 
 
