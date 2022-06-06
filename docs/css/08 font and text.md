@@ -1,10 +1,6 @@
----
-typora-root-url: ..\.vuepress\public
----
-
 ## 	Generic Families & Font Families
 
-![202112142315541](/images/css/202112142315541.jpg)
+![image (1)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112142315541.jpg)
 
 ::: tip
 
@@ -12,7 +8,9 @@ typora-root-url: ..\.vuepress\public
 
 :::
 
-![202112142322970](/images/css/202112142322970.jpg)
+![image (2)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112142322970.jpg)
+
+
 
 ## 系统平台安装的字体User's computer
 
@@ -96,4 +94,5 @@ font face 相当于font-weight
   ```
 
 - **text-shadow**
+
 

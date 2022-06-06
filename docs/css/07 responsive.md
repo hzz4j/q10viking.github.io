@@ -1,7 +1,3 @@
----
-typora-root-url: ..\.vuepress\public
----
-
 ::: tip
 
 Let browser is able to identify the actual device
@@ -16,7 +12,9 @@ Let browser is able to identify the actual device
 
 如果没有viewport meta，在手机上看到的将会是缩小版
 
-![202112110723090](/images/css/202112110723090.jpg)
+![image (12)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112110723090.jpg)
+
+
 
 ## Tools
 
@@ -26,7 +24,7 @@ need both to create responsive website
 
 :::
 
-![202112110713621](/images/css/202112110713621.jpg)
+![image (10)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112110713621.jpg)
 
 ```css
 /* If statement*/

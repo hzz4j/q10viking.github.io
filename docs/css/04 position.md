@@ -4,7 +4,6 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /css/
-typora-root-url: ..\.vuepress\public
 ---
 
 
@@ -33,7 +32,7 @@ position能将所有元素改变为inline-block
 
 :::
 
-![202112081832684](/images/css/202112081832684.jpg)
+![image (8)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112081832684.jpg)
 
 ## Changine the position
 
@@ -53,7 +52,7 @@ Posting移动的位置需要有一个参照物，也就是refer to **Positioning
 
 :::
 
-![202112081829836](/images/css/202112081829836.jpg)
+![image (7)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112081829836.jpg)
 
 
 

@@ -1,7 +1,3 @@
----
-typora-root-url: ..\.vuepress\public
----
-
 ::: tip
 
 The modern way to change the way our elements are displayed
@@ -10,7 +6,9 @@ The modern way to change the way our elements are displayed
 
 ## Understanding the Flexbox
 
-![202112150857259](/images/css/202112150857259.jpg)
+![image (3)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112150857259.jpg)
+
+
 
 ## flex Container
 
@@ -31,7 +29,9 @@ The modern way to change the way our elements are displayed
 
 
 
-![202112150933745](/images/css/202112150933745.png)
+
+
+![image-20211215093259653](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112150933745.png)
 
 ## Align items and Justify content
 
@@ -42,8 +42,8 @@ The modern way to change the way our elements are displayed
 
 :::
 
+![image (4)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112150954144.jpg)
 
 
-![202112150954144](/images/css/202112150954144.jpg)
 
 11.12
