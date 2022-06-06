@@ -1,5 +1,5 @@
 ---
-typora-root-url: images
+typora-root-url: ..\.vuepress\public
 ---
 
 1. 将@Before等注解的方法解析成advice 
@@ -9,4 +9,4 @@ typora-root-url: images
 
 D:\learncode\javabasic\src\org\hzz\aop
 
-![image-20220601173346721](/image-20220601173346721.png)
+![image-20220601173346721](/images/java/image-20220601173346721.png)
