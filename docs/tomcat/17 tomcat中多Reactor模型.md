@@ -1,5 +1,5 @@
 ---
-typora-root-url: images
+typora-root-url: ..\.vuepress\public
 ---
 
 ## tomcat7中nio处理请求体响应的阻塞
@@ -72,7 +72,7 @@ socketChannel4------绑定到------>Poller2线程
 
 众多的Poll组成一个Polls。这样能够加快事件的处理方式，提高了性能。因为如果只有一个Poller(Selector)那么就会处理众多socketchannel事件的时候，遍历的次数就会非常长。
 
-![image-20220507221800202](/image-20220507221800202.png)
+![image-20220507221800202](/images/tomcat/image-20220507221800202.png)
 
 ```java
 // 当socketchannel来的时候，轮询选择一个poller进行绑定  NioEndpoint.java
@@ -112,6 +112,6 @@ Poller在的run方法中
 
 new SocketProcessor（也是一个runnable），封装了NioSocketchannel，以及相应的就绪事件,就会去处理解析http协议，请求体和响应体的处理
 
-![image-20220507232142617](/image-20220507232142617.png)
+![image-20220507232142617](/images/tomcat/image-20220507232142617.png)
 
-![image-20220507233148035](/image-20220507233148035.png)
+![image-20220507233148035](/images/tomcat/image-20220507233148035.png)

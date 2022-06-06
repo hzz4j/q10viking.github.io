@@ -1,5 +1,5 @@
 ---
-typora-root-url: images
+typora-root-url: ..\.vuepress\public
 ---
 
 
@@ -15,7 +15,7 @@ https://www.processon.com/view/link/629840591e085332a215dc39
 
 配置
 
-![image-20220601215429465](/image-20220601215429465.png)
+![image-20220601215429465](/images/spring/image-20220601215429465.png)
 
 
 
@@ -52,9 +52,7 @@ show status like '%Threads_connected%';  -- 查看当前连接mysql的线程数
 
 同一个连接里面，要么同时提交，要么同时回滚
 
-
-
-![image-20220601215503670](C:\Users\11930\AppData\Roaming\Typora\typora-user-images\image-20220601215503670.png)
+![image-20220601215503670](/images/spring/image-20220601215429465.png)
 
 
 
@@ -62,7 +60,7 @@ show status like '%Threads_connected%';  -- 查看当前连接mysql的线程数
 
 TransactionSynchronizationManager.getCurrent  事务的名字
 
-![image-20220601223950821](/image-20220601223950821.png)
+![image-20220601223950821](/images/spring/image-20220601223950821.png)
 
 
 

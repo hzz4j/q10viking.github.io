@@ -1,5 +1,5 @@
 ---
-typora-root-url: images
+typora-root-url: ..\.vuepress\public
 ---
 
 ## spring AOP源码分析
@@ -10,7 +10,7 @@ spring aop 有四种
 
 https://www.processon.com/view/link/6295bdabe401fd2eed189a2f
 
-![Spring AOP源码分析](/Spring AOP源码分析.png)
+![Spring AOP源码分析](/images/spring/Spring AOP源码分析.png)
 
 
 
@@ -212,7 +212,7 @@ isInstance
 
 > 测试类： D:\Github\Learn-spring-framework\spring-framework\hzz-demo\src\test\java\org\hzz\aop\AopTest.java
 
-![image-20220515185359398](/image-20220515185359398.png)
+![image-20220515185359398](/images/spring/image-20220515185359398.png)
 
 
 
