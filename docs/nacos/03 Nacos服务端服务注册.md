@@ -1,5 +1,5 @@
 ---
-typora-root-url: images
+typora-root-url: ..\.vuepress\public
 ---
 
 ## 服务端注册服务
@@ -41,7 +41,7 @@ synchronsized(Service) 应用
 
 https://www.processon.com/view/link/629207cef346fb41eeb97dfb
 
-![Nacos注册服务并发控制](/Nacos注册服务并发控制.png)
+![Nacos注册服务并发控制](/images/nacos/Nacos注册服务并发控制.png)
 
 
 
