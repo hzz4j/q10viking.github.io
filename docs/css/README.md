@@ -2,6 +2,7 @@
 prev:
   text: Back To 目录
   link: /topicNav/
+typora-root-url: ..\.vuepress\public
 ---
 
 
@@ -22,9 +23,7 @@ Learn css to build beautiful web page
 
 :::
 
-![image (8)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112022154542.jpg)
-
-
+![202112022154542](/images/css/202112022154542.jpg)
 
 ## 资料
 
