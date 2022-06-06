@@ -4,6 +4,7 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /css/
+typora-root-url: ..\.vuepress\public
 ---
 
 
@@ -48,7 +49,9 @@ body {
 
 ## 优先级
 
-![image (4)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112081225792.jpg)
+
+
+![202112081225792](/images/css/2021120812257921)
 
 **权重比较**
 

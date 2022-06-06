@@ -4,6 +4,7 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /css/
+typora-root-url: ..\.vuepress\public
 ---
 
 ## Box model
@@ -14,7 +15,7 @@ prev:
 
 :::   
 
-![image (5)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112081622568.jpg)
+![202112081622568](/images/css/202112081622568.jpg)
 
 ## margin collapsing
 
@@ -24,15 +25,11 @@ In General: Use either **margin-top** or **margin-bottom**
 
 :::
 
-![image](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112081409876.jpg)
-
-
+![202112081409876](/images/css/202112081409876.jpg)
 
 ## Shorthand Properties
 
-![image (1)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112081414323.jpg)
-
-
+![202112081414323](/images/css/202112081414323.jpg)
 
 ## Width and Height计算
 
@@ -46,7 +43,7 @@ In General: Use either **margin-top** or **margin-bottom**
 
 [详细解释 box-sizing - CSS Reference](https://cssreference.io/property/box-sizing/)
 
-![image (2)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112081437884.jpg)
+![202112081437884](/images/css/202112081437884.jpg)
 
 
 
