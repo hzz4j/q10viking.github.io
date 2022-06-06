@@ -1,5 +1,5 @@
 ---
-typora-root-url: images
+typora-root-url: ..\.vuepress\public
 ---
 
 ## ProxyFactory
@@ -12,7 +12,7 @@ afterThrowing
 
 ## Advice
 
-![image-20220515185359398](/image-20220515185359398.png)
+![image-20220515185359398](/images/spring/image-20220515185359398.png)
 
 
 
