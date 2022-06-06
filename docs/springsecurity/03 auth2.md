@@ -1,5 +1,5 @@
 ---
-typora-root-url: images
+typora-root-url: ..\.vuepress\public
 ---
 
 ## 京东微信登录（授权码模式）
@@ -47,7 +47,7 @@ https://qq.jd.com/new/wx/callback.action?view=null
 
 我手机上点击登录之后，浏览器是怎么知道我点击了？然后自动跳转到京东页面的？触发时机是什么？
 
-![image-20220511144256729](/image-20220511144256729.png)
+![image-20220511144256729](/images/springsecurity/image-20220511144256729.png)
 
 回调地址：redirect_uri=https://qq.jd.com/new/wx/callback.action?view=null
 
