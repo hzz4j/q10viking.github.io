@@ -1,3 +1,7 @@
+---
+typora-root-url: ..\.vuepress\public
+---
+
 ## Java中系统自带的类加载器
 
 每个类加载器对应的目录
@@ -149,7 +153,7 @@ Context
 	WebappClassLoader
 ```
 
-![image-20220508145923528](D:\Github\q10viking.github.io\docs\tomcat\images\image-20220508145923528.png)
+![](/images/tomcat/image-20220508145923528.png)
 
 ## WebappClassLoader加载类原理
 
