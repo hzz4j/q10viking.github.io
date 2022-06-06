@@ -1,3 +1,7 @@
+---
+typora-root-url: ..\.vuepress\public
+---
+
 ::: tip
 
 > D:\learncode\javabasic
@@ -14,9 +18,7 @@ Java
 
 :::
 
-![steam.gif (133×200) (oracle.com)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112111636464.gif)
-
-
+![202112111636464](/images/java/202112111636464.gif)
 
 
 
