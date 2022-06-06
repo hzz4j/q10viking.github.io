@@ -27,7 +27,18 @@ const titles = {
     'cloudnative': 'Cloud Native',
     'minifrontendproject': 'Mini FrontEnd Pro😊',
     'ddd':'DDD',
-    'multiThread':'Multithreading'
+    'multiThread':'Multithreading',
+    'gRPC':'gRPC',
+    'designpattern':'设计模式',
+    'kafka':'Kafka',
+    'MySQL':'MySQL',
+    'nacos':'Nacos',
+    'netty':'Netty',
+    'rabbitmq':'RabbitMQ',
+    'RocketMQ':'RocketMQ',
+    'seata':'Seata',
+    'springsecurity':'Spring Security',
+    'zk':'Zookeeper'
 };
 
 
