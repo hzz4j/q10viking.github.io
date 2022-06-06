@@ -4,6 +4,7 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /java/
+typora-root-url: ..\.vuepress\public
 ---
 
 
@@ -26,7 +27,7 @@ Java安全模型的最初版本（Java 1.0版本）是一个沙箱模型。沙�
 
 :::
 
-![java_security_1](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112132152667.png)
+![202112132152667](/images/java/202112132152667.png)
 
 虽然严格的限制可以防止系统被破话，但是这也给程序的功能扩展带来了障碍。当一些没有权限的代码希望访问系统资源的时候，沙箱模型的限制将阻碍这些功能的实现。所以，在后续的Java 1.1版本中，为了可以对代码的资源访问进行授权，引入了安全策略。
 
@@ -36,11 +37,11 @@ JDK 1.1 introduced the concept of a "signed applet", as illustrated by the figur
 
 :::
 
-![java_security_2](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112132158020.png)
+![202112132158020](/images/java/202112132158020.png)
 
 在Java 1.2中，又再次对Java的沙箱模型进行了改进，增加了代码签名机制。不管是远程代码还是本地代码，都需要按照安全策略的配置，由类加载器加载到JVM中权限不同的运行空间，进行权限的差异化控制。
 
-![java_security_3](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112132200381.png)
+![202112132200381](/images/java/202112132200381.png)
 
 ## 域模型
 
@@ -54,11 +55,9 @@ JDK 1.1 introduced the concept of a "signed applet", as illustrated by the figur
 
 在当前最新的Java安全模型中，引入了 **域（Domain）** 的概念。虚拟机会将所有代码加载到不同的域中。其中系统域负责和操作系统的资源进行交互，而各个应用域对系统资源的访问需要通过系统域的代理来实现受限访问。JVM中的不同域关联了不同的权限，处于域中的类将拥有这个域所包含的所有权限。
 
-![java_security_4](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112132207047.png)
+![202112132207047](/images/java/202112132207047.png)
 
-
-
-![java_security_5](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112132239725.png)
+![202112132239725](/images/java/202112132239725.png)
 
 ## SecurityManager
 
@@ -200,7 +199,7 @@ ClassA and ClassB have different code characteristics – they come from differe
 
 :::
 
-![policy](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112132233043.jpg)
+![202112132233043](/images/java/202112132233043.jpg)
 
 ### 实现访问控制的基础
 
@@ -301,7 +300,9 @@ AccessController.checkPermission(perm);
 
 如果上述的二点有任何一点不满足，则`AccessController.checkPermission()`会抛出`AccessControlException`。
 
-![java_security_6](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112132320905.png)
+
+
+![202112132320905](/images/java/202112132320905.png)
 
 在第一点中可以看到，这个判断过程需要对调用链上所有已经经过的Caller都进行判断。这个过程一般可以分为两种执行策略。一种是每次调用的时候都进行权限判断，如上图左边部分所示。还有一种，是只有当遇到调用`AccessController.checkPermission()`进行权限判断的时候，从当前Caller开始，顺着调用链向上回溯，过程可以参考上图右边部分。试想，当整个调用链中没有遇到权限检查的时候，第一种方案仍然需要进行权限检查，而后一种方案则更加高效。当前AccessController的权限检查策略，采用的就是后一种方案。具体的逻辑可以用伪代码表示：
 
@@ -322,7 +323,7 @@ while (i > 0) {
 
 AccessController引入了一个`doPrivileged()`静态方法，只要Caller执行了doPrivileged()方法，那么这个Caller就会被标记为privilege，Java安全模型就不会去检查这个Caller的权限。也就是说，调用`doPrivileged()`的Caller被授予了特权，这个Caller可以免去权限检查。在进行权限检查的时候，回溯调用链的过程中，一旦遇到被标记为privilege的Caller，那么AccessController将停止向上回溯，权限检查通过。
 
-![java_security_7](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112132325857.png)
+![202112132325857](/images/java/202112132325857.png)
 
 doPrivileged方法一般使用方式如下（如在tomcat中创建classLoader）
 
@@ -441,7 +442,7 @@ public interface PrivilegedExceptionAction<T> {
 
 :::
 
-![image (16)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112141708834.jpg)
+![202112141708834](/images/java/202112141708834.jpg)
 
 FileUtil主要有两个方法，他们的功能都是在系统上创建一个文件，不同的是一个使用了doPrivileged特权技术
 
@@ -507,7 +508,9 @@ public class FileUtil {
 
 :::
 
-![image (17)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112141726095.jpg)
+
+
+![202112141726095](/images/java/202112141726095.jpg)
 
 ::: details DemoDoPrivilege.java
 
@@ -574,7 +577,9 @@ grant {
 
 执行一下代码，观察效果。
 
-![image (18)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112141733876.jpg)
+
+
+![202112141733876](/images/java/202112141733876.jpg)
 
 ::: tip
 
@@ -586,11 +591,11 @@ grant {
 
 :::
 
-![image (19)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112141747620.jpg)
-
-![image (20)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112141751476.jpg)
+![202112141747620](/images/java/202112141747620.jpg)
 
 
+
+![202112141751476](/images/java/202112141751476.jpg)
 
 ### 没有doPrivieged方法的授权链分析
 

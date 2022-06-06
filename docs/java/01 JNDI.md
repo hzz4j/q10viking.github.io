@@ -1,4 +1,7 @@
+---
+typora-root-url: ..\.vuepress\public
+---
+
 #### Architecture
 
-![img](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112111607589.jpeg)
-
+![202112111607589](/images/java/202112111607589.jpeg)
