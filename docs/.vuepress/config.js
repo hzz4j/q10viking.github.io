@@ -35,7 +35,7 @@ module.exports = {
     ]
    ],
   themeConfig: {
-    logo: 'https://raw.githubusercontent.com/Q10Viking/PictureRepos/main/imgs/202111270249540.png',
+    logo: 'https://q10viking.github.io/images/logo.png',
     lastUpdated: false,   // 禁用显示更新时间
     contributors: false,   // 禁用显示贡献者
     sidebar,

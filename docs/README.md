@@ -1,7 +1,6 @@
 ---
 home: true
-heroImage: https://raw.githubusercontent.com/Q10Viking/PictureRepos/main/imgs/202111270249540.png
-heroText: '🏷️Hi : )🏷️'
+heroText: 'Hi :)'
 tagline: 'Love❤️Open Source'
 actions:
   - text: 👉ENTRY
@@ -15,3 +14,4 @@ actions:
 
 
 
+<iframe id="embed_dom" name="embed_dom" frameborder="0" style="display:block;width:1025px; height:545px;" src="https://www.processon.com/embed/627641dee0b34d075862c9ff"></iframe>
