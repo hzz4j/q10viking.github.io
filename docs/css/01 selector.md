@@ -20,4 +20,3 @@ typora-root-url: ..\.vuepress\public
 
 
 
-<common-codepen-snippet title="类选择器" slug="VwjyREg" />
