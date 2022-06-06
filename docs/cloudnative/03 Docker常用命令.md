@@ -4,6 +4,7 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /cloudnative/
+typora-root-url: ..\.vuepress\public
 ---
 
 
@@ -218,7 +219,7 @@ docker run -d -p 91:80 nginx
 
 http://192.168.187.132:91/
 
-![image (9)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112151838311.jpg)
+![202112151838311](/images/cloudnative/202112151838311.jpg)
 
 ## 启动已停止的容器:star:
 

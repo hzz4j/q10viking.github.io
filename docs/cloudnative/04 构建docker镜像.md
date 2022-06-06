@@ -4,6 +4,7 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /cloudnative/
+typora-root-url: ..\.vuepress\public
 ---
 
 
@@ -84,7 +85,7 @@ prev:
 
 4. 访问 http://Docker宿主机IP:92/，可看到下图所示界面
 
-   ![image (10)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112160848130.jpg)
+   ![202112160848130](/images/cloudnative/202112160848130.jpg)
 
 
 
@@ -142,7 +143,9 @@ docker run -d -p 8761:8761 -v /log:/container-log microservice-eureka-server:0.0
 docker run -e JAVA_OPTS='-Xms1028M -Xmx1028M -Xmn512M -Xss512K -XX:MetaspaceSize=256M -XX:MaxMetaspaceSize=256M' --cap-add=SYS_PTRACE -d -p 8761:8761 microservice-eureka-server:0.0.1
 ```
 
-5. 访问http://Docker宿主机IP:8761/，可正常显示Eureka Server首页![image (11)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112160903821.jpg)
+5. 访问http://Docker宿主机IP:8761/，可正常显示Eureka Server首页
+
+   ![202112160903821](/images/cloudnative/202112160903821.jpg)
 
 ## **发布到远程镜像仓库**
 
@@ -205,5 +208,4 @@ a2ae92ffcd29: Mounted from library/java
 
 登录到docker镜像查看下刚刚推送的镜像，这样镜像就能给别人用了
 
-![image (12)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112160911455.jpg)
-
+![202112160911455](/images/cloudnative/202112160911455.jpg)
