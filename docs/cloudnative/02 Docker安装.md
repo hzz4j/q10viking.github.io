@@ -4,6 +4,7 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /cloudnative/
+typora-root-url: ..\.vuepress\public
 ---
 
 
@@ -56,7 +57,9 @@ yum makecache fast
 yum list docker-ce --showduplicates | sort -r
 ```
 
-![image (7)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112151722103.jpg)
+
+
+![202112151722103](/images/cloudnative/202112151722103.jpg)
 
 ## 安装docker
 
@@ -145,9 +148,7 @@ sudo systemctl daemon-reload
 sudo systemctl restart docker
 ```
 
-![image (8)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112151759200.jpg)
-
-
+![202112151759200](/images/cloudnative/202112151759200.jpg)
 
 ## 卸载docker
 
