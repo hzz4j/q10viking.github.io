@@ -12,11 +12,6 @@ typora-root-url: ..\.vuepress\public
 
 ![202112081217328](/images/css/202112081217328.jpg)
 
-## 类选择器
-
-![202112081215350](/images/css/202112081215350.jpg)
-
-### 玩法： Google样式
 
 
 
@@ -26,9 +21,6 @@ typora-root-url: ..\.vuepress\public
 
 ### 玩法： Google样式
 
-
-
-<common-codepen-snippet title="类选择器" slug="VwjyREg" />
 
 ## 标签选择器  
 
