@@ -4,6 +4,7 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /vuepress/
+typora-root-url: ..\.vuepress\public
 ---
 
 
@@ -76,15 +77,15 @@ npm config set registry https://registry.npm.taobao.org
 npm i -D @vuepress/plugin-docsearch@next
 ```
 
-<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111290524749.png" alt="image-20211129052353828" style="zoom:80%;" />
+![202111290524749](/images/vuepress/2021112905247491)
 
 由于自己的npm源设置的是淘宝的源，导致下载下来的版本是v2.0.0-beta.26 [Package - @vuepress/plugin-docsearch (npmmirror.com)](https://npmmirror.com/package/%40vuepress%2Fplugin-docsearch)
 
-<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111290527975.png" alt="image-20211129052725943" style="zoom:67%;" />
+![202111290527975](/images/vuepress/202111290527975.png)
 
 而此时npm官方上docsearch的tag next对应的版本是2.0.0-beta.27[@vuepress/plugin-docsearch - npm (npmjs.com)](https://www.npmjs.com/package/@vuepress/plugin-docsearch/v/2.0.0-beta.27)
 
-<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111290529377.png" alt="image-20211129052903588" style="zoom: 50%;" />
+![202111290529377](/images/vuepress/202111290529377.png)
 
 **解决方式**：将npm源切换回来官网的源,再重新安装
 

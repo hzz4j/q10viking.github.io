@@ -4,6 +4,7 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /vuepress/
+typora-root-url: ..\.vuepress\public
 ---
 
 
@@ -49,13 +50,13 @@ touch id_rsa.gitee
 ssh-keygen -t rsa -f id_rsa.gitee -C "1193094618@qq.com" 
 ```
 
-<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111271126733.png" alt="image-20211127094023991" style="zoom: 80%;" />
+![202111271126733](/images/vuepress/202111271126733.png)
 
 ## 配置SSH Key到Github和Gitee
 
 **id_rsa.gitee.pub**和 **id_rsa.github.pub**的内容分别配置到gitee和github
 
-<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111271126276.png" alt="image-20211127095712624" style="zoom:80%;" />
+![202111271126276](/images/vuepress/202111271126276.png)
 
 ### 配置config文件
 

@@ -4,6 +4,7 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /vuepress/
+typora-root-url: ..\.vuepress\public
 ---
 
 
@@ -33,9 +34,7 @@ prev:
                            src="https://www.processon.com/embed/61b8656e637689712447357c"/>
 ```
 
-![image (21)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112141818657.jpg)
-
-
+![202112141818657](/images/vuepress/202112141818657.jpg)
 
 ## 源码实现
 

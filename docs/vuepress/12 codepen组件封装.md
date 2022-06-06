@@ -4,6 +4,7 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /vuepress/
+typora-root-url: ..\.vuepress\public
 ---
 
 
@@ -18,7 +19,7 @@ prev:
 
 在引入codepen embed的时候，总是一堆代码，为了维护简单，封装了一个`codepen-snippet.vue`
 
-<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111271454395.png" alt="image-20211127145355047" style="zoom:80%;" />
+![202111271454395](/images/vuepress/202111271454395.png)
 
 ::: details 点击查看代码
 
@@ -143,7 +144,7 @@ export default {
 
 :::
 
-<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111271451430.png" alt="image-20211127145109694" style="zoom:80%;" />
+![202111271451430](/images/vuepress/202111271451430.png)
 
 ## 效果
 
