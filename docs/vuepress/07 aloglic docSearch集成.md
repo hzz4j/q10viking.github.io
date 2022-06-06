@@ -123,7 +123,7 @@ use the browser emulation 即爬虫使用浏览模拟的方式，经过自己的
 
 找到对应浏览器的版本下载驱动 [ChromeDriver - WebDriver for Chrome - Downloads (chromium.org)](https://chromedriver.chromium.org/downloads)
 
-![202111290559323](/../../../../PictureRepos/imgs/202111290559323.png)
+![202111290559323](/images/vuepress/202111290559323.png)
 
 ### 下载爬虫代码
 
