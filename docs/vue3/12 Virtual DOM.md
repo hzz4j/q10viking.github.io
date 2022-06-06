@@ -4,6 +4,7 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /vue3/
+typora-root-url: ..\.vuepress\public
 ---
 
 
@@ -18,19 +19,17 @@ The virtual DOM is JavaScript object.It is a lightweight copy of the actual DOM.
 
 **Vue Compiling the Template**
 
-![image (10)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112031037698.jpg)
+![202112031037698](/images/vue3/202112031037698.jpg)
 
 **Updates using the DOM**
 
-![image (12)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112031045602.jpg)
+![202112031045602](/images/vue3/202112031045602.jpg)
 
 
 
 **Updates using the Virtual DOM**
 
-![image (11)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112031044795.jpg)
-
-
+![202112031044795](/images/vue3/202112031044795.jpg)
 
 ## Reactivity with Proxies
 

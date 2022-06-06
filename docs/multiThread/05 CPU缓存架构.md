@@ -4,6 +4,7 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /multiThread/
+typora-root-url: ..\.vuepress\public
 ---
 
 ## CPU高速缓存
@@ -14,7 +15,9 @@ CPU缓存即高速缓冲存储器，是位于CPU与主内存间的一种容量�
 
 :::
 
-![image-20220302135557388](https://gitee.com/q10viking/PictureRepos/raw/master/images//202203021356921.png)
+
+
+![202203021356921](/images/multiThread/202203021356921.png)
 
 ### 局部性原理
 
@@ -36,5 +39,5 @@ CPU缓存即高速缓冲存储器，是位于CPU与主内存间的一种容量�
 
 现代CPU为了提升执行效率，减少CPU与内存的交互，一般在CPU上集成了多级缓存架构，常见的为三级缓存结构
 
-![image-20220302135846991](https://gitee.com/q10viking/PictureRepos/raw/master/images//202203021358055.png)
+![202203021358055](/images/multiThread/202203021358055.png)
 

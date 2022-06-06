@@ -4,6 +4,7 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /multiThread/
+typora-root-url: ..\.vuepress\public
 ---
 
 ## **volatile的特性**
@@ -32,7 +33,7 @@ volatile修饰的变量的read、load、use操作和assign、store、write必须
 
 ### **volatile在hotspot的实现**
 
-![image-20220222173638582](https://gitee.com/q10viking/PictureRepos/raw/master/images//202202221736716.png)
+![202202221736716](/images/multiThread/202202221736716.png)
 
 ### **在linux系统x86中的实现**
 

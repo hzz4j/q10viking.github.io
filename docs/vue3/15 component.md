@@ -4,6 +4,7 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /vue3/
+typora-root-url: ..\.vuepress\public
 ---
 
 ## Component
@@ -47,13 +48,11 @@ app.mount("#app");
 :::
 ::::
 
-![image (14)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112031304331.jpg)
-
-
+![202112031304331](/images/vue3/202112031304331.jpg)
 
 ## Communicating with components
 
-![image (15)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112040131096.jpg)
+![202112040131096](/images/vue3/202112040131096.jpg)
 
 ### Emit
 
@@ -302,7 +301,9 @@ export default {
   </keep-alive>
 ```
 
-![image](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112040320630.jpg)
+
+
+![202112040320630](/images/vue3/202112040320630.jpg)
 
 在组件激活和取消激活，有相应的lifecycle hook [生命周期钩子 | Vue.js (vuejs.org)](https://v3.cn.vuejs.org/api/options-lifecycle-hooks.html#生命周期钩子)
 

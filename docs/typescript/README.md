@@ -2,6 +2,7 @@
 prev:
   text: Back To 目录
   link: /topicNav/
+typora-root-url: ..\.vuepress\public
 ---
 
 
@@ -16,6 +17,6 @@ prev:
 
 :::
 
-<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111300318592.png" alt="image-20211130031747250"  />
+![202111300318592](/images/typescript/202111300318592.png)
 
 **The most common kinds of errors that programmers write can be described as type errors: a certain kind of value was used where a different kind of value was expected. This could be due to simple typos, a failure to understand the API surface of a library, incorrect assumptions about runtime behavior, or other errors. The goal of TypeScript is to be a static typechecker for JavaScript programs - in other words, a tool that runs before your code runs (static) and ensures that the types of the program are correct (typechecked).**

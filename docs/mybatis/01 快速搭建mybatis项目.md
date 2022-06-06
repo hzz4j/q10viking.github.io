@@ -4,6 +4,7 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /mybatis/
+typora-root-url: ..\.vuepress\public
 ---
 
 
@@ -332,4 +333,4 @@ public class FirstTest {
 
 ## 项目结构
 
-![image (9)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112092154703.jpg)
+![202112092154703](/images/multiThread/202112092154703.jpg)

@@ -4,6 +4,7 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /multiThread/
+typora-root-url: ..\.vuepress\public
 ---
 
 ## **一致性协议（Coherence protocol）**
@@ -27,13 +28,13 @@ prev:
 
 当块标记为 M (已修改), 在其他缓存中的数据副本被标记为I(无效).
 
-![image-20220302142749654](https://gitee.com/q10viking/PictureRepos/raw/master/images//202203021427647.png)
+![202203021427647](/images/multiThread/202203021427647.png)
 
 ## 伪装共享问题
 
 如果多个核的线程在操作同一个缓存行中的不同变量数据，**那么就会出现频繁的缓存失效**，即使在代码层面看这两个线程操作的数据之间完全没有关系。这种不合理的资源竞争情况就是伪共享（False Sharing）。
 
-![image-20220302143222798](https://gitee.com/q10viking/PictureRepos/raw/master/images//202203021432852.png)
+![202203021432852](/images/multiThread/202203021432852.png)
 
 
 

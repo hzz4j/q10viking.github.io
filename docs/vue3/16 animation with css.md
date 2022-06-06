@@ -4,6 +4,7 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /vue3/
+typora-root-url: ..\.vuepress\public
 ---
 
 
@@ -45,9 +46,7 @@ Vue 提供了 `transition` 的封装组件，在下列情形中，可以给任�
 2. `*-enter-active`：定义进入过渡生效时的状态。在整个进入过渡的阶段中应用，在元素被插入之前生效，在过渡/动画完成之后移除。这个类可以被用来定义进入过渡的过程时间，延迟和曲线函数。
 3. `*-enter-to`：定义进入过渡的结束状态。在元素被插入之后下一帧生效 (与此同时 `v-enter-from` 被移除)，在过渡/动画完成之后移除。
 
-![image](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112161008738.jpg)
-
-
+![202112161008738](/images/vue3/202112161008738.jpg)
 
 ### 离开
 
@@ -55,7 +54,7 @@ Vue 提供了 `transition` 的封装组件，在下列情形中，可以给任�
 2. `*-leave-active`：定义离开过渡生效时的状态。在整个离开过渡的阶段中应用，在离开过渡被触发时立刻生效，在过渡/动画完成之后移除。这个类可以被用来定义离开过渡的过程时间，延迟和曲线函数。
 3. `*-leave-to`：离开过渡的结束状态。在离开过渡被触发之后下一帧生效 (与此同时 `v-leave-from` 被移除)，在过渡/动画完成之后移除。
 
-![image (1)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112161016190.jpg)
+![202112161016190](/images/vue3/202112161016190.jpg)
 
 ### 示例
 

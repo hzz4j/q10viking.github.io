@@ -4,13 +4,14 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /multiThread/
+typora-root-url: ..\.vuepress\public
 ---
 
 ## JMM定义
 
 Java虚拟机规范中定义了Java内存模型（Java Memory Model，JMM），用于屏蔽掉各种硬件和操作系统的内存访问差异，以实现让Java程序在各种平台下都能达到一致的并发效果，JMM规范了Java虚拟机与计算机内存是如何协同工作的：**规定了一个线程如何和何时可以看到由其他线程修改过后的共享变量的值，以及在必须时如何同步的访问共享变量**。JMM描述的是一种抽象的概念，一组规则，通过这组规则控制程序中各个变量在共享数据区域和私有数据区域的访问方式，**JMM是围绕原子性、有序性、可见性展开的**。
 
-![image-20220222171844781](https://gitee.com/q10viking/PictureRepos/raw/master/images//202202221718867.png)
+![202202221718867](/images/multiThread/202202221718867.png)
 
 
 
@@ -18,7 +19,7 @@ Java虚拟机规范中定义了Java内存模型（Java Memory Model，JMM），�
 
 Java内存模型与硬件内存架构之间存在差异。硬件内存架构没有区分线程栈和堆。对于硬件，所有的线程栈和堆都分布在主内存中。部分线程栈和堆可能有时候会出现在CPU缓存中和CPU内部的寄存器中。如下图所示，Java内存模型和计算机硬件内存架构是一个交叉关系：
 
-![image-20220222171948412](https://gitee.com/q10viking/PictureRepos/raw/master/images//202202221719894.png)
+![202202221719894](/images/multiThread/202202221719894.png)
 
 
 
@@ -35,9 +36,11 @@ Java内存模型与硬件内存架构之间存在差异。硬件内存架构没�
 - store（存储）：作用于工作内存的变量，把工作内存中的一个变量的值传送到主内存中，以便随后的write的操作。
 - write（写入）：作用于主内存的变量，它把store操作从工作内存中一个变量的值传送到主内存的变量中。
 
-![image-20220222172545000](https://gitee.com/q10viking/PictureRepos/raw/master/images//202202221725528.png)
+![202202221725528](/images/multiThread/202202221725528.png)
 
-![image-20220222174949465](https://gitee.com/q10viking/PictureRepos/raw/master/images//202202221749394.png)
+
+
+![202202221749394](/images/multiThread/202202221749394.png)
 
 Java内存模型还规定了在执行上述八种基本操作时，必须满足如下规则：
 
