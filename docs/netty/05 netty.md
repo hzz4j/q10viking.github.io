@@ -1,5 +1,5 @@
 ---
-typora-root-url: images
+typora-root-url: ..\.vuepress\public
 ---
 
 
@@ -18,9 +18,7 @@ AbstractChannelHandler
 
 
 
-
-
-![image-20220523043133088](/image-20220523043133088.png)
+![image-20220523043133088](/images/netty/image-20220523043133088.png)
 
 
 

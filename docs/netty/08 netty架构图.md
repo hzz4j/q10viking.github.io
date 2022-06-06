@@ -1,10 +1,10 @@
 ---
-typora-root-url: images
+typora-root-url: ..\.vuepress\public
 ---
 
 ## Netty架构图
 
-![85277netty.png](/85277netty.png)
+![85277netty.png](/images/netty/85277netty.png)
 
 ----------
 
@@ -72,7 +72,7 @@ Netty零拷贝
 
 
 
-![image-20220525153611042](/image-20220525153611042.png)
+![image-20220525153611042](/images/netty/image-20220525153611042.png)
 
 
 
@@ -88,7 +88,7 @@ https://www.processon.com/view/link/628f12a0e0b34d41d954a181
 
 
 
-![netty线程模型](/netty线程模型.png)
+![netty线程模型](/images/netty/netty线程模型.png)
 
 ## Java代码学习
 

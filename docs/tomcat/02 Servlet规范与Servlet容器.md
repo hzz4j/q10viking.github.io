@@ -4,6 +4,7 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /tomcat/
+typora-root-url: ..\.vuepress\public
 ---
 
 ## Servlet Container
@@ -20,17 +21,19 @@ Tomcat就是一个“**HTTP 服务器 + Servlet 容器**”，我们也叫它们
 
 :::
 
-![image (2)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112061010707.jpg)
+![202112061010707](/images/tomcat/202112061010707.jpg)
 
-![image (3)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112061011290.jpg)
 
-![image (4)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112061026358.jpg)
+
+![202112061011290](/images/tomcat/202112061011290.jpg)
+
+
+
+![202112061026358](/images/tomcat/202112061026358.jpg)
 
 ## Http请求过程
 
-![image (11)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112041331328.jpg)
-
-
+![202112041331328](/images/tomcat/202112041331328.jpg)
 
 ## Servlet接口规范
 
@@ -46,9 +49,7 @@ HTTP 服 务器不直接跟业务类打交道，而是把请求交给 Servlet �
 
 Servlet属于JavaEE的内容
 
-![image (12)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112041337554.jpg)
-
-
+![202112041337554](/images/tomcat/202112041337554.jpg)
 
 ## web.xml
 
@@ -66,6 +67,6 @@ you’ll use the DD for more than just mapping names, you’ll use two XML eleme
 
 ## GET vs POST
 
-![image (5)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112061039060.jpg)
+![202112061039060](/images/tomcat/202112061039060.jpg)
 
-![image (6)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112061040240.jpg)
+![202112061040240](/images/tomcat/202112061040240.jpg)
