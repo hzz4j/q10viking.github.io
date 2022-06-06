@@ -4,6 +4,7 @@ sidebar: auto
 prev:
   text: Back To 首页
   link: /
+typora-root-url: ..\.vuepress\public
 ---
 
 
@@ -12,9 +13,9 @@ prev:
 
 ::: tip Wechat
 
+![202111281254434](/images/aboutme/202111281254434.jpg)
 
 
-<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111281254434.jpg" alt="wechat" style="display: block; margin-left: auto; margin-right: auto; width: 50%;" />
 
 :::
 
@@ -22,9 +23,7 @@ prev:
 
 ::: tip QQ
 
-
-
-<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111281116010.jpg" alt="wechat" style="display: block; margin-left: auto; margin-right: auto; width: 50%;"  />
+![202111281116010](/images/aboutme/202111281116010.jpg)
 
 :::
 
