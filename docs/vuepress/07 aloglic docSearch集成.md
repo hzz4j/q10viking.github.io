@@ -4,7 +4,7 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /vuepress/
-typora-root-url: ..\.vuepress\public\images\vuepress
+typora-root-url: ..\.vuepress\public
 ---
 
 ## docsearch
@@ -31,11 +31,15 @@ typora-root-url: ..\.vuepress\public\images\vuepress
 
 下载python[Python Release Python 3.6.6 | Python.org](https://www.python.org/downloads/release/python-366/)
 
-<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111281725342.png" alt="image-20211128172507193"  />
+
+
+![202111281725342](/images/vuepress/202111281725342.png)
 
 配置python环境变量
 
-<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111290600550.png" alt="image-20211129054344395"  />
+
+
+![202111290600550](/images/vuepress/202111290600550.png)
 
 ### 安装爬虫环境
 
@@ -46,11 +50,11 @@ typora-root-url: ..\.vuepress\public\images\vuepress
 
 在 [algolia](https://www.algolia.com) 使用github账号注册的上的dashboad上创建一个应用
 
-<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111281559173.png" alt="image-20211128155851522"  />
+![202111281559173](/images/vuepress/202111281559173.png)
 
 我创建了一个应用，并命名为Blog,然后切换到该应用，点击API keys
 
-<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111281602375.png" alt="image-20211128160238372"  />
+![202111281602375](/images/vuepress/202111281602375.png)
 
 创建一个新的api key,其中需要有相应的权限，根据官网 [Run your own | DocSearch by Algolia](https://docsearch.algolia.com/docs/legacy/run-your-own/#set-up-your-environment)
 
@@ -63,11 +67,11 @@ typora-root-url: ..\.vuepress\public\images\vuepress
 
 **注意在生成API的时候不要指定index name,保持为空，表示这个api key可以操作所有的索引**
 
-<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111281612220.png" alt="image-20211128161151955"  />
+![202111281612220](/images/vuepress/202111281612220.png)
 
 新生成的api key 应该如下所示，**api key用于爬虫上传数据的凭证**
 
-<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111290900539.png" alt="image-20211129062438055"  />
+![202111290900539](/images/vuepress/202111290900539.png)
 
 ### 安装pipenv
 
@@ -95,7 +99,7 @@ C:\Users\你的用户名\AppData\Roaming\Python\Python38\Scripts
 
 配置该环境变量
 
-<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111290900049.png" alt="image-20211128175701146"  />
+![202111290900049](/images/vuepress/202111290900049.png)
 
 ```sh
 # 验证
@@ -115,11 +119,11 @@ use the browser emulation 即爬虫使用浏览模拟的方式，经过自己的
 
 目前我的chrome浏览器是 96.0.4664.45
 
-<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111290558310.png" alt="image-20211129055805472"  />
+![202111290558310](/images/vuepress/202111290558310.png)
 
 找到对应浏览器的版本下载驱动 [ChromeDriver - WebDriver for Chrome - Downloads (chromium.org)](https://chromedriver.chromium.org/downloads)
 
-<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111290559323.png" alt="image-20211129055915567"  />
+![202111290559323](/../../../../PictureRepos/imgs/202111290559323.png)
 
 ### 下载爬虫代码
 
@@ -211,14 +215,14 @@ config.json文件如下，我放在了.vuepress文件夹下
 pipenv install
 ```
 
-<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111281804501.png" alt="image-20211128180432983"  />
+![202111281804501](/../../../../PictureRepos/imgs/202111281804501.png)
 
 ```sh
 # 创建virtualenv 虚拟环境
 pipenv shell
 ```
 
-<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111290609031.png" alt="image-20211128175018940"  />
+![202111290609031](/images/vuepress/202111290609031.png)
 
 执行爬虫代码
 
@@ -227,11 +231,11 @@ pipenv shell
 ./docsearch run D:/Github/q10viking.github.io/docs/.vuepress/config.json
 ```
 
-<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111290613633.png" alt="image-20211129061325873"  />
+![202111290613633](/images/vuepress/202111290613633.png)
 
 在[Indices | Algolia](https://www.algolia.com/apps/20P1NJDB7B/indices)查看爬取的结果
 
-<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111290412851.png"  />
+![202111290412851](/images/vuepress/202111290412851.png)
 
 ## 博客配置docsearch插件
 
@@ -242,7 +246,7 @@ npm i -D @vuepress/plugin-docsearch@next
 
 注意官网推荐的版本，看看自己下载的版本是不是符合，因为如果使用的镜像源的话，下载的版本版本有可能落后，我此时安装docsearch插件的时候，淘宝的npm源是2.0.0-beta.26
 
-<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111290524749.png" alt="image-20211129052353828"  />
+![202111290524749](/images/vuepress/202111290524749.png)
 
 config.js文件中配置插件
 
@@ -263,7 +267,7 @@ plugins: [
 
 ## 预览效果:smile_cat:
 
-<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111290536972.png" alt="image-20211129053629226"  />
+![202111290536972](/images/vuepress/202111290536972.png)
 
 ## 参考
 
