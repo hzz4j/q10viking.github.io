@@ -22,12 +22,3 @@ prev:
 
 
 
-
-
-```
--    "@vuepress/plugin-docsearch": "^2.0.0-beta.27",
-    "@vuepress/plugin-google-analytics": "^2.0.0-beta.27",
-    "@vuepress/plugin-register-components": "^2.0.0-beta.27",
-    "vuepress": "^2.0.0-beta.27"
-```
-

@@ -74,6 +74,32 @@ typora-root-url: ..\.vuepress\public
 
 
 
+## 版本依赖
+
+由于vuepress2还在开发中，我目前使用的版本是
+
+```json
+"devDependencies": {
+  	"@vuepress/plugin-docsearch": "^2.0.0-beta.27",
+	"@vuepress/plugin-google-analytics": "^2.0.0-beta.27",
+	"@vuepress/plugin-register-components": "^2.0.0-beta.27",
+	"vuepress": "^2.0.0-beta.27"
+}
+```
+
+为了不使得它更新，我将箭头去掉,就使用2.0.0-beta.27
+
+```json
+"devDependencies": {
+    "@vuepress/plugin-docsearch": "2.0.0-beta.27",
+    "@vuepress/plugin-google-analytics": "2.0.0-beta.27",
+    "@vuepress/plugin-register-components": "2.0.0-beta.27",
+    "vuepress": "2.0.0-beta.27"
+  }
+```
+
+
+
 ## 参考
 
 [快速上手 | VuePress (vuejs.org)](https://v2.vuepress.vuejs.org/zh/guide/getting-started.html)
