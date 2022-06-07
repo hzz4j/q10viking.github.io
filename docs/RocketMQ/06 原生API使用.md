@@ -22,7 +22,7 @@ typora-root-url: ..\.vuepress\public
 RocketMQ的生产者和消费者的编程模型都是有个比较固定的步骤的
 
 - 消息发送者的固定步骤
-  1. 创建消息生产者producer，并制定生产者组名
+  1. 创建消息生产者producer，并制定**生产者组名**(同一类Producer组成一个集合，叫做生产者组。同一组的 Producer被认为是发送同一类消息且发送逻辑一致。)
   2. 指定Nameserver地址(集群以逗号分隔)
   3. 启动producer
   4. 创建消息对象，指定主题Topic、Tag和消息体

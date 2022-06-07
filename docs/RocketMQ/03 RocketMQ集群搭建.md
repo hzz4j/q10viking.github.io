@@ -419,6 +419,18 @@ nohup bin/mqbroker -c conf/2m-2s-async/broker-a-s.properties &
 
 
 
+## 关闭机器
+
+在**work3（192.168.187.132）**上关闭broker-b的master节点和broker-a的slave节点
+
+```sh
+sh bin/mqshutdown broker
+```
+
+
+
+
+
 ## 查看效果
 
 任意一台机器运行该命令即可
