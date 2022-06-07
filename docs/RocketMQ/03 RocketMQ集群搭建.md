@@ -427,5 +427,5 @@ nohup bin/mqbroker -c conf/2m-2s-async/broker-a-s.properties &
 mqadmin clusterList -n localhost:9876
 ```
 
-![image-20211101233811455](/../../../../saas-yong/fullstack/Java架构师之路/RocketMQ/imgs/image-20211101233811455.png)
+![image-20211101233811455](/images/RocketMQ/image-20211101233811455.png)
 
