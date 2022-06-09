@@ -50,7 +50,7 @@ AbstractBeanDefinition beanDefinition = BeanDefinitionBuilder
 
 ## @GlobalTransactional的扫面AOP
 
-GlobalTransactionScanner
+GlobalTransactionScanner 扫描带有@GlobalTransactional的类，生成代理类，执行时走**GlobalTransactionalInterceptor**
 
 
 
