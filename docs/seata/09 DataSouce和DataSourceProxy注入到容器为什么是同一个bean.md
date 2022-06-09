@@ -11,7 +11,7 @@ typora-root-url: ..\.vuepress\public
 
 ## DataSouce和DataSourceProxy注入到容器为什么是同一个bean
 
-[在线预览](https://www.processon.com/view/link/62a1fbaa0e3e746b9e24d791)
+[DataSouce和DataSourceProxy注入到容器为什么是同一个bean ](https://www.processon.com/view/link/62a1fbaa0e3e746b9e24d791)
 
 ```java
 @SpringBootApplication
@@ -58,4 +58,6 @@ public class MyApplication {
 
 当真正执行的时候在这个代理类中会获得DataSouceProxy来处理代理逻辑，在代理类中的MethodInterceptor生成ConnectionProxy。而不是我们自己定义的bean(DataSourceProxy)
 
-[SpringBoot-Seata集成基础设施(DataSourceProxy)](https://www.processon.com/view/link/62a1fcfe0791293ad1a59975)
+[SpringBoot-Seata集成基础设施(DataSourceProxy)准备工作 ](https://www.processon.com/view/link/62a1fcfe0791293ad1a59975)
+
+![SpringBoot-Seata集成基础设施(DataSourceProxy)准备工作](/images/seata/SpringBoot-Seata集成基础设施(DataSourceProxy)准备工作.png)
