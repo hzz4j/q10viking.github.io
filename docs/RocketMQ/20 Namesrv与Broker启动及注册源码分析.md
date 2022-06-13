@@ -21,7 +21,7 @@ private final HashMap<String/* brokerAddr */, List<String>/* Filter Server */> f
 
 ![image-20220613201916168](/images/RocketMQ/image-20220613201916168.png)
 
-## Broker启动，并注册信息
+## Namesrv与Broker启动及注册源码分析
 
 [Namesrv与Broker启动及注册源码分析 | ProcessOn免费在线作图,在线流程图,在线思维导图 |](https://www.processon.com/view/link/62a72c9f1e08535c73e48499)
 
