@@ -25,8 +25,6 @@ private final HashMap<String/* brokerAddr */, List<String>/* Filter Server */> f
 
 [Namesrv与Broker启动及注册源码分析 | ProcessOn免费在线作图,在线流程图,在线思维导图 |](https://www.processon.com/view/link/62a72c9f1e08535c73e48499)
 
-```vue
 <common-progresson-snippet src="https://www.processon.com/view/link/62a72c9f1e08535c73e48499"/>
-```
 
 ![Namesrv与Broker启动及注册源码分析](/images/RocketMQ/Namesrv与Broker启动及注册源码分析.png)
