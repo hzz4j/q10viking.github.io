@@ -33,3 +33,5 @@ private final ConcurrentMap<String/* Topic */, TopicRouteData> topicRouteTable
 [Producer发消息 | ProcessOn免费在线作图,在线流程图,在线思维导图 |](https://www.processon.com/view/link/62a7741007912939b22b5ffb)
 
 <common-progresson-snippet src="https://www.processon.com/view/link/62a7741007912939b22b5ffb"/>
+
+![Producer发消息](/images/RocketMQ/Producer发消息.png)
