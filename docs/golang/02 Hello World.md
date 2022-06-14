@@ -17,7 +17,7 @@ func main() {
 }
 ```
 
-
+![image-20220615022542611](/images/golang/image-20220615022542611.png)
 
 ## How to run code
 
