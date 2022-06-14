@@ -12,10 +12,8 @@ typora-root-url: ..\.vuepress\public
 ```go
 package main
 
-import "fmt"
-
 func main() {
-	fmt.Println("Hello World")
+	println("Hello World")
 }
 ```
 
