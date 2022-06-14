@@ -17,7 +17,13 @@ func main() {
 }
 ```
 
-![image-20220615022542611](/images/golang/image-20220615022542611.png)
+::: tip
+
+可以和文件夹不同名字
+
+:::
+
+![image-20220615023031706](/images/golang/image-20220615022542611.png)
 
 ## How to run code
 
