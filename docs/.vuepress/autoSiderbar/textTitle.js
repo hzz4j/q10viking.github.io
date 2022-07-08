@@ -38,7 +38,9 @@ const titles = {
     'RocketMQ':'RocketMQ',
     'seata':'Seata',
     'springsecurity':'Spring Security',
-    'zk':'Zookeeper'
+    'zk':'Zookeeper',
+    'sentinel':'Sentinel',
+    'dubbo':'Dubbo'
 };
 
 
