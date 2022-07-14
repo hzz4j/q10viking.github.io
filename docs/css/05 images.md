@@ -4,6 +4,7 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /css/
+typora-root-url: ..\.vuepress\public
 ---
 
 
@@ -14,7 +15,7 @@ Because a Picture says more than a Thousand Words.
 
 :::
 
-![image (1)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112100957450.jpg)
+![202112100957450](/images/css/202112100957450.jpg)
 
 ## background-size
 
@@ -71,4 +72,4 @@ background-image: radial-gradient(circle 20px at 20% 50% ,red,blue)
 
 :::
 
-![image (2)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112101250200.jpg)
+![202112101250200](/images/css/202112101250200.jpg)

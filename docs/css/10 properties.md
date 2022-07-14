@@ -1,3 +1,14 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /css/
+typora-root-url: ..\.vuepress\public
+---
+
+
+
 ::: tip
 
 使用频率很高的properties
@@ -6,7 +17,7 @@
 
 ## Core Properties
 
-![image (4)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112081621574.jpg)
+![202112081621574](/images/css/202112081621574.jpg)
 
 ## Anthor properties
 
