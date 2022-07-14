@@ -8,6 +8,8 @@ prev:
 
 ## Custom Range Slider
 
+[Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/07%20custom%20range%20slider)
+
 <common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/07%20custom%20range%20slider/"/>
 
 ## 笔记
