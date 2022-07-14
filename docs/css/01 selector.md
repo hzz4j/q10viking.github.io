@@ -280,6 +280,15 @@ a:hover .mask{
 div::selection { background: yellow; }
 ```
 
+input 类型为range的标签
+
+```css
+input[type = 'range']::-webkit-slider-runnable-track{}
+input[type = 'range']::-webkit-slider-thumb{}
+```
+
+
+
 ## not
 
 ::: tip

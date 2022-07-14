@@ -10,7 +10,7 @@ prev:
 
 ## Progress Bar
 
-[Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/06 progress)
+[Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/06%20progress)
 
 <common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/06%20progress/"/>
 
