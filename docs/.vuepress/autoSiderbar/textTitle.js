@@ -40,7 +40,8 @@ const titles = {
     'springsecurity':'Spring Security',
     'zk':'Zookeeper',
     'sentinel':'Sentinel',
-    'dubbo':'Dubbo'
+    'dubbo':'Dubbo',
+    'win11':'Win11'
 };
 
 
