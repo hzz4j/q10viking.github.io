@@ -55,6 +55,17 @@ typora-root-url: ..\.vuepress\public
 
 :::
 
+```css
+.container{
+    width: 800px;
+    max-width: 100%; /*当屏幕小于800px时，就以当前大小为准，而不是800px*/
+}
+```
+
+
+
+--------
+
 ```css {2-4}
 .testimonial__image-container {
   width: 65%;

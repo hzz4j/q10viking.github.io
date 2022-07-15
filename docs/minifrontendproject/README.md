@@ -25,3 +25,20 @@
 ## TODO
 
 [Sidebar Menu Using HTML CSS & Javascript | Curved Outside in Active Tab | Navigation Menu Using Html - YouTube](https://www.youtube.com/watch?v=cb167kkWxEQ)
+
+
+
+
+
+## 素材网站
+
+### font awesome 5 cdn
+
+[font-awesome - Libraries - cdnjs - The #1 free and open source CDN built to make life easier for developers](https://cdnjs.com/libraries/font-awesome)
+
+
+
+### 随机用户信息
+
+[Random User Generator | Home](https://randomuser.me/)
+
