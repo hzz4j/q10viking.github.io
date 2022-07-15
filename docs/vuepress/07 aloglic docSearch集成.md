@@ -215,7 +215,7 @@ config.json文件如下，我放在了.vuepress文件夹下
 pipenv install
 ```
 
-![202111281804501](/../../../../PictureRepos/imgs/202111281804501.png)
+![202111281804501](/images/vuepress/202111281804501.png)
 
 ```sh
 # 创建virtualenv 虚拟环境
