@@ -14,5 +14,5 @@ actions:
 
 
 
-<iframe id="embed_dom" name="embed_dom" frameborder="0" style="display:block;width:1025px; height:845px;" src="https://www.processon.com/embed/627641dee0b34d075862c9ff"></iframe>
+<iframe id="embed_dom" name="embed_dom" frameborder="0" style="display:block;width:1025px;max-width: 100%;height:845px;" src="https://www.processon.com/embed/627641dee0b34d075862c9ff"></iframe>
 
