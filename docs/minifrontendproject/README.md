@@ -42,3 +42,14 @@
 
 [Random User Generator | Home](https://randomuser.me/)
 
+
+
+### 中文字体
+
+[Zhi Mang Xing - Google Fonts](https://fonts.google.com/specimen/Zhi+Mang+Xing?subset=chinese-simplified)
+
+```css
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,600&family=Meow+Script&family=Zhi+Mang+Xing&display=swap');
+font-family: 'Zhi Mang Xing', cursive;
+```
+
