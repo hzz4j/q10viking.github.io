@@ -53,3 +53,14 @@
 font-family: 'Zhi Mang Xing', cursive;
 ```
 
+下载ttg字体在css中使用
+
+```css
+@font-face { 
+    font-family: 'Zhi Mang Xing'; 
+    src:url('./ZhiMangXing-Regular.ttf');
+} 
+
+font-family: 'Zhi Mang Xing', cursive;
+```
+
