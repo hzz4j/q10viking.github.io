@@ -73,3 +73,20 @@ background-image: radial-gradient(circle 20px at 20% 50% ,red,blue)
 :::
 
 ![202112101250200](/images/css/202112101250200.jpg)
+
+
+
+## 背景图片设置
+
+```css
+background-image: url('./sun-night.jpg');
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+```
+
+[项目预览（Project view）](https://q10viking.github.io/Mini-FrontEnd-project/10%20Simple%20Typing%20animation/)
+
+[相关笔记](https://q10viking.github.io/minifrontendproject/06%20Simple%20Typing%20Animation.html#%E7%AC%94%E8%AE%B0)
+
+<common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/10%20Simple%20Typing%20animation/"/>

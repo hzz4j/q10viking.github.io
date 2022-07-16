@@ -62,3 +62,14 @@ let refresh = setInterval(() => {
 }, 300);
 ```
 
+
+
+### 背景图片设置
+
+```css
+background-image: url('./sun-night.jpg');
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+```
+
