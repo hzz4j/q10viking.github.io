@@ -50,3 +50,46 @@ The modern way to change the way our elements are displayed
 :::
 
 ![202112150954144](/images/css/202112150954144.jpg)
+
+
+
+## Notes App 案例
+
+[项目预览（Project view）](https://q10viking.github.io/Mini-FrontEnd-project/12%20Notes%20App/)
+
+[相关笔记](https://q10viking.github.io/minifrontendproject/08%20Notes%20App.html)
+
+<common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/12%20Notes%20App/"/>
+
+### flex-wrap使用
+
+::: tip
+
+布局
+
+:::
+
+```css
+body{
+    display: flex;
+    flex-wrap: wrap;
+}
+```
+
+### justify-content使用
+
+::: tip
+
+编辑，删除按钮的使用
+
+:::
+
+```css
+.note .tools{
+    display: flex;
+    justify-content: flex-end; /*flex end*/
+    background-color: var(--second-color);
+    padding: 0.5rem;
+}
+```
+
