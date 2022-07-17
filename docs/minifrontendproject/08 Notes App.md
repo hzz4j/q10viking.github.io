@@ -87,3 +87,39 @@ textArea.focus() // focus 新的textarea
 textArea.value
 ```
 
+
+
+## flex的使用
+
+### flex-wrap使用
+
+::: tip
+
+布局
+
+:::
+
+```css
+body{
+    display: flex;
+    flex-wrap: wrap;
+}
+```
+
+### justify-content使用
+
+::: tip
+
+编辑，删除按钮的使用
+
+:::
+
+```css
+.note .tools{
+    display: flex;
+    justify-content: flex-end; /*flex end*/
+    background-color: var(--second-color);
+    padding: 0.5rem;
+}
+```
+
