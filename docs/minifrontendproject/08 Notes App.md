@@ -70,6 +70,20 @@ document.body.appendChild(note)
 ## 删除元素
 
 ```
+note.remove()
+```
 
+
+
+## focus输入框
+
+```js
+textArea.focus() // focus 新的textarea
+```
+
+## 获取textarea的内容
+
+```js
+textArea.value
 ```
 
