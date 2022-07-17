@@ -90,3 +90,8 @@ background-position: center;
 [相关笔记](https://q10viking.github.io/minifrontendproject/06%20Simple%20Typing%20Animation.html#%E7%AC%94%E8%AE%B0)
 
 <common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/10%20Simple%20Typing%20animation/"/>
+
+
+
+## img标签的图片设置
+
