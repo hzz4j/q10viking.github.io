@@ -10,6 +10,12 @@ prev:
 
 ## Double Heart Click
 
+[项目预览（Project view）](https://q10viking.github.io/Mini-FrontEnd-project/13%20Double%20heart%20click/)
+
+[Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/13%20Double%20heart%20click)
+
+<common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/13%20Double%20heart%20click/"/>
+
 
 
 
@@ -108,5 +114,32 @@ function showHeart(e){
     // 5秒后删除元素
     setTimeout(()=>heart.remove(),5000)
 }
+```
+
+
+
+## 模拟处理双击事件
+
+```js
+let clickTime = 0
+loveMe.addEventListener('click',(e) => {
+   // 模拟双击效果
+   if(clickTime === 0){
+    clickTime = new Date().getTime()
+   }else{
+    if((new Date().getTime()) - clickTime < 800){
+        // 有效的双击
+        // alert("有效的双击")
+        // 重新设置
+        clickTime = 0
+        handleTimes()
+        showHeart(e)
+    }else{
+        // 隔很长时间了，此次作为第一次计算
+        // alert("隔很长时间了，此次作为第一次计算")
+        clickTime = new Date().getTime()
+    }
+   }
+})
 ```
 
