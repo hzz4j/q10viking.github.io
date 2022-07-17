@@ -16,9 +16,7 @@ prev:
 
 <common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/12%20Notes%20App/"/>
 
-```
-https://q10viking.github.io/Mini-FrontEnd-project/12%20Notes%20App/
-```
+
 
 
 
