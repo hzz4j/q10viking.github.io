@@ -64,3 +64,19 @@ font-family: 'Zhi Mang Xing', cursive;
 font-family: 'Zhi Mang Xing', cursive;
 ```
 
+
+
+### unsplash image api
+
+::: tip
+
+会随机返回一张图片
+
+::: 
+
+```js
+https://source.unsplash.com/random/
+// 也可以带参数指定图片的大小
+https://source.unsplash.com/random/300x301
+```
+
