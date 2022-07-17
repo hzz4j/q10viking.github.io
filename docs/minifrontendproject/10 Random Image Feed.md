@@ -8,7 +8,11 @@ prev:
 
 ## Random Image Feed
 
+[项目预览（Project view）](https://q10viking.github.io/Mini-FrontEnd-project/14%20Random%20Image%20Feed/)
 
+[Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/14%20Random%20Image%20Feed)
+
+<common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/14%20Random%20Image%20Feed/"/>
 
 
 
@@ -72,7 +76,7 @@ function generateRandomLink(){
     align-items: center;
     flex-wrap: wrap;
     margin: auto;
-    max-width: 1000px
+    max-width: 1000px;  /*控制一行做多显示3张图片*/
 }
 
 .container img{
@@ -82,6 +86,5 @@ function generateRandomLink(){
     object-fit: cover; /*图片https://developer.mozilla.org/zh-CN/docs/Web/CSS/object-fit*/
     box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.3);
 }
-
 ```
 

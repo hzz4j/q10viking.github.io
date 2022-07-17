@@ -93,5 +93,13 @@ background-position: center;
 
 
 
-## img标签的图片设置
+## img标签的图片设置object-fit
+
+### Random Image Feed Demo
+
+[相关笔记](https://q10viking.github.io/minifrontendproject/10%20Random%20Image%20Feed.html)
+
+<common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/14%20Random%20Image%20Feed/"/>
+
+
 
