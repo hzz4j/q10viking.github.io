@@ -10,8 +10,11 @@ prev:
 
 ## Scrolling Text
 
+[项目预览（Project view）](https://q10viking.github.io/Mini-FrontEnd-project/15%20Scrolling%20Text/)
 
+[Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/15%20Scrolling%20Text)
 
+<common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/15%20Scrolling%20Text/"/>
 
 
 
