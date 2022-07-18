@@ -16,9 +16,27 @@ prev:
 
 ::: tip
 
-监听的是input事件
+1. type = number
+
+2. 监听的是input事件
 
 :::
+
+```html
+<input type="number"
+            name="speed"
+            id="speed"
+            min="1"
+            max="10"
+            step="1"
+            value="1">
+```
+
+```js
+// 监听input事件,也可以监听change事件
+speedEl.addEventListener('input',e => speed = 300 / e.target.value)
+// speedEl.addEventListener('change',e => speed = 300 / e.target.value)
+```
 
 
 
@@ -26,6 +44,20 @@ prev:
 
 ::: tip
 
-只是用
+只是用setTimeout而没有使用setInterval
 
 :::
+
+
+
+```js
+function writeMessage(){
+    textEl.innerText = message.slice(0,idx)
+    idx++
+    if(idx > message.length){
+        idx = 1
+    }
+    setTimeout(writeMessage,speed) // 递归调用
+}
+```
+
