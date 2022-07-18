@@ -41,9 +41,26 @@ event.target的属性
 
 ::: tip
 
-event的属性
+event的属性clientX和clientY
 
 :::
+
+
+
+## offsetX和offsetY
+
+::: tip
+
+event的属性offsetX和offsetY
+
+:::
+
+```
+offsetX = clientX - offsetLeft
+offsetY = clientY - offsetTop
+```
+
+
 
 ## Double Heart Click 项目
 
@@ -51,5 +68,5 @@ event的属性
 
 <common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/13%20Double%20heart%20click/"/>
 
-## 
+
 
