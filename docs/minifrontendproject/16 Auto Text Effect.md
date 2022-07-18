@@ -10,9 +10,13 @@ prev:
 
 ## Auto Text Effect
 
+[项目预览（Project view）](https://q10viking.github.io/Mini-FrontEnd-project/20%20Auto%20Text%20Effect/)
 
+[Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/20%20Auto%20Text%20Effect)
 
-## input
+<common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/20%20Auto%20Text%20Effect/"/>
+
+## input number类型
 
 ::: tip
 
