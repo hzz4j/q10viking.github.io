@@ -10,7 +10,11 @@ prev:
 
 ## Drawing App
 
+[项目预览（Project view）](https://q10viking.github.io/Mini-FrontEnd-project/18%20Drawing%20App/)
 
+[Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/18%20Drawing%20App)
+
+<common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/18%20Drawing%20App/"/>
 
 
 
