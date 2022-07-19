@@ -4,6 +4,7 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /minifrontendproject/
+typora-root-url: ..\.vuepress\public
 ---
 
 
@@ -74,6 +75,5 @@ const scale = (num, in_min, in_max, out_min, out_max) => {
 ```
 
 
-$$
-\frac{out\_max - out\_min}{in\_max - in\_min} = \frac{x - out\_min}{num - in\_min}
-$$
+
+![image-20220719204609847](/images/minifrontendproject/image-20220719204609847.png)
