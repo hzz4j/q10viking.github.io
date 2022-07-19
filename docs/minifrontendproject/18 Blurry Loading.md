@@ -16,7 +16,7 @@ prev:
 
 <common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/22%20Blurry%20Loading/"/>
 
-## 处理图片
+## 模糊处理图片Filter
 
 ::: tip
 
