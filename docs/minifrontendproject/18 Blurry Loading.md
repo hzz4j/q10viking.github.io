@@ -73,3 +73,7 @@ const scale = (num, in_min, in_max, out_min, out_max) => {
 }
 ```
 
+
+$$
+\frac{out\_max - out\_min}{in\_max - in\_min} = \frac{x - out\_min}{num - in\_min}
+$$
