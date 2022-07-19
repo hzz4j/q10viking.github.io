@@ -111,3 +111,27 @@ print("Hello World")
 ```
 :::
 ::::
+
+
+
+
+
+---------
+
+
+
+## LaTex公式
+
+## 分数
+
+$$
+\frac{out\_max - out\_min}{in\_max - in\_min} = \frac{x - out\_min}{num - in\_min}
+$$
+
+::: details 查看代码
+
+```latex
+\frac{out\_max - out\_min}{in\_max - in\_min} = \frac{x - out\_min}{num - in\_min}
+```
+
+:::
