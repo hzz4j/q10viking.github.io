@@ -10,7 +10,11 @@ prev:
 
 ## Blurry Loading
 
+[项目预览（Project view）](https://q10viking.github.io/Mini-FrontEnd-project/22%20Blurry%20Loading/)
 
+[Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/22%20Blurry%20Loading)
+
+<common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/22%20Blurry%20Loading/"/>
 
 ## 处理图片
 
@@ -28,7 +32,7 @@ prev:
     left: -30px;
     bottom: -10px;
     right: -30px;
-    width: calc(100vw + 30px);
+    width: calc(100vw + 30px);  /*计算大小*/
     height: calc(100vh + 10px);
     filter: blur(30px);  /*模糊效果*/
     z-index: -1;
