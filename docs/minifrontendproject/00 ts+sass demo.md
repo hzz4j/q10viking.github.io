@@ -206,8 +206,21 @@ npm run watch
 
 1. app.html不用写link引入样式
 2. app.html不用写script来引入自己写的js
+3. 部署到githug page页面则使用路径**dist**
 
 ![image-20220721071853698](/images/css/image-20220721071853698.png)
+
+
+
+[项目预览（Project view）](https://q10viking.github.io/Mini-FrontEnd-project/23%20ts%20sass%20demo/dist/)
+
+[Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/23%20ts%20sass%20demo)
+
+<common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/23%20ts%20sass%20demo/dist/"/>
+
+
+
+
 
 
 
