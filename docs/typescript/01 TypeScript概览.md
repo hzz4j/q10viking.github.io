@@ -4,18 +4,23 @@ sidebar: auto
 prev:
   text: Back To 目录
   link: /typescript/
+typora-root-url: ..\.vuepress\public
 ---
 
 ## TypeScript
 
-![image (1)](https://gitee.com/q10viking/PictureRepos/raw/master/images//202111300357843.jpg)
+
+
+![202111300357843](/images/typescript/202111300357843.jpg)
 
 ## TypeScript与JavaScript
 
 - TypeScript兼容JavaScript的所有特性，并且在这基础上提供了强大的**TypeScript‘s type system**
 - 另外TypeScript能够在程序执行前能够识别错误的代码行为，降低bugs的产生
 
-<img src="https://gitee.com/q10viking/PictureRepos/raw/master/images//202111300318592.png" alt="image-20211130031747250"  />
+
+
+![202111300318592](/images/typescript/2021113003185921)
 
 ### 类型推断
 
