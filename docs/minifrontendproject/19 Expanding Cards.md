@@ -11,7 +11,11 @@ typora-root-url: ..\.vuepress\public
 
 ## Expanding Cards
 
+[项目预览（Project view）](https://q10viking.github.io/Mini-FrontEnd-project/24%20Expanding%20Cards/dist/)
 
+[Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/24%20Expanding%20Cards)
+
+<common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/24%20Expanding%20Cards/dist/"/>
 
 
 

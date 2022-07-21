@@ -210,6 +210,10 @@ npm run watch
 
 以后就之间拷贝这个目录，然后执行**npm install 安装下载依赖**
 
+> 在该脚手架中创建了两个入口一个main.ts和app.ts，并且在生成html时注入到html里面。
+>
+> 而scss则在main.ts导入了，这样就依赖起来了
+
 1. app.html不用写link引入样式
 2. app.html不用写script来引入自己写的js
 3. 部署到githug page页面则使用路径**dist**

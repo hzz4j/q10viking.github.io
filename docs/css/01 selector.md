@@ -213,6 +213,8 @@ share the same declaration set
 
 :::
 
+[Expanding Cards](https://q10viking.github.io/minifrontendproject/19%20Expanding%20Cards.html)
+
 #### :nth-last-of-type
 
 ::: tip

@@ -95,6 +95,8 @@ body{
 
 
 
-## flex: 1
+## flex: 数值
 
-[Drink Water](https://q10viking.github.io/minifrontendproject/13%20Drink%20Water.html#flex)
+[ flex: 1 Drink Water](https://q10viking.github.io/minifrontendproject/13%20Drink%20Water.html#flex)
+
+[flex: 5 Expanding Cards](https://q10viking.github.io/minifrontendproject/19%20Expanding%20Cards.html)
