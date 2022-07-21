@@ -66,37 +66,50 @@ typora-root-url: ..\.vuepress\public
 
 --------
 
-```css {2-4}
-.testimonial__image-container {
-  width: 65%;
-  min-width: 350px;
-  max-width: 580px;
-  display: inline-block;
-  vertical-align: middle;
-  box-shadow: 3px 3px 5px 3px rgba(0, 0, 0, 0.3);
+
+
+### @media max-width vs min-width ⭐⭐⭐
+
+- `@media (min-width: 800px) { … }` - for browser’s viewport width equal or wider than 800px;
+- `@media (max-width: 800px) { … }` - for browser’s viewport width equal or narrower than 800px.
+
+
+
+```css
+body {
+    /* default styles here, 
+    targets mobile first */
+}
+
+@media screen and (min-width:480px) {
+    /* style changes when the screen gets larger */
+}
+
+@media screen and (min-width:800px) {
+    /* And even larger */
 }
 ```
 
-```css {4-5,9}
-@media (min-width: 40rem) {
-  main {
-    font-size: 1.3rem;
-    max-width: 1200px;
-    margin: 3rem auto;
-  }
+
+
+```css
+body {
+    /* default styles here, 
+    targets desktops first */
 }
 
-@media (min-width: 1200px) {
-  .package {
-    border-left: 4px solid #0e4f1f;
-    background-color: #ff5454;
-  }
+@media screen and (max-width:800px) {
+    /* style changes when the screen gets smaller */
+}
 
-  #free {
-    border-right: 4px solid #0e4f1f;
-  }
+@media screen and (max-width:480px) {
+    /* And even smaller */
 }
 ```
+
+
+
+
 
 
 
@@ -159,4 +172,8 @@ width: 80vmin;
 ```
 
  
+
+
+
+## 
 
