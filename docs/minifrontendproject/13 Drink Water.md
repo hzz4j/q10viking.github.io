@@ -81,7 +81,7 @@ function updateBigCup(){
 
 
 
-## flex
+## flex: 1
 
 [Understanding flex-grow, flex-shrink, and flex-basis | CSS-Tricks - CSS-Tricks](https://css-tricks.com/understanding-flex-grow-flex-shrink-and-flex-basis/)
 

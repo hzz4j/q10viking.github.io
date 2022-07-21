@@ -93,3 +93,8 @@ body{
 }
 ```
 
+
+
+## flex: 1
+
+[Drink Water](https://q10viking.github.io/minifrontendproject/13%20Drink%20Water.html#flex)
