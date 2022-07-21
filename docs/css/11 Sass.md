@@ -209,3 +209,26 @@ html{
 }
 ```
 
+#### 默认值
+
+```css
+@mixin containerDisplayFlex($direction: row) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+```
+
+
+
+```scss
+// 使用的时候也可以传入值
+body{
+    @include containerDisplayFlex(column);
+    background-color: $primary-color;
+    color: $white-font-color;
+}
+```
+
