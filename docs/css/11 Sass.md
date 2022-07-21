@@ -54,7 +54,14 @@ sass --watch main.scc:main.css
 ```scss
 .documentation-links{
     .documentation-link{
-        &:active{}   
+        &:active,
+        &:hover{
+            
+        }
+        
+        &.something-else{
+            
+        }
     }
 }
 ```
