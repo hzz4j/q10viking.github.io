@@ -13,13 +13,10 @@ typora-root-url: ..\.vuepress\public
 
 
 
+## TODO
 
-
-
-
-## 如何实现循环？
-
-https://codepen.io/jonathan-asbell/pen/QWgampv
+1. 带点的
+2. 手动切换
 
 
 
@@ -52,3 +49,17 @@ https://codepen.io/jonathan-asbell/pen/QWgampv
 }
 ```
 
+----------
+
+
+
+## 如何解决循环时的闪现问题？
+
+::: tip
+
+1. 自动切换时到最后一张图片，接着跳到第一张图片
+2. 解决这种没有平滑过度问题
+
+:::
+
+https://codepen.io/jonathan-asbell/pen/QWgampv
