@@ -208,11 +208,13 @@ npm run watch
 
 ## 之后的开发规范⭐⭐⭐
 
-以后就之间拷贝这个目录，然后执行**npm install**
+以后就之间拷贝这个目录，然后执行**npm install 安装下载依赖**
 
 1. app.html不用写link引入样式
 2. app.html不用写script来引入自己写的js
 3. 部署到githug page页面则使用路径**dist**
+4. npm run watch 结合插件live server来开发
+5. 最后提交再npm run build一下
 
 ![image-20220721071853698](/images/css/image-20220721071853698.png)
 
