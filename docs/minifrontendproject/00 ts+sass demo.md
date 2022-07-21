@@ -13,7 +13,13 @@ typora-root-url: ..\.vuepress\public
 
 之前开发的项目都是html + css + javascript，这次升级一下变成html + sass + typescript来开发，并在适当的情况下引入vue3来进行开发学习。
 
+[项目预览（Project view）](https://q10viking.github.io/Mini-FrontEnd-project/23%20ts%20sass%20demo/dist/)
 
+[Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/23%20ts%20sass%20demo)
+
+<common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/23%20ts%20sass%20demo/dist/"/>
+
+[View in Stackblitz](https://stackblitz.com/edit/webpack-webpack-js-org-4wgkdu)
 
 ## npm命令基础知识
 
