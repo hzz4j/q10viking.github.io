@@ -11,11 +11,11 @@ typora-root-url: ..\.vuepress\public
 
 ## Hidden Search Widget
 
-[项目预览（Project view）](https://q10viking.github.io/Mini-FrontEnd-project/24%20Expanding%20Cards/dist/)
+[项目预览（Project view）](https://q10viking.github.io/Mini-FrontEnd-project/25%20Hidden%20Search%20Widget/dist/)
 
-[Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/24%20Expanding%20Cards)
+[Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/25%20Hidden%20Search%20Widget)
 
-<common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/24%20Expanding%20Cards/dist/"/>
+<common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/25%20Hidden%20Search%20Widget/dist/"/>
 
 
 
