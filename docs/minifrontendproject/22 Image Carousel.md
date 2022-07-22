@@ -239,6 +239,28 @@ imgsContainer.addEventListener('mouseout',()=>{
 
 
 
+### visibilitychange事件
+
+::: tip
+
+当切换浏览器标签栏的时候，保存用户切花图片的位置
+
+:::
+
+```js
+// 修复切换浏览器页面，
+document.addEventListener('visibilitychange',()=>{
+    
+    if(document.hidden){
+        clearInterval(interval)
+    }else{
+        interval = setInterval(forward,seconds)
+    }
+})
+```
+
+
+
 
 
 
