@@ -234,3 +234,17 @@ body{
 }
 ```
 
+
+
+## 编译sass文件
+
+[Sass: Sass Basics (sass-lang.com)](https://sass-lang.com/guide)
+
+```sh
+# 将当前文件style.scss文件编译到dist文件夹下的style.css
+sass style.scss dist/style.css
+
+# 在开发模式下使用watch模式，这样style.scss文件发生了变化就会实时编译更新到style.css文件中
+sass --watch style.scss:dist/style.css
+```
+
