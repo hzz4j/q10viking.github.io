@@ -28,6 +28,12 @@ prev:
 
 ## 最后一个元素靠右
 
+::: tip
+
+前提是该容器是display: flex
+
+:::
+
 ```css
 /*最后一个元素靠右的操作*/
 .tools > *:last-child{
