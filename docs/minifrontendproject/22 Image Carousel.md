@@ -11,7 +11,11 @@ typora-root-url: ..\.vuepress\public
 
 ## Image Carousel 1
 
+[项目预览（Project view）](https://q10viking.github.io/Mini-FrontEnd-project/26%20Image%20Carousel%201/dist/)
 
+[Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/26%20Image%20Carousel%201)
+
+<common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/26%20Image%20Carousel%201/dist/"/>
 
 
 
@@ -110,6 +114,12 @@ ol-li 圆圈化，默认是数字
 
 
 ## Image Carousel 2
+
+[项目预览（Project view）](https://q10viking.github.io/Mini-FrontEnd-project/27%20Image%20Carousel%202/dist/)
+
+[Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/27%20Image%20Carousel%202)
+
+<common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/27%20Image%20Carousel%202/dist/"/>
 
 
 
