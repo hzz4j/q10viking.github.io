@@ -204,6 +204,32 @@ npm run watch
 
 
 
+### webpack-dev-server 
+
+> 取代vscode的插件live server [Development | webpack](https://webpack.js.org/guides/development/#using-webpack-dev-server)
+
+```sh
+npm install --save-dev webpack-dev-server
+```
+
+在`webpack.config.js`中配置
+
+```js
+devServer: {
+    static: './dist',
+},
+
+optimization:{
+    runtimeChunk: 'single',
+}
+```
+
+在`package.json`中配置
+
+```json
+"start": "webpack serve --open"
+```
+
 
 
 ## 之后的开发规范⭐⭐⭐
@@ -217,7 +243,7 @@ npm run watch
 1. app.html不用写link引入样式
 2. app.html不用写script来引入自己写的js
 3. 部署到githug page页面则使用路径**dist**
-4. npm run watch 结合插件live server来开发
+4. npm run watch 结合插件live server来开发(或者安装webpack-dev-server来做服务器)
 5. 最后提交再npm run build一下
 
 ![image-20220721071853698](/images/css/image-20220721071853698.png)
