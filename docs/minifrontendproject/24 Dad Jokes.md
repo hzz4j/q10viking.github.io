@@ -1,12 +1,10 @@
 ## Dad Jokes
 
+[项目预览（Project view）](https://q10viking.github.io/Mini-FrontEnd-project/30%20Dad%20Jokes/dist/)
 
+[Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/30%20Dad%20Jokes)
 
-
-
-
-
-
+<common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/30%20Dad%20Jokes/dist/"/>
 
 
 
@@ -18,5 +16,30 @@
 
 :::
 
+抽离文件
 
+```tsx
+const API_URL =  "https://icanhazdadjoke.com"
+const config = {
+    headers: {
+        Accept: 'application/json'
+    }
+}
+
+export {
+    API_URL,
+    config
+}
+```
+
+
+
+```tsx
+import { API_URL,config } from './ts/config'
+async function getJoke(){
+  const resp = await fetch(API_URL,config)
+  const data = await resp.json() as Joke
+  jokeDiv.innerHTML = data.joke
+}
+```
 
