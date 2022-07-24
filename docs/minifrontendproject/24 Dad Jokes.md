@@ -19,7 +19,7 @@ typora-root-url: ..\.vuepress\public
 
 
 
-## fetch
+## fetch api
 
 ::: tip
 
@@ -52,5 +52,13 @@ async function getJoke(){
   const data = await resp.json() as Joke
   jokeDiv.innerHTML = data.joke
 }
+```
+
+
+
+## 素材
+
+```java
+https://icanhazdadjoke.com
 ```
 
