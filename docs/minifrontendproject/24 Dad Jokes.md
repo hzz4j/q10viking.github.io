@@ -1,3 +1,14 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /minifrontendproject/
+typora-root-url: ..\.vuepress\public
+---
+
+
+
 ## Dad Jokes
 
 [项目预览（Project view）](https://q10viking.github.io/Mini-FrontEnd-project/30%20Dad%20Jokes/dist/)
