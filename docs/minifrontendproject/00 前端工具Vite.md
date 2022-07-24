@@ -65,11 +65,62 @@ npm run dev
 
 :::
 
-todo
+```json
+// tsconfig.js
+"baseUrl": ".",
+"paths": {
+    "@/*": [
+        "src/*"
+    ]
+}
+```
+
+
+
+```js
+// vite.config.ts
+import { fileURLToPath, URL } from 'node:url'  // 依赖@types/node模块
+import { defineConfig } from 'vite'
+
+
+function wrapper(url: string | URL){
+    console.log('我配置的输出import.meta.url',url)
+    const re = fileURLToPath(new URL('./src',url))
+    console.log("处理后的结果过",re);
+    
+    return re
+}
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  resolve: {
+    alias: {
+      //'@': wrapper(import.meta.url)
+      '@': fileURLToPath(new URL('./src',import.meta.url))
+    }
+  }
+})
+```
 
 
 
 
+
+### 注意⭐
+
+vite打包build的时候,在index.html中，assets是绝对路径
+
+```html
+<script type="module" crossorigin src="/assets/index.4263fa05.js"></script>
+<link rel="stylesheet" href="/assets/index.4c5dc9dc.css">
+```
+
+这样上传到github page会导致访问不到，因为我使用dist目录下的路径，所以得手动修改一下，改为相对路径
+
+```html
+<script type="module" crossorigin src="assets/index.4263fa05.js"></script>
+<link rel="stylesheet" href="assets/index.4c5dc9dc.css">
+```
 
 
 
