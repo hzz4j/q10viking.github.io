@@ -133,3 +133,46 @@ userList.push(userInfo)    // reactive访问数据方式
           placeholder="Search...">
 ```
 
+
+
+## onMounted
+
+::: tip
+
+接收一个函数
+
+:::
+
+```js
+import {onMounted } from 'vue'
+
+// 有async，是因为函数内部使用了await
+onMounted(async ()=>{
+    const res = await fetch(RAND_USER_API)
+    const data = await res.json()// 解构
+    let results = data.results as any[]
+    results.forEach((user:any) => {
+        let userInfo:UserInfo = {
+            img: user.picture.large,
+            name: user.name.first,
+            location: user.location.city
+        }
+
+        // userList.value.push(userInfo)
+        userList.push(userInfo)
+    })
+})
+```
+
+
+
+## watch
+
+```js
+import { watch } from 'vue'
+// watch search这属性，val是新值
+watch(search,(val)=>{
+    console.log(val)
+})
+```
+
