@@ -28,7 +28,11 @@
 
 
 
+- [How to Handle File Inputs With JavaScript | by John Au-Yeung | Better Programming](https://betterprogramming.pub/handling-file-inputs-with-javascript-9f2d3a007f05)
 
+- [How to resize and crop an image using Typescript | Spltech Smart Solutions](https://spltech.co.uk/how-to-resize-and-crop-an-image-using-typescript/)
+- [How to Crop or Resize an Image With JavaScript (tutsplus.com)](https://code.tutsplus.com/tutorials/how-to-crop-or-resize-an-image-with-javascript--cms-40446)
+- [Crop Image with Croppie + Modal (codepen.io)](https://codepen.io/githyoung/pen/LYEjwdO)
 
 ## 素材网站
 

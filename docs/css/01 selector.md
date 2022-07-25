@@ -308,6 +308,19 @@ input[type = 'range']::-webkit-slider-thumb{}
 }
 ```
 
+最后一个元素没有下划线
+
+[Live User Filter](https://q10viking.github.io/minifrontendproject/26%20Live%20User%20Filter.html)
+
+```scss
+// 下划线得设置
+&:not(:last-of-type){
+    border-bottom: 1px solid $gray;
+}
+```
+
+
+
 
 
 ## css 优先级
