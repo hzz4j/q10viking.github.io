@@ -1,14 +1,23 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /minifrontendproject/
+typora-root-url: ..\.vuepress\public
+---
+
 
 
 ## LIve User Filter
 
+[项目预览（Project view）](https://q10viking.github.io/Mini-FrontEnd-project/32%20Live%20User%20Filter/vanilla/dist/)
 
+[vanilla Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/32%20Live%20User%20Filter/vanilla)
 
-[vanilla Source Code]()
+[Vue3+ts重构 Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/32%20Live%20User%20Filter/refactor-by-vue)
 
-[Vue3+ts重构 Source Code]()
-
-
+<common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/32%20Live%20User%20Filter/vanilla/dist/"/>
 
 ## 解构
 
