@@ -134,23 +134,129 @@ vite打包build的时候,在index.html中，assets是绝对路径
 
 
 
-## 安装Font Awesome 
+## Vue3使用Font Awesome 
 
 ::: tip
 
-主要是为了使用icons
+在Vue中使用 font Awesome icons
 
 :::
 
+
+
+### 安装依赖
+
 [Set Up with Vue | Font Awesome Docs](https://fontawesome.com/docs/web/use-with/vue/)
 
-```
-"@fortawesome/vue-fontawesome": "^3.0.0-5",
-```
+```sh
+# core package
+npm i --save @fortawesome/fontawesome-svg-core
 
-```
+# Free icons styles
+npm i --save @fortawesome/free-solid-svg-icons
+npm i --save @fortawesome/free-regular-svg-icons
+npm i --save @fortawesome/free-brands-svg-icons
+
+# for Vue 3.x
 npm i --save @fortawesome/vue-fontawesome@latest-3
 ```
+
+
+
+### 导入图标
+
+::: tip
+
+为了减少项目的体积，可以按需导入
+
+:::
+
+[Import Icons | Font Awesome Docs](https://fontawesome.com/docs/apis/javascript/import-icons)
+
+比如为了使用tiktok图标
+
+![image-20220726160455989](/images/minifrontendproject/image-20220726155247346.png)
+
+
+
+**注意icon有类型分类solid,regular,brands**
+
+```js
+
+import { library } from "@fortawesome/fontawesome-svg-core";
+// 通过前缀全部导入fab类型的icon
+import { fab } from "@fortawesome/free-brands-svg-icons"
+// 其他的类型
+// import { fas } from '@fortawesome/free-solid-svg-icons'
+// import { far } from '@fortawesome/free-regular-svg-icons'
+
+// 接受一个数组
+library.add(fab)
+
+<!-- Add all icons to the library so you can use it in your page -->
+// library.add(fas, far, fab)
+```
+
+```js
+// 只导入需要的，怎么知道图标对应的名字呢----》直接点开导入的包搜索
+import { faTiktok } from "@fortawesome/free-brands-svg-icons"
+library.add(faTiktok)
+```
+
+
+
+### 注册组件
+
+```js
+createApp(App)
+    .component('font-awesome-icon', FontAwesomeIcon)
+    .mount('#app')
+```
+
+
+
+## 使用
+
+```html
+<font-awesome-icon icon="fa-brands fa-tiktok" />
+```
+
+
+
+## 优化
+
+::: tip
+
+抽离成单独的一个文件`fontawesome-icon.ts`，以便进行维护
+
+:::
+
+
+
+```tsx
+import { library } from "@fortawesome/fontawesome-svg-core";
+// import {fab } from "@fortawesome/free-brands-svg-icons"
+import {faTiktok,faWeibo,faBilibili } from "@fortawesome/free-brands-svg-icons"
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+
+library.add(faTiktok,faWeibo,faBilibili)
+
+export default FontAwesomeIcon
+```
+
+使用
+
+```js
+import FontAwesomeIcon from './ts/fontawesome-icons'
+import App from './App.vue'
+
+createApp(App)
+    .component('font-awesome-icon', FontAwesomeIcon)
+    .mount('#app')
+```
+
+
 
 [Import Icons | Font Awesome Docs](https://fontawesome.com/docs/apis/javascript/import-icons)
 
