@@ -1,4 +1,11 @@
-
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /minifrontendproject/
+typora-root-url: ..\.vuepress\public
+---
 
 
 
@@ -10,4 +17,99 @@
 
 
 
-## drable
+## 原理
+
+::: tip
+
+1. 元素设置draggable,打开可拖拽的可能性
+2. 监听相关的拖拽事件：其中分两部分，可拖拽元素的事件dragstart,dragend；拖拽元素落脚的容器元素的事件：dragenter,dragover,drop.
+3. 在每个监听事件触发的函数中我们就可以做一些程序的逻辑处理
+4. 最后在drop事件对应的函数中处理拖拽元素的转移。代码层面就是在落脚的容器元素append这个拖拽的元素。这个元素就会从原来的地方转移过来。
+
+:::
+
+
+
+## html属性draggable
+
+::: tip
+
+dom元素设置了这个属性`draggable=true`,就能将元素拖拽起来
+
+:::
+
+
+
+## drop事件为什么没触发？
+
+::: tip
+
+原因是dragover有默认的行为，我们需要阻止它，否则的话在容器上一直处于dragover状态，不会触发drop事件
+
+:::
+
+```tsx
+function dragOver(event:Event){
+  event.preventDefault()  // 阻止dragover的默认行为，否者drop事件不会触发
+  console.log("drag over on")
+}
+```
+
+
+
+
+
+## DOM元素是如何移动的？
+
+::: tip
+
+通过选择器获取到元素之后，直接在插入到另外一个容器中，就能实现转移效果
+
+:::
+
+```js
+const fill = document.querySelector(".fill")!
+const empties = document.querySelectorAll(".empty")!
+empties[2].appendChild(fill) // 直接转移
+```
+
+原来的html 结构是这样
+
+```html
+<div class="container">
+  <div class="empty">
+    <div class="fill"></div>
+  </div>
+  <div class="empty"></div>
+  <div class="empty"></div>
+</div>
+```
+
+在执行了`empties[2].appendChild(fill) `之后fill的DOM元素直接转移了
+
+```html
+<div class="container">
+  <div class="empty"></div>
+  <div class="empty"></div>
+  <div class="empty">
+      <div class="fill"></div>   <!-- 转移到了这里 -->
+  </div>
+</div>
+```
+
+> 下面实现了图片这个元素每隔1s自动在容器中转移，主要通过append添加到另外一个容器
+
+<common-codepen-snippet title="Move DOM" slug="poLWgPN" />
+
+
+
+
+
+
+
+
+
+## 参考
+
+[HTML Drag and Drop API - Web APIs | MDN (mozilla.org)](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)
+
