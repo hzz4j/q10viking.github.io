@@ -134,3 +134,26 @@ vite打包build的时候,在index.html中，assets是绝对路径
 
 
 
+## 安装Font Awesome 
+
+::: tip
+
+主要是为了使用icons
+
+:::
+
+[Set Up with Vue | Font Awesome Docs](https://fontawesome.com/docs/web/use-with/vue/)
+
+```
+"@fortawesome/vue-fontawesome": "^3.0.0-5",
+```
+
+```
+npm i --save @fortawesome/vue-fontawesome@latest-3
+```
+
+[Import Icons | Font Awesome Docs](https://fontawesome.com/docs/apis/javascript/import-icons)
+
+[Home (fontawesome.com)](https://blog.fontawesome.com/how-to-use-vue-js-with-font-awesome/)
+
+[javascript - Using Font Awesome in Vue 3 - Stack Overflow](https://stackoverflow.com/questions/66389974/using-font-awesome-in-vue-3)

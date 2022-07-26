@@ -11,9 +11,13 @@ typora-root-url: ..\.vuepress\public
 
 ## Increment Counter
 
+[项目预览（Project view）](https://q10viking.github.io/Mini-FrontEnd-project/32%20Live%20User%20Filter/vanilla/dist/)
 
+[vanilla Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/33%20Increment%20Counter/vanilla)
 
+[Vue3+ts重构 Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/32%20Live%20User%20Filter/refactor-by-vue)
 
+<common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/32%20Live%20User%20Filter/vanilla/dist/"/>
 
 
 
@@ -88,4 +92,57 @@ counters.forEach(counter => {
     }
 }
 ```
+
+
+
+## Vue3中使用ref属性
+
+[Template Ref](https://vuejs.org/guide/typescript/composition-api.html#typing-template-refs)
+
+**注意：名字要相同**
+
+官网的建议
+
+```vue
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+
+const el = ref<HTMLInputElement | null>(null)
+
+onMounted(() => {
+  el.value?.focus()
+})
+</script>
+
+<template>
+  <input ref="el" />
+</template>
+```
+
+自己的实战案例[Increment Counter](https://q10viking.github.io/minifrontendproject/28%20Increment%20Counter.html#increment-counter)
+
+```vue
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+// 定义
+const tiktok = ref<HTMLParamElement | null>(null)
+
+onMounted(() => {
+  // 使用获取属性
+  tiktok.value?.getAttribute("data-target")
+})
+</script>
+
+<template>
+  <div class="item">
+        <font-awesome-icon icon="fa-brands fa-tiktok" class="icon"/>
+        <p class="counter" 
+            data-target="23000"
+            ref="tiktok"></p>   <!-- 名字要相同 -->
+        <span>Tiktok Fans</span>
+      </div>
+</template>
+```
+
+
 

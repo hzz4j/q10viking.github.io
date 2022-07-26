@@ -11,7 +11,7 @@ prev:
 ## local注册组件
 
 ```vue
-<script setup>
+<script setup lang="ts">
 // 直接导入即可
 import ComponentA from './ComponentA.vue'
 </script>
@@ -176,3 +176,74 @@ watch(search,(val)=>{
 })
 ```
 
+
+
+## 标签规范
+
+```vue
+<script setup lang="ts">
+  import IncrementCounter from './components/IncrementCounter.vue';
+</script>
+
+<!-- 这样方便看样式 -->
+<template>
+</template>
+<style scoped lang="scss">
+
+</style>
+```
+
+
+
+## Template Ref
+
+[TypeScript with Composition API | Vue.js (vuejs.org)](https://vuejs.org/guide/typescript/composition-api.html#typing-template-refs)
+
+**注意：名字要相同**
+
+官网的建议
+
+```vue
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+
+const el = ref<HTMLInputElement | null>(null)
+
+onMounted(() => {
+  el.value?.focus()
+})
+</script>
+
+<template>
+  <input ref="el" />
+</template>
+```
+
+自己的实战案例
+
+```vue
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+// 定义
+const tiktok = ref<HTMLParamElement | null>(null)
+
+onMounted(() => {
+  // 使用获取属性
+  tiktok.value?.getAttribute("data-target")
+})
+</script>
+
+<template>
+  <div class="item">
+        <font-awesome-icon icon="fa-brands fa-tiktok" class="icon"/>
+        <p class="counter" 
+            data-target="23000"
+            ref="tiktok"></p>   <!-- 名字要相同 -->
+        <span>Tiktok Fans</span>
+      </div>
+</template>
+```
+
+
+
+### 组件的Ref

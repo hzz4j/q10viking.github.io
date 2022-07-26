@@ -22,3 +22,31 @@ export default RAND_USER_API
 ```
 
 [Solve - Expression expected Error in TypeScript | bobbyhadz](https://bobbyhadz.com/blog/typescript-expression-expected-error)
+
+```
+export default function xxx(){}???
+```
+
+
+
+
+
+
+
+
+
+https://bobbyhadz.com/blog/typescript-instanceof-only-refers-to-type-but-is-being-used-as-value
+
+
+
+
+
+
+
+```js
+export interface IconPack {
+  [key: string]: IconDefinition; //这是啥意思？
+}
+```
+
+https://bobbyhadz.com/blog/typescript-key-string-string
