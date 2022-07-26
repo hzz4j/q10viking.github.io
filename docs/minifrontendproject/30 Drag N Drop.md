@@ -160,6 +160,38 @@ function dragStart(event:Event){
 
 
 
+## 如何css拖拽中的元素？
+
+box-shadow not work
+
+
+
+
+
+## 拖拽开始后如何隐藏在原来容器的位置？
+
+::: tip
+
+拖拽之后立刻去除样式，但是样式在拖拽的元素中仍然生效
+
+:::
+
+```tsx
+function dragStart(this:HTMLElement){
+  // 设置新的样式
+  this.classList.add("hold")
+
+  // 拖拽之后立刻去除样式，但是样式在拖拽的元素中仍然生效
+  setTimeout(() => {
+    this.className = ""
+  }, 1);
+  
+  console.log(this.getAttribute("name-attr"),"drag start")
+}
+```
+
+
+
 ## 参考
 
 [HTML Drag and Drop API - Web APIs | MDN (mozilla.org)](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)
