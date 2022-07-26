@@ -1,8 +1,23 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /minifrontendproject/
+typora-root-url: ..\.vuepress\public
+---
+
 
 
 ## Event KeyCodes
 
+[项目预览（Project view）](https://q10viking.github.io/Mini-FrontEnd-project/34%20Event%20KeyCodes/vite-project/dist/)
 
+[vanilla Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/34%20Event%20KeyCodes/vanilla)
+
+[Vue3+ts重构 Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/34%20Event%20KeyCodes/vite-project)
+
+<common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/34%20Event%20KeyCodes/vite-project/dist/"/>
 
 
 

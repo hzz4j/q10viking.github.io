@@ -254,6 +254,10 @@ todo learning
 
 ## v-html 
 
+[Event KeybordCodes](https://q10viking.github.io/minifrontendproject/29%20Event%20KeyCodes.html)
+
+<common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/34%20Event%20KeyCodes/vite-project/dist/"/>
+
 ### 不能有内容
 
 ```js

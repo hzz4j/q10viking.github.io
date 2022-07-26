@@ -15,11 +15,13 @@ vue3 + typescript composition api to build mini project
 
 :::
 
+
+
 | # Preview Online                                             | Souce code                                                   | Notes                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [Increment Counter](https://q10viking.github.io/Mini-FrontEnd-project/33%20Increment%20Counter/vite-project/dist/) | [Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/33%20Increment%20Counter/vite-project) | [Note](https://q10viking.github.io/minifrontendproject/28%20Increment%20Counter.html) |
-| [Live User Filter](https://q10viking.github.io/Mini-FrontEnd-project/32%20Live%20User%20Filter/vanilla/dist/)                                         | [Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/32%20Live%20User%20Filter/refactor-by-vue) | [Note](https://q10viking.github.io/minifrontendproject/26%20Live%20User%20Filter.html#live-user-filter)                                                     |
-|                                                              |                                                              |                                                              |
+| [Live User Filter](https://q10viking.github.io/Mini-FrontEnd-project/32%20Live%20User%20Filter/vanilla/dist/) | [Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/32%20Live%20User%20Filter/refactor-by-vue) | [Note](https://q10viking.github.io/minifrontendproject/26%20Live%20User%20Filter.html#live-user-filter) |
+| [Event Keycodes](https://q10viking.github.io/Mini-FrontEnd-project/34%20Event%20KeyCodes/vite-project/dist/) | [Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/34%20Event%20KeyCodes/vite-project) | [Note](https://q10viking.github.io/minifrontendproject/29%20Event%20KeyCodes.html)                                                     |
 |                                                              |                                                              |                                                              |
 |                                                              |                                                              |                                                              |
 |                                                              |                                                              |                                                              |
