@@ -258,7 +258,9 @@ createApp(App)
 
 
 
-[Import Icons | Font Awesome Docs](https://fontawesome.com/docs/apis/javascript/import-icons)
+
+
+## 参考
 
 [Home (fontawesome.com)](https://blog.fontawesome.com/how-to-use-vue-js-with-font-awesome/)
 
