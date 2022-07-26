@@ -99,9 +99,32 @@ empties[2].appendChild(fill) // 直接转移
 
 > 下面实现了图片这个元素每隔1s自动在容器中转移，主要通过append添加到另外一个容器
 
+
+
 <common-codepen-snippet title="Move DOM" slug="poLWgPN" />
 
+<common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/35%20Drag%20N%20Drop/move-on/dist/"/>
 
+[Auto Move Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/35%20Drag%20N%20Drop/move-on)
+
+```js
+const fill = document.querySelector(".fill")!
+const empties = document.querySelectorAll(".empty")!
+
+
+let idx = 0
+setTimeout(moveImage,1500)
+function moveImage(){
+  idx++
+  if(idx>empties.length-1){
+    idx = 0
+  }
+  // 移动元素 核心代码
+  empties[idx].appendChild(fill)
+  // 无限循环
+  setTimeout(moveImage,1500)
+}
+```
 
 
 
