@@ -231,7 +231,7 @@ createApp(App)
 
 :::
 
-
+[fontawesome-icon.ts](https://github.com/Q10Viking/Mini-FrontEnd-project/blob/main/33%20Increment%20Counter/vite-project/src/ts/fontawesome-icons.ts)
 
 ```tsx
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -255,8 +255,6 @@ createApp(App)
     .component('font-awesome-icon', FontAwesomeIcon)
     .mount('#app')
 ```
-
-
 
 
 
