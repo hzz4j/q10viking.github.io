@@ -105,7 +105,35 @@ empties[2].appendChild(fill) // 直接转移
 
 
 
+## ts中函数参数声明this
 
+::: tip
+
+1. 传进来的就是e.target
+2. 我这样写的原因是想使用this,尝试一下typescript的this语法。为了达到这个效果也可以将函数设计为传入event.
+
+:::
+
+```tsx
+fill.addEventListener("dragstart",dragStart)
+/**
+ * 传进来的就是e.target
+ * @param this 
+ */
+function dragStart(this:HTMLElement){
+  console.log(this.getAttribute("name-attr"),"drag start")
+}
+```
+
+也可设计成
+
+```js
+fill.addEventListener("dragstart",dragStart)
+function dragStart(event:Event){
+  let el = event.target as HTMLElement
+  console.log(el.getAttribute("name-attr"),"drag start")
+}
+```
 
 
 
