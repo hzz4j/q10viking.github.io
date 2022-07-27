@@ -11,7 +11,11 @@ typora-root-url: ..\.vuepress\public
 
 ## Drag N Drop
 
+[项目预览（Project view）](https://q10viking.github.io/Mini-FrontEnd-project/35%20Drag%20N%20Drop/vanilla/dist/)
 
+[vanilla Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/35%20Drag%20N%20Drop/vanilla)
+
+<common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/35%20Drag%20N%20Drop/vanilla/dist/"/>
 
 
 
@@ -157,14 +161,6 @@ function dragStart(event:Event){
   console.log(el.getAttribute("name-attr"),"drag start")
 }
 ```
-
-
-
-## 如何css拖拽中的元素？
-
-box-shadow not work
-
-
 
 
 
