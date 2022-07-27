@@ -2,6 +2,22 @@
 
 
 
+## 用索引来记录要移动的元素
+
+::: tip
+
+用索引来记录要移动的元素
+
+:::
+
+### closest方法
+
+```js
+function dragStart(this:HTMLElement){
+  dragIdx = +this.closest('li')!.getAttribute('data-idx')!
+}
+```
+
 
 
 ## justify-content
@@ -10,7 +26,7 @@
 
 
 
-## dragleave在遇到子元素时触发的问题解决方案
+## dragleave在遇到子元素时触发的问题解决方案⭐
 
 ::: tip
 
@@ -96,6 +112,7 @@ liCollection.forEach(li => {
     li.addEventListener("dragleave",e => dragLeave(e,li))
   })
 
+// event.target 在遇到子元素的时候会变成子元素不应顶时li，也就是说，dragenter,dragleave，子元素也会触发
 function dragEnter(event:DragEvent,el:HTMLElement){
   let counter = +el.getAttribute("data-counter")!
   counter++  // 每次触发dragenter,包括li容器的子元素触发的，都加1
@@ -112,6 +129,21 @@ function dragLeave(event:DragEvent,el:HTMLLIElement){
   }
 }
 ```
+
+**拖拽完之后需要进行counter进行清零，因为有dragenter,drop时没有对应的dragleave事件产生**
+
+```
+function dropBook(this:HTMLElement){
+  
+  const idx = +this.getAttribute("data-idx")!
+  swap(dragIdx,idx)
+  // 拖拽完之后需要进行清零
+  this.setAttribute("data-counter","0")
+  this.classList.remove("hover")
+}
+```
+
+
 
 
 
