@@ -124,6 +124,14 @@ function getWidth(el:HTMLElement){
 
 
 
+## 鼠标移动图标
+
+```scss
+cursor: move;
+```
+
+
+
 ## 参考
 
 [Draggable elements that have been styled to indicate draggability to users (github.com)](https://gist.github.com/mhull/e3f6caa5734519ed06fa/)
