@@ -344,3 +344,74 @@ onMounted(()=>{
 </style>
 ```
 
+## Props
+
+### 普通定义
+
+```tsx
+// 不需要导入
+// import { defineProps } from 'vue'
+defineProps(['idx'])
+```
+
+### 带类型
+
+```tsx
+defineProps({
+    idx:Number
+})
+
+// 在使用的时候{{idx+1}}
+// editor会报错：对象可能为“未定义”。ts(2532)
+// 这样就需要校验，提前类型类型检查，防止报错
+```
+
+### 带校验
+
+```tsx
+defineProps({
+    idx: {
+        type: Number,
+        required: true
+    }
+})
+```
+
+### js访问属性
+
+```js
+const props = defineProps({
+    idx: {
+        type: Number,
+        required: true
+    },
+    book: {
+        type:String,
+        required: true
+    }
+})
+
+function dragStart(event:DragEvent){
+    // 访问属性的方式
+    event.dataTransfer?.setData("text/plain", `${props.idx}`)
+    console.log("start");
+}
+```
+
+
+
+## Events
+
+[Event Modifiers](https://vuejs.org/guide/essentials/event-handling.html#event-modifiers)
+
+```vue
+<li class="book"
+        :data-idx="idx" 
+        :data-counter="counter"
+        @dragenter="dragEnter"
+        @dragover.prevent="dragOver"   <!-- 使用.prevent修饰符，event.preventDefault() -->
+        @dragleave="dragLeave">
+```
+
+
+
