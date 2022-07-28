@@ -108,18 +108,43 @@ export default defineConfig({
 
 ### 注意⭐
 
-vite打包build的时候,在index.html中，assets是绝对路径
+**vite打包build的时候,在index.html中，assets是绝对路径**
 
 ```html
 <script type="module" crossorigin src="/assets/index.4263fa05.js"></script>
 <link rel="stylesheet" href="/assets/index.4c5dc9dc.css">
 ```
 
+#### 解决方案1(手动修改-不可取)
+
 这样上传到github page会导致访问不到，因为我使用dist目录下的路径，所以得手动修改一下，改为相对路径
 
 ```html
 <script type="module" crossorigin src="assets/index.4263fa05.js"></script>
 <link rel="stylesheet" href="assets/index.4c5dc9dc.css">
+```
+
+#### 解决方案2（创建vite.config.js）⭐
+
+当在打包这样的代码时，生成的还是根路径开始的，这样手动修改？所以只能设置配置文件
+
+```js
+import img8  from '../images/img-8.png'
+```
+
+::: tip
+
+项目目录根目录下创建`vite.config.ts`，(因为我是用的时typescript开发的)
+
+:::
+
+```tsx
+import { defineConfig } from 'vite'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+    base: './'  // 配置打包时的路径 默认是 base: '/' 
+})
 ```
 
 
