@@ -65,6 +65,10 @@ npm run dev
 
 :::
 
+
+
+> tsconig.js的别名配置主要是用来导入`.ts文件`
+
 ```json
 // tsconfig.js
 "baseUrl": ".",
@@ -75,36 +79,40 @@ npm run dev
 }
 ```
 
-
+> vite.config.ts的别名配置主要是用来导入`vue文件`
 
 ```js
 // vite.config.ts
-import { fileURLToPath, URL } from 'node:url'  // 依赖@types/node模块
+import { fileURLToPath, URL } from 'node:url'  // 依赖@types/node模块 npm add -D @types/node
 import { defineConfig } from 'vite'
 
-
-function wrapper(url: string | URL){
-    console.log('我配置的输出import.meta.url',url)
-    const re = fileURLToPath(new URL('./src',url))
-    console.log("处理后的结果过",re);
-    
-    return re
-}
 
 // https://vitejs.dev/config/
 export default defineConfig({
   resolve: {
     alias: {
-      //'@': wrapper(import.meta.url)
       '@': fileURLToPath(new URL('./src',import.meta.url))
     }
   }
 })
 ```
 
+#### 使用
 
+```vue
+<!-- MemoryCardGame.vue -->
+<script setup lang="ts">
+import Card from '@/components/Card.vue'
+//import IMAGES from '@/ts/images'   // ts文件别名的导入需要配置tsconfig.js
+import IMAGES from '../ts/images'
+</script>
+<style lang="scss" scoped>
+@import '@/scss/__common_variables.scss';
+</style>
 
+```
 
+![image-20220729023337546](/images/minifrontendproject/image-20220729023337546.png)
 
 ### 注意⭐
 

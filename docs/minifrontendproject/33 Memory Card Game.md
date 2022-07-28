@@ -135,6 +135,40 @@ function shuffle(){
 }
 ```
 
+----------
+
+
+
+## Vue3实现
+
+
+
+## Refs inside `v-for`
+
+[Refs in v-for](https://vuejs.org/guide/essentials/template-refs.html#refs-inside-v-for)
+
+It should be noted that the ref array does **not** guarantee the same order as the source array.
+
+[**child component wants to use it as a local data property**](https://vuejs.org/guide/components/props.html#one-way-data-flow)
+
+[Ref On Component](https://vuejs.org/guide/essentials/template-refs.html#ref-on-component)
+
+1. reference will be that of a component instance:
+2. components using `<script setup>` are **private by default**: a parent component referencing a child component using `<script setup>` won't be able to access anything unless the child component chooses to expose a public interface using the `defineExpose` macro:
+3. defineExpose是父组件拿到子组件的时候看到的样子
+
+[Typing Component Template Refs](https://vuejs.org/guide/typescript/composition-api.html#typing-component-template-refs)
+
+```tsx
+// 官网的例子
+import MyModal from './MyModal.vue'
+const modal = ref<InstanceType<typeof MyModal> | null>(null)
+```
+
+
+
+----------
+
 
 
 
