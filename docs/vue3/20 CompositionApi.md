@@ -402,6 +402,8 @@ function dragStart(event:DragEvent){
 
 ## Events
 
+
+
 [Event Modifiers](https://vuejs.org/guide/essentials/event-handling.html#event-modifiers)
 
 ```vue
@@ -414,4 +416,117 @@ function dragStart(event:DragEvent){
 ```
 
 
+
+### 定义事件
+
+[Sortable List demo](https://q10viking.github.io/minifrontendproject/32%20Sorted%20LIst.html)
+
+ [typing-component-emits](https://vuejs.org/guide/typescript/composition-api.html#typing-component-emits)
+
+```tsx
+// 普通定义
+// defineEmits(['change'])
+// 定义事件，并带有参数
+const emit = defineEmits<{
+    (e:'change',srcIdx:number,targetIdx:number):void  // 方法签名
+    }>()
+```
+
+### 发送事件
+
+```tsx
+function dragDrop(event:DragEvent){
+    const srcIdxStr = event.dataTransfer?.getData("text/plain")
+    let srcIdx = 0
+    if(typeof srcIdxStr === 'string'){
+        srcIdx = parseInt(srcIdxStr)
+        console.log(srcIdx,props.idx)
+        emit("change",srcIdx,props.idx) // 发送数据  
+    }
+    
+    console.log("drag drop");
+}
+```
+
+### 在父组件接受事件
+
+```vue
+<template>
+<ListItem v-for="(book,idx) in BOOKS"
+        :book="book"
+        :idx="idx"
+        :key="idx"
+        @change="swap">  <!-- 接受事件交给swap处理 -->
+</ListItem>
+<template>
+<script setup lang="ts">
+    
+function swap(srcIdx:number,targetIdx:number){
+  console.log("parent component receive",srcIdx,targetIdx);
+}
+</script>
+```
+
+
+
+## class样式
+
+[Sortable List demo](https://q10viking.github.io/minifrontendproject/32%20Sorted%20LIst.html)
+
+### 添加class
+
+::: tip
+
+使用isActive,hasError语义很明确
+
+:::
+
+```vue
+<template>
+<li class="book" :class="{hover: isActive}" @dragenter="dragEnter"></li>
+</template>
+<script setup lang="ts">
+const isActive = ref(false)
+function dragEnter(){
+    isActive.value = true // 添加hover
+    // 被渲染成,class会自动合并
+    // <li class="book hover"></li>
+}
+</script>
+
+```
+
+
+
+### 条件检查添加样式
+
+Vue支持属性向下传递[Fallthrough Attributes](https://vuejs.org/guide/components/attrs.html),在这里ListItem设置的class会条件在ListItem的根标签上，这里案例时Li标签
+
+```vue
+<template>
+<ListItem v-for="(book,idx) in RANDOM_BOOKS"
+        :book="book"
+        :idx="idx"
+        :key="idx"
+        :class="checked ? checkedResult[idx]? 'right':'error' :''"  <!--  条件检查来设置样式 -->
+        @change="swap">
+</ListItem>
+</template>
+```
+
+相关的script
+
+```vue
+<script setup lang="ts">
+const checkedResult:boolean[] = reactive([])
+const checked = ref(false)
+
+function checkOrder(){
+  for(let i = 0; i < BOOKS.length;i++){
+    checkedResult[i] = BOOKS[i] === RANDOM_BOOKS[i]
+  }
+  checked.value = true   // 打开设置样式的开关
+}
+</script>
+```
 

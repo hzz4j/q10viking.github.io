@@ -237,8 +237,6 @@ function dragStart(event:DragEvent){
 
 ### 事件Event
 
-
-
 定义事件 [typing-component-emits](https://vuejs.org/guide/typescript/composition-api.html#typing-component-emits)
 
 ```js
