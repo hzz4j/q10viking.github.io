@@ -1,6 +1,23 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /minifrontendproject/
+typora-root-url: ..\.vuepress\public
+---
 
 
 
+## Memory Card Game
+
+[项目预览（Project view）](https://q10viking.github.io/Mini-FrontEnd-project/38%20Memory%20Card%20Game/vite-project/dist/)
+
+[vanilla Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/38%20Memory%20Card%20Game/vanilla)
+
+[Vue3+ts重构 Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/38%20Memory%20Card%20Game/vite-project)
+
+<common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/38%20Memory%20Card%20Game/vite-project/dist/"/>
 
 
 
