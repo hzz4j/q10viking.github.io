@@ -158,15 +158,23 @@ function shuffle(){
 
 ## Vue3实现
 
-
-
 ## Refs inside `v-for`
 
 [Refs in v-for](https://vuejs.org/guide/essentials/template-refs.html#refs-inside-v-for)
 
-It should be noted that the ref array does **not** guarantee the same order as the source array.
+It should be noted that the ref array does **not** guarantee the same order as the source array.（不能一定保证，但是目前的这个项目中，我得到的还是顺序的）
 
 [**child component wants to use it as a local data property**](https://vuejs.org/guide/components/props.html#one-way-data-flow)
+
+```js
+const props = defineProps({
+    idx:{
+      type:Number,
+      required: true
+    }
+})
+const id = ref(props.idx)
+```
 
 [Ref On Component](https://vuejs.org/guide/essentials/template-refs.html#ref-on-component)
 
@@ -182,7 +190,38 @@ import MyModal from './MyModal.vue'
 const modal = ref<InstanceType<typeof MyModal> | null>(null)
 ```
 
+我的例子
 
+```vue
+import Card from '@/components/Card.vue'
+const cardRefs:Ref<InstanceType<typeof Card>[]> = ref([])
+
+<Card v-for="(image,idx) in RANDIMAGES"
+        :img-url="image"
+        :idx="idx"
+        :key="idx"
+        :isClickable="isClickable"
+        @active="handleActiveCard"
+        ref="cardRefs">
+</Card>
+```
+
+父组件MemoryCardGame看到的子组件Card.vue暴露的数据
+
+```js
+// Card.vue
+/**
+ * 定义子组件暴露的样子
+ */
+defineExpose({
+  id: id.value,
+  shakeCard,
+  closeCard,
+  callMeTest
+})
+```
+
+![image-20220729124357315](/images/minifrontendproject/image-20220729124357315.png)
 
 ----------
 
