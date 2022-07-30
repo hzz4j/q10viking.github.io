@@ -114,7 +114,7 @@ import IMAGES from '../ts/images'
 
 ![image-20220729023337546](/images/minifrontendproject/image-20220729023337546.png)
 
-### 注意⭐
+## build⭐
 
 **vite打包build的时候,在index.html中，assets是绝对路径**
 
@@ -123,7 +123,7 @@ import IMAGES from '../ts/images'
 <link rel="stylesheet" href="/assets/index.4c5dc9dc.css">
 ```
 
-#### 解决方案1(手动修改-不可取)
+### 解决方案1(手动修改-不可取)
 
 这样上传到github page会导致访问不到，因为我使用dist目录下的路径，所以得手动修改一下，改为相对路径
 
@@ -132,7 +132,7 @@ import IMAGES from '../ts/images'
 <link rel="stylesheet" href="assets/index.4c5dc9dc.css">
 ```
 
-#### 解决方案2（创建vite.config.js）⭐
+### 解决方案2（创建vite.config.js）⭐
 
 当在打包这样的代码时，生成的还是根路径开始的，这样手动修改？所以只能设置配置文件
 
@@ -156,6 +156,58 @@ export default defineConfig({
 ```
 
 
+
+
+
+### vite build await
+
+::: tip
+
+当使用了await语法的时候，build会报错
+
+:::
+
+```
+ERROR: Top-level await is not available in the configured target environment ("chrome87", "edge88", "es2020", "firefox78", "safari13" + 2 overrides)
+```
+
+解决方式
+
+```js
+// vite.config.ts
+import {defineConfig} from 'vite'
+export default defineConfig({
+    base: './',
+    build:{
+        target: 'esnext'  
+    },
+})
+```
+
+```js
+// tsconfig.json
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "esnext",   // 将ESNext改为esnext
+    "lib": ["ESNext", "DOM"],
+    "moduleResolution": "Node",
+    "strict": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "skipLibCheck": true
+  },
+  "include": ["src"]
+}
+
+```
 
 
 
@@ -288,6 +340,14 @@ createApp(App)
     .component('font-awesome-icon', FontAwesomeIcon)
     .mount('#app')
 ```
+
+
+
+
+
+## 
+
+
 
 
 
