@@ -147,6 +147,14 @@ codes.forEach((code,idx) => {
 
 
 
+### window
+
+```js
+const { innerWidth, innerHeight } = window;
+```
+
+
+
 ## Promise的应用
 
 ```js
@@ -163,6 +171,8 @@ function handleCode(idx:number,code:string,isCss:boolean){  // 返回的是个pr
   return showCode(0)  // 调用
 }
 ```
+
+
 
 
 
