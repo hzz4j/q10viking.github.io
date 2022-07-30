@@ -11,6 +11,7 @@ typora-root-url: ..\.vuepress\public
 
 ## Code Show
 
+[Code Show (q10viking.github.io)](https://q10viking.github.io/Mini-FrontEnd-project/39 valentine/vanilla/dist/)
 
 
 
