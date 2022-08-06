@@ -41,7 +41,8 @@ const titles = {
     'zk':'Zookeeper',
     'sentinel':'Sentinel',
     'dubbo':'Dubbo',
-    'win11':'Win11'
+    'win11':'Win11',
+    'Linux':'Linux'
 };
 
 
