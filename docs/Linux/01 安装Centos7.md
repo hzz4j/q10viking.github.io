@@ -1,7 +1,7 @@
 ---
 prev:
   text: Back To 目录
-  link: /topicNav/
+  link: /linux/
 typora-root-url: ..\.vuepress\public
 ---
 
