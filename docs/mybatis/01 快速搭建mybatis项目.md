@@ -340,7 +340,7 @@ public class FirstTest {
 
 ## 使用接口绑定方式⭐
 
-::: tips
+::: tip
 
 使得配置xml形式，更加在Java层面体现。如在java代码中操作数据的方式，以及在mybatis-config配置mappers时可以直接使用接口来声明
 
