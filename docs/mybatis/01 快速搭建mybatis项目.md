@@ -351,7 +351,7 @@ public class FirstTest {
 从而也可以看出mapper.xml文件与接口并不是强依赖的。只不过接口是xml文件的更加Java代码形式。但是要将接口和xml绑定起来，那么就需要注意一下的操作
 
 1. 在xml中namespace id指定位接口的权限命名。id为具体的方法。
-2. mapper.xml的文件命名和接口命名一样。（命名一样是规范，主要是为了在配置mappers时，使用接口方式的配置，能够找到对应的mapper.xml），并在相同的包下
+2. mapper.xml的文件命名和接口命名一样。（命名一样是规范，主要是为了在配置mappers时，使用接口方式的配置，能够找到对应的mapper.xml），并在相同的包下。
 3. 并且在mybatis-config.xml配置文件中指定接口（如果想以接口配置的话）
 
 ```xml
