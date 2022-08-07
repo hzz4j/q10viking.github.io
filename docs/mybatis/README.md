@@ -27,3 +27,32 @@ java 原生的JDBC
 3. Hibernate
 4. JDBCTemplate 内嵌在spring框架中
 5. Mybatis
+
+## MyBatis介绍
+
+应用数据是在内存中的，当断电之后，为了保证数据不丢失，需要将数据进行持久化。而MyBatis是一款很优秀的持久层框架。
+
+MyBatis免除了几乎所有的JDBC代码以及设置参数和获取结果集的工作。
+
+
+
+
+
+## 开发工具
+
+### MybatisX
+
+ctrl+alt 鼠标点击，跳转到mapper中定义的sql
+
+![image-20210804122057089](/images/mybatis/image-20210804122057089.png)
+
+
+
+
+
+
+
+
+
+
+
