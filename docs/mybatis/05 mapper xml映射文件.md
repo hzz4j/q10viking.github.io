@@ -253,3 +253,87 @@ typora-root-url: ..\.vuepress\public
 Emp selectEmpByMap(Map<String,Object> map);
 ```
 
+----------
+
+
+
+## 处理结果
+
+```xml
+返回类型设置：
+    如果返回一行数据， 就可以使用pojo接收,或者map
+    如果返回多行数据，就可以使用List<pojo>,List<map> ,resultType指定List中泛型的类型就可以了
+    基础类型或者包装类型就直接指定别名就行了
+
+        <select id="SelectEmp"  resultType="Emp" >
+            SELECT id,user_name FROM EMP
+        </select>-->
+        <!-- map接收 -->
+        <select id="selectEmpReturnMap" resultType="map">
+            select *
+            from emp
+            where id = #{id}
+        </select>
+```
+
+```java
+Map selectEmpReturnMap(Integer id);
+```
+
+如果是`List<Map>`
+
+```xml
+<select id="selectEmpReturnListMap" resultType="map">
+    select *
+    from emp
+</select>
+```
+
+```java
+List<Map> selectEmpReturnListMap();
+```
+
+
+
+### 自定义结果集
+
+```xml
+<!--1.声明resultMap自定义结果集   resultType 和 resultMap 只能使用一个。
+    id 唯一标识， 需要和<select 上的resultMap 进行对应
+    type 需要映射的pojo对象， 可以设置别名
+    autoMapping 自动映射，（默认=true） 只要字段名和属性名遵循映射规则就可以自动映射，但是不建议，哪怕属性名和字段名一一对应上了也要显示的配置映射
+    extends  如果多个resultMap有重复映射，可以声明父resultMap,将公共的映射提取出来， 可以减少子resultMap的映射冗余
+-->
+<resultMap id="emp_map" type="emp" autoMapping="false" extends="common_map">
+    <result column="create_date" property="cjsj"></result>
+</resultMap>
+
+<resultMap id="common_map" type="emp" autoMapping="false" >
+    <!-- <id> 主键必须使用  对底层存储有性能作用
+                 column  需要映射的数据库字段名
+                 property 需要映射的pojo属性名
+     -->
+    <id column="id" property="id"></id>
+    <result column="user_name" property="username"></result>
+</resultMap>
+
+<!--2.使用resultMap 关联 自定义结果集的id-->
+<select id="SelectEmp"   resultMap="emp_map"  >
+    SELECT id,user_name,create_date FROM EMP where id=#{id}
+</select>
+```
+
+普通类型的
+
+```xml
+<resultMap id="emp_map" type="emp">
+    <id column="id" property="id"></id>
+    <result column="username" property="username"></result>
+</resultMap>
+<select id="selectEmpById" resultMap="emp_map">
+    select *
+    from emp
+    where id = #{id}
+</select>
+```
+
