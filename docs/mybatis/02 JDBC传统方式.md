@@ -16,6 +16,8 @@ typora-root-url: ..\.vuepress\public
 3. Statment  执行SQL
 4. ResultSet  数据结果集
 
+[Source Code](https://github.com/Q10Viking/learncode/blob/main/mybatis/01_mybatis_start/src/test/java/org/hzz/JDBCTest.java)
+
 ```java
 package org.hzz;
 
