@@ -11,6 +11,8 @@ typora-root-url: ..\.vuepress\public
 
 ::: tip
 
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/mybatis/_10_springboot_druid_mybatis)
+
 :::
 
 ### 引入场景启动器
@@ -40,12 +42,19 @@ mybatis:
 
 ```java
 @SpringBootApplication
-@MapperScan("org.hzz.mapper")   // 扫描mapper
-public class SpringbootDruidApplication {
+@MapperScan("org.hzz.mapper") // 扫描mapper
+public class Application implements CommandLineRunner {
+    @Autowired
+    private EmpMapper empMapper;
 
     public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
 
-        ConfigurableApplicationContext context = SpringApplication.run(SpringbootDruidApplication.class, args);
+    @Override
+    public void run(String... args) throws Exception {
+        Emp emp = empMapper.selectByPrimaryKey(1);
+        System.out.println(emp);
     }
 }
 ```
