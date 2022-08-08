@@ -9,6 +9,12 @@ typora-root-url: ..\.vuepress\public
 
 
 
+::: tip
+
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/redis/_03_springboot_redis)
+
+:::
+
 ## 依赖
 
 ```xml
@@ -26,12 +32,6 @@ typora-root-url: ..\.vuepress\public
 
 
 ## 简单的redis配置
-
-::: tip
-
-
-
-:::
 
 
 
