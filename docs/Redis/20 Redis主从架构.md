@@ -46,6 +46,34 @@ src/redis-cli -p 6380
 
 ![](/images/Redis/image-20211114094101521.png)
 
+### 启动❤️
+
+```sh
+cd /usr/redis/redis-6.2.6
+src/redis-server redis.conf   # 启动6379（主）
+src/redis-server ./config/redis-6380.config # 启动6380（从）
+src/redis-server ./config/redis-6381.config # 启动6381（从）
+```
+
+查看是否启动成功
+
+```sh
+[root@localhost redis-6.2.6]# ps -ef | grep redis
+root       1616      1  0 11:30 ?        00:00:08 src/redis-server *:6379
+root       1686      1  1 12:24 ?        00:00:00 src/redis-server *:6380
+root       1696      1  2 12:24 ?        00:00:00 src/redis-server *:6381
+root       1703   1654  0 12:24 pts/0    00:00:00 grep --color=auto redis
+```
+
+进入其中一台redis服务查看信息
+
+```sh
+src/redis-cli  -p 6379
+> info
+```
+
+![image-20220809003502114](/images/Redis/image-20220809003502114.png)
+
 
 
 ## 缓解主从复制风暴

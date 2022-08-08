@@ -107,8 +107,9 @@ src/redis-server redis.conf
 
 ## 开启redis-cli
 
-```
+```sh
 src/redis-cli
+src/redis-cli  -p 6379  # 或者指定端口
 ```
 
 
@@ -128,5 +129,4 @@ root       6990   2124  0 15:15 pts/0    00:00:00 grep --color=auto redis
 ```sh
 pkill redis-server
 ```
-
 
