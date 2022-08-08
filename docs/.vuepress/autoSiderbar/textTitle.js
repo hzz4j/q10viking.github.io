@@ -42,7 +42,8 @@ const titles = {
     'sentinel':'Sentinel',
     'dubbo':'Dubbo',
     'win11':'Win11',
-    'Linux':'Linux'
+    'Linux':'Linux',
+    'Redis':'Redis'
 };
 
 
