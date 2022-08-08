@@ -11,7 +11,7 @@ typora-root-url: ..\.vuepress\public
 
 ::: tip
 
-[Source Code](https://github.com/Q10Viking/learncode/blob/main/redis/_01_java_redis/src/main/java/org/hzz/SimpleJedis.java)
+[Source Code SimpleJedis.java](https://github.com/Q10Viking/learncode/blob/main/redis/_01_java_redis/src/main/java/org/hzz/SimpleJedis.java)
 
 :::
 
