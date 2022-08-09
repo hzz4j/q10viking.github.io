@@ -79,3 +79,51 @@ include       mime.types;
 ```
 
 ![image-20220810022820855](/images/nginx/image-20220810022820855.png)
+
+
+
+### 高效文件传输
+
+::: tip
+
+sendfile使用高效文件传输，提升传输性能。启用后才能使用tcp_nopush，是指当数据表累积一定大小后才发送，提高了效率
+
+:::
+
+```sh
+sendfile        on;
+tcp_nopush      on;
+```
+
+### 请求超时时间
+
+::: tip
+
+keepalive_timeout设置客户端与服务端请求的超时时间，保证客户端多次请求的时候不会重复建立新的连接，节约资源损耗。
+
+:::
+
+```sh
+#keepalive_timeout  0;
+keepalive_timeout  65;	#	65s
+```
+
+### 压缩
+
+::: tip
+
+gzip启用压缩，html/js/css压缩后传输会更快
+
+:::
+
+```sh
+gzip  on;
+#	限制最小压缩，小于1字节文件不会被压缩
+gzip_min_length 1;
+#	定义压缩级别（压缩比，文件越大，压缩越多，但是cpu使用也越多）
+gzip_comp_level 3;
+#	定义压缩文件类型
+gzip_types text/plain application/javascript application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg  image/gif  image/png application/json;
+
+```
+
