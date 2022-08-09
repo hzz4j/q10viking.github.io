@@ -11,7 +11,7 @@ typora-root-url: ..\.vuepress\public
 
 Redis3.0以后的版本虽然有了集群功能，提供了比之前版本的哨兵模式更高的性能与可用性，但是集群的水平扩展却比较麻烦，今天就来带大家看看redis高可用集群如何做水平扩展，原始集群(见下图)由6个节点组成，6个节点分布在三台机器上，采用三主三从的模式
 
-![](/images/Redis/55284.png" alt="img)
+![](/images/Redis/55284.png)
 
 ```sh
 # 机器集群分配规划实验
@@ -240,5 +240,4 @@ Do you want to proceed with the proposed reshard plan (yes/no)? Yes
 ```
 
 ![](/images/Redis/image-20211115070000097.png)
-
 
