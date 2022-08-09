@@ -15,11 +15,13 @@ typora-root-url: ..\.vuepress\public
 
 分布式架构的部署，JVM的并发锁保证不了并发的问题
 
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/redis/_05_springboot_redis_lock)
+
 :::
 
 
 
-### Nginx的配置
+## Nginx的配置
 
 ```sh
 	upstream redislock{
@@ -39,7 +41,7 @@ typora-root-url: ..\.vuepress\public
 
 
 
-### 部署
+## 部署
 
 https://www.processon.com/view/link/62f24f5fe401fd2fc7cbe5f5
 
@@ -66,7 +68,7 @@ https://www.processon.com/view/link/62f24f5fe401fd2fc7cbe5f5
 
 
 
-### JMeter压测复现并发bug
+## JMeter压测复现并发bug
 
 ::: tip
 
@@ -86,7 +88,7 @@ https://www.processon.com/view/link/62f24f5fe401fd2fc7cbe5f5
 
 
 
-### 观察结果
+## 观察结果
 
 发下应用app，库存扣减重复。
 
