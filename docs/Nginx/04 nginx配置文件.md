@@ -138,10 +138,10 @@ gzip_types text/plain application/javascript application/x-javascript text/css a
 :::
 
 1. listen 监听端口
-2. **server_name 可以配置为localhost、ip地址、域名（一个服务器可以绑定多个域名）**
+2. **server_name 可以配置为localhost、ip地址、域名（一个服务器可以绑定多个域名）**⭐
 3. location 请求路由映射，匹配拦截
-4. **root 请求位置 (相对路径的话是以nginx的安装目录为当前目录)**
-5. index 首页设置
+4. **root 请求位置 (相对路径的话是以nginx的安装目录为当前目录)**⭐
+5. index 首页设置⭐
 
 #### 实验案例❤️
 
