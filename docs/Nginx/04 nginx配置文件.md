@@ -130,3 +130,94 @@ gzip_types text/plain application/javascript application/x-javascript text/css a
 
 
 ### server虚拟主机配置❤️
+
+::: tip
+
+可以配置多台虚拟主机：端口可以不同，端口相同，server_name可以不同
+
+:::
+
+1. listen 监听端口
+2. **server_name 可以配置为localhost、ip地址、域名（一个服务器可以绑定多个域名）**
+3. location 请求路由映射，匹配拦截
+4. **root 请求位置 (相对路径的话是以nginx的安装目录为当前目录)**
+5. index 首页设置
+
+#### 实验案例❤️
+
+::: tip
+
+本次实现目的主要是测试root请求位置的地址以及server_name的作用
+
+:::
+
+> 我在/usr/webproject下分别放置了两个不同的前端页面。主要用于区分
+
+```sh
+server {
+    listen 8001;
+    server_name q10viking.formwave.org;
+    location / {
+        root    /usr/webproject/formwave;
+        index   index.html;
+    }
+}
+
+server {
+    listen 8001;
+    server_name q10viking.drinkwater.org;
+    location / {
+        root    /usr/webproject/drinkwater;
+        index   index.html;
+    }
+}
+```
+
+
+
+当浏览器访问`http://q10viking.formwave.org:8001/`时出现表单
+
+![image-20220810033400193](/images/nginx/image-20220810033400193.png)
+
+当浏览器访问`http://q10viking.drinkwater.org:8001/`出现喝水的页面
+
+![image-20220810033521336](/images/nginx/image-20220810033521336.png)
+
+当以IP地址访问时`http://192.168.187.135:8001/`,出现的是表单
+
+![image-20220810033643644](/images/nginx/image-20220810033643644.png)
+
+#### server_name小结❤️
+
+::: tip
+
+server_name 有匹配优先级
+
+:::
+
+|                                       |      |
+| ------------------------------------- | ---- |
+| http://q10viking.drinkwater.org:8001/ | 表单 |
+| http://q10viking.drinkwater.org:8001/ | 喝水 |
+| http://192.168.187.135:8001/          | 表单 |
+
+##### 匹配优先级❤️
+
+```sh
+server_name与host匹配优先级如下：
+
+1、完全匹配
+
+2、通配符在前的，如*.test.com
+
+3、在后的，如www.test.*
+
+4、正则匹配，如~^\.www\.test\.com$
+
+如果都不匹配
+
+1、优先选择listen配置项后有default或default_server的
+
+2、找到匹配listen端口的第一个server块 ⭐
+```
+
