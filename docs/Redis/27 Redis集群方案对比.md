@@ -27,7 +27,7 @@ redis集群是一个由**多个主从节点群组成的分布式服务器群**�
 
 ::: tip
 
-[Source Code CRC16.java]()
+[Source Code CRC16.java](https://github.com/Q10Viking/learncode/blob/main/redis/_01_java_redis/src/main/java/org/hzz/CRC16.java)
 
 :::
 
