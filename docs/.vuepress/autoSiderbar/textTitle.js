@@ -44,7 +44,8 @@ const titles = {
     'win11':'Win11',
     'Linux':'Linux',
     'Redis':'Redis',
-    'Lock':'Lock'
+    'Lock':'Lock',
+    'Nginx':'nginx'
 };
 
 
