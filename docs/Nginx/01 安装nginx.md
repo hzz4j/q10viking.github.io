@@ -153,7 +153,7 @@ http://192.168.187.135/
 ```sh
 ./nginx -s stop		#	暴力关闭nginx，不管有没有用户正在进行请求
 ./nginx -s quit		#	没有用户请求时，才关闭
-./nginx -s reload	#	重启nginx
+./nginx -s reload	#	重启nginx 当修改配置文件后，需要重启生效❤️⭐
 ./nginx -t	#	检测nginx配置是否有效
 ./nginx -v	#	查看版本
 ./nginx -V  #	查看详细信息包括安装时指定设置的日志目录
