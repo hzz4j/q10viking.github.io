@@ -20,7 +20,7 @@ Nignx进程模型
 ## nginx.conf配置worker
 
 ```sh
-#user  nobody;
+# 工作进程数量为1
 worker_processes  1;
 ```
 
@@ -49,5 +49,4 @@ nobody     4382   4381  0 13:07 ?        00:00:00 nginx: worker process
 
 
 ![](/images/nginx/image-20210313124336249.png)
-
 
