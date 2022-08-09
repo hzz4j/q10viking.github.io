@@ -13,7 +13,7 @@ typora-root-url: ..\.vuepress\public
 
 [Progresson On](https://www.processon.com/view/link/62f2a1ad5653bb1344cca1fa)
 
-![image-20220810020213337](/images/nginx/image-20220810020213337.png)
+![image-20220810024257850](/images/nginx/image-20220810020213337.png)
 
 
 
@@ -127,3 +127,6 @@ gzip_types text/plain application/javascript application/x-javascript text/css a
 
 ```
 
+
+
+### server虚拟主机配置❤️
