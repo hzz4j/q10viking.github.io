@@ -46,7 +46,7 @@ root      10125  10003  0 02:32 ?        00:00:00 nginx: worker process
 
 
 
-## events
+## events模块
 
 ::: tip
 
@@ -63,7 +63,7 @@ events {
 }
 ```
 
-## http模块
+## http模块配置
 
 ### include 引入外部配置❤️
 
