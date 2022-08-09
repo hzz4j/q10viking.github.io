@@ -9,6 +9,12 @@ typora-root-url: ..\.vuepress\public
 
 
 
+::: tip
+
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/redis/_05_springboot_redis_lock)
+
+:::
+
 ## Redis设计分布式锁需要考虑的问题
 
 1. 要有过期时间
@@ -171,6 +177,42 @@ public String deduckStockV3(){
     return "Finished";
 }
 ```
+
+
+
+### 再次压测检查
+
+app1:8080
+
+```sh
+2022-08-10 00:03:42.169  INFO 7748 --- [io-8081-exec-36] org.hzz.controller.StockController       : 扣减库存成功,剩余：299
+2022-08-10 00:03:42.181  INFO 7748 --- [io-8081-exec-28] org.hzz.controller.StockController       : 扣减库存成功,剩余：298
+2022-08-10 00:03:42.210  INFO 7748 --- [io-8081-exec-87] org.hzz.controller.StockController       : 扣减库存成功,剩余：295
+2022-08-10 00:03:42.239  INFO 7748 --- [io-8081-exec-36] org.hzz.controller.StockController       : 扣减库存成功,剩余：291
+2022-08-10 00:03:42.245  INFO 7748 --- [io-8081-exec-78] org.hzz.controller.StockController       : 扣减库存成功,剩余：290
+2022-08-10 00:03:42.253  INFO 7748 --- [io-8081-exec-96] org.hzz.controller.StockController       : 扣减库存成功,剩余：289
+2022-08-10 00:03:42.261  INFO 7748 --- [io-8081-exec-35] org.hzz.controller.StockController       : 扣减库存成功,剩余：288
+2022-08-10 00:03:42.271  INFO 7748 --- [io-8081-exec-96] org.hzz.controller.StockController       : 扣减库存成功,剩余：287
+2022-08-10 00:03:42.289  INFO 7748 --- [io-8081-exec-96] org.hzz.controller.StockController       : 扣减库存成功,剩余：285
+2022-08-10 00:03:42.295  INFO 7748 --- [o-8081-exec-107] org.hzz.controller.StockController       : 扣减库存成功,剩余：284
+```
+
+app2:8081
+
+```sh
+2022-08-10 00:03:42.197  INFO 14992 --- [io-8080-exec-54] org.hzz.controller.StockController       : 扣减库存成功,剩余：297
+2022-08-10 00:03:42.203  INFO 14992 --- [io-8080-exec-26] org.hzz.controller.StockController       : 扣减库存成功,剩余：296
+2022-08-10 00:03:42.219  INFO 14992 --- [io-8080-exec-90] org.hzz.controller.StockController       : 扣减库存成功,剩余：294
+2022-08-10 00:03:42.225  INFO 14992 --- [io-8080-exec-95] org.hzz.controller.StockController       : 扣减库存成功,剩余：293
+2022-08-10 00:03:42.232  INFO 14992 --- [io-8080-exec-33] org.hzz.controller.StockController       : 扣减库存成功,剩余：292
+2022-08-10 00:03:42.279  INFO 14992 --- [o-8080-exec-100] org.hzz.controller.StockController       : 扣减库存成功,剩余：286
+2022-08-10 00:03:42.300  INFO 14992 --- [io-8080-exec-26] org.hzz.controller.StockController       : 扣减库存成功,剩余：283
+2022-08-10 00:03:42.308  INFO 14992 --- [io-8080-exec-15] org.hzz.controller.StockController       : 扣减库存成功,剩余：282
+2022-08-10 00:03:42.313  INFO 14992 --- [o-8080-exec-108] org.hzz.controller.StockController       : 扣减库存成功,剩余：281
+2022-08-10 00:03:42.318  INFO 14992 --- [io-8080-exec-44] org.hzz.controller.StockController       : 扣减库存成功,剩余：280
+```
+
+
 
 ## Redisson❤️
 
