@@ -40,5 +40,5 @@ HINCRBY  key  field  increment 				         //为哈希表key中field键的值�
 
 > Redis集群下，数据存储的方式
 
-<img src="/../../../../saas-yong/fullstack/Java架构师之路/Redis/images/image-20211114053648501.png" alt="image-20211114053648501" style="zoom:80%;" />
+![](/images/Redis/image-202111140536485011)
 

@@ -82,3 +82,24 @@ System.out.println(jedis.get("product_stock_10016")); // 5
 
 **注意，不要在Lua脚本中出现死循环和耗时的运算，否则redis会阻塞，将不接受其他的命令， 所以使用时要注意不能出现死循环、耗时的运算。redis是单进程、单线程执行脚本。管道不会阻塞redis。**
 
+
+
+## RedissonLock.java中的源码
+
+```java
+return commandExecutor.evalWriteAsync(getName(), LongCodec.INSTANCE, command,
+                  "if (redis.call('exists', KEYS[1]) == 0) then " +
+                      "redis.call('hset', KEYS[1], ARGV[2], 1); " +
+                      "redis.call('pexpire', KEYS[1], ARGV[1]); " +
+                      "return nil; " +
+                  "end; " +
+                  "if (redis.call('hexists', KEYS[1], ARGV[2]) == 1) then " +
+                      "redis.call('hincrby', KEYS[1], ARGV[2], 1); " +
+                      "redis.call('pexpire', KEYS[1], ARGV[1]); " +
+                      "return nil; " +
+                  "end; " +
+                  "return redis.call('pttl', KEYS[1]);",
+                    Collections.<Object>singletonList(getName()), internalLockLeaseTime, getLockName(threadId));
+// key 续命时间  线程id
+```
+
