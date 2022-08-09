@@ -43,7 +43,8 @@ const titles = {
     'dubbo':'Dubbo',
     'win11':'Win11',
     'Linux':'Linux',
-    'Redis':'Redis'
+    'Redis':'Redis',
+    'Lock':'Lock'
 };
 
 
