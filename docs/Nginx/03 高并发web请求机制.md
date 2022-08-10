@@ -3,7 +3,7 @@ sidebarDepth: 3
 sidebar: auto
 prev:
   text: Back To 目录
-  link: /nginx/
+  link: /Nginx/
 typora-root-url: ..\.vuepress\public
 ---
 
