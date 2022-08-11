@@ -7,7 +7,11 @@ typora-root-url: ..\.vuepress\public
 
 
 
+::: tip
 
+[Nginx Cookbook.pdf](https://gitee.com/q10viking/Books/blob/master/NGINX_Cookbook-final_CN.pdf)
+
+:::
 
 ## Nginx
 
