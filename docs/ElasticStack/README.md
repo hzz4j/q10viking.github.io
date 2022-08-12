@@ -7,6 +7,14 @@ typora-root-url: ..\.vuepress\public
 
 
 
+::: tip
+
+[elasticsearch  7.17 document](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/index.html)
+
+[elasticsearch中文文档](https://www.elastic.co/guide/cn/elasticsearch/guide/current/index.html)
+
+:::
+
 ## **ElasticSearch（简称ES）**
 
 Elasticsearch是用Java开发并且是当前最流行的开源的企业级搜索引擎。
