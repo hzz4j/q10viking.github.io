@@ -95,7 +95,7 @@ GET /es_db/_search
 
 
 
-## 指定匹配出现的比例
+## 指定匹配出现的比例❤️
 
 `minimum_should_match`可以**使用百分比或固定数字**。
 
@@ -124,7 +124,7 @@ GET /es_db/_search
 
 
 
-## 组合多条件查询
+## 组合多条件查询❤️
 
 **如果使用should+bool搜索的话，也可以控制搜索条件的匹配度。**
 
@@ -153,6 +153,97 @@ GET /es_db/_search
         }
       ],
       "minimum_should_match": 2
+    }
+  }
+}
+```
+
+
+
+## **match 的底层转换**
+
+> 建议，如果不怕麻烦，尽量使用转换后的语法执行搜索，效率更高。
+>
+> 如果开发周期短，工作量大，使用简化的写法。
+
+其实在ES中，执行match搜索的时候，ES底层通常都会对搜索条件进行底层转换，来实现最终的搜索结果。如：
+
+> or转换成组合查询
+
+```json
+GET /es_db/_search
+{
+  "query": {
+    "match": {
+      "remark": "java developer"
+    }
+  }
+}
+
+# 转换后是：
+
+GET /es_db/_search
+{
+  "query": {
+    "bool": {
+      "should": [
+        {
+          "term": {
+            "remark": "java"
+          }
+        },
+        {
+          "term": {
+            "remark": {
+              "value": "developer"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+
+
+----------
+
+> and转换成组合查询
+
+```json
+GET /es_db/_search
+{
+  "query": {
+    "match": {
+      "remark": {
+        "query": "java developer",
+        "operator": "and"
+      }
+    }
+  }
+}
+
+# 转换后
+
+GET /es_db/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "term": {
+            "remark": "java"
+          }
+        },
+        {
+          "term": {
+            "remark": {
+              "value": "developer"
+            }
+          }
+        }
+      ]
     }
   }
 }
