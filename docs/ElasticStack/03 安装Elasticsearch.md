@@ -118,15 +118,15 @@ http.cors.allow-origin: "*"
 nohup /usr/es/elasticsearch-7.6.1/bin/elasticsearch 2>&1 &
 ```
 
-访问http://192.168.187.132:9200/，出现如下界面表示安装成功
+访问http://192.168.187.132:9200/，出现如下界面表示启动成功
 
-![image-20211112030643587](/../../../../saas-yong/fullstack/Java架构师之路/Elastic Stack/imgs/image-20211112030643587.png)
+![image-20220812183758799](/images/elasticsearch/image-20220812183758799.png)
 
 
 
 ## 启动发生的错误
 
-![image-20211112025155698](/../../../../saas-yong/fullstack/Java架构师之路/Elastic Stack/imgs/image-20211112025155698.png)
+![image-20211112025155698](/images/elasticsearch/image-20211112025155698.png)
 
 **修复错误后需要重新启动服务器**
 
