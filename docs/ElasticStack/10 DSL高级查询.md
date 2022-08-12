@@ -74,11 +74,34 @@ GET /article/_search
 - prefix : 前缀匹配
 - regexp : 通过正则表达式来匹配数据
 
-#### match的复杂用法
+#### match
 
 ::: tip
 
 match : 通过match关键词模糊匹配条件内容
+
+:::
+
+```json
+POST /es_db/_search
+{
+  "from": 0,
+  "size": 5,
+  "query": {
+    "match": {
+      "address": "广州"
+    }
+  }
+}
+```
+
+![image-20220812225735111](/images/elasticsearch/image-20220812225735111.png)
+
+
+
+::: tip
+
+match的复杂用法
 
 :::
 
@@ -98,6 +121,29 @@ minmum_should_match : 指定最小匹配的数量
 - exists : 某个字段的值是否存在
 - ids : 通过ID批量查询
 
+#### term
+
+::: tip
+
+根据名称精确查询姓名 term, term查询不会对字段进行分词查询，会采用精确匹配 
+
+:::
+
+> 注意: 采用term精确查询, 查询字段映射类型属于为keyword.
+
+```json
+POST /article/_search
+{
+  "query": {
+    "term": {
+      "title.keyword": "learn es 3"
+    }
+  }
+}
+```
+
+
+
 ## 组合(多条件)查询
 
 组合条件查询是将叶子条件查询语句进行组合而形成的一个完整的查询条件
@@ -116,3 +162,16 @@ minmum_should_match : 指定最小匹配的数量
 **must/filter/shoud/must_not** 等的子条件是通过 **term/terms/range/ids/exists/match** 等叶子条件为参数的
 
 > 注：以上参数，当只有一个搜索条件时，must等对应的是一个对象，当是多个条件时，对应的是一个数组
+
+
+
+## 连接查询
+
+::: tip
+
+多文档合并查询
+
+:::
+
+- 父子文档查询：parent/child
+- 嵌套文档查询: nested
