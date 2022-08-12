@@ -17,7 +17,7 @@ Elasticsearch是用Java开发并且是当前最流行的开源的企业级搜索
 
 **官方网站:** **https://www.elastic.co/**
 
-**下载地址：**https://www.elastic.co/cn/start
+**下载地址** https://www.elastic.co/cn/start
 
 
 
