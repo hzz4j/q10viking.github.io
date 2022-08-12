@@ -94,3 +94,62 @@ GET /es_db/_search
 }
 ```
 
+----------
+
+
+
+### multi_match❤️
+
+::: tip
+
+使用multi_match简化dis_max+tie_breaker
+
+:::
+
+```json
+GET /es_db/_search
+{
+  "query": {
+    "dis_max": {
+      "queries": [
+        {
+          "match": {
+            "name": "rod"
+          }
+        },
+        {
+          "match": {
+            "remark": {
+              "query": "java developer",
+              "boost": 2,
+              "minimum_should_match": 2
+            }
+          }
+        }
+      ],
+      "tie_breaker": 0.5
+    }
+  }
+}
+```
+
+> 使用multi_match语法为：其中type常用的有best_fields和most_fields。^n代表权重，相当于"boost":n             
+
+```json
+GET /es_db/_search
+{
+  "query": {
+    "multi_match": {
+      "query": "rod java developer",
+      "fields": [
+        "name",
+        "remark^2"
+      ],
+      "type": "best_fields",
+      "tie_breaker": 0.5,
+      "minimum_should_match": "50%"
+    }
+  }
+}
+```
+

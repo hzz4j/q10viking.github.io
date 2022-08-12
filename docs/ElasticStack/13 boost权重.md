@@ -13,7 +13,7 @@ typora-root-url: ..\.vuepress\public
 
 ::: tip
 
-控制搜索精准度
+控制搜索精准度（❤️排序❤️）
 
 :::
 
