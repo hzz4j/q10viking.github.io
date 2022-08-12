@@ -7,7 +7,11 @@ prev:
 typora-root-url: ..\.vuepress\public
 ---
 
+::: tip
 
+精确匹配
+
+:::
 
 ## best fields策略
 
