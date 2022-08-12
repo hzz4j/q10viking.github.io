@@ -9,7 +9,7 @@ typora-root-url: ..\.vuepress\public
 
 
 
-## best fields策略进行多字段搜索
+## best fields策略
 
 ::: tip
 
@@ -152,4 +152,49 @@ GET /es_db/_search
   }
 }
 ```
+
+----------
+
+
+
+## most fields策略❤️
+
+::: tip
+
+cross fields ： 一个唯一的标识，分部在多个fields中，使用这种唯一标识搜索数据就称为cross fields搜索。如：人名可以分为姓和名，地址可以分为省、市、区县、街道等。那么使用人名或地址来搜索document，就称为cross fields搜索。
+
+实现这种搜索，一般都是使用most fields搜索策略。因为这就不是一个field的问题。
+
+:::
+
+Cross fields搜索策略，是从多个字段中搜索条件数据。默认情况下，和most fields搜索的逻辑是一致的，计算相关度分数是和best fields策略一致的。一般来说，如果使用cross fields搜索策略，那么都会携带一个额外的参数operator。用来标记搜索条件如何在多个字段中匹配。
+
+当然，在ES中也有cross fields搜索策略。具体语法如下：
+
+> 搜索条件中的java必须在name或remark字段中匹配，developer也必须在name或remark字段中匹配。
+
+```json
+GET /es_db/_search
+{
+  "query": {
+    "multi_match": {
+      "query": "java developer",
+      "fields": [
+        "name",
+        "remark"
+      ],
+      "type": "cross_fields",
+      "operator": "and"
+    }
+  }
+}
+```
+
+
+
+### 缺点
+
+most field策略问题：most fields策略是尽可能匹配更多的字段，所以会导致精确搜索结果排序问题。又因为cross fields搜索，不能使用minimum_should_match来去除长尾数据
+
+所以在使用most fields和cross fields策略搜索数据的时候，都有不同的缺陷。所以商业项目开发中，都推荐使用best fields策略实现搜索。
 
