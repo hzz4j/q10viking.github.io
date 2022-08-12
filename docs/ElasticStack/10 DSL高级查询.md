@@ -74,3 +74,45 @@ GET /article/_search
 - prefix : 前缀匹配
 - regexp : 通过正则表达式来匹配数据
 
+#### match的复杂用法
+
+::: tip
+
+match : 通过match关键词模糊匹配条件内容
+
+:::
+
+```
+query : 指定匹配的值
+operator : 匹配条件类型
+	and : 条件分词后都要匹配
+	or : 条件分词后有一个匹配即可(默认)
+minmum_should_match : 指定最小匹配的数量
+```
+
+### 精准匹配
+
+- term : 单个条件相等
+- terms : 单个字段属于某个值数组内的值
+- range : 字段属于某个范围内的值
+- exists : 某个字段的值是否存在
+- ids : 通过ID批量查询
+
+## 组合(多条件)查询
+
+组合条件查询是将叶子条件查询语句进行组合而形成的一个完整的查询条件
+
+- bool : 各条件之间有and,or或not的关系
+
+  - must : 各个条件都必须满足，即各条件是and的关系
+  - should : 各个条件有一个满足即可，即各条件是or的关系
+  - must_not : 不满足所有条件，即各条件是not的关系
+  - filter : 不计算相关度评分，它不计算_score即相关度评分，效率更高
+
+- constant_score : 不计算相关度评分
+
+
+
+**must/filter/shoud/must_not** 等的子条件是通过 **term/terms/range/ids/exists/match** 等叶子条件为参数的
+
+> 注：以上参数，当只有一个搜索条件时，must等对应的是一个对象，当是多个条件时，对应的是一个数组
