@@ -17,7 +17,7 @@ typora-root-url: ..\.vuepress\public
 
 :::
 
-![image-20210502152538965](/../../../../saas-yong/fullstack/Java架构师之路/Elastic Stack/imgs/image-20210502152538965.png)
+![image-20210502152538965](/images/elasticsearch/image-20210502152538965.png)
 
 
 
@@ -27,7 +27,7 @@ typora-root-url: ..\.vuepress\public
 
  DSL查询语言中存在两种：查询DSL（query DSL）和过滤DSL（filter DSL）
 
-![img](/../../../../saas-yong/fullstack/Java架构师之路/Elastic Stack/imgs/3368)
+![img](/images/elasticsearch/3368)
 
 
 
@@ -44,4 +44,23 @@ typora-root-url: ..\.vuepress\public
 过滤上下文 是在使用filter参数时候的执行环境，比如在bool查询中使用must_not或者filter
 
 另外，经常使用过滤器，**ES会自动的缓存过滤器的内容**，这对于查询来说，会提高很多性能。
+
+
+
+## 无条件查询
+
+::: tip
+
+无查询条件是查询所有，默认是查询所有的，或者使用**match_all**表示所有
+
+:::
+
+```json
+GET /article/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+```
 
