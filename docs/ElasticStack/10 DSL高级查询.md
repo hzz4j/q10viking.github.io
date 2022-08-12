@@ -91,6 +91,12 @@ GET /article/_search
 
 #### match❤️
 
+::: tip
+
+[match 具体文章](https://q10viking.github.io/ElasticStack/12%20match%E6%9F%A5%E8%AF%A2.html)
+
+:::
+
 match：模糊匹配，**需要指定字段名，但是输入会进行分词**，比如"hello world"会进行拆分为hello和world，然后匹配，如果字段中包含hello或者world，或者都包含的结果都会被查询出来，也就是说match是一个部分匹配的模糊查询。查询条件相对来说比较宽松。
 
 ::: tip
