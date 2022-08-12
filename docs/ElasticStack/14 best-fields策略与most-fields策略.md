@@ -198,3 +198,69 @@ most field策略问题：most fields策略是尽可能匹配更多的字段，�
 
 所以在使用most fields和cross fields策略搜索数据的时候，都有不同的缺陷。所以商业项目开发中，都推荐使用best fields策略实现搜索。
 
+## copy_to❤️
+
+::: tip
+
+copy_to组合fields
+
+copy_to : 就是将多个字段，复制到一个字段中，实现一个多字段组合。copy_to可以解决cross fields搜索问题，在商业项目中，也用于解决搜索条件默认字段问题。
+
+:::
+
+
+
+京东中，如果在搜索框中输入“手机”，点击搜索，那么是在商品的类型名称、商品的名称、商品的卖点、商品的描述等字段中，哪一个字段内进行数据的匹配？如果使用某一个字段做搜索不合适，那么使用_all做搜索是否合适？也不合适，因为_all字段中可能包含图片，价格等字段。
+
+假设，有一个字段，其中的内容包括(但不限于)：商品类型名称、商品名称、商品卖点等字段的数据内容。是否可以在这个特殊的字段上进行数据搜索匹配？
+
+```json
+{
+  "category_name" : "手机",
+  "product_name" : "一加6T手机",
+  "price" : 568800,
+  "sell_point" : "国产最好的Android手机",
+  "tags": ["8G+128G", "256G可扩展"],
+  "color" : "红色",
+  "keyword" : "手机 一加6T手机 国产最好的Android手机"
+}
+```
+
+----------
+
+
+
+如果需要使用copy_to语法，则需要在定义index的时候，手工指定mapping映射策略。
+
+```json
+PUT /es_db/_mapping
+{
+  "properties": {
+    "provice": {
+      "type": "text",
+      "analyzer": "standard",
+      "copy_to": "address"
+    },
+    "city": {
+      "type": "text",
+      "analyzer": "standard",
+      "copy_to": "address"
+    },
+    "street": {
+      "type": "text",
+      "analyzer": "standard",
+      "copy_to": "address"
+    },
+    "address": {
+      "type": "text",
+      "analyzer": "standard"
+    }
+  }
+}
+```
+
+上述的mapping定义中，是新增了4个字段，分别是provice、city、street、address，其中provice、city、street三个字段的值，会自动复制到address字段中，实现一个字段的组合。
+
+那么在搜索地址的时候，就可以在address字段中做条件匹配，从而避免most fields策略导致的问题。
+
+在维护数据的时候，不需对address字段特殊的维护。因为address字段是一个组合字段，是由ES自动维护的。类似java代码中的推导属性。在存储的时候，未必存在，但是在逻辑上是一定存在的，因为address是由3个物理存在的属性province、city、street组成的。
