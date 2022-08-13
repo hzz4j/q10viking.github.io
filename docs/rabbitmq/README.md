@@ -8,6 +8,14 @@ typora-root-url: ..\.vuepress\public
 
 
 
+::: tip
+
+[Messaging that just works — RabbitMQ](https://www.rabbitmq.com/)
+
+2007年，Rabbit 技术公司基于 AMQP 标准开发的 RabbitMQ 1.0 发布。RabbitMQ 采用 Erlang 语言开发。Erlang 语言由 Ericson 设计，专门为开发高并发和分布式系统的一种语言，在电信领域使用广泛。
+
+:::
+
 ## MQ简介
 
 ::: tip
