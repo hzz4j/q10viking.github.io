@@ -23,7 +23,7 @@ AMQP，即 **Advanced Message Queuing Protocol**（高级消息队列协议）�
 
 ### 基础架构⭐
 
-![image-20210422211414238](D:\Github\saas-yong\fullstack\Java架构师之路\Rabbitmq\imgs\image-20210422211414238.png)
+![image-20210422211414238](/images/RabbitMQ/image-20210422211414238.png)
 
 
 
@@ -43,5 +43,5 @@ RabbitMQ 提供了 6 种工作模式：简单模式、work queues、Publish/Subs
 
 官网对应模式介绍：https://www.rabbitmq.com/getstarted.html
 
-![image-20210422225026111](/../../../../saas-yong/fullstack/Java架构师之路/Rabbitmq/imgs/image-20210422225026111.png)
+![image-20210422225026111](/images/RabbitMQ/image-20210422225026111.png)
 
