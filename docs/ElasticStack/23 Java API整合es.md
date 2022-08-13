@@ -9,6 +9,12 @@ typora-root-url: ..\.vuepress\public
 
 
 
+::: tip
+
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/elasticsearch/_01_java_api)
+
+:::
+
 ## 依赖
 
 ```xml
@@ -307,5 +313,17 @@ public Map<String, Object> searchByScrollPage(String keywords, String scrollId, 
 
     return hashMap;
 }
+```
+
+
+
+## 总结
+
+```sh
+* 新增：IndexRequest
+* 更新：UpdateRequest
+* 删除：DeleteRequest
+* 根据ID获取：GetRequest
+* 关键字检索：SearchRequest
 ```
 
