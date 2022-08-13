@@ -35,7 +35,7 @@ typora-root-url: ..\.vuepress\public
 - C：消费者：消息的接收者，会一直等待消息到来
 - queue：消息队列，图中红色部分。类似一个邮箱，可以缓存消息；生产者向其中投递消息，消费者从其中取出消息
 
-## 生产者
+## 生产者❤️
 
 ```java
 public class Producer {
@@ -74,7 +74,7 @@ public class Producer {
 
 ![image-20211031010258335](/images/RabbitMQ/image-20211031010258335.png)
 
-## 消费者
+## 消费者❤️
 
 ```java
 public class Consumer {
