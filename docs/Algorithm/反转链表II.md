@@ -68,3 +68,38 @@ public class ReverseLinkedListII_92 {
 }
 ```
 
+
+
+
+
+----------
+
+
+
+## 简单的链表反转
+
+::: tip
+
+[206. 反转链表 - 力扣（LeetCode）](https://leetcode.cn/problems/reverse-linked-list/)
+
+:::
+
+![image-20220816032236893](/images/algorithm/image-20220816032236893.png)
+
+![image-20220816032224244](/images/algorithm/image-20220816032224244.png)
+
+```java
+public class ReverseLinkedListI_206 {
+    public ListNode reverseList(ListNode head) {
+        ListNode pre = null,current = head, next = null;
+        while(current != null){
+            next = current.next;
+            current.next = pre;
+            pre = current;
+            current = next;
+        }
+        return pre;
+    }
+}
+```
+
