@@ -25,11 +25,11 @@ typora-root-url: ..\.vuepress\public
 
 ::: tip
 
-[Source Code KthInArray_215_QuickSelect.java]()
+[Source Code KthInArray_215_QuickSelect.java](https://github.com/Q10Viking/learncode/blob/main/algorithm/src/main/java/org/hzz/array/KthInArray_215_QuickSelect.java)
 
 :::
 
-![image-20220815215106531](C:\Users\11930\AppData\Roaming\Typora\typora-user-images\image-20220815215106531.png)
+![image-20220815215106531](/images/algorithm/image-20220815215106531.png)
 
 在快排的分区操作中，每次分区操作结束都会返回一个点，也就是我们代码中数据分割成独立的两部分时，从哪儿分区的指示器，**这个指示器的下标和最终排序之后有序数组中这个元素所在的下标是一致的**。
 
