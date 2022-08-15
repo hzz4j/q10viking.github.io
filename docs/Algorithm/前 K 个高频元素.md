@@ -13,6 +13,8 @@ typora-root-url: ..\.vuepress\public
 
 [347. 前 K 个高频元素 - 力扣（LeetCode）](https://leetcode.cn/problems/top-k-frequent-elements/)
 
+[Source Code TopKFrequent_347.java](https://github.com/Q10Viking/learncode/blob/main/algorithm/src/main/java/org/hzz/array/TopKFrequent_347.java)
+
 :::
 
 既然只要返回前K个高频元素，自然堆排序就是我们可以考虑使用的方法。使用JDK的PriorityQueue来快速实现堆。
