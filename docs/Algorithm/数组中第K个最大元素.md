@@ -15,6 +15,8 @@ typora-root-url: ..\.vuepress\public
 
 [215. 数组中的第K个最大元素 - 力扣（LeetCode）](https://leetcode.cn/problems/kth-largest-element-in-an-array/)
 
+[快速排序 & 堆排序](https://q10viking.github.io/Algorithm/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.html)
+
 :::
 
 
@@ -85,6 +87,8 @@ public class KthInArray_215_QuickSelect {
 ## 堆实现
 
 ::: tip
+
+[Source Code KthInArray_215_HeapSort.java](https://github.com/Q10Viking/learncode/blob/main/algorithm/src/main/java/org/hzz/array/KthInArray_215_HeapSort.java)
 
 在学习堆排序的时候，我们知道，许多应用程序都需要处理有序的元素，但不一定要求他们全部有序，或者不一定要一次就将他们排序，很多时候，我们每次只需要操作数据中的最大元素（最小元素）。这里刚好就是堆排序的运用场景，所以这个题目还可以使用堆排序来实现。
 
