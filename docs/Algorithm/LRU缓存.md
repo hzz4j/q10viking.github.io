@@ -13,11 +13,19 @@ typora-root-url: ..\.vuepress\public
 
 [146. LRU 缓存 - 力扣（LeetCode）](https://leetcode.cn/problems/lru-cache/)
 
+[Source Code LRUCache.java](https://github.com/Q10Viking/learncode/blob/main/algorithm/src/main/java/org/hzz/linkedlist/LRUCache.java)
+
 :::
 
 
 
 ## HashMap加链表实现
+
+::: tip
+
+[Source Code LRUCache.java](https://github.com/Q10Viking/learncode/blob/main/algorithm/src/main/java/org/hzz/linkedlist/LRUCache.java)
+
+:::
 
 缓存的实现我们用的比较多的一般都是Map类型容器，尤其是题目要求在O(1) 时间复杂度内完成get操作和put操作，但是需要实现LRU (最近最少使用) ，肯定还要借助其他的手段。大多数的情况下，我们都是用链表来做的
 
@@ -174,16 +182,59 @@ public class LRUCache {
 
 ::: tip
 
+[Source Code LRUCacheV2.java](https://github.com/Q10Viking/learncode/blob/main/algorithm/src/main/java/org/hzz/linkedlist/LRUCacheV2.java)
+
 LinkedHashMap维护的是一个具有双重链表的HashMap，LinkedHashMap支持2中排序
 
 1. 插入排序: 插入是什么顺序，读出来的就是什么顺序。
 2. 使用排序: 最近使用的会移至尾部例如
 
+accessOrder为true表示使用顺序，false表示插入顺序。
+
 :::
 
-
-
 ```java
+public class LRUCacheV2 {
+    private int capacity;
+    private Map<Integer,Integer> cache;
 
+    public LRUCacheV2(int capacity) {
+        this.capacity = capacity;
+        cache = new LinkedHashMap<Integer,Integer>(1024,0.75f,true){
+            @Override
+            protected boolean removeEldestEntry(Map.Entry eldest) {
+                boolean res = size()>capacity;
+                if(res) System.out.println("删除: "+eldest);
+                return res;
+            }
+        };
+    }
+
+    public int get(int key) {
+        Integer res = cache.get(key);
+        return res == null ? -1:res;
+    }
+
+    public void put(int key, int value) {
+        cache.put(key,value);
+    }
+
+    public static void main(String[] args) {
+        LRUCacheV2 lruCache = new LRUCacheV2(2);
+        lruCache.put(1,1);
+        lruCache.put(2,2);
+        lruCache.put(3,3);
+        System.out.println(lruCache.cache);  // 应该输出 {2=2,3=3}
+        lruCache.get(2);
+        lruCache.put(5,5);
+        System.out.println(lruCache.cache); // 应该输出 {2=2,5=5}
+    }
+}
+/**
+ * 删除: 1=1
+ * {2=2, 3=3}
+ * 删除: 3=3
+ * {2=2, 5=5}
+ */
 ```
 
