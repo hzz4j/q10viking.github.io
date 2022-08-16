@@ -13,7 +13,9 @@ typora-root-url: ..\.vuepress\public
 
 [25. K 个一组翻转链表 - 力扣（LeetCode）](https://leetcode.cn/problems/reverse-nodes-in-k-group/)
 
-[反转链表II](https://q10viking.github.io/Algorithm/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8II.html)
+与[反转链表II](https://q10viking.github.io/Algorithm/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8II.html)很像，但是注意这里需要自己处理一下边界的情况
+
+[Source Code ReverseNodesInKGroup_25.java](https://github.com/Q10Viking/learncode/blob/main/algorithm/src/main/java/org/hzz/linkedlist/ReverseNodesInKGroup_25.java)
 
 :::
 
@@ -36,7 +38,7 @@ public class ReverseNodesInKGroup_25 {
         while(p != null){
             i++;
             p = p.next;
-            if(i%k == 0 && p != null){  // 不够了则不反转
+            if(i%k == 0 && p != null){  // 不够了则不反转 如反转两个，但是元素是5,null （5已经是尾部节点了）
                 begin = reverse(begin,k);
                 p = begin;
                 PrintListNode.print(temp.next);
