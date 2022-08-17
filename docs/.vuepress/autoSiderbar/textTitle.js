@@ -47,7 +47,8 @@ const titles = {
     'Lock':'Lock',
     'Nginx':'nginx',
     'ElasticStack':'ElasticStack',
-    'Algorithm':'Algorithm'
+    'Algorithm':'Algorithm',
+    'JVM':'JVM'
 };
 
 
