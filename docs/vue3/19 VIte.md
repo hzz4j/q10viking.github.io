@@ -1,7 +1,77 @@
-https://www.bilibili.com/video/BV1vX4y1K7bQ?p=2
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /vue3/
+typora-root-url: ..\.vuepress\public
+---
 
 
 
-样式组织方式
+## axios获取api
 
-按需引入第三方组件库
+:::: code-group
+::: code-group-item axios定义
+
+```typescript
+import { ref } from "vue"
+import axios from 'axios'
+
+function useURLLoader<T>(url: string){
+    const result = ref<T | null>(null)
+    const loading = ref(true)
+    const loaded = ref(false)
+    const error = ref(null)
+
+    axios.get(url).then(rawData => {
+        result.value = rawData.data
+        loading.value = false
+        loaded.value = true
+    }).catch(e => {
+        error.value = e
+        loading.value = false
+        loaded.value = true
+    })
+
+    return {
+        result,
+        loading,
+        loaded,
+        error
+    }
+}
+
+export default useURLLoader
+```
+
+:::
+
+::: code-group-item axios使用
+
+```vue
+<script setup lang="ts">
+import useURLLoader from '../hooks/useURLLoader'
+
+interface DogResult{
+  message: string,
+  status: string
+}
+const { result,loading } = useURLLoader<DogResult>('https://dog.ceo/api/breeds/image/random')
+
+</script>
+
+<template>
+  <h2 v-if="loading">Loading</h2>
+  <img :src="result?.message" width="500" height="500" v-else>
+</template>
+
+<style scoped>
+</style>
+
+```
+
+:::
+
+::::
+
