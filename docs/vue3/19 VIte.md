@@ -11,6 +11,8 @@ typora-root-url: ..\.vuepress\public
 
 ## axios获取api
 
+[https://www.typescriptlang.org/dt/search?search=axios](https://www.typescriptlang.org/dt/search?search=axios)
+
 :::: code-group
 ::: code-group-item axios定义
 
