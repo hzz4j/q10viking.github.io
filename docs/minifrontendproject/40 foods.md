@@ -83,3 +83,27 @@ i{
 }
 ```
 
+
+
+## 响应式
+
+通过浏览器不断调整页面大小，来调整样式
+
+```css
+1400px 1000px 900px 700px 550px
+```
+
+使用sass的方式使得@media更加接近标签
+
+```scss
+.footer{
+    height: 16rem;
+    @media(max-width: 1400px){  // 屏幕小于1400px
+        height: 20rem;   
+    }
+    @media(max-width: 700px){  // 屏幕更小，小于700px
+        height: 26rem;
+    }
+}
+```
+
