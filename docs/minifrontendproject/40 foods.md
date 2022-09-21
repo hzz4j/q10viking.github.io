@@ -64,3 +64,22 @@ i{
 }
 ```
 
+
+
+## 下拉菜单的延迟
+
+![image-20220921231719189](/images/minifrontendproject/image-20220921231719189.png)
+
+```scss
+.menu{
+    position: fixed;
+    top: 1rem;
+    transition: top $unit-time $unit-time;
+  
+    &.change{
+        top: calc($navbar-height + 1rem);
+        transition: top $unit-time;
+    }
+}
+```
+
