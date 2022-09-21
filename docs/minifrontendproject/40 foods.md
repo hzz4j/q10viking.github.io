@@ -11,7 +11,11 @@ typora-root-url: ..\.vuepress\public
 
 ## Foods
 
+[项目预览（Project view）](https://q10viking.github.io/Mini-FrontEnd-project/44%20foods/dist/)
 
+[Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/44%20foods)
+
+<common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/44%20foods/dist/"/>
 
 
 
@@ -85,9 +89,13 @@ i{
 
 
 
-## 响应式
+## 响应式❤️
+
+> 页面设计的时候使用rem或者百分号来适应设备
 
 通过浏览器不断调整页面大小，来调整样式
+
+![image-20220922003405151](/images/minifrontendproject/image-20220922003405151.png)
 
 ```css
 1400px 1000px 900px 700px 550px
