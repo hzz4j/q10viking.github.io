@@ -93,7 +93,7 @@ i{
 1400px 1000px 900px 700px 550px
 ```
 
-使用sass的方式使得@media更加接近标签
+使用sass的方式使得@media更加接近标签。
 
 ```scss
 .footer{
