@@ -113,7 +113,7 @@ body {
 
 
 
-## font-size with rem & em
+## font-size with rem & em❤️
 
 ::: tip
 
@@ -129,7 +129,31 @@ em会有继承的问题，这样会导致很混乱
 
 ![202112101458816](/images/css/202112101458816.jpg)
 
+### rem😊
+
+::: tip
+
+响应式开发的关键
+
 rem的作用：take the font size that is set by the browser setting. r stands the root element
+
+:::
+
+浏览器的默认的大小是16px;通过如下的代码设置
+
+```scss
+html{
+	font-size:62.5%;  // 将16px转换成10px,这样方便在编程的时候方便计算
+}
+
+.text-name{
+    font-size: 2rem;  // 则会计算成20px
+}
+```
+
+![image-20220922020644220](/images/css/image-20220922020644220.png)
+
+
 
 ## Viewport Unit vw & vh
 
