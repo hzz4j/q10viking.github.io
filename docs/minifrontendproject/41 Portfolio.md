@@ -11,11 +11,11 @@ typora-root-url: ..\.vuepress\public
 
 ## Portfolio
 
-[项目预览（Project view）](https://q10viking.github.io/Mini-FrontEnd-project/44%20foods/dist/)
+[项目预览（Project view）](https://q10viking.github.io/Mini-FrontEnd-project/45%20portfolio/dist/)
 
-[Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/44%20foods)
+[Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/45%20portfolio)
 
-<common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/44%20foods/dist/"/>
+<common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/45%20portfolio/dist/"/>
 
 
 
@@ -37,7 +37,7 @@ background: linear-gradient(
 1. 使用window.pageYOffset和导航栏的offsetTop来解决。pageYOffset就是滚动的距离
 2. 当滑动到指定的section时，更新导航栏对应的nav link。使用数组下表来建立对应的关系
 
-> offsetTop可以通过offsetParent来查看相对的是谁的
+> offsetTop可以通过offsetParent来查看相对的是谁的 [HTML DOM Element offsetParent Property (w3schools.com)](https://www.w3schools.com/jsref/prop_element_offsetparent.asp)
 
 ```tsx
 // 固定navbar
