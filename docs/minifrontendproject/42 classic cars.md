@@ -17,7 +17,9 @@ typora-root-url: ..\.vuepress\public
 
 [CSS perspective property (w3schools.com)](https://www.w3schools.com/cssref/css3_pr_perspective.asp)
 
-> 一个perspective管一个子
+perspective越小，3D效果越敏感
+
+> 一个perspective管一个子元素
 
 ```html
 <div class="wrapper">
