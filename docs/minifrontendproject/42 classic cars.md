@@ -11,7 +11,11 @@ typora-root-url: ..\.vuepress\public
 
 ## Classic Cars
 
+[项目预览（Project view）](https://q10viking.github.io/Mini-FrontEnd-project/46%20classic%20cars/dist/)
 
+[Source Code](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/46%20classic%20cars)
+
+<common-progresson-snippet src="https://q10viking.github.io/Mini-FrontEnd-project/46%20classic%20cars/dist/"/>
 
 ## 3D效果
 
@@ -44,3 +48,8 @@ div class="wrapper">
 
 
 ## Video
+
+```html
+<video src="./images/car-video-2.mp4" muted loop class="video"></video>
+```
+
