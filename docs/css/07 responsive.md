@@ -15,6 +15,12 @@ Let browser is able to identify the actual device
 
 :::
 
+```css
+1400px 1000px 900px 700px 550px
+```
+
+
+
 ```html
 <!-- viewport meta tag -->
 <!-- harddevice and software px -->

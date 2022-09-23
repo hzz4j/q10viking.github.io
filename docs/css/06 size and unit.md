@@ -175,6 +175,15 @@ width: 80vmin;
 
 
 
+### vw & percent❤️
+
+```scss
+width: 100vw;
+max-width: 100%;
+```
+
+
+
 ## Which Unit should choose
 
 ![202112101527492](/images/css/202112101527492.jpg)

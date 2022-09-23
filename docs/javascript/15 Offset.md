@@ -27,6 +27,10 @@ event.target的属性
 
 相对于offsetParent的left
 
+[HTML DOM Element offsetLeft Property (w3schools.com)](https://www.w3schools.com/jsref/prop_element_offsetleft.asp)
+
+[HTML DOM offsetTop 属性 | 菜鸟教程 (runoob.com)](https://www.runoob.com/jsref/prop-element-offsettop.html)
+
 ### 1.4 offsetWidth
 
 元素的实际宽度
@@ -37,6 +41,16 @@ event.target的属性
 
 
 
+## clientTop
+
+[HTML DOM Element clientTop Property (w3schools.com)](https://www.w3schools.com/jsref/prop_element_clienttop.asp)
+
+
+
+## scrollTop
+
+[HTML DOM Element scrollTop Property (w3schools.com)](https://www.w3schools.com/jsref/prop_element_scrolltop.asp)
+
 ## clientX与clientY
 
 ::: tip
@@ -45,7 +59,7 @@ event的属性clientX和clientY
 
 :::
 
-
+[MouseEvent clientX Property (w3schools.com)](https://www.w3schools.com/jsref/event_clientx.asp)
 
 ## offsetX和offsetY
 
@@ -54,6 +68,8 @@ event的属性clientX和clientY
 event的属性offsetX和offsetY
 
 :::
+
+[MouseEvent offsetX Property (w3schools.com)](https://www.w3schools.com/jsref/event_offsetx.asp)
 
 ```
 offsetX = clientX - offsetLeft
@@ -70,3 +86,16 @@ offsetY = clientY - offsetTop
 
 
 
+
+
+## 参考
+
+[The difference between offsetTop, scrollTop & clientTop (& why you should never use them) | by Arnav Zedian | Medium](https://arnavzedian.medium.com/the-difference-between-offsettop-scrolltop-clienttop-36cf52b733ca)
+
+
+
+
+
+[Smooth Scrolling | CSS-Tricks - CSS-Tricks](https://css-tricks.com/snippets/jquery/smooth-scrolling/)
+
+[How to Make an Unobtrusive Scroll-to-Top Button | CSS-Tricks - CSS-Tricks](https://css-tricks.com/how-to-make-an-unobtrusive-scroll-to-top-button/)
