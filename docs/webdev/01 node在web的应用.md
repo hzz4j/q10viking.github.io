@@ -150,6 +150,12 @@ npm install <dependency name> -g
 # 如 npm install -g @vue/cli
 ```
 
+补充：
+
+npm `install` and `add` are aliases. **The `--save` option is deprecated.**
+
+Since NPM 5, packages are saved automatically; [there is no `--save` option](https://docs.npmjs.com/cli/install).
+
 ### 查看包
 
 在 package.json 文件的 `dependencies` 部分中列出的包不同于在 node_modules 文件夹中列出的包。 如果需要查看文件夹中的包，可以输入 `npm list` 命令。 但是，此命令可能会生成一个较长的列表。 可能很难掌握其中的内容。 为了帮助解决这个问题，可以列出不同深度的包。 执行此操作时，`list` 命令如下所示：
