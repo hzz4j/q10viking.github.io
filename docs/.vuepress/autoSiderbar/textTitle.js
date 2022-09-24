@@ -48,7 +48,8 @@ const titles = {
     'Nginx':'nginx',
     'ElasticStack':'ElasticStack',
     'Algorithm':'Algorithm',
-    'JVM':'JVM'
+    'JVM':'JVM',
+    'webdev':'webdev'
 };
 
 
