@@ -9,7 +9,7 @@ typora-root-url: ..\.vuepress\public
 
 
 
-[Overview (Java SE 19 & JDK 19 [build 6\])](https://download.java.net/java/early_access/loom/docs/api/)
+[Overview (Java Platform SE 8 ) (oracle.com)](https://docs.oracle.com/javase/8/docs/api/index.html)
 
 ## Java线程的调度机制
 
