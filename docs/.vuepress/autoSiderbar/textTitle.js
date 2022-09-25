@@ -49,7 +49,8 @@ const titles = {
     'ElasticStack':'ElasticStack',
     'Algorithm':'Algorithm',
     'JVM':'JVM',
-    'webdev':'webdev'
+    'webdev':'webdev',
+    'concurrency':'concurrency'
 };
 
 
