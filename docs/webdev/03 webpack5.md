@@ -41,7 +41,7 @@ output:{
 }
 ```
 
-> 在开发插件的时候遇到
+> 在开发插件的时候遇到[静默のBlog (browser extionsion)](https://q10viking.github.io/minifrontendproject/43 browser extenstion.html)
 
 ![image-20220925200114394](/images/webdev/image-20220925200114394.png)
 
