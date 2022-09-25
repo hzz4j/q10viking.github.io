@@ -197,3 +197,121 @@ app.use((req, res, next) => {})
   ```
   :::
   ::::
+
+## 
+
+### 配置应用以接收数据
+
+1. “导入正文分析器”。 需要将传入数据转换为可读的格式。 导入随 Express 一起安装的库 `body-parser`：
+
+```js
+let bodyParser = require('body-parser');
+```
+
+2. 配置数据。 配置 Express 以将传入的正文数据分析为预期格式。 以下代码将数据转换为 JSON：
+
+   ```
+   app.use(bodyParser.json({ extended: false }));
+   ```
+
+   客户端发送的数据现在可用于 `req` 请求对象上的 `body` 属性。 现在，你可以读取此数据并与数据源对话。 然后，还可以从该数据创建资源或更新资源，具体取决于请求使用 POST 还是 PUT 谓词。
+
+```js
+app.post('/<path>', (req, res) => {
+  console.log('req.body', req.body) // contains incoming data
+})
+```
+
+
+
+## CRUD
+
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/node/06%20express-reading-writing)
+
+为资源实现 CRUD 是一项常见任务。 Express 有一种 `route()` 方法正用于此目的。 使用 `route()`方法时，可以对代码进行分组，使其更易于阅读。
+
+```js
+const express = require('express')
+const app = express()
+const port = 3000
+
+let bodyParser = require('body-parser');
+app.use(bodyParser.json());
+
+let products = [];
+
+app.route('/products')
+ .get((req, res) => {
+   res.json(products);
+ })
+ .post((req, res) => {
+   const newProduct = { ...req.body, id: products.length + 1 }
+   products = [...products, newProduct]
+   res.json(newProduct);
+ })
+.put((req, res) => {
+   let updatedProduct;
+   products = products.map(p => {
+     if (p.id === req.body.id) {
+       updatedProduct = { ...p, ...req.body };
+       return updatedProduct;
+     }
+     return p;
+   })
+   res.json(updatedProduct);
+ })
+ .delete((req, res) => {
+   const deletedProduct = products.find(p => p.id === +req.body.id);
+   products = products.filter(p => p.id !== +req.body.id);
+   res.json(deletedProduct);
+ })
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+```
+
+
+
+### 路由参数
+
+delete可以带body
+
+```js
+app.delete('/products/:id', function(req, res) {
+  const deletedProduct = products.find(p => p.id === +req.params.id);
+  products = products.filter(p => p.id !== +req.params.id);
+  res.json(deletedProduct);
+});
+```
+
+发送参数
+
+```json
+const http = require('http');
+
+const productToDelete = {
+  id: 1
+}
+const data = JSON.stringify(productToDelete)
+
+const options = {
+  hostname: 'localhost',
+  port: 3000,
+  path: `/products/${productToDelete.id}`,
+  method: 'DELETE',
+  headers: {
+    'Content-Type': 'application/json',
+    'Content-Length': data.length
+  }
+}
+
+const request = http.request(options, (res) => {
+  let body = '';
+  res.on('data', (chunk) => { body += "" + chunk; })
+  res.on('error', (err) => console.error('err', err))
+  res.on('end', () => { console.log('response', body) })
+  res.on('close', () => { console.log('Closed connection') })
+})
+
+request.end(data);
+```
+
