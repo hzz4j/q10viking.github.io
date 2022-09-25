@@ -20,7 +20,15 @@ typora-root-url: ..\.vuepress\public
 - [Source Code (采用webpack构建)](https://github.com/Q10Viking/Mini-FrontEnd-project/tree/main/47%20browser%20extension-simple)
 - 参考 [Your first extension - Mozilla | MDN](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension)
 
-访问 [https://www.mozilla.org/zh-CN/firefox/new/](https://www.mozilla.org/zh-CN/firefox/new/) 插件生效
+::: tip
+
+访问 [https://www.mozilla.org/zh-CN/firefox/new/](https://www.mozilla.org/zh-CN/firefox/new/) 插件生效.
+
+该插件主要是给body添加一个红色的边框
+
+:::
+
+![image-20220925201936794](/images/webdev/image-20220925201936794.png)
 
 manifest.json
 
