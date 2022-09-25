@@ -83,14 +83,14 @@ Node.js 具有内置的读取–求值–打印循环 (REPL) 模式，**可用�
 
 [Source Code](https://github.com/Q10Viking/learncode/tree/main/node/01%20package%20config)
 
-ackage.json 文件不是你手动创作的内容， 这是运行 npm `init` 命令的结果。 可以通过两种主要方法运行此命令：
+package.json 文件不是你手动创作的内容， 这是运行 npm `init` 命令的结果。 可以通过两种主要方法运行此命令：
 
 - `npm init`：此命令启动一个向导，该向导将提示你提供有关项目的名称、版本、说明、入口点、测试命令、Git 存储库、关键字、作者和许可证的信息。
 - `npm init -y`：此命令使用 `-y` 标志，是 `npm init` 命令的更快版本，因为它不需要交互。 相反，此命令会使用 `npm init` 自动为系统提示你输入的所有值分配默认值。
 
 
 
-### 脚本
+### 脚本scripts
 
 你应该设置四个脚本，并以特定方式对其命名。 开发人员社区和各种工具期望以下特定名称：
 
@@ -114,6 +114,20 @@ ackage.json 文件不是你手动创作的内容， 这是运行 npm `init` 命�
 :::
 
 
+
+### type属性
+
+Node.js supports [CommonJS Modules](https://nodejs.org/api/modules.html) and [ECMAScript Modules](https://nodejs.org/api/esm.html).
+
+[Cannot find module in JS ](https://bobbyhadz.com/blog/javascript-error-err-module-not-found-cannot-find-module)
+
+::: tip
+
+Another thing to look out for is that when using ES6 module imports with `type` set to `module`, you are not allowed to use the `require` syntax anymore.
+
+:::
+
+![image-20220925161632338](/images/concurrency/image-20220925161632338.png)
 
 ## Node包
 

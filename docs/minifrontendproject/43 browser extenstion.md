@@ -6,6 +6,12 @@
 
 
 
+## webpack
+
+默认入口时./src/index.js,打包是dist/main.js
+
+
+
 
 
 [Your first extension - Mozilla | MDN](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension)
