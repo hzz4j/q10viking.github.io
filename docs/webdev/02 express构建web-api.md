@@ -285,7 +285,7 @@ app.delete('/products/:id', function(req, res) {
 
 发送参数
 
-```json
+```js
 const http = require('http');
 
 const productToDelete = {
