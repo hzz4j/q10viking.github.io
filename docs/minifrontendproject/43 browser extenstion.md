@@ -11,7 +11,7 @@ typora-root-url: ..\.vuepress\public
 
 ## 核心manifest文件
 
-
+content_scripts会加载指定的js脚本
 
 
 
