@@ -100,6 +100,8 @@ Access to XMLHttpRequest at 'http://localhost:9000/test' from origin 'http://127
 
 ## 解决跨域(Simple Request)❤️
 
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/node/08%20cors/01%20browser-action-solved)
+
 上面的请求资源是一个简单请求(Simple Request).对应的还有预检请求(Preflight request),如自己添加了HTTP header头部信息.
 
 根据[Cross-Origin Resource Sharing (CORS) - HTTP | MDN (mozilla.org)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests)提供的解决方案
