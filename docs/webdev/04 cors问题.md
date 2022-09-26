@@ -172,6 +172,8 @@ It is an [`OPTIONS`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/O
 
 通过自定义头部信息，来发送跨域请求，观察preflight request
 
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/node/08%20cors/02%20browser-preflight-request-problem)
+
 :::
 
 
@@ -244,6 +246,8 @@ has been blocked by CORS policy: Response to preflight request doesn\'t pass acc
 
 
 ### 解决跨域
+
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/node/08%20cors/02%20browser-preflight-request-solved)
 
 > 只需要更改服务端的预检请求即可。app.js
 
@@ -341,17 +345,13 @@ app.listen(9000,()=>{
 
 
 
-## 跨域问题出现的领域
-
-跨域问题只出现在浏览器端发送的请求。如果是后端发送的请求（如node运行js,或者使用postman测试，则不会出现跨域）
-
-但是如果是在浏览器，开发插件的话并不会出现跨域的问题。
-
-
-
 ## cors相关header说明
 
-### Access-Control-Allow-Origin
+### 响应首部字段
+
+[跨源资源共享（CORS）- 响应首部字段](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS#http_响应首部字段)
+
+#### Access-Control-Allow-Origin
 
 > 顾名思义,访问控制允许的源,主要在server端设置响应的header
 
@@ -369,16 +369,50 @@ Access-Control-Allow-Origin: https://foo.example
 
 ----------
 
+#### Access-Control-Allow-Methods
 
+首部字段用于预检请求的响应。其指明了实际请求所允许使用的 HTTP 方法。
+
+#### Access-Control-Allow-Headers
+
+首部字段用于预检请求的响应。其指明了实际请求中允许携带的首部字段
+
+### 请求首部字段
+
+[跨源资源共享（CORS） -  请求首部字段](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS#http_请求首部字段)
+
+#### Origin
+
+首部字段表明预检请求或实际请求的源站。
+
+#### Access-Control-Request-Headers
+
+首部字段用于预检请求。其作用是，将实际请求所携带的首部字段告诉服务器。
+
+
+
+## 跨域问题出现的领域
+
+跨域问题只出现在浏览器端发送的请求。如果是后端发送的请求（如node运行js,或者使用postman测试，则不会出现跨域）
+
+但是如果是在浏览器，开发插件的话并不会出现跨域的问题。
 
 
 
 ## 使用插件自动添加
 
-[Test CORS :: WebBrowserTools](https://webbrowsertools.com/test-cors/)
+::: tip
 
-[Chrome extension to force-enable CORS based on request's *source* url (i.e. the url of the browser tab) rather than the target url (github.com)](https://gist.github.com/josephrocca/22f7f06925583a8c6630d55276c129db)
+[CORS Unblock - Microsoft Edge 插件下载地址](https://microsoftedge.microsoft.com/addons/detail/cors-unblock/hkjklmhkbkdhlgnnfbbcihcajofmjgbh?hl=zh-CN)
 
-[Access Control-Allow-Origin - Unblock :: add0n.com](https://add0n.com/access-control.html?version=0.3.4&type=install)
+[Access Control-Allow-Origin - Unblock :: 该插件首页](https://add0n.com/access-control.html?version=0.3.4&type=install)
 
-[CORS Unblock - Microsoft Edge Addons](https://microsoftedge.microsoft.com/addons/detail/cors-unblock/hkjklmhkbkdhlgnnfbbcihcajofmjgbh?hl=zh-CN)
+:::
+
+![image-20220926175702008](/images/webdev/image-20220926175702008.png)
+
+该插件会自动添加响应的信息，方便开发测试。
+
+![image-20220926180551648](/images/webdev/image-20220926180551648.png)
+
+值得注意的是，如果预检请求，尽管返回了响应的cors头部信息，但是如果返回的是不是2xx状态，比如401,那么还是会有跨域的问题。所以该插件尽管添加了这些信息，问题仍然出现。
