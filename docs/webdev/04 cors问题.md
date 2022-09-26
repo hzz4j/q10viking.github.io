@@ -13,7 +13,7 @@ typora-root-url: ..\.vuepress\public
 
 Cross-Origin Resource Sharing。是浏览器的行为，出于安全原因，浏览器限制从脚本发起的跨源HTTP请求，浏览器通过HTTP的HEADER来判断是否允许加载跨域的资源。
 
-一个跨域的例子，从https://domain-a.com的前端js代码请求https://domain-b.com/data.json提供的数据。
+一个跨域的例子，从`https://domain-a.com`的前端js代码请求`https://domain-b.com/data.json`提供的数据。
 
 ![image-20220926122703916](/images/webdev/image-20220926122703916.png)
 
@@ -80,7 +80,7 @@ axios.get(api).then(response => {
 :::
 ::::
 
-浏览器中出现跨域请求http://127.0.0.1:5500/dist/index.html请求http://localhost:9000/test的资源,此时跨域问题出现了
+浏览器中出现跨域请求`http://127.0.0.1:5500/dist/index.html`请求`http://localhost:9000/test`的资源,此时跨域问题出现了
 
 ![image-20220926125820871](/images/webdev/image-20220926125820871.png)
 
