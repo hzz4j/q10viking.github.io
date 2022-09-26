@@ -159,9 +159,17 @@ Node.js 附带许多核心库，可处理从文件管理到 HTTP 再到压缩文
 npm install <dependency name>
 # 开发者依赖
 npm install <dependency name> --save-dev
+# 简写方式
+npm install <dependency name> -D
 # 全局依赖
 npm install <dependency name> -g
 # 如 npm install -g @vue/cli
+```
+
+```sh
+# 案例安装开发者依赖，依赖和参数顺序不严格要求
+npm install --save-dev --save-exact prettier
+npm install prettier -D --save-exact
 ```
 
 补充：
