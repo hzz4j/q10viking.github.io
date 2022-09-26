@@ -157,7 +157,7 @@ app.listen(9000,()=>{
 
 [Preflight request - MDN Web Docs Glossary: Definitions of Web-related terms | MDN (mozilla.org)](https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request)
 
-> CORS预检请求是一个CORS请求，它检查CORS协议是否被理解，服务器是否感知使用特定的方法和标头
+> 浏览器在发现页面发出的请求非简单请求，并不会立即执行对应的请求代码，而是会触发预先请求模式。预先请求模式会先发送preflight request（预先验证请求），preflight request是一个OPTION请求，用于询问要被跨域访问的服务器，是否允许当前域名下的页面发送跨域的请求。在得到服务器的跨域授权后才能发送真正的HTTP请求。
 
 It is an [`OPTIONS`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/OPTIONS) request, using three HTTP request headers: [`Access-Control-Request-Method`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Request-Method), [`Access-Control-Request-Headers`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Request-Headers), and the [`Origin`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin) header.
 
@@ -341,13 +341,11 @@ app.listen(9000,()=>{
 
 
 
-## 插件
-
-
-
 ## 跨域问题出现的领域
 
+跨域问题只出现在浏览器端发送的请求。如果是后端发送的请求（如node运行js,或者使用postman测试，则不会出现跨域）
 
+但是如果是在浏览器，开发插件的话并不会出现跨域的问题。
 
 
 
@@ -369,44 +367,7 @@ If the resource owners at https://bar.other wished to restrict access to the res
 Access-Control-Allow-Origin: https://foo.example
 ```
 
-
-
-```
-Access to XMLHttpRequest at 'https://api.co2signal.com/v1/latest?countryCode=FR' from origin 'http://127.0.0.1:5500' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
-```
-
-
-
-```json
-'access-control-allow-origin': '*',  
-'access-control-allow-headers': 'Origin, X-Requested-With, Content-Type, Accept, electricitymap-token',
-```
-
-[Cross-Origin Resource Sharing (CORS) - HTTP | MDN (mozilla.org)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
-
-- the server returns a [`Access-Control-Allow-Origin`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin) header with `Access-Control-Allow-Origin: *`, which means that the resource can be accessed by **any** origin
-
-### preflight request
-
-> CORS also relies on a mechanism by which browsers make a "preflight" request to the server hosting the cross-origin resource, in order to check that the server will permit the actual request. In that preflight, the browser sends headers that indicate the HTTP method and headers that will be used in the actual request.
-
-浏览器在发现页面发出的请求非简单请求，并不会立即执行对应的请求代码，而是会触发预先请求模式。预先请求模式会先发送preflight request（预先验证请求），preflight request是一个OPTION请求，用于询问要被跨域访问的服务器，是否允许当前域名下的页面发送跨域的请求。在得到服务器的跨域授权后才能发送真正的HTTP请求。
-
-OPTIONS请求头部中会包含以下头部：
-
-服务器收到OPTIONS请求后，设置头部与浏览器沟通来判断是否允许这个请求。
-
-如果preflight request验证通过，浏览器才会发送真正的跨域请求。
-
-
-
-
-
-https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS/Errors/CORSMissingAllowOrigin
-
-
-
-# CORS header 'Access-Control-Allow-Origin' missing
+----------
 
 
 
@@ -421,13 +382,3 @@ https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS/Errors/CORSMissingAllowOr
 [Access Control-Allow-Origin - Unblock :: add0n.com](https://add0n.com/access-control.html?version=0.3.4&type=install)
 
 [CORS Unblock - Microsoft Edge Addons](https://microsoftedge.microsoft.com/addons/detail/cors-unblock/hkjklmhkbkdhlgnnfbbcihcajofmjgbh?hl=zh-CN)
-
-## 插件开发没有跨域问题
-
-
-
-
-
-preflight
-
-要200系列才行，返回401还是不行
