@@ -281,7 +281,7 @@ app.listen(9000,()=>{
 
 ### express提供cors中间件
 
-::: 
+::: tip
 
 [Express cors middleware (expressjs.com)](http://expressjs.com/en/resources/middleware/cors.html)
 
