@@ -243,9 +243,101 @@ has been blocked by CORS policy: Response to preflight request doesn\'t pass acc
 
 
 
+### 解决跨域
+
+> 只需要更改服务端的预检请求即可。app.js
+
+```js
+import express from "express";
+
+const app = express()
+app.get("/test",(req,res)=>{
+    console.log("get req");
+    res.json({name:'Q10Viking'})
+})
+
+// 添加一个options方法，来观察
+app.options("/test",(req,res)=>{
+    console.log("Preflight Appear");
+    // 添加允许的跨域的策略
+    res.setHeader("Access-Control-Allow-Origin","*") // 允许所有来源
+    // 由于自定义了头部，需要指定允许跨域指定的头部
+    res.setHeader("Access-Control-Allow-Headers","auth-token")
+    res.send("finished:)")
+})
+
+app.listen(9000,()=>{
+    console.log("server start at 9000");
+})
+```
+
+![image-20220926173206563](/images/webdev/image-20220926173206563.png)
 
 
-## express cors提供
+
+### express提供cors中间件
+
+::: 
+
+[Express cors middleware (expressjs.com)](http://expressjs.com/en/resources/middleware/cors.html)
+
+express提供了cors中间件，专门解决express中跨域的问题，使得我们专注业务开发，不再关注处理跨域的问题。
+
+:::
+
+```sh
+npm install cors
+```
+
+:::: code-group
+::: code-group-item 使用cors
+
+```js
+import express from "express";
+import cors from 'cors'
+
+const app = express()
+
+// 使用cors中间件
+app.use(cors())
+
+app.get("/test",(req,res)=>{
+    console.log("get req");
+    res.json({name:'Q10Viking'})
+})
+
+app.listen(9000,()=>{
+    console.log("server start at 9000");
+})
+```
+:::
+::: code-group-item 没有使用cors
+
+```js
+import express from "express";
+
+const app = express()
+app.get("/test",(req,res)=>{
+    console.log("get req");
+    res.json({name:'Q10Viking'})
+})
+
+// 添加一个options方法，来观察
+app.options("/test",(req,res)=>{
+    console.log("Preflight Appear");
+    // 添加允许的跨域的策略
+    res.setHeader("Access-Control-Allow-Origin","*") // 允许所有来源
+    // 由于自定义了头部，需要指定允许跨域指定的头部
+    res.setHeader("Access-Control-Allow-Headers","auth-token")
+    res.send("finished:)")
+})
+
+app.listen(9000,()=>{
+    console.log("server start at 9000");
+})
+```
+:::
+::::
 
 
 
