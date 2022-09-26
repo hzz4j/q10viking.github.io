@@ -138,7 +138,7 @@ app.listen(9000,()=>{
 
 
 
-## Preflight request
+## Preflight request⭐
 
 [Preflight request - MDN Web Docs Glossary: Definitions of Web-related terms | MDN (mozilla.org)](https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request)
 
@@ -147,6 +147,20 @@ app.listen(9000,()=>{
 It is an [`OPTIONS`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/OPTIONS) request, using three HTTP request headers: [`Access-Control-Request-Method`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Request-Method), [`Access-Control-Request-Headers`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Request-Headers), and the [`Origin`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin) header.
 
 
+
+
+
+
+
+## express cors提供
+
+
+
+## 插件
+
+
+
+## 跨域问题出现的领域
 
 
 
