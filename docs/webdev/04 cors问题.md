@@ -25,6 +25,8 @@ Cross-Origin Resource Sharing。是浏览器的行为，出于安全原因，浏
 
 验证 1. cors问题的出现. 2.cors只发生在浏览器端
 
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/node/08%20cors/01%20browser-action)
+
 :::
 
 > 为了方便快速实验cors机制，采用node+express来开发一个简单的web服务器
@@ -93,6 +95,76 @@ Access to XMLHttpRequest at 'http://localhost:9000/test' from origin 'http://127
 > 在node环境中执行前端的index.js脚本,可以看到有数据.
 
 ![image-20220926131603859](/images/webdev/image-20220926131603859.png)
+
+
+
+## 解决跨域(Simple Request)❤️
+
+上面的请求资源是一个简单请求(Simple Request).对应的还有预检请求(Preflight request),如自己添加了HTTP header头部信息.
+
+根据[Cross-Origin Resource Sharing (CORS) - HTTP | MDN (mozilla.org)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests)提供的解决方案
+
+> This operation performs a simple exchange between the client and the server, **using CORS headers to handle the privileges**:
+
+![image-20220926133921077](/images/webdev/image-20220926133921077.png)
+
+
+
+从浏览器中查看请求头,发现浏览器自动为我们添加请求头的Origin.要解决cors跨域问题,只需要我们在服务端添加相应的响应头`Access-Control-Allow-Origin`即可
+
+![image-20220926133729516](/images/webdev/image-20220926133729516.png)
+
+在服务端(app.js)添加响应头`Access-Control-Allow-Origin`
+
+```js{}
+import express from "express";
+
+const app = express()
+app.get("/test",(req,res)=>{
+    console.log("get req");
+    // add Access-Control-Allow-Origin header
+    res.setHeader("Access-Control-Allow-Origin","*")
+    res.json({name:'Q10Viking'})
+})
+
+app.listen(9000,()=>{
+    console.log("server start at 9000");
+})
+```
+
+![image-20220926135217955](/images/webdev/image-20220926135217955.png)
+
+
+
+## Preflight request
+
+[Preflight request - MDN Web Docs Glossary: Definitions of Web-related terms | MDN (mozilla.org)](https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request)
+
+> CORS预检请求是一个CORS请求，它检查CORS协议是否被理解，服务器是否使用特定的方法和标头感知
+
+It is an [`OPTIONS`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/OPTIONS) request, using three HTTP request headers: [`Access-Control-Request-Method`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Request-Method), [`Access-Control-Request-Headers`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Request-Headers), and the [`Origin`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin) header.
+
+
+
+
+
+## cors相关header说明
+
+### Access-Control-Allow-Origin
+
+> 顾名思义,访问控制允许的源,主要在server端设置响应的header
+
+```js
+// means that the resource can be accessed by any origin
+Access-Control-Allow-Origin: *
+```
+
+If the resource owners at https://bar.other wished to restrict access to the resource to requests only from https://foo.example (i.e., no domain other than https://foo.example can access the resource in a cross-origin manner), they would send
+
+```js
+// 严格限制
+Access-Control-Allow-Origin: https://foo.example
+```
 
 
 
