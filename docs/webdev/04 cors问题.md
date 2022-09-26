@@ -21,7 +21,9 @@ Cross-Origin Resource Sharing。是浏览器的行为，出于安全原因，浏
 
 ### 浏览器对跨域请求的拦截
 
-> 浏览器允许发起跨域请求，但是，跨域请求回来的数据，会被浏览器拦截，无法被页面获取到！
+> 浏览器允许发起跨域请求，但是，跨域请求回来的数据，会被浏览器拦截，无法被页面获取到!
+>
+> 这是针对简单请求的，如果是预检请求没有发挥相应的cors请求头，那么真正的请求不会发送到服务端。
 
 ![image-20220926154823739](/images/webdev/image-20220926154823739.png)
 
@@ -147,13 +149,97 @@ app.listen(9000,()=>{
 
 ## Preflight request⭐
 
+::: tip
+
+与简单请求相比，浏览器自己多发送了一个请求
+
+:::
+
 [Preflight request - MDN Web Docs Glossary: Definitions of Web-related terms | MDN (mozilla.org)](https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request)
 
-> CORS预检请求是一个CORS请求，它检查CORS协议是否被理解，服务器是否使用特定的方法和标头感知
+> CORS预检请求是一个CORS请求，它检查CORS协议是否被理解，服务器是否感知使用特定的方法和标头
 
 It is an [`OPTIONS`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/OPTIONS) request, using three HTTP request headers: [`Access-Control-Request-Method`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Request-Method), [`Access-Control-Request-Headers`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Request-Headers), and the [`Origin`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin) header.
 
+1. 如下面的案例自己添加了一个X-PINGOTHER的头部信息，在跨域的情况下会先发送预检请求
+2. 然后再发送正真的请求
 
+![img](/images/webdev/preflight_correct.png)
+
+### 代码验证❤️
+
+::: tip
+
+通过自定义头部信息，来发送跨域请求，观察preflight request
+
+:::
+
+
+
+:::: code-group
+::: code-group-item 服务端app.js
+
+```js
+import express from "express";
+
+const app = express()
+app.get("/test",(req,res)=>{
+    console.log("get req");
+    res.json({name:'Q10Viking'})
+})
+
+// 添加一个options方法，来观察
+app.options("/test",(req,res)=>{
+    console.log("Preflight Appear");
+    res.send("finished:)")
+})
+
+app.listen(9000,()=>{
+    console.log("server start at 9000");
+})
+```
+:::
+::: code-group-item 浏览器脚本 index.js
+
+```js
+// 前端脚本
+import axios from "axios";
+const api = "http://localhost:9000/test"
+const nameEl = document.getElementById("name")
+// 自定义了一个header
+const config = {
+    headers: {
+        'auth-token': 'q10viking-token'
+    }
+}
+
+axios.get(api,config).then(response => {
+    console.log(response.data)
+    nameEl.textContent = response.data.name
+    nameEl.className = "success"
+}).catch(e => {
+    console.log("cors appear")
+    nameEl.className = "errors"
+    nameEl.textContent = "Cors Appear"
+})
+```
+:::
+::::
+
+浏览器在发送真正的请求之前（`http://localhost:9000/test`）先发送了一个请求方法为options的请求。预检请求没有返回相应的cors策略，导致跨域问题出现，真正的请求并没有发送。
+
+```sh
+Access to XMLHttpRequest at 'http://localhost:9000/test' from origin 'http://127.0.0.1:5500' 
+has been blocked by CORS policy: Response to preflight request doesn\'t pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+```
+
+![image-20220926171001344](/images/webdev/image-20220926171001344.png)
+
+![image-20220926171706077](/images/webdev/image-20220926171706077.png)
+
+预检查请求是一个options方法
+
+![image-20220926171834319](/images/webdev/image-20220926171834319.png)
 
 
 
