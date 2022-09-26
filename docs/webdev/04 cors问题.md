@@ -7,17 +7,23 @@ prev:
 typora-root-url: ..\.vuepress\public
 ---
 
-
-
 ## CORS
 
 Cross-Origin Resource Sharing。是浏览器的行为，出于安全原因，浏览器限制从脚本发起的跨源HTTP请求，浏览器通过HTTP的HEADER来判断是否允许加载跨域的资源。
+
+>  出现跨域的根本原因：浏览器的同源策略不允许非同源的URL之间进行资源的交互
 
 一个跨域的例子，从`https://domain-a.com`的前端js代码请求`https://domain-b.com/data.json`提供的数据。
 
 ![image-20220926122703916](/images/webdev/image-20220926122703916.png)
 
 
+
+### 浏览器对跨域请求的拦截
+
+> 浏览器允许发起跨域请求，但是，跨域请求回来的数据，会被浏览器拦截，无法被页面获取到！
+
+![image-20220926154823739](/images/webdev/image-20220926154823739.png)
 
 ### 代码验证
 
@@ -85,7 +91,8 @@ axios.get(api).then(response => {
 ![image-20220926125820871](/images/webdev/image-20220926125820871.png)
 
 ```sh
-Access to XMLHttpRequest at 'http://localhost:9000/test' from origin 'http://127.0.0.1:5500' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+Access to XMLHttpRequest at 'http://localhost:9000/test' from origin 'http://127.0.0.1:5500'
+has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
 ```
 
 在index.js脚本当中,请求了不同源的资源.浏览器限制加载该资源.(可以看到api接口返回的是200,是可以调通的,但是浏览器限制了资源的加载)
@@ -161,6 +168,8 @@ It is an [`OPTIONS`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/O
 
 
 ## 跨域问题出现的领域
+
+
 
 
 
