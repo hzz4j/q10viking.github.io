@@ -60,6 +60,30 @@ typora-root-url: ..\.vuepress\public
 
 ![202112081259877](/images/css/202112081259877.jpg)
 
+
+
+比如有如下的html结构代码
+
+```html
+<li>Item1</li>
+<li>Item2</li>
+<li>Item3</li>
+```
+
+当选择器为如下形式的时候,只有Item2,Item3为红色
+
+```css
+li{
+  color: green;
+}
+
+li ~ li{
+  color: red;
+}
+```
+
+<common-codepen-snippet title="Sibling Genenal" slug="MWGrBwW" />
+
 ### 交集选择器
 
 ::: tip
