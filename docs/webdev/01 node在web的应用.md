@@ -277,3 +277,21 @@ npm install node-fetch@latest lodash@latest
   }
 ```
 
+
+
+## npm镜像配置
+
+```sh
+npm config get registry  # 默认是https://registry.npmjs.org/
+# 配置成国内镜像
+npm config set registry=https://registry.npmmirror.com
+```
+
+
+
+## 版本
+
+```sh
+npm -v
+```
+
