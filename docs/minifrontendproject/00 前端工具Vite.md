@@ -343,9 +343,44 @@ createApp(App)
 
 
 
+## 配置⭐
 
+不想在每个组件中导入scss的变量.
 
-## 
+```vue
+<style scoped lang="scss">
+// @import "../../assets/styles/_variables";
+</style>
+```
+
+在vite中不需要像webpack那样使用[style-resources-loader](https://www.npmjs.com/package/style-resources-loader)插件来解决.参考[Global SCSS Imports · Issue #832 · vitejs/vite (github.com)](https://github.com/vitejs/vite/issues/832)
+
+根据 [Vite官网: Shared Options | css配置](https://vitejs.dev/config/shared-options.html#css-preprocessoroptions) 的描述,`preprocessorOptions`中的key为文件的后缀
+
+```js
+css: {
+    preprocessorOptions: {
+        scss: {
+            additionalData: `@import "./src/assets/styles/__variables";`,
+        },
+    },
+}
+```
+
+如果需要引入多个,比如还是`mixin.scss`文件,我们可以这样配置
+
+```js
+css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: [
+          `@import "./src/assets/styles/__variables";`,
+          `@import "./src/assets/styles/__mixin";`,
+        ].join(""),
+      },
+    },
+  }
+```
 
 
 
