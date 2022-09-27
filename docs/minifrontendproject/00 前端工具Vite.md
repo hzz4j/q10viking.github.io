@@ -223,11 +223,13 @@ export default defineConfig({
 
 ::: tip
 
-在Vue中使用 font Awesome icons
+在Vue中使用 font Awesome icons，
+
+注意我们只能使用免费的版本，否则vue会找不到该icon.
 
 :::
 
-
+![image-20220927234352785](/images/minifrontendproject/image-20220927234352785.png)
 
 ### 安装依赖
 
