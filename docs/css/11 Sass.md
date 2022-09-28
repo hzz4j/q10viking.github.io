@@ -248,3 +248,13 @@ sass style.scss dist/style.css
 sass --watch style.scss:dist/style.css
 ```
 
+
+
+## 开发遇到问题
+
+[Sass Variable in CSS calc() function - Stack Overflow](https://stackoverflow.com/questions/17982111/sass-variable-in-css-calc-function)
+
+```scss
+calc(#{$a} + 7px)
+```
+
