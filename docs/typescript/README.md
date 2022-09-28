@@ -31,3 +31,4 @@ typora-root-url: ..\.vuepress\public
 
 [type-challenges/type-challenges: Collection of TypeScript type challenges with online judge (github.com)](https://github.com/type-challenges/type-challenges)
 
+[Type Challenges Solutions (ghaiklor.github.io)](https://ghaiklor.github.io/type-challenges-solutions/en/)
