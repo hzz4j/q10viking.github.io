@@ -129,7 +129,16 @@ export default function useEventListener(
 
 
 
+## 目前用到Vue3的知识
 
+- ts
+- 单文件组件
+- Composables复用思想
+- 列表渲染
+- 条件渲染
+- 生命周期mounted,onMounted运用
+- computed属性
+- vite
 
 
 
