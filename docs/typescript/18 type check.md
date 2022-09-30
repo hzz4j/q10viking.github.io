@@ -10,10 +10,6 @@ https://stackoverflow.com/questions/40081332/what-does-the-is-keyword-do-in-type
 
 
 
-
-
-
-
 ```
 
 import { library } from "@fortawesome/fontawesome-svg-core";
