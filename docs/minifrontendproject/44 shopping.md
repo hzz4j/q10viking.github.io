@@ -59,3 +59,7 @@ function updateActive(val: number) {
 </script>
 ```
 
+
+
+## ts+axios+vue组件获取数据
+
