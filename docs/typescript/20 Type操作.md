@@ -50,7 +50,29 @@ const todo: TodoPreview = {
 
 ## Indexed Type
 
-## number
+### number
+
+::: tip
+
+If we access the `T[number]`, TypeScript will return a union of all elements from `T`. E.g. if you have a `T = [1, 2, 3]`, accessing it via `T[number]` will return `1 | 2 | 3`.
+
+But, there is an error “Type ‘number’ cannot be used to index type ‘T’”. It is because we don’t have a ❤️constraint ❤️over `T`. We need to tell TypeScript that `T` is an array.
+
+来自--[Includes (ghaiklor.github.io)](https://ghaiklor.github.io/type-challenges-solutions/en/easy-includes.html)
+
+```tsx
+type Includes<T extends readonly any[], U> = U extends T[number] ? true : false;
+
+const MyArray = [
+  { name: "Alice", age: 15 },
+  { name: "Bob", age: 23 },
+  { name: "Eve", age: 38 },
+];
+// constraint array
+type Person = typeof MyArray[number];
+```
+
+:::
 
 [TypeScript: Documentation - Indexed Access Types (typescriptlang.org)](https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html)
 
