@@ -78,6 +78,8 @@ When flipping the `Buffer` into read mode, limit means the limit of how much dat
 
 重下面的例子来看，wrapper并没有改变position的位置。和初始化时的一样，都是最开始的写模式。只不过默认填充了数据而已。
 
+[Source Code ByteBufferWrapper.java](https://github.com/Q10Viking/learncode/blob/main/filesystem/src/org/hzz/chapter05/ByteBufferWrapper.java)
+
 ```java
 public class ByteBufferWrapper {
     public static void main(String[] args) {
@@ -111,6 +113,8 @@ public class ByteBufferWrapper {
 
 
 ## rewind
+
+[Source Code ByteBufferRewind.java](https://github.com/Q10Viking/learncode/blob/main/filesystem/src/org/hzz/chapter05/ByteBufferRewind.java)
 
 ```java
 public class ByteBufferRewind {
@@ -153,6 +157,8 @@ public class ByteBufferRewind {
 不同的地方在于：flip会重置limit到position,而rewind则不会。
 
 :::
+
+[Source Code ByteBufferFlip.java](https://github.com/Q10Viking/learncode/blob/main/filesystem/src/org/hzz/chapter05/ByteBufferFlip.java)
 
 ```java
 public class ByteBufferFlip {
