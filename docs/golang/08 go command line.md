@@ -23,6 +23,8 @@ go run hello-world.go
 
 ## 构建
 
+编译成二进制文件
+
 ```sh
 $ go build hello-world.go
 $ ls
