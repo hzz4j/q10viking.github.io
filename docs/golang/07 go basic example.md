@@ -17,7 +17,7 @@ typora-root-url: ..\.vuepress\public
 
 [https://gobyexample.com/hello-world](https://gobyexample.com/hello-world)
 
-[]()
+[hello-world.go](https://github.com/Q10Viking/Learn-golang/blob/main/basic/01%20hello%20world/hello-world.go)
 
 ```go
 package main
