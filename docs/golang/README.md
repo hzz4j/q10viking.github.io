@@ -4,9 +4,15 @@ typora-root-url: ..\.vuepress\public
 
 ::: tip
 
-Learn golang guide https://go.dev/
+Go官网 https://go.dev/
+
+加速网： https://golang.google.cn
 
 :::
+
+
+
+
 
 [Exercism](https://exercism.org/dashboard)
 
@@ -21,3 +27,8 @@ https://github.com/chapin666/books go书籍
 ## 学习资料
 
 [flycash (Ming Deng) (github.com)](https://github.com/flycash)
+
+
+
+
+
