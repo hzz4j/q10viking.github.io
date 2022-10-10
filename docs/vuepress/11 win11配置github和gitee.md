@@ -113,3 +113,10 @@ git config --global  user.name "静默"
 git config --global  user.email "cau1403090523@gmail.com"
 ```
 
+
+
+
+
+## 参考
+
+[connecting to github with-ssh](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/checking-for-existing-ssh-keys)
