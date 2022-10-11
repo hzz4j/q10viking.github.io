@@ -144,3 +144,26 @@ export default function useEventListener(
 
 
 
+## 项目问题
+
+[Typescript: IDE reports TS2307: Cannot find module error for Vue components imports](https://github.com/vitejs/vite/issues/965)
+
+shims-vue.d.ts文件的作用，解决ide中main.ts文件中导入vue组件报错的问题
+
+![image-20221011173437831](/images/minifrontendproject/image-20221011173437831.png)
+
+```tsx
+/* eslint-disable */
+declare module "*.vue" {
+  import type { DefineComponent } from "vue"
+  const component: DefineComponent<{}, {}, any>
+  export default component
+}
+```
+
+
+
+## 引入pina
+
+![image-20221011184120640](/images/minifrontendproject/image-20221011184120640.png)
+
