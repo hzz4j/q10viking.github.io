@@ -167,3 +167,55 @@ declare module "*.vue" {
 
 ![image-20221011184120640](/images/minifrontendproject/image-20221011184120640.png)
 
+注意事项
+
+> 直接访问state
+
+```js
+// count不是响应式的
+const count = categoryStore.count 
+// 响应式
+const count = computed(() => categoryStore.count)
+```
+
+
+![image-20221011221328233](/images/minifrontendproject/image-20221011221328233.png)
+
+![image-20221011221230896](/images/minifrontendproject/image-20221011221230896.png)
+
+> 访问getter方法，在setup方式编程中，尽管getter方式变成了computed的方式，但是在使用的时候如果不使用computed.仍然还不是响应式的
+
+```tsx
+// doubleCount不是响应式的
+const doubleCount = categoryStore.doubleCount
+// doubleCount响应式
+const doubleCount = computed(() => categoryStore.doubleCount)
+```
+
+```tsx
+export const useCategoryStore = defineStore("category", () => {
+  const categoryHeads: Ref<CategoryHead[]> = ref(DefaultCategoryHead)
+  const count = ref(0)
+
+  // getter 方法
+  const doubleCount = computed(() => count.value * 2)
+
+  // actions
+  async function initCategoryHead() {
+    categoryHeads.value = await categoryApi()
+  }
+
+  function increment() {
+    count.value++
+  }
+
+  return { categoryHeads, initCategoryHead, count, doubleCount, increment }
+})
+```
+
+
+
+## 引入VueRouter
+
+- 好处之一，可以根据路由来解耦代码
+- components与views的区别也在与此，views下面的组件用于router [StackOverFlow: what-is-the-difference-between-the-views-and-components-folders-in-a-vue-project](https://stackoverflow.com/questions/50865828/what-is-the-difference-between-the-views-and-components-folders-in-a-vue-project)
