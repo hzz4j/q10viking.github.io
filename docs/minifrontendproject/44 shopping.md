@@ -139,6 +139,11 @@ export default function useEventListener(
 - 生命周期mounted,onMounted运用
 - computed属性
 - vite
+- props
+- store
+- router
+- style
+- 自定义插件
 
 
 
@@ -219,3 +224,10 @@ export const useCategoryStore = defineStore("category", () => {
 
 - 好处之一，可以根据路由来解耦代码
 - components与views的区别也在与此，views下面的组件用于router [StackOverFlow: what-is-the-difference-between-the-views-and-components-folders-in-a-vue-project](https://stackoverflow.com/questions/50865828/what-is-the-difference-between-the-views-and-components-folders-in-a-vue-project)
+
+
+
+## Vue3开发小技巧
+
+- v-show+computed控制显示
+
