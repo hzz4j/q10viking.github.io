@@ -396,6 +396,45 @@ onMounted(()=>{
 </style>
 ```
 
+
+
+----------
+
+### 深层次修改组件样式
+
+**除了上面v-html应用deep之外，修改内部组件的样式也可用**
+
+[css - How do I use /deep/ or >>> or ::v-deep in Vue.js? - Stack Overflow](https://stackoverflow.com/questions/48032006/how-do-i-use-deep-or-or-v-deep-in-vue-js)
+
+In Vue 2:
+
+- The `/deep/` syntax is deprecated
+- Use `::v-deep` with Sass, use `>>>` without Sass
+
+In Vue 3:
+
+- `::v-deep .child-class` is deprecated in favor of `:deep(.child-class)`
+- The `::v-` prefix is deprecated in favor of `:`
+- The `>>>` syntax is deprecated
+- The `/deep/` syntax is deprecated
+- There are new `:slotted` and `:global` selectors
+
+With every version/syntax, the `<style>` tag for this component must be `scoped`:
+
+```scss
+::v-deep .prev {
+    left: 27rem;
+}
+// scss
+:deep(.prev) {
+    left: 27rem;
+}
+```
+
+
+
+
+
 ## Props
 
 ### 普通定义
