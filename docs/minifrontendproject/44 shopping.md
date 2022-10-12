@@ -144,6 +144,7 @@ export default function useEventListener(
 - router
 - style
 - 自定义插件
+- watch ref数据或者watch props数据
 
 
 
@@ -230,6 +231,7 @@ export const useCategoryStore = defineStore("category", () => {
 ## Vue3开发小技巧
 
 - v-show+computed控制显示
+- `:deep()`深层次选择样式
 
 
 
@@ -262,3 +264,9 @@ With every version/syntax, the `<style>` tag for this component must be `scoped`
 }
 ```
 
+
+
+## 功能
+
+1. 骨架风格显示
+2. 使用watch，当数据加载完成的时候，自动播放轮播图
