@@ -306,3 +306,42 @@ With every version/syntax, the `<style>` tag for this component must be `scoped`
 
 ![image-20221012214030595](/images/minifrontendproject/image-20221012214030595.png)
 
+
+
+## css技巧
+
+### 文字
+
+![image-20221013013036325](/images/minifrontendproject/image-20221013013036325.png)
+
+```scss
+.name {
+    // 需要给宽度
+    width: 100%;
+    padding: 0 1rem;
+    
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+```
+
+可以封装成mixin
+
+```scss
+// 文字省略号
+@mixin textEllipse(){
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.name {
+    @include textEllipse();
+    // 需要给宽度
+    width: 100%;
+    padding: 0 1rem;
+    font-size: 2.2rem;
+}
+```
+
