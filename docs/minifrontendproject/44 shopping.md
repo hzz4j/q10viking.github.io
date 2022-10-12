@@ -269,4 +269,40 @@ With every version/syntax, the `<style>` tag for this component must be `scoped`
 ## 功能
 
 1. 骨架风格显示
+
 2. 使用watch，当数据加载完成的时候，自动播放轮播图
+
+   ```js
+   watch(
+     () => props.slides,
+     (newvalue) => {
+       if (newvalue.length > 0) {
+         autoPlay()
+       }
+     }
+   )
+   ```
+
+3. 使用属性自定义轮播图组件
+
+   ```vue
+   <CarouselComponent
+           :slides="banners"
+           :duration="2000"
+           autoPlay
+         ></CarouselComponent>
+   ```
+
+   值得注意的是，传入number属性的时候，使用v-bind的方式，默认都是按字符串来处理的
+
+   ```js
+   // 正确✔
+   :duration="2000"
+   // 错误❌
+   duration="2000"
+   ```
+
+   [Expected Number, got String. · Issue #1704 · vuejs/vue (github.com)](https://github.com/vuejs/vue/issues/1704)  `Evan You的解答`
+
+![image-20221012214030595](/images/minifrontendproject/image-20221012214030595.png)
+
