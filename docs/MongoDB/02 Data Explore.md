@@ -268,3 +268,6 @@ db.zips.updateMany({ "city": "HUDSON" }, { "$inc": { "pop": 10 } })
 db.zips.updateOne({ "city": "HUDSON" }, { "$inc": { "pop": 10 } })
 ```
 
+### 注意
+
+如果更新的字段不存在，则会自动创建
