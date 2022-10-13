@@ -236,6 +236,17 @@ body{
 
 
 
+### 开源库
+
+[Gerillass: The best Sass mixins library for modern web design](https://gerillass.com/) 
+
+使用开源库的目的： 
+
+1. 学习封装的思想
+2. 提高开发效率
+
+
+
 ## 编译sass文件
 
 [Sass: Sass Basics (sass-lang.com)](https://sass-lang.com/guide)
