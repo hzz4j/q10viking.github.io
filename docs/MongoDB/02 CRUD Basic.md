@@ -1,5 +1,6 @@
 ---
 sidebarDepth: 3
+sidebar: auto
 prev:
   text: Back To 目录
   link: /MongoDB/
@@ -303,8 +304,6 @@ db.inspections.deleteMany({ "test": 1 })
 ```
 
 
-
-## 
 
 ## 删除collection
 
