@@ -217,3 +217,54 @@ Atlas atlas-tt61iy-shard-0 [primary] sample_training> db.inspections.find({"_id"
 
 
 ![image-20221013212910178](/images/MongoDB/image-20221013212910178.png)
+
+
+
+----------
+
+
+
+## update
+
+::: tip
+
+官网提供了很详细的解释，并且带有example
+
+[Update Documents — MongoDB Manual](https://www.mongodb.com/docs/manual/tutorial/update-documents/)
+
+[Update Operators — MongoDB Manual](https://www.mongodb.com/docs/manual/reference/operator/update/?&_ga=2.62271524.903548860.1665632456-835634694.1665632456#id1)
+
+:::
+
+### updateOne
+
+[$set — MongoDB Manual](https://www.mongodb.com/docs/manual/reference/operator/update/set/)
+
+如果筛选出来多个文档，它只会更新第一个
+
+> [`db.collection.updateOne()`](https://www.mongodb.com/docs/manual/reference/method/db.collection.updateOne/#mongodb-method-db.collection.updateOne) finds the first document that matches the [filter](https://www.mongodb.com/docs/manual/reference/method/db.collection.updateOne/#std-label-update-one-filter) and applies the specified [update](https://www.mongodb.com/docs/manual/reference/method/db.collection.updateOne/#std-label-update-one-update) modifications.
+>
+> --- from [updates-a-single-document](https://www.mongodb.com/docs/manual/reference/method/db.collection.updateOne/#updates-a-single-document)
+
+```sh
+# 根据筛选条件，设置pop字段为17630
+db.zips.updateOne({ "zip": "12534" }, { "$set": { "pop": 17630 } })
+```
+
+
+
+### updateMany
+
+[$inc — MongoDB Manual](https://www.mongodb.com/docs/manual/reference/operator/update/inc/#mongodb-update-up.-inc)
+
+```sh
+# 根据筛选条件，全部更新，pop字段都加10
+db.zips.updateMany({ "city": "HUDSON" }, { "$inc": { "pop": 10 } })
+```
+
+
+
+```
+db.zips.updateOne({ "city": "HUDSON" }, { "$inc": { "pop": 10 } })
+```
+
