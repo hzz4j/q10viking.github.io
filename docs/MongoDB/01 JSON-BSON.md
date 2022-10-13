@@ -8,11 +8,9 @@ typora-root-url: ..\.vuepress\public
 
 
 
-## BSON vs JSON
-
 [The MongoDB Database Tools Documentation — MongoDB Database Tools](https://www.mongodb.com/docs/database-tools/)
 
-### BSON
+## BSON
 
 实验目的：将altas上的数据进行备份，然后导入到本地的mongdb上
 
@@ -38,7 +36,7 @@ D:.
 
 
 
-mongorestore恢复
+### mongorestore恢复
 
 将BSON数据导入到本地mongodb
 
@@ -62,7 +60,7 @@ mongorestore   --drop dump/
 
 
 
-### JSON
+## JSON
 
 ### mongoexport导出
 
@@ -98,5 +96,20 @@ PS D:\learncode\mongodb\M001> mongoimport --uri="mongodb://localhost:27017/sampl
 2022-10-13T17:07:57.304+0800    connected to: mongodb://localhost:27017/sample_supplies
 2022-10-13T17:07:57.304+0800    dropping: sample_supplies.sales
 2022-10-13T17:07:57.938+0800    5000 document(s) imported successfully. 0 document(s) failed to import.
+```
+
+
+
+## 小结
+
+通过上面的例子，可以简单理解一下MongoDB，数据库就像文件夹，数据集合就是文件名，文件内容里面是一个个document.document里面是field
+
+```sh
+D:.
+│
+└─dump
+    └─sample_supplies
+            sales.bson
+            sales.metadata.json
 ```
 
