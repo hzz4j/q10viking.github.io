@@ -271,3 +271,46 @@ db.zips.updateOne({ "city": "HUDSON" }, { "$inc": { "pop": 10 } })
 ### 注意
 
 如果更新的字段不存在，则会自动创建
+
+
+
+## delete
+
+[Delete Documents — MongoDB Manual](https://www.mongodb.com/docs/manual/tutorial/remove-documents/)
+
+### deleteOne
+
+删除匹配到的第一个
+
+```sh
+Atlas atlas-tt61iy-shard-0 [primary] sample_training> db.inspections.find({ "test": 3 }).pretty()
+[
+  { _id: ObjectId("63480f62c0b33efb0b474479"), test: 3 },
+  { _id: 3, test: 3 }
+]
+Atlas atlas-tt61iy-shard-0 [primary] sample_training> db.inspections.deleteOne({"test":3})
+{ acknowledged: true, deletedCount: 1 }
+Atlas atlas-tt61iy-shard-0 [primary] sample_training> db.inspections.find({ "test": 3 }).pretty()
+[ { _id: 3, test: 3 } ]
+```
+
+
+
+### deleteMany
+
+```sh
+db.inspections.deleteMany({ "test": 1 })
+```
+
+
+
+## 
+
+## 删除collection
+
+### drop
+
+```sh
+db.inspection.drop()
+```
+
