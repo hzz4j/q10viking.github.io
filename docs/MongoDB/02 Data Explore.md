@@ -203,3 +203,17 @@ Atlas atlas-tt61iy-shard-0 [primary] sample_training> db.inspections.find({"_id"
 [ { _id: 3, test: 3 } ]
 ```
 :::
+
+
+
+### 自动创建collection
+
+::: tip
+
+如果向一个不存在的集合插入数据，mongodb不会报错，而是会直接创建。真的是太灵活了。
+
+:::
+
+
+
+![image-20221013212910178](/images/MongoDB/image-20221013212910178.png)
