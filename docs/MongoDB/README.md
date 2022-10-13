@@ -101,7 +101,7 @@ C:\Users\11930>mongosh "mongodb+srv://sandbox.he3gsda.mongodb.net/myFirstDatabas
 
 > Starting with MongoDB 4.4, the MongoDB Database Tools are now released separately from the MongoDB Server and use their own versioning, with an initial version of `100.0.0`.  --- from [Installing the Database Tools on Windows — MongoDB Database Tools](https://www.mongodb.com/docs/database-tools/installation/installation-windows/)
 
-
+环境变量与配置`mongosh`一样
 
 
 
