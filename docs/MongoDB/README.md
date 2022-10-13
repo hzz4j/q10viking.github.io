@@ -105,18 +105,12 @@ C:\Users\11930>mongosh "mongodb+srv://sandbox.he3gsda.mongodb.net/myFirstDatabas
 
 
 
-
-
-
-
-
-
-
-
 ## 资源
 
-[论坛：MongoDB Developer Community Forums - A place to discover, learn, and grow with MongoDB technologies](https://www.mongodb.com/community/forums/)
+[MongoDB Manual](https://www.mongodb.com/docs/manual/)
 
 [Online Courses | MongoDB University](https://university.mongodb.com/courses/catalog?_ga=2.56807458.903548860.1665632456-835634694.1665632456)
 
 [Altas MongoDB云平台](https://cloud.mongodb.com/v2/6344901a4678943557d643e8#clusters)
+
+[论坛：MongoDB Developer Community Forums - A place to discover, learn, and grow with MongoDB technologies](https://www.mongodb.com/community/forums/)
