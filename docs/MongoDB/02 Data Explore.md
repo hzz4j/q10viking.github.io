@@ -47,6 +47,8 @@ Data Explore
 
 ## insert
 
+### 使用Compass
+
 使用Compass插入一个document，体验感很好。
 
 ![image-20221013204057844](/images/MongoDB/image-20221013204057844.png)
@@ -73,4 +75,12 @@ Data Explore
   }
 }
 ```
+
+
+
+### 使用shell
+
+![image-20221013205936187](/images/MongoDB/image-20221013205936187.png)
+
+
 
