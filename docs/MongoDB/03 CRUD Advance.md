@@ -24,6 +24,8 @@ db.trips.find({ "tripduration": { "$lte" : 70 },
 
 ### Logical
 
+用中括号来包裹条件
+
 [Logical Query Operators — MongoDB Manual](https://www.mongodb.com/docs/manual/reference/operator/query-logical/)
 
 ![image-20221014114747470](/images/MongoDB/image-20221014114747470.png)
@@ -59,3 +61,40 @@ db.zips.find({ "$nor": [ { "pop": { "$lt":5000 } },
 
 - pop字段不能小于5000 并且（AND）
 - pop字段不能大于1000000
+
+
+
+### 案例
+
+> How many companies in the `sample_training.companies` dataset were
+>
+> either founded in `2004`
+>
+> > - [and] either have the *social* `category_code` [or] *web* `category_code`,
+>
+> [or] were founded in the month of `October`
+>
+> > - [and] also either have the *social* `category_code` [or] *web* `category_code`?
+
+我的写法
+
+```js
+ db.companies.find({ "$or": [ 
+     					{ "founded_year": 2004, 
+                         	"$or": [ { "category_code": "web" }, { "category_code": "social" }] 
+                          },
+     					{ "founded_month": 10, 
+                         	"$or": [ { "category_code": "web" }, { "category_code": "social" }] }] 
+                          }). count()
+```
+
+更加简洁的写法
+
+```js
+db.companies.find({ "$and": [
+                        { "$or": [ { "founded_year": 2004 },
+                                   { "founded_month": 10 } ] },
+                        { "$or": [ { "category_code": "web" },
+                                   { "category_code": "social" }]}]}).count()
+```
+
