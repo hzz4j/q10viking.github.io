@@ -64,6 +64,27 @@ db.zips.find({ "$nor": [ { "pop": { "$lt":5000 } },
 
 
 
+### Expressive
+
+::: tip
+
+Allows for more complex queries and for **comparing fields whith a document**
+
+:::
+
+- $ can be use to access the field value
+
+> 下面的例子注意$gt,$eq后面是数组
+
+![image-20221014145213960](/images/MongoDB/image-20221014145213960.png)
+
+```js
+db.companies.find({ "$expr": { "$eq": [ "$permalink", "$twitter_username" ] }
+                  }).count()
+```
+
+
+
 ### 案例
 
 > How many companies in the `sample_training.companies` dataset were
