@@ -16,3 +16,9 @@ typora-root-url: ..\.vuepress\public
 ### Comparison
 
 [Query and Projection Operators — MongoDB Manual](https://www.mongodb.com/docs/manual/reference/operator/query/#comparison)
+
+```js
+db.trips.find({ "tripduration": { "$lte" : 70 },
+                "usertype": { "$ne": "Subscriber" } }).pretty()
+```
+
