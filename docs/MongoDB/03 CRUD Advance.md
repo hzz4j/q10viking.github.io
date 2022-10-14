@@ -43,3 +43,19 @@ db.inspections.find(
 ```
 
 :::
+
+
+
+#### $nor的理解
+
+[$nor — MongoDB Manual](https://www.mongodb.com/docs/manual/reference/operator/query/nor/)
+
+```js
+db.zips.find({ "pop": { "$gte": 5000, "$lte": 1000000 }}).count()
+// 等价
+db.zips.find({ "$nor": [ { "pop": { "$lt":5000 } },
+             { "pop": { "$gt": 1000000 } } ] } ).count()
+```
+
+- pop字段不能小于5000 并且（AND）
+- pop字段不能大于1000000
