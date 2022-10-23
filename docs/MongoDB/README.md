@@ -12,6 +12,8 @@ MongoDB is a NoSQL database that uses documents to store data in an organized wa
 
 :::
 
+![img](/images/MongoDB/default-banner-img.png)
+
 [Altas MongoDB云平台](https://cloud.mongodb.com/v2/6344901a4678943557d643e8#clusters)
 
 目前我使用 outlook 账户进行学习
