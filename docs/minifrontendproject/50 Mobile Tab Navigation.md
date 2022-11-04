@@ -5,7 +5,6 @@ prev:
   text: Back To 目录
   link: /minifrontendproject/
 typora-root-url: ..\.vuepress\public
-
 ---
 
 ## Mobile Tab Navigation
