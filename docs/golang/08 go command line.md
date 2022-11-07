@@ -40,3 +40,25 @@ hello world
 go build -o bin/hello-world  hello-world.go
 ```
 
+## install
+
+```go
+go install
+```
+
+
+
+## mod
+
+```
+go mod tidy 
+```
+
+
+
+```
+mkdir name
+cd name
+go mod init name
+```
+

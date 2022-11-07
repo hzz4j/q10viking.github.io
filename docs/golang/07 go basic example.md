@@ -106,6 +106,19 @@ true
 
 ```
 
+### 多个变量
+
+```go
+func multiVar() {
+	var (
+		hello string = "Hello "
+		world string = "World"
+	)
+	fmt.Println(hello)
+	fmt.Println(world)
+}
+```
+
 
 
 ## Constant
