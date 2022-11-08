@@ -191,6 +191,7 @@ package main
 import "fmt"
 
 func main() {
+    // 可以有局部变量
 	if num := 9; num < 0 {
 		fmt.Println(num, "is negative")
 	} else if num < 10 {
