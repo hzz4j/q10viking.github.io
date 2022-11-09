@@ -13,6 +13,8 @@ typora-root-url: ..\.vuepress\public
 
 ```sh
 go run hello-world.go 
+# 运行当前目录下所有的文件
+go run .
 ```
 
 
