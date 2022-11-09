@@ -31,3 +31,5 @@ https://github.com/chapin666/books go书籍
 [Go by Example](https://gobyexample.com/)
 
 [https://gitee.com/infraboard/go-course](https://gitee.com/infraboard/go-course)
+
+[https://gitee.com/magedu/golang9](https://gitee.com/magedu/golang9)
