@@ -160,7 +160,13 @@ public class Application implements CommandLineRunner {
 
 ## 自动配置原理
 
-https://www.processon.com/view/link/6123f3e50e3e743b327d3d86
+::: tip
+
+主要是配置SqlSessionFactoryBean
+
+:::
+
+[Progresson Online View](https://www.processon.com/view/link/6123f3e50e3e743b327d3d86)
 
 ![Springboot整合Mybatis原理](/images/mybatis/Springboot整合Mybatis原理.png)
 
