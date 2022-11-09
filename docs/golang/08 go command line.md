@@ -9,10 +9,6 @@ typora-root-url: ..\.vuepress\public
 
 
 
-
-
-
-
 ## 运行
 
 ```sh
@@ -53,8 +49,6 @@ go install
 ```
 go mod tidy 
 ```
-
-
 
 ```
 mkdir name
