@@ -297,6 +297,16 @@ https://registry.yarnpkg.com
 PS C:\Users\11930\Desktop\docker\getting-started\app> yarn config set registry https://registry.npm.taobao.org
 ```
 
+尽管配置了国内镜像，还是会出现：`info There appears to be trouble with your network connection. Retrying...` 的问题
+
+解决方案[There appears to be trouble with your network connection. Retrying... · Issue #4890 · yarnpkg/yarn (github.com)](https://github.com/yarnpkg/yarn/issues/4890)
+
+```sh
+yarn install --network-timeout 1000000
+# 添加超时时间
+yarn install --production --network-timeout 1000000
+```
+
 
 
 ## 版本

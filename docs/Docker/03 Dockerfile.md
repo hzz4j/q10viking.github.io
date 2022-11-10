@@ -17,8 +17,6 @@ typora-root-url: ..\.vuepress\public
 
 
 
-
-
 ## CMD
 
 > The main purpose of a CMD is to provide defaults for an executing container.
@@ -26,8 +24,6 @@ typora-root-url: ..\.vuepress\public
 ```dockerfile
 CMD ["node", "src/index.js"]
 ```
-
-
 
 
 
@@ -48,7 +44,7 @@ FROM node:12-alpine
 RUN apk add --no-cache python2 g++ make
 WORKDIR /app
 COPY . .
-RUN yarn install --production
+RUN yarn install --production --network-timeout 1000000
 CMD ["node", "src/index.js"]
 EXPOSE 3000
 ```
