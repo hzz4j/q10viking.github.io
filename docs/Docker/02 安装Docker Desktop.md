@@ -142,6 +142,33 @@ Server: Docker Desktop 4.13.1 (90346)
 
 
 
+## 配置国内镜像
+
+| 说明                         | 地址                                                         |
+| ---------------------------- | ------------------------------------------------------------ |
+| Docker中国区官方镜像         | https://registry.docker-cn.com                               |
+| 网易                         | http://hub-mirror.c.163.com                                  |
+| 中国科学技术大学             | https://docker.mirrors.ustc.edu.cn                           |
+| ❤️阿里云(这个方式靠谱，推荐)❤️ | 登录：[https://cr.console.aliyun.com/](https://cr.console.aliyun.com/)。创建专属镜像 |
+
+![image-20221111005821969](/images/Docker/image-20221111005821969.png)
+
+
+
+```json
+"registry-mirrors": [
+    "https://docker.mirrors.ustc.edu.cn",
+    "http://hub-mirror.c.163.com",
+    "https://registry.docker-cn.com"
+]
+
+"registry-mirrors": [
+	"https://p04z7k6j.mirror.aliyuncs.com"
+]
+```
+
+![image-20221111010315477](/images/Docker/image-20221111010315477.png)
+
 ## 问题启动DockerDesktop
 
 启动DockerDesktop我的ubuntu也启动起来了
@@ -164,4 +191,5 @@ PS C:\Users\11930\Desktop> wsl -l -v
   Ubuntu                 Stopped         2
   docker-desktop-data    Running         2
 ```
+
 

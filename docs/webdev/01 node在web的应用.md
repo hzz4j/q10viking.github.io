@@ -289,6 +289,16 @@ npm config set registry=https://registry.npmmirror.com
 
 
 
+## yarn镜像配置
+
+```sh
+PS C:\Users\11930\Desktop\docker\getting-started\app> yarn config get registry
+https://registry.yarnpkg.com
+PS C:\Users\11930\Desktop\docker\getting-started\app> yarn config set registry https://registry.npm.taobao.org
+```
+
+
+
 ## 版本
 
 ```sh
