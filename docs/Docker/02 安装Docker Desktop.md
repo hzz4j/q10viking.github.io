@@ -130,3 +130,28 @@ Server: Docker Desktop 4.13.1 (90346)
   GitCommit:        de40ad0
 ```
 
+
+
+## 问题启动DockerDesktop
+
+启动DockerDesktop我的ubuntu也启动起来了
+
+```
+PS C:\Users\11930\Desktop> wsl -l -v
+  NAME                   STATE           VERSION
+* Ubuntu                 Running         2
+  docker-desktop-data    Running         2
+  docker-desktop         Running         2
+```
+
+修复方式，将docker-desktop设置为默认的发行版。[WSL 设置默认的发行版 | Microsoft Learn](https://learn.microsoft.com/zh-cn/windows/wsl/basic-commands#set-default-linux-distribution)
+
+```
+PS C:\Users\11930\Desktop> wsl --set-default docker-desktop
+PS C:\Users\11930\Desktop> wsl -l -v
+  NAME                   STATE           VERSION
+* docker-desktop         Running         2
+  Ubuntu                 Stopped         2
+  docker-desktop-data    Running         2
+```
+
