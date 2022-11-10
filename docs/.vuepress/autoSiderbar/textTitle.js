@@ -52,6 +52,7 @@ const titles = {
   webdev: "webdev",
   concurrency: "concurrency",
   FileSystem: "FileSystem",
+  Docker: "Docker",
 };
 
 module.exports = titles;
