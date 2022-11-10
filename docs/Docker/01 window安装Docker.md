@@ -68,7 +68,7 @@ PS C:\Users\11930\Desktop> wsl --install -d Ubuntu
 密码：123456
 ```
 
-### wsl关闭linux⭐
+### wsl关闭发行版⭐
 
 ```sh
 PS C:\> wsl -l -v 	# 查看当前的linux子系统
@@ -80,11 +80,21 @@ PS C:\> wsl -l -v
 * Ubuntu    Stopped         2
 ```
 
-### wsl启动linux⭐
+### wsl启动发行版⭐
 
 ```sh
 wsl #直接启动默认的发行版
 ```
+
+### 移动ubuntu安装位置到其他盘
+
+::: tip
+
+默认是在C盘
+
+:::
+
+[Move WSL to Another Drive (iany.me)](https://blog.iany.me/2020/06/move-wsl-to-another-drive/)
 
 
 

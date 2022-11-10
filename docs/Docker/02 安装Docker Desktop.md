@@ -95,6 +95,16 @@ PS C:\> wsl --import docker-desktop "E:\wsl\docker\docker-desktop" "E:\wsl\docke
 PS C:\> wsl --import docker-desktop-data "E:\wsl\docker\docker-desktop-data" "E:\wsl\docker\docker-desktop-data.tar" --version 2
 ```
 
+
+
+### 查看注册表显示移动成功
+
+> 注册表的路径：HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Lxss
+
+![image-20221110214810447](/images/Docker/image-20221110214810447.png)
+
+
+
 ## 查看docker
 
 ```sh
