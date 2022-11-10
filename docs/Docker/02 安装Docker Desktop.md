@@ -146,7 +146,7 @@ Server: Docker Desktop 4.13.1 (90346)
 
 启动DockerDesktop我的ubuntu也启动起来了
 
-```
+```sh
 PS C:\Users\11930\Desktop> wsl -l -v
   NAME                   STATE           VERSION
 * Ubuntu                 Running         2
@@ -156,7 +156,7 @@ PS C:\Users\11930\Desktop> wsl -l -v
 
 修复方式，将docker-desktop设置为默认的发行版。[WSL 设置默认的发行版 | Microsoft Learn](https://learn.microsoft.com/zh-cn/windows/wsl/basic-commands#set-default-linux-distribution)
 
-```
+```sh
 PS C:\Users\11930\Desktop> wsl --set-default docker-desktop
 PS C:\Users\11930\Desktop> wsl -l -v
   NAME                   STATE           VERSION

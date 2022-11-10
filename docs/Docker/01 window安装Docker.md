@@ -120,7 +120,7 @@ PS C:\Users\11930\Desktop> wsl -l -v
 * Ubuntu                 Stopped         2
   docker-desktop-data    Running         2
   docker-desktop         Running         2
-PS C:\Users\11930\Desktop> wsl --distribution docker-desktop
+PS C:\Users\11930\Desktop> wsl --distribution docker-desktop   # 也可以简写为 wsl -d docker-desktop
 ```
 
 ### 查看当前发行版状态
