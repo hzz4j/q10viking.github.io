@@ -161,7 +161,7 @@ Server: Docker Desktop 4.13.1 (90346)
     "http://hub-mirror.c.163.com",
     "https://registry.docker-cn.com"
 ]
-
+// 推荐使用阿里云
 "registry-mirrors": [
 	"https://p04z7k6j.mirror.aliyuncs.com"
 ]
@@ -191,5 +191,4 @@ PS C:\Users\11930\Desktop> wsl -l -v
   Ubuntu                 Stopped         2
   docker-desktop-data    Running         2
 ```
-
 
