@@ -145,6 +145,8 @@ export default function useEventListener(
 - style
 - 自定义插件
 - watch ref数据或者watch props数据
+- ref和unref
+- Transition
 
 
 
@@ -343,5 +345,41 @@ With every version/syntax, the `<style>` tag for this component must be `scoped`
     padding: 0 1rem;
     font-size: 2.2rem;
 }
+```
+
+
+
+## 数据懒加载
+
+[useIntersectionObserver | VueUse](https://vueuse.org/core/useintersectionobserver/)
+
+[IntersectionObserver() - Web APIs | MDN (mozilla.org)](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver)
+
+```tsx
+// 订阅事件
+export function useIntersectionObserver(
+  target: Ref<any>,
+  callback: IntersectionObserverCallback,
+  options: IntersectionObserverInit = {
+    rootMargin: "0px",
+    threshold: 0.1,
+  }
+) {
+  console.log("订阅懒加载")
+  const observer = new IntersectionObserver(callback, options)
+  // unref 去除响应式
+  observer.observe(unref(target))
+}
+```
+
+```tsx
+// 检测通知
+onMounted(() => {
+  useIntersectionObserver(target, ([{ isIntersecting }], observerElement) => {
+    if (isIntersecting) {
+      console.log("loaded data")
+    }
+  })
+})
 ```
 
