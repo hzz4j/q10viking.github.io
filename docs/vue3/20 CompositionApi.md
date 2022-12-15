@@ -507,6 +507,33 @@ const id = ref(props.idx)
 
 
 
+### 默认值
+
+```tsx
+defineProps({
+  unit: {
+    type: String,
+    default: "¥",
+  },
+})
+```
+
+带类型
+
+```tsx
+interface Props {
+  mainTitle?: string
+  subTitle?: string
+}
+
+withDefaults(defineProps<Props>(), {
+  mainTitle: "",
+  subTitle: "",
+})
+```
+
+
+
 ## Events
 
 

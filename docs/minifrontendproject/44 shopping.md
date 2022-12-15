@@ -383,3 +383,32 @@ onMounted(() => {
 })
 ```
 
+
+
+## render函数使用
+
+面包屑改造
+
+```vue
+<template>
+  <div class="bread-wrapper">
+    <div class="bread-item">
+      <RouterLink to="/" class="bread-item">首页</RouterLink>
+      <NextIcon></NextIcon>
+    </div>
+    <div v-if="parentName">
+      <RouterLink :to="parentPath" class="bread-item">{{
+        parentName
+      }}</RouterLink>
+      <NextIcon></NextIcon>
+    </div>
+    <div class="bread-item">
+      <span><slot></slot></span>
+    </div>
+  </div>
+</template>
+```
+
+
+
+[Vue SFC Playground (vuejs.org)](https://sfc.vuejs.org/#eNqlUe1qg0AQfJXlKJyCOf/bNFD6GLU/Ul2jQT3ZPdOW4Lt373JN+gGlJYLi3s7O3Owc1f00mcOMqlBrrqib3KYcoRsmSw6O0MICDdkBtGD0pfPQdn0dOyYPlWcRhGDwNWBqbLZzLyxyBEA41khJGkt/4GYaoU103R10JmJVv2UuQDfWalgyeNSEtXTaJAhkINN3m8uE5t46naZPaaBc5CvvOj/7kILdW4/AlZ2w9s5ARr2U7S0Vcof6Ns543EZl6mRwNWwns2c7yl7ChcvY4FIVHxZKJZZ9XarWuYmLPOem8nvYs7G0y+XP0Dy6bkCDPKyeyb4wkhCXKvvEkcvhAWl12hHSb5zfoD94Pa04WsTKOZa/hntdcCE3H1vEAegdIY46WpXHGOPajs2NT45NFEpO+QH8K0gjcpckg9LXLJd3GdzxsA==)
