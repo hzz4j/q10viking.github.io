@@ -236,6 +236,18 @@ body{
 
 
 
+## 使用模块
+
+```scss
+@use "sass:math";
+
+li {
+	margin: math.div($globe-spacing,2);
+}
+```
+
+
+
 ### 开源库
 
 [Gerillass: The best Sass mixins library for modern web design](https://gerillass.com/) 
