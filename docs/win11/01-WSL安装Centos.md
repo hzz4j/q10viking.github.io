@@ -19,6 +19,10 @@ win11下安装了DockerDesktop来通过docker到处centos的版本，从而通�
 
 
 
+## wsl安装centos
+
+
+
 ```sh
 docker pull centos:centos7.9.2009
 
@@ -62,10 +66,77 @@ E:\wsl\centos7\first>wsl -l -v
 
 
 
-进入centos
+## 进入centos❤️
 
 ```
 wsl -d centos7.9.2009
+```
+
+
+
+## 停止
+
+```sh
+wsl --terminate centos7.9.2009
+```
+
+
+
+## 配置工作
+
+### DNS配置
+
+1. ping www.baidu.com域名不通，但是ping 183.232.231.174 IP地址是通的。
+
+
+
+[WSL2 网络异常排查 ping 不通、网络地址异常、缺少默认路由、被宿主机防火墙拦截 ](https://www.jianshu.com/p/ba2cf239ebe0)
+
+创建/etc/wsl.conf文件
+
+```sh
+[network]
+generateResolvConf = false
+```
+
+删除/etc/resolv.conf文件（这是一个软连接）
+
+```sh
+[root@hzz etc]# rm resolv.conf
+rm: remove symbolic link ‘resolv.conf’? y
+[root@hzz etc]# touch resolv.conf
+[root@hzz etc]# vi resolv.conf
+```
+
+
+
+```
+nameserver 114.114.114.114
+nameserver 223.5.5.5
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+```
+
+测试：成功
+
+```sh
+[root@hzz etc]# ping www.baidu.com
+PING www.baidu.com (183.232.231.174) 56(84) bytes of data.
+64 bytes from 183.232.231.174 (183.232.231.174): icmp_seq=1 ttl=54 time=26.2 ms
+64 bytes from 183.232.231.174 (183.232.231.174): icmp_seq=2 ttl=54 time=25.3 ms
+64 bytes from 183.232.231.174 (183.232.231.174): icmp_seq=3 ttl=54 time=26.1 ms
+64 bytes from 183.232.231.174 (183.232.231.174): icmp_seq=4 ttl=54 time=25.9 ms
+^C
+--- www.baidu.com ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 7075ms
+rtt min/avg/max/mdev = 25.385/25.941/26.288/0.356 ms
+```
+
+### 安装网络工具
+
+```sh
+# 更新
+yum update -y
 ```
 
 
@@ -74,3 +145,4 @@ wsl -d centos7.9.2009
 
 [导入要与 WSL 一起使用的任何 Linux 发行版 | Microsoft Learn](https://learn.microsoft.com/zh-cn/windows/wsl/use-custom-distro)
 
+[使用 WSL 访问网络应用程序 | Microsoft Learn](https://learn.microsoft.com/zh-cn/windows/wsl/networking)
