@@ -64,3 +64,31 @@ Threads: 3  Questions: 22  Slow queries: 0  Opens: 168  Flush tables: 3  Open ta
 --------------
 ```
 
+
+
+## Java代码测试
+
+```java
+public class Main {
+    public static void main(String[] args) throws SQLException {
+        String url = "jdbc:mysql://localhost:3306/learn_mysql";
+        String username = "hzz";
+        String password = "Root.123456";
+        String sql = "select * from users where id=?";
+        Connection connection = DriverManager.getConnection(url, username, password);
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setInt(1,1);
+        ResultSet resultSet = ps.executeQuery();
+
+        if(resultSet.next()){
+            System.out.println("查询到一条语句");
+            User user = new User();
+            user.setId(resultSet.getInt("id"));
+            user.setName(resultSet.getString("name"));
+            System.out.println(user);
+        }
+
+    }
+}
+```
+
