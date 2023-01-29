@@ -1,3 +1,22 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /win11/
+typora-root-url: ..\.vuepress\public
+---
+
+
+
+
+
+::: tip
+
+win11下安装了DockerDesktop来通过docker到处centos的版本，从而通过wsl来安装
+
+:::
+
 
 
 ```sh
