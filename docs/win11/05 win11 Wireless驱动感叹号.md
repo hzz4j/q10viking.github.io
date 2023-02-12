@@ -106,6 +106,8 @@ netsh winsock reset
 
 ![image-20230212144305695](/images/win11/image-20230212144305695.png)
 
+
+
 > 设备管理
 
 ![image-20230212144420129](/images/win11/image-20230212144420129.png)
@@ -151,6 +153,12 @@ netsh winsock reset
 ![image-20230212153100707](/images/win11/image-20230212153100707.png)
 
 ![image-20230212153206978](/images/win11/image-20230212153206978.png)
+
+### 服务要开
+
+> Intel® PROSet/Wireless Service 使用自动方式
+
+
 
 ## 参考链接
 
