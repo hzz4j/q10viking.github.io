@@ -27,4 +27,21 @@ typora-root-url: ..\.vuepress\public
 
 ## 安装Maven
 
+> 下载maven并配置环境变量
+
 [maven的下载与安装教程（超详细）_格子衫111的博客-CSDN博客_maven下载](https://blog.csdn.net/u012660464/article/details/114113349)
+
+> 使用阿里云镜像
+
+[maven镜像_maven下载地址_maven安装教程-阿里巴巴开源镜像站 (aliyun.com)](https://developer.aliyun.com/mirror/maven)
+
+```xml
+<mirror>
+    <id>aliyunmaven</id>
+    <mirrorOf>*</mirrorOf>
+    <name>阿里云公共仓库</name>
+    <url>https://maven.aliyun.com/repository/public</url>
+</mirror>
+```
+
+[仓库服务 (aliyun.com)](https://developer.aliyun.com/mvn/guide?spm=a2c6h.13651104.0.0.43586e1aPgmg75)
