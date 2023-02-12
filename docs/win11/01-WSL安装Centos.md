@@ -137,9 +137,11 @@ rtt min/avg/max/mdev = 25.385/25.941/26.288/0.356 ms
 ```sh
 # 更新
 yum update -y
+# 安装工具
+yum -y install net-tools
 ```
 
-
+ 172.18.110.175
 
 ## 参考
 
