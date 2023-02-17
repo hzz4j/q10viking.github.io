@@ -1,12 +1,15 @@
 ---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /java/
 typora-root-url: ..\.vuepress\public
 ---
 
 ::: tip
 
-> D:\learncode\javabasic
-
-Java
+## Java
 
 [Java Platform Standard Edition 8 Documentation (oracle.com)](https://docs.oracle.com/javase/8/docs/)
 
@@ -21,6 +24,14 @@ Java
 ![202112111636464](/images/java/202112111636464.gif)
 
 
+
+### 1. Java体系结构
+
+<img src="/images/java/image-20210325204223872.png" alt="image-20210325204223872"  />
+
+### 2. 跨平台特性
+
+<img src="/images/java/image-20210325204628164.png" alt="image-20210325204628164"  />
 
 
 
