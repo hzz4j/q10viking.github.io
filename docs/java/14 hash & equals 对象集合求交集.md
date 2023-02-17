@@ -1,3 +1,15 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /java/
+typora-root-url: ..\.vuepress\public
+---
+
+
+
+
 > 在看nacos服务注册时，求服务实例集合的交集
 
 ## 重写hashcode与equals方法

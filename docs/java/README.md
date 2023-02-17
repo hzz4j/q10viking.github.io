@@ -3,7 +3,7 @@ sidebarDepth: 3
 sidebar: auto
 prev:
   text: Back To 目录
-  link: /java/
+  link: /topicNav/
 typora-root-url: ..\.vuepress\public
 ---
 

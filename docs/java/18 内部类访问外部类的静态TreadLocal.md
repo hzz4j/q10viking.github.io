@@ -1,3 +1,12 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /java/
+typora-root-url: ..\.vuepress\public
+---
+
 
 
 > 内部类new一个对象，访问包装类的static 线程暴露对象ThreadLocal

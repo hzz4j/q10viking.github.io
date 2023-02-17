@@ -1,3 +1,12 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /java/
+typora-root-url: ..\.vuepress\public
+---
+
 
 
 > 非静态内部类访问外部类的方式，this
