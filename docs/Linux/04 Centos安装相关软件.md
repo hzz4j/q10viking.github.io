@@ -42,5 +42,5 @@ ZF71R-DMX85-08DQY-8YMNC-PPHV8
 JU090-6039P-08409-8J0QH-2YR7F
 ```
 
-[在VMware中安装CentOS7（超详细的图文教程）_qq_45743985的博客-CSDN博客_vm 安装centos7](https://blog.csdn.net/qq_45743985/article/details/121152504)
+[在VMware中安装CentOS7](https://blog.csdn.net/qq_45743985/article/details/121152504)
 
