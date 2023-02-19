@@ -11,7 +11,7 @@ typora-root-url: ..\.vuepress\public
 
 ## 1. 下载centos7
 
-[[清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/)](https://mirrors.tuna.tsinghua.edu.cn/centos/7.9.2009/isos/x86_64/)
+[清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/centos/7.9.2009/isos/x86_64/)
 
 ![image-20210312105631756](/images/linux/image-20210312105631756.png)
 
