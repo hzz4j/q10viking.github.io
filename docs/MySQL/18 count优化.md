@@ -20,7 +20,7 @@ typora-root-url: ..\.vuepress\public
 
 **四个sql的执行计划一样，说明这四个sql执行效率应该差不多**
 
-![image-20211028201409693](/../../../../saas-yong/fullstack/Java架构师之路/Mysql/imgs/image-20211028201409693.png)
+![image-20211028201409693](/images/MySQL/image-20211028201409693.png)
 
 **字段有索引：count(\*)≈count(1)>count(字段)>count(主键 id)    //字段有索引，count(字段)统计走二级索引，二级索引存储数据比主键索引少，所以count(字段)>count(主键 id)** 
 
