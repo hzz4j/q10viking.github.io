@@ -9,7 +9,7 @@ typora-root-url: ..\.vuepress\public
 
 ## **Pub/Sub** **订阅模式** 
 
-
+[pubsub source code](https://github.com/Q10Viking/learncode/tree/main/rabbitmq/_01_rabbitmq_java_api/src/main/java/org/hzz/pubsub)
 
 ![image-20211031014501124](/images/MySQL/image-20211031014501124.png)
 
@@ -45,6 +45,57 @@ typora-root-url: ..\.vuepress\public
 ## 使用场景
 
 ![image-20211031015009800](/../../../../saas-yong/fullstack/Java架构师之路/Rabbitmq/imgs/image-20211031015009800.png)
+
+
+
+> Weather.java
+
+```java
+public class Weather {
+    public static void main(String[] args) throws Exception {
+        Connection connection = RabbitUtils.getConnection();
+        String input = new Scanner(System.in).next();
+        Channel channel = connection.createChannel();
+
+        //第一个参数交换机名字   其他参数和之前的一样
+        channel.basicPublish(RabbitConstant.EXCHANGE_WEATHER,"" , null , input.getBytes());
+
+        channel.close();
+        connection.close();
+    }
+}
+```
+
+> Sina.java
+
+```java
+public class Sina {
+    public static void main(String[] args) throws IOException {
+        //获取TCP长连接
+        Connection connection = RabbitUtils.getConnection();
+        //获取虚拟连接
+        final Channel channel = connection.createChannel();
+        //声明队列信息
+        channel.queueDeclare(RabbitConstant.QUEUE_SINA, false, false, false, null);
+
+        //queueBind用于将队列与交换机绑定
+        //参数1：队列名 参数2：交互机名  参数三：路由key（暂时用不到)
+        channel.queueBind(RabbitConstant.QUEUE_SINA, RabbitConstant.EXCHANGE_WEATHER, "");
+        channel.basicQos(1);
+        channel.basicConsume(RabbitConstant.QUEUE_SINA , false , new DefaultConsumer(channel){
+            @Override
+            public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
+                System.out.println("新浪天气收到气象信息：" + new String(body));
+                channel.basicAck(envelope.getDeliveryTag() , false);
+            }
+        });
+    }
+}
+```
+
+
+
+
 
 ## **小结**
 
