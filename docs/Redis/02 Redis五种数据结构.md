@@ -11,7 +11,7 @@ typora-root-url: ..\.vuepress\public
 
 ## 5种数据结构
 
-常用命令： https://redis.io/commands
+[常用命令](https://redis.io/commands)
 
 ![](/images/Redis/image-20211114043926897.png)
 
