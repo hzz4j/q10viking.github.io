@@ -11,6 +11,8 @@ typora-root-url: ..\.vuepress\public
 
 ## **Spring** **整合** **RabbitMQ**
 
+[Spring 整合 RabbbitMQ Source Code](https://github.com/Q10Viking/learncode/tree/main/rabbitmq/_02_spring_rabbitmq_produce_basic)
+
 需求：使用 Spring **整合** **RabbitMQ**
 
 ```sh
