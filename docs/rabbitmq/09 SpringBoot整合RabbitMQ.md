@@ -11,6 +11,8 @@ typora-root-url: ..\.vuepress\public
 
 ## 1. 引入依赖
 
+[SpringBoot整合RabbitMQ Source Code](https://github.com/Q10Viking/learncode/tree/main/rabbitmq/_03_springboot_rabbitmq)
+
 ```xml
 <dependency>
     <groupId>org.springframework.boot</groupId>
@@ -92,22 +94,12 @@ springboot自动配置中带有RabbitAutoConfiguration，在这个类中注入�
 定义监听类，使用@RabbitListener注解完成队列监听
 
 ```java
-import org.springframework.amqp.core.Message;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.stereotype.Component;
-
-/**
- * @author 白起老师
- */
 @Component
 public class RabbitMQListener {
-
-      //定义方法进行信息的监听   RabbitListener中的参数用于表示监听的是哪一个队列
-      @RabbitListener(queues = "boot_queue")
-      public void ListenerQueue(Message message){
-          System.out.println("message:"+message.getBody());
-      }
+    @RabbitListener(queues = "boot_queue")
+    public void ListenerQueue(Message message){
+        System.out.println("Message: "+ new String(message.getBody()));
+    }
 }
-
 ```
 
