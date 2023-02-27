@@ -15,7 +15,7 @@ typora-root-url: ..\.vuepress\public
 
 [Messaging that just works — RabbitMQ](https://www.rabbitmq.com/)
 
-在`192.168.187.135`机器上，准备安装的版本：
+在`192.168.135.130`机器上，准备安装的版本：
 
 1. RabbitMQ 3.8.15    
 2. Erlang版本选择23.x系列
@@ -270,7 +270,7 @@ Complete!
 rabbitmq-plugins enable rabbitmq_management
 ```
 
-http://learning.hzz.org:15672/
+[http://192.168.135.130:15672/](http://192.168.135.130:15672/)
 
 防火墙开放端口 15672 和 代码5672   firewall-cmd --zone=public --add-port=5672/tcp --permanent
 
@@ -335,8 +335,8 @@ service rabbitmq-server stop
 ### 用户名与密码❤️
 
 ```sh
-192.168.187.135:15672
-hzz root.123456
+192.168.135.130:15672
+hzz Root.123456
 或者
 guest guest
 ```
