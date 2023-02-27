@@ -130,7 +130,7 @@ EXPLAIN SELECT * FROM employees WHERE name= 'LiLei' AND age = 23 AND position ='
 EXPLAIN SELECT * FROM employees WHERE name != 'LiLei';
 ```
 
-![image-20211027013111811](/../../../../saas-yong/fullstack/Java架构师之路/Mysql/imgs/image-20211027013111811.png)
+![image-20211027013111811](/images/MySQL/image-20211027013111811.png)
 
 
 
@@ -140,7 +140,7 @@ EXPLAIN SELECT * FROM employees WHERE name != 'LiLei';
 EXPLAIN SELECT * FROM employees WHERE name is null;
 ```
 
-![image-20211027013234790](/../../../../saas-yong/fullstack/Java架构师之路/Mysql/imgs/image-20211027013234790.png)
+![image-20211027013234790](/images/MySQL/image-20211027013234790.png)
 
 
 
@@ -150,14 +150,14 @@ EXPLAIN SELECT * FROM employees WHERE name is null;
 EXPLAIN SELECT * FROM employees WHERE name like '%Lei';
 ```
 
-![image-20211027013407542](/../../../../saas-yong/fullstack/Java架构师之路/Mysql/imgs/image-20211027013407542.png)
+![image-20211027013407542](/images/MySQL/image-20211027013407542.png)
 
 ```sql
 -- 走了索引
 EXPLAIN SELECT * FROM employees WHERE name like 'Lei%';
 ```
 
-![image-20211027013512040](/../../../../saas-yong/fullstack/Java架构师之路/Mysql/imgs/image-20211027013512040.png)
+![image-20211027013512040](/images/MySQL/image-20211027013512040.png)
 
 **问题：解决like'%字符串%'索引不被使用的方法？**
 
@@ -167,7 +167,7 @@ EXPLAIN SELECT * FROM employees WHERE name like 'Lei%';
    EXPLAIN SELECT name,age,position FROM employees WHERE name like '%Lei%';
    ```
 
-   ![image-20211027013754413](/../../../../saas-yong/fullstack/Java架构师之路/Mysql/imgs/image-20211027013754413.png)
+   ![image-20211027013754413](/images/MySQL/image-20211027013754413.png)
 
 2. 如果不能使用覆盖索引则可能需要借助搜索引擎
 
@@ -177,13 +177,13 @@ EXPLAIN SELECT * FROM employees WHERE name like 'Lei%';
 EXPLAIN SELECT * FROM employees WHERE name = '1000';
 ```
 
-![image-20211027013857329](/../../../../saas-yong/fullstack/Java架构师之路/Mysql/imgs/image-20211027013857329.png)
+![image-20211027013857329](/images/MySQL/image-20211027013857329.png)
 
 ```sql
 EXPLAIN SELECT * FROM employees WHERE name = 1000;
 ```
 
-![image-20211027013936150](/../../../../saas-yong/fullstack/Java架构师之路/Mysql/imgs/image-20211027013936150.png)
+![image-20211027013936150](/images/MySQL/image-20211027013936150.png)
 
 
 
@@ -193,7 +193,7 @@ EXPLAIN SELECT * FROM employees WHERE name = 1000;
 EXPLAIN SELECT * FROM employees WHERE name = 'LiLei' or name = 'HanMeimei';
 ```
 
-![image-20211027014057892](/../../../../saas-yong/fullstack/Java架构师之路/Mysql/imgs/image-20211027014057892.png)
+![image-20211027014057892](/images/MySQL/image-20211027014057892.png)
 
 
 
@@ -213,7 +213,7 @@ ALTER TABLE `employees` DROP INDEX `idx_age`;
 
 ## ⭐⭐索引使用总结
 
-![image-20211027014439280](/../../../../saas-yong/fullstack/Java架构师之路/Mysql/imgs/image-20211027014439280.png)
+![image-20211027014439280](/images/MySQL/image-20211027014439280.png)
 
 
 
