@@ -21,7 +21,7 @@ typora-root-url: ..\.vuepress\public
 EXPLAIN select * from t1 inner join t2 on t1.a= t2.a;
 ```
 
-![image-20211028192758723](/../../../../saas-yong/fullstack/Java架构师之路/Mysql/imgs/image-20211028192758723.png)
+![image-20211028192758723](/images/MySQL/image-20211028192758723.png)
 
 
 
@@ -52,7 +52,7 @@ EXPLAIN select * from t1 inner join t2 on t1.a= t2.a;
 EXPLAIN select * from t1 inner join t2 on t1.b= t2.b;
 ```
 
-![image-20211028193337265](/../../../../saas-yong/fullstack/Java架构师之路/Mysql/imgs/image-20211028193337265.png)
+![image-20211028193337265](/images/MySQL/image-20211028193337265.png)
 
 Extra 中 的Using join buffer (Block Nested Loop)说明该关联查询使用的是 BNL 算法。
 
