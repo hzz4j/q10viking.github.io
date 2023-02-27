@@ -29,7 +29,7 @@ typora-root-url: ..\.vuepress\public
 
 如果采用定时器去实现，会存**定时器的在时效性的问题**⭐
 
-![image-20211031085355309](/../../../../saas-yong/fullstack/Java架构师之路/Rabbitmq/imgs/image-20211031085355309.png)
+![image-20211031085355309](/images/RabbitMQ/image-20211031085355309.png)
 
 
 
@@ -39,7 +39,7 @@ typora-root-url: ..\.vuepress\public
 
 延迟队列:指消息进入队列后，可以被延迟一定时间，再进行消费。
 
-![image-20211031085646577](/images/RabbitMQ/image-20211031085646577.png)
+![image-20211031085646577](/images/RabbitMQ/image-202110310856465771)
 
 生产端设置
 
