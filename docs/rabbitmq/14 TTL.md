@@ -15,11 +15,11 @@ typora-root-url: ..\.vuepress\public
 
 ### 队列设置ttl
 
-![image-20211031063750080](/../../../../saas-yong/fullstack/Java架构师之路/Rabbitmq/imgs/image-20211031063750080.png)
+![image-20211031063750080](/images/RabbitMQ/image-20211031063750080.png)
 
 ### 消息设置ttl
 
-![image-20211031064246588](/../../../../saas-yong/fullstack/Java架构师之路/Rabbitmq/imgs/image-20211031064246588.png)
+![image-20211031064246588](/images/RabbitMQ/image-20211031064246588.png)
 
 
 
