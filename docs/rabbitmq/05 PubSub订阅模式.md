@@ -33,18 +33,18 @@ typora-root-url: ..\.vuepress\public
    channel.queueBind(RabbitConstant.QUEUE_SINA, RabbitConstant.EXCHANGE_WEATHER, "");
    ```
 
-![image-20211031020856758](/../../../../saas-yong/fullstack/Java架构师之路/Rabbitmq/imgs/image-20211031020856758.png)
+![image-20211031020856758](/images/designpattern/image-20211031020856758.png)
 
 
 2. **创建的exchange类型是Fanout**⭐
 
-   ![image-20211031020549489](/../../../../saas-yong/fullstack/Java架构师之路/Rabbitmq/imgs/image-20211031020549489.png)
+   ![image-20211031020549489](/images/RabbitMQ/image-20211031020549489.png)
 
 ----------
 
 ## 使用场景
 
-![image-20211031015009800](/../../../../saas-yong/fullstack/Java架构师之路/Rabbitmq/imgs/image-20211031015009800.png)
+![image-20211031015009800](/images/RabbitMQ/image-20211031015009800.png)
 
 
 
