@@ -171,7 +171,7 @@ private void doAcquireInterruptibly(int arg)
 
 剔除死亡（CANCEL）的节点
 
-![image-20210622103107372](D:\Github\saas-yong\fullstack\Java架构师之路\Java并发编程\imgs\image-20210622103107372.png)
+![image-20210622103107372](/images/concurrency/image-20210622103107372.png)
 
 ```java
 private void cancelAcquire(Node node) {
