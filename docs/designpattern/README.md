@@ -29,5 +29,5 @@ typora-root-url: ..\.vuepress\public
 1. 资源集中管理，实现资源的可配置和易管理。
 2. 降低了使用资源双方的依赖程度，也就是我们说的耦合度
 
-<img src="/../../../../saas-yong/fullstack/Java架构师之路/设计模式/img/image-20210328145415502.png" alt="image-20210328145415502"  />
+<img src="/images/designpattern/image-20210328145415502.png" alt="image-20210328145415502"  />
 
