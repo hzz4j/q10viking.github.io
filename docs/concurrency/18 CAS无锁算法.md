@@ -19,14 +19,14 @@ typora-root-url: ..\.vuepress\public
 
 1. 此时threadB进行修改，将值变成了1
 
-![image-20210621003240611](/../../../../saas-yong/fullstack/Java架构师之路/Java并发编程/imgs/image-20210621003240611.png)
+![image-20210621003240611](/images/concurrency/image-20210621003240611.png)
 
 2. 此时threadA准备去修改为2，但是expect的值已经不是当初threadA读取的值了，被threadB修改过，发生了变化。则放弃此次修改。
 
-![image-20210621003625624](/../../../../saas-yong/fullstack/Java架构师之路/Java并发编程/imgs/image-20210621003625624.png)
+![image-20210621003625624](/images/concurrency/image-20210621003625624.png)
 
 3. threadA需要重新读取主内存的值，然后计算，刷新会主存中
-   ![image-20210621003940765](/../../../../saas-yong/fullstack/Java架构师之路/Java并发编程/imgs/image-20210621003940765.png)
+   ![image-20210621003940765](/images/concurrency/image-20210621003940765.png)
 
 ----------
 
