@@ -11,11 +11,11 @@ typora-root-url: ..\.vuepress\public
 
 ## 对象的内存布局
 
-![img](D:\Github\saas-yong\fullstack\Java架构师之路\Java并发编程\imgs\2557)
+![img](/images/concurrency/2557)
 
 ### 对象头
 
-![image-20210620185907370](D:\Github\saas-yong\fullstack\Java架构师之路\Java并发编程\imgs\image-20210620185907370.png)
+![image-20210620185907370](/images/concurrency/image-20210620185907370.png)
 
 hashCode在偏向所，轻量级，重量级时放到哪里去了呢？
 
@@ -360,6 +360,6 @@ Space losses: 0 bytes internal + 0 bytes external = 0 bytes total
 
 上面的锁的膨胀升级，比单纯直接进行重量级锁，效率要高。但是锁的过程不可逆，其中不包括无锁状态。
 
-![image-20210620205323300](D:/Github/saas-yong/fullstack/Java架构师之路/Java并发编程/imgs/image-20210620205323300.png)
+![image-20210620205323300](/images/concurrency/image-20210620205323300.png)
 
-<img src="/image-20210620205724376.png" alt="image-20210620205724376"  />
+![image-20210620205724376](/images/concurrency/image-20210620205724376.png)
