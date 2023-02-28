@@ -17,7 +17,7 @@ typora-root-url: ..\.vuepress\public
 3. 消费者
 ```
 
-
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/rabbitmq/_04_springboot_rabbitmq_all/spring_rabbitmq)
 
 ## 配置
 
