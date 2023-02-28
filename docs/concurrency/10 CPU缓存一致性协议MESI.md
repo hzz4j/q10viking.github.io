@@ -33,7 +33,7 @@ volatile对应的汇编指令码lock
 | S 共享 (Shared)          | 该Cache line有效，数据和内存中的数据一致，数据存在于很多Cache中。 | 缓存行也必须监听其它缓存使该缓存行无效或者独享该缓存行的请求，并将该缓存行变成无效（Invalid）。 |
 | I 无效 (Invalid)         | 该Cache line无效。                                           | 无                                                           |
 
-![image-20210620110422747](/../../../../saas-yong/fullstack/Java架构师之路/Java并发编程/imgs/image-20210620110422747.png)
+![image-20210620110422747](/images/concurrency/image-20210620110422747.png)
 
 CPU修改缓存中的值，需要对**缓存行进行加锁**，**同时向外部发一个消息（本地写缓存消息）**，另外其他的cpu检测到这个信号，就会把该缓存行的变量副本标记为（I）无效状态。
 
@@ -52,7 +52,7 @@ CPU修改缓存中的值，需要对**缓存行进行加锁**，**同时向外�
 1. CPU A发出了一条指令，从主内存中读取x。
 2. 从主内存通过bus读取到缓存中（远端读取Remote read）,这是该Cache line修改为E状态（独享）.
 
-![img](/../../../../saas-yong/fullstack/Java架构师之路/Java并发编程/imgs/14510)
+![img](/images/concurrency/14510)
 
 ## 双核读取
 
@@ -61,7 +61,7 @@ CPU修改缓存中的值，需要对**缓存行进行加锁**，**同时向外�
 3. CPU B发出了一条指令，从主内存中读取x
 4. CPU B试图从主内存中读取x时，CPU A检测到了地址冲突。这时CPU A对相关数据做出响应。此时x 存储于cache a和cache b中，x在chche a和cache b中都被设置为S状态(共享)
 
-![img](/../../../../saas-yong/fullstack/Java架构师之路/Java并发编程/imgs/14509)
+![img](/images/concurrency/14509)
 
 ## 修改数据
 
@@ -69,7 +69,7 @@ CPU修改缓存中的值，需要对**缓存行进行加锁**，**同时向外�
 2. CPU A 将x设置为M状态（修改）并通知缓存了x的CPU B, CPU B将本地cache b中的x设置为I状态(无效)
 3. CPU A 对x进行赋值
 
-![img](/../../../../saas-yong/fullstack/Java架构师之路/Java并发编程/imgs/14511)
+![img](/images/concurrency/14511)
 
 ## 同步数据
 
@@ -77,7 +77,7 @@ CPU修改缓存中的值，需要对**缓存行进行加锁**，**同时向外�
 2. CPU B 通知CPU A,CPU A将修改后的数据同步到主内存时cache a 修改为E（独享）
 3. CPU A同步CPU B的x,将cache a和同步后cache b中的x设置为S状态（共享）
 
-![img](/../../../../saas-yong/fullstack/Java架构师之路/Java并发编程/imgs/14508)
+![img](/images/concurrency/14508)
 
 ## 缓存行伪共享
 
