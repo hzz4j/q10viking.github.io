@@ -13,7 +13,7 @@ typora-root-url: ..\.vuepress\public
 
 ### 类结构图
 
-![0](D:\Github\saas-yong\fullstack\Java架构师之路\Java并发编程\imgs\36441.png)
+![0](/images/concurrency/36441.png)
 
 
 
@@ -214,5 +214,10 @@ public class Test2 {
 
 ## 定时线程池机制
 
-![img](D:\Github\saas-yong\fullstack\Java架构师之路\Java并发编程\imgs\36361.png)
+![img](/images/concurrency/36361.png)
 
+### 任务的排序
+
+堆: 1. 最小根堆，2. 最大根堆
+
+存储数据结构是一个数组
