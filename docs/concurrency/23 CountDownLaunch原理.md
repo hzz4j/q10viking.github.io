@@ -82,6 +82,7 @@ public class SeeDoctorTask implements Runnable {
     }
 
     public void run() {
+        
         try {
             System.out.println("开始看医生");
             Thread.sleep(2000);
