@@ -98,9 +98,38 @@ public class SellTicketDemo implements Runnable {
 
 
 
-## 创建线程
+## 创建线程的几种方式
 
-### Callable
+### 1. 使用Thread类或者继承Thread类
+
+```java
+// 创建线程对象
+Thread t = new Thread() {
+    public void run() {
+    // 要执行的任务
+    }
+};
+// 启动线程
+```
+
+
+
+### 2. **实现 Runnable 接口配合Thread**
+
+```java
+Runnable runnable = new Runnable() {
+    public void run(){
+    // 要执行的任务
+    }
+};
+// 创建线程对象
+Thread t = new Thread( runnable );
+// 启动线程
+```
+
+
+
+### 3. 使用有返回值的Callable
 
 [Source Code](https://github.com/Q10Viking/learncode/blob/main/concurrency/src/main/java/org/hzz/basic/create/CallableTask.java)
 
@@ -163,6 +192,15 @@ static final class RunnableAdapter<T> implements Callable<T> {
 
 
 
+### 4. 使用lambda
+
+```java
+new Thread(() -> System.out.println(Thread.currentThread().getName())).start();
+
+```
+
+
+
 ## 线程生命状态
 
 线程是调度CPU资源的最小单位，线程模型分为KLT模型与ULT模型，JVM使用的KLT模型，Java线程与OS线程保持1:1的映射关系，也就是说有一个java线程也会在操作系统里有一个对应的线程。Java线程有多种生命状态。
@@ -183,5 +221,54 @@ static final class RunnableAdapter<T> implements Callable<T> {
 
 ![img](/images/concurrency/16280.png)
 
+![img](/images/concurrency/1617)
 
+## Thread常用方法
+
+### sleep方法
+
+- 调用 sleep 会让当前线程从 *Running* 进入TIMED_WAITING状态，❤️**不会释放对象锁**❤️
+- 其它线程可以使用 interrupt 方法打断正在睡眠的线程，这时 sleep 方法会抛出 InterruptedException，并且会清除中断标志
+- 睡眠结束后的线程未必会立刻得到执行
+- sleep当传入参数为0时，和yield相同
+
+### yield方法
+
+- yield会释放CPU资源，让当前线程从 Running 进入 Runnable状态，让优先级更高（至少是相同）的线程获得执行机会，不会释放对象锁；
+- 假设当前进程只有main线程，当调用yield之后，main线程会继续运行，因为没有比它优先级更高的线程；
+- 具体的实现依赖于操作系统的任务调度器
+
+
+
+### join方法
+
+等待调用join方法的线程结束之后，程序再继续执行，一般用于等待异步线程执行完结果之后才能继续运行的场景
+
+```java
+public class ThreadJoinDemo {
+    public static void main(String[] args) throws InterruptedException {
+        Thread thread = new Thread(()->{
+            System.out.println("t begin");
+            try{
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("t end");
+        });
+        long start = System.currentTimeMillis();
+        thread.start();
+        // 主线程main等待线程t执行完毕后再继续执行
+        thread.join();
+        System.out.println("执行时间："+(System.currentTimeMillis() - start));
+        System.out.println("Main finished.");
+    }
+}
+/**
+ * t begin    // 输出这句后程序等待了一段时间
+ * t end
+ * 执行时间：5015
+ * Main finished.
+ */
+```
 
