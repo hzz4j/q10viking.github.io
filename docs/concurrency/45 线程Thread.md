@@ -244,6 +244,8 @@ new Thread(() -> System.out.println(Thread.currentThread().getName())).start(
 
 等待调用join方法的线程结束之后，程序再继续执行，一般用于等待异步线程执行完结果之后才能继续运行的场景
 
+join可以理解成是线程合并，当在一个线程调用另一个线程的join方法时，当前线程阻塞等待被调用join方法的线程执行完毕才能继续执行，所以join的好处能够保证线程的执行顺序，但是如果调用线程的join方法其实已经失去了并行的意义，虽然存在多个线程，但是本质上还是串行的，最后join的实现其实是基于等待通知机制的
+
 [Source Code](https://github.com/Q10Viking/learncode/tree/main/concurrency/src/main/java/org/hzz/basic/join)
 
 ```java
