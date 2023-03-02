@@ -244,6 +244,8 @@ new Thread(() -> System.out.println(Thread.currentThread().getName())).start(
 
 等待调用join方法的线程结束之后，程序再继续执行，一般用于等待异步线程执行完结果之后才能继续运行的场景
 
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/concurrency/src/main/java/org/hzz/basic/join)
+
 ```java
 public class ThreadJoinDemo {
     public static void main(String[] args) throws InterruptedException {
