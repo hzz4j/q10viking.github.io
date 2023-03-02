@@ -100,8 +100,6 @@ public class SellTicketDemo implements Runnable {
 
 ## 创建线程
 
-
-
 ### Callable
 
 [Source Code](https://github.com/Q10Viking/learncode/blob/main/concurrency/src/main/java/org/hzz/basic/create/CallableTask.java)
@@ -162,4 +160,26 @@ static final class RunnableAdapter<T> implements Callable<T> {
     }
 }
 ```
+
+
+
+## 线程生命状态
+
+线程是调度CPU资源的最小单位，线程模型分为KLT模型与ULT模型，JVM使用的KLT模型，Java线程与OS线程保持1:1的映射关系，也就是说有一个java线程也会在操作系统里有一个对应的线程。Java线程有多种生命状态。
+
+> **NEW**,新建
+>
+> **RUNNABLE**,运行
+>
+> **BLOCKED**,阻塞
+>
+> **WAITING**,等待
+>
+> **TIMED_WAITING**,超时等待
+>
+> **TERMINATED**，终结
+
+### 状态切换图
+
+![img](/images/concurrency/16280.png)
 
