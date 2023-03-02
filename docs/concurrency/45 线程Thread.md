@@ -183,3 +183,5 @@ static final class RunnableAdapter<T> implements Callable<T> {
 
 ![img](/images/concurrency/16280.png)
 
+
+
