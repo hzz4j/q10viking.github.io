@@ -65,11 +65,11 @@ new指令对应到语言层面上讲是，**new关键词、对象克隆、对象
 
 在HotSpot虚拟机中，对象在内存中存储的布局可以分为3块区域：对象头（Header）、 实例数据（Instance Data）和对齐填充（Padding）
 
-![img](/../../../../saas-yong/fullstack/Java架构师之路/JVM调优/img/95007)
+![img](/images/jvm/95007)
 
-![img](/../../../../saas-yong/fullstack/Java架构师之路/JVM调优/img/2557)
+![img](/images/jvm/2557)
 
-![img](/../../../../saas-yong/fullstack/Java架构师之路/JVM调优/img/100689)
+![img](/images/jvm/100689)
 
 > Klass Pointer类型指针,指向存储在方法区的类元信息(Math.class,存储着代码的信息)。实例数据以及，Class对象都存在堆中 (Math实例，Class< Math >)
 >
