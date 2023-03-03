@@ -27,6 +27,7 @@ ThreadLocal和Synchonized都用于解决多线程并发访问。可是ThreadLoca
 
 ```java
 public class UseThreadLocal {
+    // 设置为静态防止被gc回收掉，同理线程池使用也是
     static ThreadLocal<String> threadLocal1 = new ThreadLocal<>();
     static ThreadLocal<Integer> threadLocal2 = new ThreadLocal<>();
 
