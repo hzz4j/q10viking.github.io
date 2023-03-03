@@ -21,7 +21,7 @@ typora-root-url: ..\.vuepress\public
 
 > 锁的竞争
 
-[Source Code]()
+[Source Code](https://github.com/Q10Viking/learncode/blob/main/concurrency/src/main/java/org/hzz/basic/threethreadprint/ThreeThreadPrintDemo.java)
 
 ```java
 public class ThreeThreadPrintDemo {
@@ -86,12 +86,6 @@ public class ThreeThreadPrintDemo {
  * Thread-2: Print: C
  */
 ```
-
-
-
-
-
-
 
 
 
