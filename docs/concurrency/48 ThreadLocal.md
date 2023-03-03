@@ -23,7 +23,7 @@ ThreadLocal和Synchonized都用于解决多线程并发访问。可是ThreadLoca
 
 ![image-20230303191241368](/images/concurrency/image-20230303191241368.png)
 
-> 线程的隔离线
+> 线程的隔离线程
 
 ```java
 public class UseThreadLocal {
