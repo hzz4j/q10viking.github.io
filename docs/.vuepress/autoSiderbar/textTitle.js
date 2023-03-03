@@ -50,7 +50,7 @@ const titles = {
   Algorithm: "Algorithm",
   JVM: "JVM",
   webdev: "webdev",
-  concurrency: "concurrency",
+  concurrency: "并发编程",
   FileSystem: "FileSystem",
   Docker: "Docker",
 };
