@@ -172,6 +172,8 @@ JVM调优就是为了减少GC次数
 
 [jvisualvm官网](https://visualvm.github.io/index.html)
 
+[IDEA集成VisualVM](https://www.cnblogs.com/avivaye/p/10515259.html)
+
 jvisualvm工具安装插件VisualGC
 
 <img src="/images/jvm/image-20210325235915193.png" alt="image-20210325235915193" />
