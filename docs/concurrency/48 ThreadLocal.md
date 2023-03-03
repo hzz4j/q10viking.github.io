@@ -23,6 +23,54 @@ ThreadLocal和Synchonized都用于解决多线程并发访问。可是ThreadLoca
 
 ![image-20230303191241368](/images/concurrency/image-20230303191241368.png)
 
+> 线程的隔离线
+
+```java
+public class UseThreadLocal {
+    static ThreadLocal<String> threadLocal1 = new ThreadLocal<>();
+    static ThreadLocal<Integer> threadLocal2 = new ThreadLocal<>();
+
+    static class TestThread extends Thread{
+        int id;
+        public TestThread(int id){this.id = id;}
+        @Override
+        public void run() {
+            String threadName = Thread.currentThread().getName();
+            threadLocal1.set("线程__"+threadName);
+            if(id == 2){
+                threadLocal2.set(id);
+            }
+            System.out.println(threadName+":"+threadLocal1.get());
+            System.out.println(threadName+":"+threadLocal2.get());
+        }
+    }
+
+    private void startThreadArray(){
+        for(int i = 0;i < 3 ; i++){
+            new TestThread(i).start();
+        }
+    }
+    public static void main(String[] args) {
+        UseThreadLocal useThreadLocal = new UseThreadLocal();
+        useThreadLocal.startThreadArray();
+    }
+}
+/**
+ * Thread-0:线程__Thread-0
+ * Thread-0:null
+ * Thread-2:线程__Thread-2
+ * Thread-1:线程__Thread-1
+ * Thread-1:null
+ * Thread-2:2
+ */
+```
+
+
+
+
+
+
+
 ## 实现原理
 
 ThreadLocal底层是通过ThreadLocalMap来实现的，每个Thread对象（注意不是ThreadLocal 对象）中都存在⼀个ThreadLocalMap，Map的key为ThreadLocal对象，Map的value为需要缓 存的值
