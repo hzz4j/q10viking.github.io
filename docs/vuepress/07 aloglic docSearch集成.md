@@ -47,8 +47,11 @@ typora-root-url: ..\.vuepress\public
 
 ### Algolia环境配置
 
-
 在 [algolia](https://www.algolia.com) 使用github账号注册的上的dashboad上创建一个应用
+
+```
+用户名：cau1403090523@gmail.com 密码：同邮箱
+```
 
 ![202111281559173](/images/vuepress/202111281559173.png)
 
@@ -133,7 +136,7 @@ https://github.com/algolia/docsearch-scraper
 git clone https://github.com/algolia/docsearch-scraper.git
 ```
 
-进入到docsearch-scraper文件夹，并在里面创建**.env**文件
+进入到docsearch-scraper文件夹，并在里面创建**\.env**文件
 
 ```sh
 D:\Github\docsearch-scraper> touch .env
