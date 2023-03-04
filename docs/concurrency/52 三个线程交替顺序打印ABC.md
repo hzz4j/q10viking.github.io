@@ -103,7 +103,7 @@ condition.signalAll();//this.notifyAll();
 
 Synchronized能实现的通信方式，Condition都可以实现
 
-
+[Source Code](https://github.com/Q10Viking/learncode/blob/main/concurrency/src/main/java/org/hzz/basic/threethreadprint/ReentrantLockConditionDemo.java)
 
 ```java
 import java.util.concurrent.locks.Condition;
@@ -175,9 +175,78 @@ public class ReentrantLockConditionDemo {
 
 
 
+## Semaphore信号量
 
+在创建Semaphore对象的时候还可以指定它的公平性。一般常用非公平的信号量，非公平信号量是指在获取许可时先尝试获取许可，而不必关心是否已有需要获取许可的线程位于等待队列中，如果获取失败，才会入列。而公平的信号量在获取许可时首先要查看等待队列中是否已有线程，如果有则入列。
 
+```java
+/非公平的构造函数
+public Semaphore(int permits);//permits=10，表示允许10个线程获取许可证，最大并发数是10；
+////通过fair参数决定公平性
+public Semaphore(int permits，boolean fair)
 
+Semaphore semaphore = new Semaphore(10,true);  
+semaphore.acquire();  //线程获取许可证
+//do something here  
+semaphore.release();  //线程归还许可证
+```
+
+[Source Code](https://github.com/Q10Viking/learncode/blob/main/concurrency/src/main/java/org/hzz/basic/threethreadprint/SemaphoreDemo.java)
+
+```java
+public class SemaphoreDemo {
+    private Semaphore semaphoreA = new Semaphore(1);
+    private Semaphore semaphoreB = new Semaphore(0);
+    private Semaphore semaphoreC = new Semaphore(0);
+    private final static char[] ABC = {'A','B','C'};
+    public static void main(String[] args) {
+        SemaphoreDemo demo = new SemaphoreDemo();
+        demo.new Task(0,demo.semaphoreA,demo.semaphoreB).start();
+        demo.new Task(1,demo.semaphoreB,demo.semaphoreC).start();
+        demo.new Task(2,demo.semaphoreC,demo.semaphoreA).start();
+
+    }
+
+    class Task extends Thread{
+        private int threadId;
+        private Semaphore self,next;
+
+        public Task(int threadId,Semaphore self,Semaphore next){
+            this.threadId = threadId;
+            this.self = self;
+            this.next = next;
+        }
+
+        private void print(){
+            System.out.printf("%s print %s"+System.lineSeparator(),
+                    Thread.currentThread().getName(),ABC[threadId]);
+        }
+        @Override
+        public void run() {
+            try {
+                for (int i = 0; i < 3; i++) {
+                    self.acquire(); // 为0时将无法继续获得该信号量
+                    print();
+                    next.release(); // 释放信号量加1
+                }
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+}
+/**
+ * Thread-0 print A
+ * Thread-1 print B
+ * Thread-2 print C
+ * Thread-0 print A
+ * Thread-1 print B
+ * Thread-2 print C
+ * Thread-0 print A
+ * Thread-1 print B
+ * Thread-2 print C
+ */
+```
 
 
 
