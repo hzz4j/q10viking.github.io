@@ -76,15 +76,154 @@ public class UseThreadLocal {
 
 ThreadLocal底层是通过ThreadLocalMap来实现的，每个Thread对象（注意不是ThreadLocal 对象）中都存在⼀个ThreadLocalMap，Map的key为ThreadLocal对象，Map的value为需要缓 存的值
 
-![image-20230303180140479](/images/concurrency/image-20230303180140479.png)
+get方法，其实就是拿到**每个线程独有的ThreadLocalMap**，然后再用ThreadLocal的当前实例，拿到Map中的相应的Entry，然后就可以拿到相应的值返回出去。当然，如果Map为空，还会先进行map的创建，初始化等工作
+
+![img](/images/concurrency/10751)
 
 
 
 ## 内存泄漏
 
-如果在线程池中使⽤ThreadLocal会造成内存泄漏，因为当ThreadLocal对象使⽤完之后，应该 要把设置的key，value，也就是Entry对象进⾏回收，但线程池中的线程不会回收，⽽线程对象 是通过强引⽤指向ThreadLocalMap，ThreadLocalMap也是通过强引⽤指向Entry对象，线程 不被回收，Entry对象也就不会被回收，从⽽出现内存泄漏，解决办法是，在使⽤了 ThreadLocal对象之后，⼿动调⽤ThreadLocal的remove⽅法，⼿动清楚Entry对象
+如果在线程池中使⽤ThreadLocal会造成内存泄漏，因为当ThreadLocal对象使⽤完之后，应该 要把设置的key，value，也就是Entry对象进⾏回收，但**线程池中的线程不会回收，⽽线程对象 是通过强引⽤指向ThreadLocalMap，ThreadLocalMap也是通过强引⽤指向Entry对象，线程 不被回收，Entry对象也就不会被回收，从⽽出现内存泄漏，解决办法是，在使⽤了 ThreadLocal对象之后，⼿动调⽤ThreadLocal的remove⽅法，⼿动清楚Entry对象**
+
+```java
+public class MemoryLeakDemo {
+    private static final int TASK_SIZE = 500;
+    /**线程池*/
+    final static Executor excutor = new ThreadPoolExecutor(5,5,1,
+            TimeUnit.SECONDS,
+            new LinkedBlockingDeque<>());
+
+    private ThreadLocal<LocalVariable> threadLocal;
+
+    static class LocalVariable{
+        private byte[] a = new byte[5*1024*1024]; // 5M
+    }
+    public static void main(String[] args) {
+        for (int i=0; i<TASK_SIZE;i++){
+            excutor.execute(()->{
+                MemoryLeakDemo oom = new MemoryLeakDemo();
+                oom.threadLocal = new ThreadLocal<>();
+                oom.threadLocal.set(new LocalVariable());
+                // 线程池的线程不会结束，所以需要手动释放空间
+                oom.threadLocal.remove();
+            });
+        }
+    }
+}
+```
 
 
+
+> 没有remove的内存
+
+![image-20230304170535718](/images/concurrency/image-20230304170535718.png)
+
+> remove后的内存
+
+![image-20230304170452344](/images/concurrency/image-20230304170452344.png)
+
+### 分析
+
+> ThreadLocal内存泄漏的根源是：由于ThreadLocalMap的生命周期跟Thread一样长，如果没有手动删除对应key就会导致内存泄漏
+
+每个Thread 维护一个 ThreadLocalMap，这个映射表的 key 是 ThreadLocal实例本身，value 是真正需要存储的 Object，也就是说 ThreadLocal 本身并不存储值，它只是作为一个 key 来让线程从 ThreadLocalMap 获取 value。仔细观察ThreadLocalMap，这个map是使用 ThreadLocal 的弱引用作为 Key 的，弱引用的对象在 GC 时会被回收。
+
+![img](/images/concurrency/10766)
+
+当把threadlocal变量置为null以后，没有任何强引用指向threadlocal实例，所以threadlocal将会被gc回收。这样一来，ThreadLocalMap中就会出现key为null的Entry，就没有办法访问这些key为null的Entry的value，如果当前线程再迟迟不结束的话，这些key为null的Entry的value就会一直存在一条强引用链：Thread Ref -> Thread -> ThreaLocalMap -> Entry -> value，而这块value永远不会被访问到了，所以存在着内存泄露
+
+![image-20230304170828601](/images/concurrency/image-20230304170828601.png)
+
+
+
+### 小结
+
+1. JVM利用设置ThreadLocalMap的Key为弱引用，来避免内存泄露。
+2. JVM利用调用remove，回收弱引用。
+3. 使用**线程池+** ThreadLocal时要小心，因为这种情况下，线程是一直在不断的重复运行的，从而也就造成了value可能造成累积的情况。
+
+
+
+## initialValue的使用
+
+> ThreadLocal是变量的副本，但是Number是在堆上分配的，所有的引用都是一个对象
+
+```java
+public class ThreadLocalUnsafe {
+    private static Number number = new Number(0);
+    private static ThreadLocal<Number> threadLocal = new ThreadLocal();
+
+    public static void main(String[] args) {
+        for (int i = 0; i < 5; i++) {
+            new Thread(()->{
+                ThreadLocalRandom current = ThreadLocalRandom.current();
+                number.setNumber(current.nextInt(100));
+                threadLocal.set(number);
+                try {
+                    Thread.sleep(5*1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                System.out.printf("%s = %s"+System.lineSeparator(),
+                        Thread.currentThread().getName(),threadLocal.get());
+            }).start();
+        }
+    }
+}
+/**
+ * Thread-0 = Number{number=83}
+ * Thread-4 = Number{number=83}
+ * Thread-3 = Number{number=83}
+ * Thread-1 = Number{number=83}
+ * Thread-2 = Number{number=83}
+ */
+```
+
+使用initialValue来解决
+
+```java
+package org.hzz.tl;
+
+import java.util.concurrent.ThreadLocalRandom;
+
+public class ThreadLocalUnsafe1 {
+//    private static Number number = new Number(0);
+    private static ThreadLocal<Number> threadLocal = new ThreadLocal(){
+        // 初始化
+        @Override
+        protected Object initialValue() {
+            return new Number(0);
+        }
+    };
+
+    public static void main(String[] args) {
+        for (int i = 0; i < 5; i++) {
+            new Thread(()->{
+                ThreadLocalRandom current = ThreadLocalRandom.current();
+                // 初始化
+                Number number = threadLocal.get();
+                number.setNumber(current.nextInt(100));
+                threadLocal.set(number);
+                try {
+                    Thread.sleep(5*1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                System.out.printf("%s = %s"+System.lineSeparator(),
+                        Thread.currentThread().getName(),threadLocal.get());
+            }).start();
+        }
+    }
+}
+/**
+ * Thread-1 = Number{number=83}
+ * Thread-3 = Number{number=76}
+ * Thread-2 = Number{number=28}
+ * Thread-4 = Number{number=25}
+ * Thread-0 = Number{number=33}
+ */
+```
 
 
 
