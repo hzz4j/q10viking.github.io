@@ -25,6 +25,8 @@ ThreadLocal和Synchonized都用于解决多线程并发访问。可是ThreadLoca
 
 > 线程的隔离线程
 
+[Source Code](https://github.com/Q10Viking/learncode/blob/main/concurrency/src/main/java/org/hzz/tl/UseThreadLocal.java)
+
 ```java
 public class UseThreadLocal {
     // 设置为静态防止被gc回收掉，同理线程池使用也是
@@ -85,6 +87,8 @@ get方法，其实就是拿到**每个线程独有的ThreadLocalMap**，然后�
 ## 内存泄漏
 
 如果在线程池中使⽤ThreadLocal会造成内存泄漏，因为当ThreadLocal对象使⽤完之后，应该 要把设置的key，value，也就是Entry对象进⾏回收，但**线程池中的线程不会回收，⽽线程对象 是通过强引⽤指向ThreadLocalMap，ThreadLocalMap也是通过强引⽤指向Entry对象，线程 不被回收，Entry对象也就不会被回收，从⽽出现内存泄漏，解决办法是，在使⽤了 ThreadLocal对象之后，⼿动调⽤ThreadLocal的remove⽅法，⼿动清楚Entry对象**
+
+[Source Code](https://github.com/Q10Viking/learncode/blob/main/concurrency/src/main/java/org/hzz/tl/leak/MemoryLeakDemo.java)
 
 ```java
 public class MemoryLeakDemo {
@@ -149,6 +153,8 @@ public class MemoryLeakDemo {
 
 > ThreadLocal是变量的副本，但是Number是在堆上分配的，所有的引用都是一个对象
 
+[Source Code](https://github.com/Q10Viking/learncode/blob/main/concurrency/src/main/java/org/hzz/tl/ThreadLocalUnsafe.java)
+
 ```java
 public class ThreadLocalUnsafe {
     private static Number number = new Number(0);
@@ -180,13 +186,9 @@ public class ThreadLocalUnsafe {
  */
 ```
 
-使用initialValue来解决
+使用initialValue来解决[Source Code](https://github.com/Q10Viking/learncode/blob/main/concurrency/src/main/java/org/hzz/tl/ThreadLocalUnsafe1.java)
 
 ```java
-package org.hzz.tl;
-
-import java.util.concurrent.ThreadLocalRandom;
-
 public class ThreadLocalUnsafe1 {
 //    private static Number number = new Number(0);
     private static ThreadLocal<Number> threadLocal = new ThreadLocal(){
