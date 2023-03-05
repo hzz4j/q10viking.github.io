@@ -48,3 +48,6 @@ Build a modern e-commerce system with all the knowledge I have learned so far
 
 
 
+## 其他参考
+
+[IDEA SpringBoot项目配置热更新](https://blog.csdn.net/qq_40373914/article/details/105673683)
