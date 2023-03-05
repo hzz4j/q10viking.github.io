@@ -1,3 +1,12 @@
+---
+prev:
+  text: Back To 目录
+  link: /topicNav/
+typora-root-url: ..\.vuepress\public
+---
+
+
+
 ::: tip
 
 用一个一个小小的功能实现来丰富自己的前端开发技能
