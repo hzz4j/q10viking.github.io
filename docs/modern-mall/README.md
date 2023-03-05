@@ -27,6 +27,7 @@ Build a modern e-commerce system with all the knowledge I have learned so far
 | Maven    | 3.8.2     |
 |  Spring Boot        |           |
 | mybatis-plus-generator | 3.5.1 |
+| nodejs | v14.17.6 |
 
 
 
@@ -34,4 +35,7 @@ Build a modern e-commerce system with all the knowledge I have learned so far
 
 
 
-vite+vue+typescript，构架项目
+[基础版](https://note.youdao.com/ynoteshare/index.html?id=866db703e9c2e464c8bca11617b82be3&type=notebook&_time=1677998602798)
+
+
+
