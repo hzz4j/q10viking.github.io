@@ -1,11 +1,15 @@
 ---
-typora-root-url: imgs
-
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /SpringCloud/
+typora-root-url: ..\.vuepress\public
 ---
 
 
 
-[基础环境搭建-github](https://github.com/Q10Viking/springcloudalibaba/tree/main/01-learn-spring-cloud-alibaba)
+[基础环境搭建-Source Code](https://github.com/Q10Viking/springcloudalibaba/tree/main/01-learn-spring-cloud-alibaba)
 
 ## 版本关系
 
@@ -18,11 +22,11 @@ Spring Boot :2.3.2.RELEASE
 Spring Cloud:Hoxton.SR9
 ```
 
-<img src="D:\Github\saas-yong\fullstack\Java架构师之路\SpringCloud\微服务实战系列\imgs\image-20210722144909439.png" alt="image-20210821180228734" style="zoom:67%;" />
+<img src="/images/springcloud/image-20210722144909439.png" alt="image-20210821180228734"  />
 
 ### SpringCloudAlibaba组件版本
 
-<img src="D:\Github\saas-yong\fullstack\Java架构师之路\SpringCloud\微服务实战系列\imgs\image-20210821180319812.png" alt="image-20210821180319812" style="zoom: 67%;" />
+<img src="/images/springcloud/image-20210821180319812.png" alt="image-20210821180319812" />
 
 
 
@@ -314,9 +318,9 @@ public class R extends HashMap<String, Object> {
 
 IDEA显示多个服务的启动
 
-<img src="D:\Github\saas-yong\fullstack\Java架构师之路\SpringCloud\微服务实战系列\imgs\image-20210722150034933.png" alt="image-20210722150034933" style="zoom:67%;" />
+<img src="/images/springcloud/image-20210722150034933.png" alt="image-20210722150034933" />
 
-<img src="D:\Github\saas-yong\fullstack\Java架构师之路\SpringCloud\微服务实战系列\imgs\image-20210722150152163.png" alt="image-20210722150152163" style="zoom:67%;" />
+<img src="/images/springcloud/image-20210722150152163.png" alt="image-20210722150152163" />
 
-<img src="D:\Github\saas-yong\fullstack\Java架构师之路\SpringCloud\微服务实战系列\imgs\image-20210821201253713.png" alt="image-20210821201253713" style="zoom: 67%;" />
+<img src="/images/springcloud/image-20210821201253713.png" alt="image-20210821201253713" />
 
