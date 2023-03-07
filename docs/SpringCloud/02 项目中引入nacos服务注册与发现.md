@@ -7,7 +7,7 @@ prev:
 typora-root-url: ..\.vuepress\public
 ---
 
-[项目引入nacos-github](https://github.com/Q10Viking/springcloudalibaba/tree/main/02-learn-spring-cloud-alibaba)
+[Source Code](https://github.com/Q10Viking/springcloudalibaba/tree/main/02-learn-spring-cloud-alibaba)
 
 ## 介绍
 
