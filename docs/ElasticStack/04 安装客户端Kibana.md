@@ -13,7 +13,7 @@ typora-root-url: ..\.vuepress\public
 
 ES主流客户端Kibana，es开放9200端口与图形界面客户端交互
 
-[Download Kibana Free | Get Started Now | Elastic](https://www.elastic.co/cn/downloads/kibana)
+[Kibana 7.6.1 | Elastic](https://www.elastic.co/cn/downloads/past-releases/kibana-7-6-1)
 
 :::
 

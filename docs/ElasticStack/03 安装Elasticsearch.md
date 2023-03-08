@@ -15,9 +15,11 @@ ES不能使用root用户来启动，必须使用普通用户来安装启动
 
 📗我安装在了132机器上
 
+[下载7.6.1](https://www.elastic.co/downloads/past-releases/elasticsearch-7-6-1)
+
 :::
 
-用户为hzz,密码为123456
+用户为hzz,密码为Root.123456
 
 ```sh
 先创建组, 再创建用户:
@@ -26,7 +28,7 @@ ES不能使用root用户来启动，必须使用普通用户来安装启动
 		
 2）创建用户 hzz 并设置密码
 [root@localhost ~]# useradd hzz
-[root@localhost ~]# passwd 123456
+[root@localhost ~]# passwd hzz
 
 3）# 创建es文件夹，
 并修改owner为hzz用户
