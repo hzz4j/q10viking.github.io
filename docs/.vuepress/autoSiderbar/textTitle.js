@@ -53,7 +53,8 @@ const titles = {
   FileSystem: "FileSystem",
   Docker: "Docker",
   SpringCloud: "微服务",
-  gateway: "网关"
+  gateway: "网关",
+  skywalking: "Skywalking"
 };
 
 module.exports = titles;
