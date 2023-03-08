@@ -9,10 +9,6 @@ typora-root-url: ..\.vuepress\public
 
 
 
-::: tip
-
-:::
-
 ## **SkyWalking 环境搭建部署**
 
 ​    ![0](/images/skywalking/52908)
