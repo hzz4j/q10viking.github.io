@@ -60,5 +60,5 @@ spring:
 
 并且在nacos注册中心，能够看到mall-user已经注册进去了 http://192.168.88.1:8848/nacos
 
-![image-20210821204436731](D:\Github\saas-yong\fullstack\Java架构师之路\SpringCloud\微服务实战系列\imgs\image-20210821204436731.png)
+![image-20210821204436731](/images/springcloud/image-20210821204436731.png)
 
