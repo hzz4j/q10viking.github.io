@@ -1,7 +1,7 @@
 ---
 prev:
   text: Back To 目录
-  link: /ElasticStack/
+  link: /topicNav/
 typora-root-url: ..\.vuepress\public
 ---
 

@@ -52,7 +52,8 @@ const titles = {
   concurrency: "并发编程",
   FileSystem: "FileSystem",
   Docker: "Docker",
-  SpringCloud: "微服务"
+  SpringCloud: "微服务",
+  gateway: "网关"
 };
 
 module.exports = titles;
