@@ -48,6 +48,28 @@ Build a modern e-commerce system with all the knowledge I have learned so far
 
 
 
+
+
+## 基础设施
+
+| 服务                             | 地址                        |
+| -------------------------------- | --------------------------- |
+| logstash                         | 192.168.135.135             |
+| elasticesearch                   | 192.168.135.135:9200        |
+| kibana                           | 192.168.135.135:5601        |
+| nacos                            | windows: 192.168.135.1:8848 |
+| rabbimq-前端                     | 192.168.135.130:15672       |
+| rabbitmq服务                     | 192.168.135.130:5672        |
+| skywalking-ui                    | 192.168.135.130:18080       |
+| skywalking-opa服务(收集监控数据) | 192.168.135.130:11800       |
+| skywalking-opa服务(接受前端请求) | 192.168.135.130:12800       |
+
+
+
+
+
+
+
 ## 其他参考
 
 [IDEA SpringBoot项目配置热更新](https://blog.csdn.net/qq_40373914/article/details/105673683)
