@@ -42,3 +42,6 @@ Grok是通过模式匹配的方式来识别日志中的数据,可以把Grok插�
 
 [GROK模式参考 (aliyun.com)](https://help.aliyun.com/document_detail/129387.html?scm=20140722.184.2.173)
 
+## 实践
+
+[静默-日志搜索](https://q10viking.github.io/skywalking/05%20es%E6%8C%81%E4%B9%85%E5%8C%96%E4%B8%8E%E6%97%A5%E5%BF%97%E6%90%9C%E7%B4%A2.html)
