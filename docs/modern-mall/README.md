@@ -63,6 +63,7 @@ Build a modern e-commerce system with all the knowledge I have learned so far
 | skywalking-ui                    | 192.168.135.130:18080       |
 | skywalking-opa服务(收集监控数据) | 192.168.135.130:11800       |
 | skywalking-opa服务(接受前端请求) | 192.168.135.130:12800       |
+| redis                            | 192.168.135.130:6379        |
 
 
 
