@@ -45,7 +45,7 @@ OAuth在"客户端"与"服务提供商"之间，设置了一个授权层（autho
 
 ## 快速搭建项目
 
-[Source Code](https://github.com/Q10Viking/springcloudalibaba/tree/main/oauth2/oauth2-basic/oauth2-basic)
+[Source Code](https://github.com/Q10Viking/springcloudalibaba/tree/main/oauth2/oauth2-basic)
 
 ```xml
 <dependencyManagement>

@@ -44,7 +44,7 @@ typora-root-url: ..\.vuepress\public
 
 ## 项目配置
 
-[Source Code](https://github.com/Q10Viking/springcloudalibaba/tree/main/oauth2/oauth2-basic/oauth2-basic)
+[Source Code](https://github.com/Q10Viking/springcloudalibaba/tree/main/oauth2/oauth2-basic)
 
 ### 依赖
 
