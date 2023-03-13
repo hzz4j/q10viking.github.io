@@ -17,7 +17,7 @@ typora-root-url: ..\.vuepress\public
 
 :::
 
-[Source Code]()
+[Source Code](https://github.com/Q10Viking/springcloudalibaba/tree/main/oauth2/oauth2-implicit)
 
 ```java
 //配置grant_type，表示授权类型
