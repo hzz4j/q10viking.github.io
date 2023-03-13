@@ -1,3 +1,14 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /springsecurity/
+typora-root-url: ..\.vuepress\public
+---
+
+
+
 ## 简化模式
 
 ::: tip
@@ -34,3 +45,9 @@ https://www.baidu.com/#access_token=f24c7edc-24a3-4a7a-9306-270702480292&token_t
 **适用于没有前端的命令行应用，即在命令行下请求令牌**
 
 :::
+
+```java
+//配置grant_type，表示授权类型
+.authorizedGrantTypes("client_credentials");
+```
+
