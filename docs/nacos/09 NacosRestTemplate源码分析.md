@@ -1,3 +1,14 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /nacos/
+typora-root-url: ..\.vuepress\public
+---
+
+
+
 ## 从应用层分析BIO Socket通信
 
 https://www.processon.com/view/link/62903c09f346fb41eeb5b997)

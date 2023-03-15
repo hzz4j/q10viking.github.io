@@ -1,3 +1,14 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /nacos/
+typora-root-url: ..\.vuepress\public
+---
+
+
+
 ## SpringBoot启动
 
 扩展点实现SmartLifeCycle
@@ -54,8 +65,6 @@ Map<Boolean, List<Instance>> ipMap = new HashMap<>(2);
 ```
 
 nacos通知注册的服务，刷新服务列表通过udp的方式。
-
-
 
 线程工厂
 

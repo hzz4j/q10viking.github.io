@@ -1,3 +1,14 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /nacos/
+typora-root-url: ..\.vuepress\public
+---
+
+
+
 ## 服务注册
 
 [springboot中服务自动注册到Nacos源码分析 | ProcessOn免费在线作图,在线流程图,在线思维导图 |](https://www.processon.com/view/link/6290d8e67d9c085adb70702b)
@@ -51,5 +62,4 @@ ServiceInstance  Represents an instance of a service in a discovery system.
 TODO
 
 [(27条消息) Java中InetAddress的使用(二)：获取本机IP地址的正确姿势【享学Java】_方向盘(YourBatman)的博客-CSDN博客](https://blog.csdn.net/f641385712/article/details/105233229/)
-
 
