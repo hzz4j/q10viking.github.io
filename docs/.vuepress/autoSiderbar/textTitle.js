@@ -54,7 +54,9 @@ const titles = {
   Docker: "Docker",
   SpringCloud: "微服务",
   gateway: "网关",
-  skywalking: "Skywalking"
+  skywalking: "Skywalking",
+  Ribbon: "Ribbon",
+  Feign: "Feign"
 };
 
 module.exports = titles;
