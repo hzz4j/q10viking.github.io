@@ -9,8 +9,6 @@ typora-root-url: ..\.vuepress\public
 
 
 
-
-
 ## jwt(Json web token)
 
 - OAuth 2.0是当前业界标准的授权协议，它的核心是若干个针对不同场景的令牌颁发和管理流程；
