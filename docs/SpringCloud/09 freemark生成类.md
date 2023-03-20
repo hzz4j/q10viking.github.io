@@ -317,3 +317,16 @@ public class ${pojo_name}{
 }
 ```
 
+
+
+## MyBatis-plus的逆向工程
+
+```xml
+<dependency>
+    <groupId>com.baomidou</groupId>
+    <artifactId>mybatis-plus-generator</artifactId>
+    <version>3.3.2</version>
+</dependency>
+```
+
+![image-20230320222104159](/images/springcloud/image-20230320222104159.png)
