@@ -80,6 +80,8 @@ public class ReduceBasic {
 
 ## 方法的增强
 
+[Source Code](https://github.com/Q10Viking/springcloudalibaba/tree/main/dynamic-datasource/dynamic-datasource/_02-dynamic-mybatis)
+
 ```java
    public void saveAll2(Friend friend) {
        wTransactionTemplate.execute((wstatus) -> {
@@ -149,3 +151,8 @@ public class ReduceTest {
  */
 ```
 
+
+
+## 参考
+
+[lambda - Purpose of third argument to 'reduce' function in Java 8 functional programming - Stack Overflow](https://stackoverflow.com/questions/22808485/purpose-of-third-argument-to-reduce-function-in-java-8-functional-programming)
