@@ -22,15 +22,17 @@ typora-root-url: ..\.vuepress\public
 
 ## Java生态博客
 
-[未读代码 (wdbyte.com)](https://www.wdbyte.com/)
-
-[素十八 (su18.org)](https://su18.org/)
-
-https://www.youtube.com/watch?v=ArTVfdHOB-M
-
-[深入理解JNDI注入与Java反序列化漏洞利用 – KINGX](https://kingx.me/Exploit-Java-Deserialization-with-RMI.html)
-
-https://github.com/dunwu
+| 学习网站 |
+| -------- |
+| [Java Code Geeks](https://www.javacodegeeks.com/) |
+|          |
+|          |
+|          |
+|          |
+|          |
+|          |
+|          |
+|          |
 
 
 
