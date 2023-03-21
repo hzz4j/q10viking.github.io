@@ -53,3 +53,21 @@ sudo apt update && sudo apt upgrade
 同时也可以在vscode上连接lwindows的子系统linux。需要安装插件[Remote Development - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)
 
 ![image-20230322005416840](/images/win11/image-20230322005416840.png)
+
+## java环境搭建
+
+
+
+### SDKMAN
+
+[Installation - SDKMAN! the Software Development Kit Manager](https://sdkman.io/install)
+
+```sh
+sudo apt install zip
+sudo apt install unzip
+curl -s "https://get.sdkman.io" | bash
+```
+
+
+
+https://blog.codeleak.pl/2020/01/manage-multiple-java-sdks-with-sdkman.html
