@@ -36,4 +36,20 @@ C:\Users\11930>wsl --install -d Ubuntu-18.04
 [====                       7.0%                           ]
 ```
 
-### 
+### 更新
+
+```sh
+sudo apt update && sudo apt upgrade
+```
+
+
+
+## wsl结合vscode
+
+> windows linux子系统结合vscode使用
+
+可以在linux子系统中直接输入`code .`能够打开windows上安装的vscode
+
+同时也可以在vscode上连接lwindows的子系统linux。需要安装插件[Remote Development - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)
+
+![image-20230322005416840](/images/win11/image-20230322005416840.png)
