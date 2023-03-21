@@ -22,17 +22,17 @@ typora-root-url: ..\.vuepress\public
 
 ## Java生态博客
 
-| 学习网站 |
-| -------- |
-| [Java Code Geeks](https://www.javacodegeeks.com/) |
-|          |
-|          |
-|          |
-|          |
-|          |
-|          |
-|          |
-|          |
+| 学习网站                                             |
+| ---------------------------------------------------- |
+| [Java Code Geeks](https://www.javacodegeeks.com/)    |
+| [Java Resources (dzone.com)](https://dzone.com/java) |
+| [How2J 的 Java教程](https://how2j.cn/)               |
+| [programmr java](https://www.programmr.com/index.php?q=zone/java)                                                 |
+|                                                      |
+|                                                      |
+|                                                      |
+|                                                      |
+|                                                      |
 
 
 
