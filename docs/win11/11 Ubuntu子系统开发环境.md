@@ -270,5 +270,38 @@ spring --help init
 
 ![image-20230322174652234](/images/win11/image-20230322174652234.png)
 
+最关键的也要设置这个插件的settings.xml
+![image-20230322193723493](/images/win11/image-20230322193723493.png)
 
 
+
+## vsode常用开发
+
+|    快捷键    | 描述                                  |
+| :----------: | ------------------------------------- |
+|   ctrl+k z   | 切换禅模式                            |
+|    ctrl+p    | 搜索文件❤️，前面加#能够搜索jar的源文件 |
+| ctrl+shift+p | 命令                                  |
+|    ctrl+b    | 配合禅模式使用，切换左边侧边栏        |
+|    ctrl+j    | 配合禅模式使用，切换底部栏            |
+|  ctrl+alt+b  | 配合禅模式使用，切换右边的自定侧边栏  |
+| ctrl+shift+⬇️ | 快速复制当前行                        |
+| ctrl+shift+k | 快速删除当前行                        |
+|  ctrl+enter  | 定位到下一个空行                      |
+| alt+左右箭头 | 历史记录文件浏览                      |
+
+
+
+### ctrl+p很强大
+
+![image-20230322212616449](/images/win11/image-20230322212616449.png)
+
+
+
+
+
+## vscode配置java开发
+
+[redhat-developer/vscode-java: Java Language Support for Visual Studio Code (github.com)](https://github.com/redhat-developer/vscode-java)
+
+[Getting Started with Java in Visual Studio Code](https://code.visualstudio.com/docs/java/java-tutorial)
