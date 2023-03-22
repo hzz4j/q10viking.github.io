@@ -54,7 +54,26 @@ sudo apt update && sudo apt upgrade
 
 ![image-20230322005416840](/images/win11/image-20230322005416840.png)
 
+## git
+
+大多数适用于 Linux 的 Windows 子系统发行版已安装了 Git，只需要我们配置以下基本信息即可
+
+```sh
+git config --global user.name "q10viking"
+git config --global user.email "1193094618@qq.com"
+```
+
+使用https的方式克隆项目，这样简单点。结合vscode git插件就能方便上传代码
+
+
+
 ## java环境搭建
+
+::: tip
+
+使用SDKMAN管理多版本的spring-cli，java,maven
+
+:::
 
 ### SDKMAN安装
 
@@ -161,4 +180,95 @@ openjdk version "1.8.0_302"
 OpenJDK Runtime Environment (build 1.8.0_302-b08)
 OpenJDK 64-Bit Server VM (build 25.302-b08, mixed mode)
 ```
+
+### maven搭建
+
+```sh
+sdk install maven
+```
+
+下载在如下位置
+
+```sh
+q10viking@LAPTOP-PJLAUUSP:~/.sdkman/candidates/maven$ pwd
+/home/q10viking/.sdkman/candidates/maven
+q10viking@LAPTOP-PJLAUUSP:~/.sdkman/candidates/maven$ ls -l
+total 4
+drwxr-xr-x 6 q10viking q10viking 4096 Mar 15 09:39 3.9.1
+lrwxrwxrwx 1 q10viking q10viking    5 Mar 22 12:15 current -> 3.9.1
+```
+
+> 配置/etc/profile
+
+```sh
+JAVA_HOME=/home/q10viking/.sdkman/candidates/java/current
+CLASSPATH=.:$JAVA_HOME/lib/
+MAVEN_HOME=/home/q10viking/.sdkman/candidates/maven/current
+PATH=$JAVA_HOME/bin:$MAVEN_HOME/bin:$PATH
+export PATH JAVA_HOME CLASSPATH MAVEN_HOME
+```
+
+> maven配置仓库和阿里镜像
+
+```xml
+<localRepository>/home/q10viking/.sdkman/candidates/maven/repository</localRepository>
+```
+
+
+
+### spring-cli安装
+
+安装了两个版本
+
+```sh
+sdk install springboot 2.6.5
+sdk install springboot 3.0.4
+```
+
+安装完成后可以看到自己就注册到path当中，不需要我们自己再配置
+
+![image-20230322163944976](/images/win11/image-20230322163944976.png)
+
+#### 切换spring-cli版本❤️
+
+```sh
+sdk default springboot 3.0.4
+sdk default springboot 2.6.5
+```
+
+验证
+
+```sh
+q10viking@LAPTOP-PJLAUUSP:~$ spring --version
+Spring CLI v3.0.4
+```
+
+### 创建springboot项目
+
+::: tip
+
+使用springboot cli
+
+:::
+
+[Spring Boot CLI官网](https://docs.spring.io/spring-boot/docs/current/reference/html/cli.html#cli)
+
+常用命令：
+
+```sh
+# 罗列出可用的依赖
+spring init --list
+# 创建一个项目
+spring init --build=maven --group-id=org.hzz --java-version=17 --dependencies=web --name=helloworld helloworld
+#命令帮助
+spring --help init
+```
+
+### vscode设置
+
+> maven指定使用maven的配置文件
+
+![image-20230322174652234](/images/win11/image-20230322174652234.png)
+
+
 
