@@ -23,3 +23,97 @@ CREATE TABLE `t_methodlock`  (
 ```
 
 ![img](/images/lock/46070)
+
+## 实现
+
+[Source Code](https://github.com/Q10Viking/springcloudalibaba/tree/main/lock)
+
+```java
+@Component
+@Slf4j
+public class MysqlDistributedLock extends AbstractLock{
+
+    @Autowired
+    private MethodlockMapper methodlockMapper;
+
+    @Override
+    public void unLock() {
+        methodlockMapper.deleteByMethodlock("lock");
+    }
+
+    @Override
+    public boolean tryLock() {
+        try{
+            methodlockMapper.insertSelective(new Methodlock("lock"));
+        }catch(Exception e){
+            log.info("获取锁失败");
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void waitLock() {
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    
+}
+```
+
+
+
+## 测试
+
+```java
+@Slf4j
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class LockApplicationTests {
+
+	@Autowired
+	private MysqlDistributedLock lock;
+
+	@Autowired
+	private OrderCodeGenerator orderCodeGenerator;
+
+	private static volatile List<String> threadList = new ArrayList<>();
+	private static int count = 5;
+
+	@Test
+	public void contextLoads() throws InterruptedException {
+		log.info("Hello World");
+		CountDownLatch countDownLatch = new CountDownLatch(count);
+		for (int i = 0; i < count; i++) {
+			new Thread(()->{
+				try {
+					countDownLatch.await();
+					getOrderCode();
+				} catch (InterruptedException e) {
+				}
+			}).start();
+			countDownLatch.countDown();
+		}
+
+		while(threadList.size()<count){}
+		threadList.forEach(System.out::println);
+	
+	}
+
+	public void getOrderCode(){
+		lock.lock();
+		String genCode = orderCodeGenerator.genCode();
+		log.info(Thread.currentThread().getName()+": "+genCode);
+		threadList.add(Thread.currentThread().getName());
+		lock.unLock();
+	}
+
+}
+
+```
+
+![image-20230322230409039](/images/lock/image-20230322230409039.png)
+
