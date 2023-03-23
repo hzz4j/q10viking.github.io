@@ -7,12 +7,12 @@ typora-root-url: ..\.vuepress\public
 
 
 
-## 网站
+## 各种linux工具
 
-| 网站                         | 用户                  |
-| ---------------------------- | --------------------- |
-| [Dzone ](https://dzone.com/) | q10viking@outlook.com |
-|                              |                       |
-|                              |                       |
-|                              |                       |
+```sh
+debian/ubuntu: apt-get install git
+redhat/centos: yum install git
+archlinux: pacman -S git
+mac:   brew install git
+```
 

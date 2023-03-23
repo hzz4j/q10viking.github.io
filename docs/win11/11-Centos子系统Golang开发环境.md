@@ -13,7 +13,7 @@ typora-root-url: ..\.vuepress\public
 
 ::: tip
 
-win11下安装了DockerDesktop来通过docker到处centos的版本，从而通过wsl来安装
+win11下安装了DockerDesktop来通过docker导出centos的版本，从而通过wsl来安装
 
 :::
 
@@ -21,7 +21,7 @@ win11下安装了DockerDesktop来通过docker到处centos的版本，从而通�
 
 ## wsl安装centos
 
-
+首先启动DockerDesktop
 
 ```sh
 docker pull centos:centos7.9.2009
@@ -70,6 +70,27 @@ E:\wsl\centos7\first>wsl -l -v
 
 ```
 wsl -d centos7.9.2009
+```
+
+> 查看版本
+
+```sh
+[root@LAPTOP-PJLAUUSP ~]# cat /etc/os-release
+NAME="CentOS Linux"
+VERSION="7 (Core)"
+ID="centos"
+ID_LIKE="rhel fedora"
+VERSION_ID="7"
+PRETTY_NAME="CentOS Linux 7 (Core)"
+ANSI_COLOR="0;31"
+CPE_NAME="cpe:/o:centos:centos:7"
+HOME_URL="https://www.centos.org/"
+BUG_REPORT_URL="https://bugs.centos.org/"
+
+CENTOS_MANTISBT_PROJECT="CentOS-7"
+CENTOS_MANTISBT_PROJECT_VERSION="7"
+REDHAT_SUPPORT_PRODUCT="centos"
+REDHAT_SUPPORT_PRODUCT_VERSION="7"
 ```
 
 
@@ -141,7 +162,39 @@ yum update -y
 yum -y install net-tools
 ```
 
- 172.18.110.175
+
+
+## git
+
+```sh
+yum install git
+git config --global user.name "q10viking"
+git config --global user.email "cau1403090523@gmail.com"
+```
+
+按照上面安装的只能是1.8.3.1
+
+参照[How to upgrade git to latest version on CentOS - Techglimpse](https://techglimpse.com/update-git-latest-version-centos/)升级到版本2
+
+
+
+## golang开发环境搭建
+
+[Download and install - The Go Programming Language](https://go.dev/doc/install)
+
+```sh
+go version
+```
+
+### vscode配置golang
+
+[为 Go 开发配置Visual Studio Code | Microsoft Learn](https://learn.microsoft.com/zh-cn/azure/developer/go/configure-visual-studio-code)
+
+[Go with Visual Studio Code](https://code.visualstudio.com/docs/languages/go)
+
+很好的一个综合视频[Getting started with VS Code Go - YouTube](https://www.youtube.com/watch?v=1MXIGYrMk80)
+
+
 
 ## 参考
 
