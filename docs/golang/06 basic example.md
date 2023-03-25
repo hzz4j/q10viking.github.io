@@ -74,6 +74,8 @@ true || false true
 
 [https://gobyexample.com/variables](https://gobyexample.com/variables)
 
+![image-20230323221041483](/images/golang/image-20230323221041483.png)
+
 ```go
 package main
 
@@ -88,7 +90,7 @@ func main() {
 	var a, b int = 3, 2
 	fmt.Println(a, b)
 
-	// var 简化写法
+	// var 简化写法,注意只能在方法里面
 	f := true
 	fmt.Println(f)
 
@@ -118,6 +120,17 @@ func multiVar() {
 	fmt.Println(world)
 }
 ```
+
+## 类型别名
+
+```go
+type IDnum int
+type Celsius float64
+
+var userID IDnum
+```
+
+
 
 
 

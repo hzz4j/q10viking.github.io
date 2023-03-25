@@ -11,17 +11,17 @@ typora-root-url: ..\.vuepress\public
 
 
 
-
-
-
-
-
-
-
-
 谷歌账号注册，使用法国vpn
 
 
+
+## Vscode插件ChatGPT - Genie AI
+
+[Account API Keys - OpenAI API](https://platform.openai.com/account/api-keys)
+
+辅助代码生成
+
+[Bilibili 开发go使用chatgpt](https://www.bilibili.com/video/BV1V24y177i9?t=7.9)
 
 ## 参考
 
@@ -33,3 +33,6 @@ typora-root-url: ..\.vuepress\public
 ```
 
 [手把手教你注册和使用ChatGPT](https://juejin.cn/post/7199657558834692157)
+
+
+

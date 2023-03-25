@@ -33,3 +33,38 @@ https://github.com/chapin666/books go书籍
 [https://gitee.com/infraboard/go-course](https://gitee.com/infraboard/go-course)
 
 [https://gitee.com/magedu/golang9](https://gitee.com/magedu/golang9)
+
+
+
+
+
+## Go tools
+
+```sh
+# 在当前目录下执行,会执行所有的*_test.go文件
+go test  
+# go run main.go 执行文件
+go run
+go build
+# 列出所有下载的依赖
+go list
+# 环境变量
+go env
+
+#初始化一个项目
+go mod init github.com/q10viking/coursera
+```
+
+
+
+## 环境变量
+
+> go env查看环境变量
+
+```sh
+# 依赖下载的地方
+GOPATH
+# 安装目录
+GOROOT
+```
+
