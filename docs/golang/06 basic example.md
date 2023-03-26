@@ -132,6 +132,11 @@ var userID IDnum
 
 ### 变量范围
 
+- file block
+- package block
+
+#### package block
+
 ::: tip
 
 同包变量可以访问
@@ -147,6 +152,8 @@ var userID IDnum
 
 
 ## Constant
+
+> Expression whose value is known at compile time.
 
 [https://gobyexample.com/constants](https://gobyexample.com/constants)
 
