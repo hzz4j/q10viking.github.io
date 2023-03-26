@@ -56,7 +56,8 @@ const titles = {
   gateway: "网关",
   skywalking: "Skywalking",
   Ribbon: "Ribbon",
-  Feign: "Feign"
+  Feign: "Feign",
+  ShardingJDBC: "ShardingJDBC"
 };
 
 module.exports = titles;
