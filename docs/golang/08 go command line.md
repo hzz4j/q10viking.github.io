@@ -49,7 +49,7 @@ go install
 ## mod
 
 ```
-go mod tidy 
+go mod init tidy 
 ```
 
 ```
