@@ -121,7 +121,7 @@ func multiVar() {
 }
 ```
 
-## 类型别名
+### 类型别名
 
 ```go
 type IDnum int
@@ -129,6 +129,18 @@ type Celsius float64
 
 var userID IDnum
 ```
+
+### 变量范围
+
+::: tip
+
+同包变量可以访问
+
+:::
+
+![image-20230326133349134](/images/golang/image-20230326133349134.png)
+
+![image-20230326134050854](/images/golang/image-20230326134050854.png)
 
 
 
