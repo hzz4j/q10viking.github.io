@@ -181,6 +181,40 @@ Hello again 静默
 
 ```
 
+![image-20230326143256379](/images/golang/image-20230326143256379.png)
+
+### iota
+
+```go
+type Grades int
+
+const (
+	A Grades = iota
+	B
+	C
+	D
+)
+
+```
+
+### 枚举
+
+```go
+type Direction int
+
+const (
+	North Direction = iota
+	East
+	South
+	West
+)
+
+func (d Direction) String() string {
+	s := [...]string{"North", "East", "South", "West"}
+	return s[d]
+}
+```
+
 
 
 ## For
