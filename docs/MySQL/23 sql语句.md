@@ -17,3 +17,12 @@ typora-root-url: ..\.vuepress\public
 TRUNCATE table course_1;
 ```
 
+
+
+## 获取表信息
+
+```sql
+# course是表名称
+DESCRIBE course
+```
+
