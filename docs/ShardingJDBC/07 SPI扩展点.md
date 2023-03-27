@@ -9,32 +9,58 @@ typora-root-url: ..\.vuepress\public
 
 
 
-## 分库分表
+## SPI
 
-[Source Code](https://github.com/Q10Viking/springcloudalibaba/tree/main/shardingjdbc/_02_fenku-fenbiao)
+ShardingSphere保留了大量的SPI扩展接口，对主流程封闭、对 SPI开放
 
-::: tip
 
-在coursedb下有两个分表course_1，course_2
 
-在coursedb2下有两个分表course_1，course_2，进行试验
+## 实战扩展主键生成策略
 
-:::
+仿造UUIDShardingKeyGenerator使用自己的生成策略
 
-![image-20230326205730448](/images/ShardingJDBC/image-20230326205730448.png)
+```java
+@Slf4j
+public class MyKeyGenerator implements ShardingKeyGenerator {
 
-## 配置
+    private Properties properties = new Properties();
+    private AtomicLong atomicLong = new AtomicLong(0L);
 
-主要设置分库与分表的策略
+    @Override
+    public Comparable<?> generateKey() {
+        LocalDateTime now = LocalDateTime.now();
+        String time = DateTimeFormatter.ofPattern("HHmmssSSS").format(now);
+        Long key = Long.parseLong(time + atomicLong.getAndIncrement());
+        log.info("生成Key: "+key);
+        return key;
+    }
+
+    @Override
+    public String getType() {
+        return "MYKEY";
+    }
+
+    @Override
+    public Properties getProperties() {
+        return this.properties;
+    }
+
+    @Override
+    public void setProperties(Properties properties) {
+        this.properties = properties;
+    }
+}
+```
+
+![image-20230327180245248](/images/ShardingJDBC/image-20230327180245248.png)
+
+`org.apache.shardingsphere.spi.keygen.ShardingKeyGenerator`文件写入扩展的类
 
 ```
-m$->{cid%2+1}
-course_$->{(cid%4).intdiv(2)+1}
-0  m1 m1.couser_1
-1  m2 m2.course_1
-2  m1 m1.course_2
-3  m2.m2.course_2
+org.hzz.spiextension.MyKeyGenerator
 ```
+
+### 配置使用
 
 ```properties
 #配置真实的数据源
@@ -59,9 +85,7 @@ spring.shardingsphere.sharding.tables.course.actual-data-nodes=m$->{1..2}.course
 
 # 指定表的主键生成策略
 spring.shardingsphere.sharding.tables.course.key-generator.column=cid
-spring.shardingsphere.sharding.tables.course.key-generator.type=SNOWFLAKE
-#雪花算法的一个可选参数
-spring.shardingsphere.sharding.tables.course.key-generator.props.woker.id=1
+spring.shardingsphere.sharding.tables.course.key-generator.type=MYKEY
 
 #指定分片策略
 # 数据分片策略
@@ -70,11 +94,22 @@ spring.shardingsphere.sharding.tables.course.database-strategy.inline.sharding-c
 # 表分片策略
 spring.shardingsphere.sharding.tables.course.table-strategy.inline.algorithm-expression=course_$->{(cid%4).intdiv(2)+1}
 spring.shardingsphere.sharding.tables.course.table-strategy.inline.sharding-column=cid
-
 # 打开日志输出
 spring.shardingsphere.props.sql.show=true
-
 ```
 
+## 测试
 
+```java
+@Test
+public void test() throws InterruptedException {
+    for (int i = 0; i < 10; i++) {
+        Course course = new Course();
+        course.setCname("SPI");
+        course.setUserId(100l);
+        course.setCstatus("1");
+        courseMapper.insert(course);
+    }
+}
+```
 
