@@ -17,6 +17,8 @@ ShardingSphere保留了大量的SPI扩展接口，对主流程封闭、对 SPI�
 
 ## 实战扩展主键生成策略
 
+[Source Code](https://github.com/Q10Viking/springcloudalibaba/tree/main/shardingjdbc/_06-SPI)
+
 仿造UUIDShardingKeyGenerator使用自己的生成策略
 
 ```java
@@ -113,3 +115,4 @@ public void test() throws InterruptedException {
 }
 ```
 
+![image-20230327180548193](/images/ShardingJDBC/image-20230327180548193.png)
