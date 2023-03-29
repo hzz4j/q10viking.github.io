@@ -36,3 +36,7 @@ typora-root-url: ..\.vuepress\public
 
 
 
+
+
+## New Bing
+
