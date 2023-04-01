@@ -1,3 +1,14 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /spring/
+typora-root-url: ..\.vuepress\public
+---
+
+
+
 ::: tip
 
 :one: [Build From Source (spring/github.com)](https://github.com/spring-projects/spring-framework/wiki/Build-from-Source)  使用的版本是5.3.13

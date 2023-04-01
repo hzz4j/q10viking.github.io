@@ -1,3 +1,14 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /spring/
+typora-root-url: ..\.vuepress\public
+---
+
+
+
 1. 非懒加载的单例Bean是在Spring启动的时候创建的
 2. 懒加载的单例bean是在getBean的时候创建的
 3. @Scope("prototype")原型Bean是在每次getBean时都会创建
