@@ -219,3 +219,201 @@ Spring事务的代理对象执行某个方法时的步骤：
 在配置@Bean时，多次调用同一个方法，返回的是同一个对象，如dataSource();
 
 会生成一个代理对象，如AppConfig对象，在代理对象的方法中会从容器中来获取这个对象。
+
+
+
+## Spring手写源码❤️
+
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/spring/_01-spring-moni)
+
+1. 通过手写模拟，了解Spring的底层源码启动过程 
+2. 通过手写模拟，了解BeanDefinition、BeanPostProcessor的概念 
+3. 通过手写模拟，了解Spring解析配置类等底层源码工作流程 
+4. 通过手写模拟，了解依赖注入，Aware回调等底层源码工作流程 
+5. 通过手写模拟，了解Spring AOP的底层源码工作流程
+
+### 扫描
+
+1. 模拟了如何扫描类
+
+   1. 拿到配置中要扫描的包，然后转为相对路径
+   2. 使用classloader通过相对路径拿到资源的绝对路径URL
+   3. 接着就可以可以通过URL创建一个File,
+
+   ```java
+   path = path.replace(".", "/");  //     com/zhouyu/service
+   
+   ClassLoader classLoader = ZhouyuApplicationContext.class.getClassLoader();
+   // file:/D:/Github/learncode/spring/_01-spring-moni/target/classes/com/zhouyu/service
+   URL resource = classLoader.getResource(path);
+   
+   File file = new File(resource.getFile());
+   ```
+
+   4. 通过判断这个File是不是目录，来遍历这个目录下的每个class文件，通过classLoader来加载这些class
+
+      ```java
+      Class<?> clazz = classLoader.loadClass(absolutePath);
+      ```
+
+   5. 判断是否标注了@Componet注解
+
+      ```java
+      clazz.isAnnotationPresent(Component.class)
+      ```
+
+2. 模拟实现了如何处理BeanPostProcessor，在扫面当中就实例化了
+
+   ```java
+   if (BeanPostProcessor.class.isAssignableFrom(clazz)) {
+       BeanPostProcessor instance = (BeanPostProcessor) clazz.getConstructor().newInstance();
+       beanPostProcessorList.add(instance);
+   }
+   ```
+
+3. 模拟处理scope原型
+
+   ```java
+   if (clazz.isAnnotationPresent(Scope.class)) {
+       Scope scopeAnnotation = clazz.getAnnotation(Scope.class);
+       String value = scopeAnnotation.value();
+       beanDefinition.setScope(value);
+   } else {
+       beanDefinition.setScope("singleton");
+   }
+   ```
+
+4. 最后存放到BeanDefinitionMap中
+
+   ```java
+   beanDefinitionMap.put(beanName, beanDefinition);
+   ```
+
+   
+
+### bean的生命周期
+
+容器在扫描完beanDefinition后就会创建单例bean
+
+```java
+if (beanDefinition.getScope().equals("singleton")) {
+    Object bean = createBean(beanName, beanDefinition);
+    singletonObjects.put(beanName, bean);
+}
+```
+
+1. 构造函数
+2. 依赖注入
+3. Aware函数调用
+4. 处理BeanPostProcessor#postProcessBeforeInitialization
+5. 处理InitializingBean#afterPropertiesSet
+6. 处理BeanPostProcessor#postProcessAfterInitialization
+
+::: details
+
+```java
+private Object createBean(String beanName, BeanDefinition beanDefinition) {
+        Class clazz = beanDefinition.getType();
+
+        Object instance = null;
+        try {
+
+            instance = clazz.getConstructor().newInstance();
+
+            for (Field field : clazz.getDeclaredFields()) {
+                if (field.isAnnotationPresent(Autowired.class)) {
+
+                    field.setAccessible(true);
+
+                    field.set(instance, getBean(field.getName()));
+                }
+            }
+
+            if (instance instanceof BeanNameAware) {
+                ((BeanNameAware)instance).setBeanName(beanName);
+            }
+
+            for (BeanPostProcessor beanPostProcessor : beanPostProcessorList) {
+                instance = beanPostProcessor.postProcessBeforeInitialization(instance, beanName);
+            }
+
+            if (instance instanceof InitializingBean) {
+                ((InitializingBean)instance).afterPropertiesSet();
+            }
+
+            for (BeanPostProcessor beanPostProcessor : beanPostProcessorList) {
+                instance = beanPostProcessor.postProcessAfterInitialization(instance, beanName);
+            }
+
+
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+
+        return instance;
+    }
+
+
+
+    public Object getBean(String beanName) {
+
+        if (!beanDefinitionMap.containsKey(beanName)) {
+            throw new NullPointerException();
+        }
+
+        BeanDefinition beanDefinition = beanDefinitionMap.get(beanName);
+
+        if (beanDefinition.getScope().equals("singleton")) {
+            Object singletonBean = singletonObjects.get(beanName);
+            if (singletonBean == null) {
+                singletonBean = createBean(beanName, beanDefinition);
+                singletonObjects.put(beanName, singletonBean);
+            }
+            return singletonBean;
+        } else {
+            // 原型
+            Object prototypeBean = createBean(beanName, beanDefinition);
+            return prototypeBean;
+        }
+
+    }
+```
+
+:::
+
+### BeanPostProcessor处理代理
+
+```java
+@Component
+public class ZhouyuBeanPostProcessor implements BeanPostProcessor {
+
+    @Override
+    public Object postProcessAfterInitialization(Object bean, String beanName) {
+
+        if (beanName.equals("userService")) {
+            Object proxyInstance = Proxy.newProxyInstance(ZhouyuBeanPostProcessor.class.getClassLoader(), bean.getClass().getInterfaces(), new InvocationHandler() {
+                @Override
+                public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                    // 切面
+                    System.out.println("切面逻辑");
+
+                    return method.invoke(bean, args);
+                }
+            });
+
+            return proxyInstance;
+        }
+
+        // bean
+        return bean;
+    }
+}
+
+```
+
