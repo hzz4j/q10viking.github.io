@@ -1,3 +1,18 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /spring/
+typora-root-url: ..\.vuepress\public
+---
+
+
+
+
+
+
+
 @PropertySources("classpath:spring.properties")
 
 
