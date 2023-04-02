@@ -1,3 +1,14 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /spring/
+typora-root-url: ..\.vuepress\public
+---
+
+
+
 ## AnnotationConfigApplicationContext构造方法
 
 AnnotationConfigApplicationContext为例子，来介绍refresh的底层原理。
@@ -105,7 +116,13 @@ AnnotationConfigApplicationContext为例子，来介绍refresh的底层原理。
 
 完成BeanFactory的初始化，主要就是**实例化非懒加载的单例Bean**
 
-### finishRefresh
+### finishRefresh❤️
 
 BeanFactory的初始化完后，就到了Spring启动的最后一步了
+
+1. 设置ApplicationContext的lifecycleProcessor，默认情况下设置的是DefaultLifecycleProcessor
+2. 调用lifecycleProcessor的onRefresh()方法，如果是DefaultLifecycleProcessor，那么会获取所有类型为Lifecycle的Bean对象，然后调用它的start()方法，这就是ApplicationContext的生命周期扩展机制
+3. 发布**ContextRefreshedEvent**事件
+
+
 
