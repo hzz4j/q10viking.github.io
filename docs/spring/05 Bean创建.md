@@ -17,4 +17,4 @@ typora-root-url: ..\.vuepress\public
 
 ----------
 
-扫描bean（生成BeanDefinition），创建，注入，初始化，BeanPostProcessor(这是针对所有bean的)，在这里可以实现AOP,@Value的实现，扩展点，就是可以对bean做很多的工作，如可以自定义注解，来实现更多的功能。Aware接口
+扫描bean（生成BeanDefinition），创建，注入，初始化，BeanPostProcessor(这是针对所有bean的)，在这里可以实现AOP,@Value的实现，扩展点，就是可以对bean做很多的工作，如可以自定义注解，来实现更多的功能。
