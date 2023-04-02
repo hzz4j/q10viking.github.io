@@ -9,6 +9,14 @@ typora-root-url: ..\.vuepress\public
 
 
 
+## 流程图
+
+[Link](https://www.processon.com/view/link/5f60a7d71e08531edf26a919)
+
+<common-progresson-snippet src="https://www.processon.com/view/link/5f60a7d71e08531edf26a919"/>
+
+
+
 ## AnnotationConfigApplicationContext构造方法
 
 AnnotationConfigApplicationContext为例子，来介绍refresh的底层原理。
