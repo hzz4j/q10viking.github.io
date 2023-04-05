@@ -40,3 +40,16 @@ typora-root-url: ..\.vuepress\public
 
 ## New Bing
 
+
+
+
+
+## Github Copilot
+
+[Github Student Pack (githubedu.cn)](https://githubedu.cn/)
+
+```sh
+sSq7u3kOG6GRzegNUmmWnAACu6fZvI-srIiHcJWYkBVm7AgG
+Chiangmai Tzuchi School (清邁慈濟學校) (โรงเรียนฉือจี้เชียง)
+```
+
