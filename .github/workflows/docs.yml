@@ -22,6 +22,8 @@ jobs:
         with:
           # 选择要使用的 node 版本
           node-version: '14.17.6'
+        env:
+          NODE_OPTIONS: "--max_old_space_size=8192"
 
       # 缓存 node_modules
       # - name: Cache dependencies
