@@ -9,17 +9,15 @@ typora-root-url: ..\.vuepress\public
 
 
 
-::: tip
-
-[Mybatis Source Code Analysis](https://github.com/Q10Viking/learncode/tree/main/mybatis/mybatis-3-5.3.x-master)
-
-:::
-
 > 基于springboot来分析mybatis的工作流程
 
 ## MyBatis整体架构图
 
 [Source Code](https://github.com/Q10Viking/learncode/tree/main/mybatis/_11_springboot_mybatis_source_code)
+
+[MyBatis源码体系](https://www.processon.com/view/link/5f5075eaf346fb7afd409dd6)
+
+<common-progresson-snippet src="https://www.processon.com/view/link/5f5075eaf346fb7afd409dd6"/>
 
 ![img](/images/mybatis/1520)
 
