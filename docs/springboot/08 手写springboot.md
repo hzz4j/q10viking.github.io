@@ -234,3 +234,280 @@ public static void run(Class<?> clazz) {
 然后在浏览器上访问：http://localhost:8081/test,也能正常的看到结果
 
 ![image-20230406234325235](/images/springboot/image-20230406234325235.png)
+
+
+
+## 实现Tomcat和Jetty切换
+
+虽然我们前面已经实现了一个比较简单的SpringBoot，不过我们可以继续来扩充它的功能，比如现在我有这么一个需求，这个需求就是我现在不想使用Tomcat了，而是想要用Jetty，那该怎么办？
+
+我们前面代码中默认启动的是Tomcat，那我现在想改成这样子：
+
+1. 如果项目中有Tomcat的依赖，那就启动Tomcat
+2. 如果项目中有Jetty的依赖就启动Jetty
+3. 如果两者都没有则报错
+4. 如果两者都有也报错
+
+这个逻辑希望SpringBoot自动帮我实现，对于程序员用户而言，只要在Pom文件中添加相关依赖就可以了，想用Tomcat就加Tomcat依赖，想用Jetty就加Jetty依赖。
+
+那SpringBoot该如何实现呢？
+
+我们知道，不管是Tomcat还是Jetty，它们都是应用服务器，或者是Servlet容器，所以我们可以定义接口来表示它们，这个接口叫做WebServer,并且在这个接口中定义一个start方法：
+
+```java
+public interface WebServer {
+    void start();
+}
+```
+
+有了WebServer接口之后，就针对Tomcat和Jetty提供两个实现类：
+
+```java
+public class TomcatServer implements WebServer {
+    @Override
+    public void start() {
+        System.out.println("TomcatServer start");
+    }
+}
+
+public class JettyServer implements WebServer {
+    @Override
+    public void start() {
+        System.out.println("JettyServer start");
+    }
+}
+```
+
+而在HZZSpringApplication中的run方法中，我们就要去获取对应的WebServer，然后启动对应的webServer，代码为
+
+```java
+public static void run(Class<?> clazz) {
+    AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
+    context.register(clazz);
+    context.refresh();
+
+    WebServer webServer = getWebServer(context);
+    webServer.start();
+}
+
+
+public static WebServer getWebServer(ApplicationContext context) {
+    return null;
+}
+```
+
+这样，我们就只需要在getWebServer方法中去判断到底该返回TomcatWebServer还是JettyWebServer。
+
+前面提到过，我们希望根据项目中的依赖情况，来决定到底用哪个WebServer，我就直接用SpringBoot中的源码实现方式来模拟了。
+
+
+
+## **模拟实现条件注解**
+
+首先我们得实现一个条件注解@ZhouyuConditionalOnClass，对应代码如下
+
+```java
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.METHOD, ElementType.TYPE})
+@Conditional(HZZOnClassCondition.class)
+public @interface HZZConditionalOnClass {
+    String value() default "";
+}
+```
+
+注意核心为@Conditional(HZZOnClassCondition.class)中的HZZOnClassCondition，因为 它才是真正得条件逻辑
+
+```java
+public class HZZOnClassCondition implements Condition {
+    @Override
+    public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
+        MultiValueMap<String, Object> annotationAttributes = metadata.getAllAnnotationAttributes(HZZConditionalOnClass.class.getName());
+        String className = (String) annotationAttributes.getFirst("value");
+        try {
+            context.getClassLoader().loadClass(className);
+            return true;
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
+    }
+}
+```
+
+具体逻辑为，拿到@HZZConditionalOnClass中的value属性，然后用类加载器进行加载，如果加 载到了所指定的这个类，那就表示符合条件，如果加载不到，则表示不符合条件。
+
+
+
+## **模拟实现自动配置类**
+
+有了条件注解，我们就可以来使用它了，那如何实现呢？这里就要用到自动配置类的概念，我们先看代码：
+
+```java
+@Configuration
+public class WebServiceAutoConfiguration {
+
+    @Bean
+    @HZZConditionalOnClass("org.apache.catalina.startup.Tomcat")
+    public TomcatServer tomcatServer() {
+        return new TomcatServer();
+    }
+
+    @Bean
+    @HZZConditionalOnClass("org.eclipse.jetty.server.Server")
+    public JettyServer jettyServer() {
+        return new JettyServer();
+    }
+}
+```
+
+这个代码还是比较简单的，通过一个WebServiceAutoConfiguration的Spring配置类，在里面定义了两个Bean，一个TomcatServer，一个JettyServer，不过这两个要生效的前提是符合当前所指定的条件，比如：
+
+1. 只有存在"org.apache.catalina.startup.Tomcat"类，那么才有TomcatServer这个Bean
+2. 只有存在"org.eclipse.jetty.server.Server"类，那么才有JettyServer这个Bean
+
+并且我们只需要在HZZSpringApplication中getWebServer方法，如此实现
+
+```java
+public static WebServer getWebServer(ApplicationContext context) {
+    // key为beanName, value为Bean对象
+    Map<String, WebServer>  webServers = context.getBeansOfType(WebServer.class);
+
+    if(webServers.isEmpty()){
+        throw new RuntimeException("没有找到WebServer的实现类");
+    }else if(webServers.size() > 1) {
+        throw new RuntimeException("找到多个WebServer的实现类");
+    }else {
+        return webServers.values().iterator().next();
+    }
+}
+```
+
+这样整体SpringBoot启动逻辑就是这样的：
+
+1. 创建一个AnnotationConfigWebApplicationContext容器
+2. 解析Application类，然后进行扫描
+3. 通过getWebServer方法从Spring容器中获取WebServer类型的Bean
+4. 调用WebServer对象的start方法
+
+
+
+## SPI
+
+有了以上步骤，我们还差了一个关键步骤，就是Spring要能解析到WebServiceAutoConfiguration这个自动配置类，因为不管这个类里写了什么代码，Spring不去解析它，那都是没用的，此时我们需要SpringBoot在run方法中，能找到WebServiceAutoConfiguration这个配置类并添加到Spring容器中。
+
+MyApplication是Spring的一个配置类，但是MyApplication是我们传递给SpringBoot，从而添加到Spring容器中去的，而WebServiceAutoConfiguration就需要SpringBoot去自动发现，而不需要程序员做任何配置才能把它添加到Spring容器中去，而且要注意的是，Spring容器扫描也是扫描不到WebServiceAutoConfiguration这个类的，因为我们的扫描路径是"com.zhouyu.user"，而WebServiceAutoConfiguration所在的包路径为"com.zhouyu.springboot"。
+
+那SpringBoot中是如何实现的呢？通过SPI，当然SpringBoot中自己实现了一套SPI机制，也就是我们熟知的spring.factories文件，那么我们模拟就不搞复杂了，就直接用JDK自带的SPI机制。
+
+现在我们只需要在springboot项目中的resources目录下添加如下目录（META-INF/services）和文件：
+
+![image-20230407105422949](/images/springboot/image-20230407105422949.png)
+
+SPI的配置就完成了，相当于通过org.hzz.springboot.AutoConfiguration文件配置了springboot中所提供的配置类。
+
+并且提供一个接口
+
+```java
+public interface AutoConfiguration {
+}
+```
+
+并且WebServiceAutoConfiguration实现该接口
+
+```java
+@Configuration
+public class WebServiceAutoConfiguration implements AutoConfiguration{
+
+    @Bean
+    @HZZConditionalOnClass("org.apache.catalina.startup.Tomcat")
+    public TomcatServer tomcatServer() {
+        return new TomcatServer();
+    }
+
+    @Bean
+    @HZZConditionalOnClass("org.eclipse.jetty.server.Server")
+    public JettyServer jettyServer() {
+        return new JettyServer();
+    }
+}
+```
+
+然后我们再利用spring中的@Import技术来导入这些配置类，我们在@HZZSpringBootApplication的定义上增加如下代码:
+
+```java
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.TYPE})
+@ComponentScan
+@Import(HZZImportSelector.class)
+public @interface HZZSpringBootApplication {
+}
+```
+
+
+
+```java
+public class HZZImportSelector implements DeferredImportSelector {
+    @Override
+    public String[] selectImports(AnnotationMetadata importingClassMetadata) {
+        ServiceLoader<AutoConfiguration> serviceLoader = ServiceLoader.load(AutoConfiguration.class);
+        List<String> list = new ArrayList<>();
+        for (AutoConfiguration autoConfiguration : serviceLoader) {
+            list.add(autoConfiguration.getClass().getName());
+            System.out.println("加载自动配置类：" + autoConfiguration.getClass().getName());
+        }
+        return list.toArray(new String[list.size()]);
+    }
+}
+```
+
+这就完成了从org.hzz.springboot.AutoConfiguration文件中获取自动配置类的名字，并导入到Spring容器中，从而Spring容器就知道了这些配置类的存在，而对于user项目而言，是不需要修改代码的。
+
+## 测试
+
+### tomcat
+
+此时运行Application，就能看到启动了Tomcat：
+
+```sh
+加载自动配置类：org.hzz.springboot.WebServiceAutoConfiguration
+准备加载类：org.apache.catalina.startup.Tomcat
+加载类成功：org.apache.catalina.startup.Tomcat
+准备加载类：org.eclipse.jetty.server.Server
+加载类失败：org.eclipse.jetty.server.Server
+TomcatServer start
+```
+
+### jetty
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>org.hzz.springboot</groupId>
+        <artifactId>springboot</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <exclusions>
+            <exclusion>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-core</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+
+    <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-server</artifactId>
+        <version>9.4.43.v20210629</version>
+    </dependency>
+</dependencies>
+```
+
+```java
+加载自动配置类：org.hzz.springboot.WebServiceAutoConfiguration
+准备加载类：org.apache.catalina.startup.Tomcat
+加载类失败：org.apache.catalina.startup.Tomcat
+准备加载类：org.eclipse.jetty.server.Server
+加载类成功：org.eclipse.jetty.server.Server
+JettyServer start
+```
+
