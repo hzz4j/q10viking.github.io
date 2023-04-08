@@ -1,3 +1,14 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /springboot/
+typora-root-url: ..\.vuepress\public
+---
+
+
+
 ::: tip
 
 从官网下载 [Spring Initializr](https://start.spring.io/)
@@ -86,5 +97,4 @@ public class Application {
     </plugins>
 </build>
 ```
-
 

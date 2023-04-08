@@ -1,3 +1,12 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /springboot/
+typora-root-url: ..\.vuepress\public
+---
+
 
 
 在onRefresh方法里面创建内置的tomcat

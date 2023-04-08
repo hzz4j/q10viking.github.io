@@ -1,3 +1,14 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /springboot/
+typora-root-url: ..\.vuepress\public
+---
+
+
+
 ### SpringBoot的jar包为什么可以直接运行
 
 maven插件spring-boot-plugin

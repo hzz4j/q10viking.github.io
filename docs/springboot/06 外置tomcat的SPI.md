@@ -1,3 +1,14 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /springboot/
+typora-root-url: ..\.vuepress\public
+---
+
+
+
 外置tomcat的SPI在SpringBoot的使用
 
 SpringServletContainerInitiallizer实现了这个类javax.servlet.ServletContainerInitializer，tomcat会通过SPI调用onStartup方法，tomcat传入实现了WebApplicationInitailizer的类@HandlerTypes(WebApplicationInitailizer.class)
