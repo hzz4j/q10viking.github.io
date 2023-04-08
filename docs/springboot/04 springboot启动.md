@@ -37,3 +37,13 @@ java -jar是使用Main-Class来作为应用的启动类
 
 1. spring容器启动
 2. 全局配置文件的加载
+
+
+
+
+
+
+
+[Link](https://www.processon.com/view/link/60d865e85653bb049a4b77ff)
+
+<common-progresson-snippet src="https://www.processon.com/view/link/60d865e85653bb049a4b77ff"/>
