@@ -278,7 +278,7 @@ public class ThreadJoinDemo {
 
 > 举一个例子，用两个线程来分别相加一个数组
 
-[Source Code]()
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/threads/_01_add_sum/_01_add_sum)
 
 ```java
 public class App {
