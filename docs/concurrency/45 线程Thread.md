@@ -276,3 +276,62 @@ public class ThreadJoinDemo {
  */
 ```
 
+> 举一个例子，用两个线程来分别相加一个数组
+
+[Source Code]()
+
+```java
+public class App {
+    public static void main(String[] args) {
+        // generate number array 1-100
+        int[] numbers = generateNumber(100);
+
+        int split = numbers.length / 2;
+        // ThreadResolveResult构造函数里面就启动了一个线程
+        ResolveResult firstHandler = new ThreadResolveResult(new StandardResolveResult(numbers,0,split));
+        ResolveResult secondHandler = new StandardResolveResult(numbers,split,numbers.length);
+        int secondResult = secondHandler.resolve();
+        int firstResult = firstHandler.resolve();  // 里面的代码是线程join
+        int total = firstResult + secondResult;
+        System.out.println("Total: "+ total);
+        if(total == 5050){
+            System.out.println("结果正确");
+        }
+    }
+
+
+    public static int[] generateNumber(int max){
+        int[] numbers = new int[max];
+        for (int i=0;i<max;i++){
+            numbers[i] = i+1;
+        }
+        return numbers;
+    }
+}
+/**
+ * Total: 5050
+ * 结果正确
+ */
+```
+
+```java
+public class ThreadResolveResult implements ResolveResult{
+    private volatile int result = 0;
+    private Thread thread;
+
+    public ThreadResolveResult(ResolveResult resolveResult){
+        thread = new Thread(()-> this.result = resolveResult.resolve());
+        thread.start();
+    }
+    @Override
+    public int resolve() {
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        return result;
+    }
+}
+```
+
