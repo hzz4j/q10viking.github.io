@@ -9,6 +9,28 @@ typora-root-url: ..\.vuepress\public
 
 
 
+```java
+public class JDKDemo {
+
+    public static void main(String[] args) {
+
+        System.setProperty("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
+
+        UserInterface userInterface = (UserInterface) Proxy.newProxyInstance(JDKDemo.class.getClassLoader(), new Class[]{UserInterface.class}, new InvocationHandler() {
+            @Override
+            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                System.out.println("test");
+                return null;
+            }
+        });
+
+        userInterface.test();
+    }
+}
+```
+
+
+
 ## JDK动态生成代理的原理
 
 java虚拟机通过反射的方式会为我们生成相应的字节码类。生成的类实现了我们的接口，并且继承了Proxy类，而Proxy类中维护了InvocationHanlder接口，即我们实现的类；
