@@ -378,3 +378,94 @@ Object result = methodProxy.invoke(o, objects);
 ```
 
 所以在执⾏methodProxy.invokeSuper()⽅法时，就会去执⾏CGLIB$test$0()⽅法。 我们来总结⼀下cglib的⼤概⼯作原理是：cglib会根据所设置的Superclass，⽣成代理类作为其⼦类， 并且会重写Superclass中的⽅法，Superclass中的某⼀个⽅法，⽐如test()，相应的在代理类中会对应 两个⽅法，⼀个是重写的test()，⽤来执⾏增强逻辑，⼀个是CGLIB$test$0()，会直接调⽤ super.test()，是让MethodProxy对象来⽤的。
+
+
+
+
+
+## 代理类
+
+代理类中有⼀个代理块，会调⽤CGLIB$STATICHOOK1()，这个⽅法主要就是给属性赋值，⽐如：
+1. 构造⼀个ThreadLocal对象给CGLIB$THREAD_CALLBACKS属性
+2. 获取UserService类中的test⽅法的Method对象给CGLIB$test$0$Method属性
+3. 构造test()⽅法所对应的MethodProxy对象给CGLIB$test$0$Proxy属性
+
+
+
+1. cglib先⽣成代理类 
+2. 然后调⽤构造⽅法得到代理对象 
+3. 然后cglib调⽤代理对象的CGLIB$SET_THREAD_CALLBACKS()⽅法，把程序员所设置的 Callbacks设置到CGLIB$THREAD_CALLBACKS这个ThreadLocal中 
+4. 后续代理对象在执⾏test()⽅法时，就会从CGLIB$THREAD_CALLBACKS拿到所设置的 Callbacks
+
+---------
+
+调⽤其intercept()⽅法 ⽽代理类的⽣成逻辑就是： 
+
+1. 先⽣成类的定义，实现UserService和Factory接⼝ 
+2. 根据UserService类中的⽅法⽣成代理类中对应的⽅法和属性
+3. ⽣成⼀些辅助的属性和⽅法
+
+
+
+## MethodProxy
+
+MethodProxy对象，表示⼀个⽅法的代理，⽐如UserSerivce中的test()⽅法，在对应的代理 类中会有对应的两个⽅法
+
+```java
+final void CGLIB$test$0() {
+    super.test();
+}
+
+public final void test() {
+    MethodInterceptor var10000 = this.CGLIB$CALLBACK_0;
+    if (var10000 == null) {
+        CGLIB$BIND_CALLBACKS(this);
+        var10000 = this.CGLIB$CALLBACK_0;
+    }
+
+    if (var10000 != null) {
+        var10000.intercept(this, CGLIB$test$0$Method, CGLIB$emptyArgs, CGLIB$test$0$Proxy);
+    } else {
+        super.test();
+    }
+}
+```
+
+```java
+//  o表示当前代理对象，target表示被代理对象
+
+// 执⾏UserService代理对象的CGLIB$test$0()⽅法，也就是执⾏UserService代理对象的⽗类的test()
+Object result = methodProxy.invokeSuper(o, objects);
+// 报错 ClassCastException: org.hzz.UserService cannot be cast to org.hzz.UserService$$EnhancerByCGLIB$$7fc9ae62
+Object result = methodProxy.invokeSuper(target, objects);
+// 执⾏UserService对象的test()
+Object result = methodProxy.invoke(target, objects);
+// 报错：栈溢出
+Object result = methodProxy.invoke(o, objects);
+```
+
+下MethodProxy对象的创建，创建的⼊⼝在代理类中：
+
+```java
+Class var0 = Class.forName("org.hzz.UserService$$EnhancerByCGLIB$$7fc9ae62");
+
+CGLIB$test$0$Proxy = MethodProxy.create(var1, var0, "()V", "test", "CGLIB$test$0");
+```
+
+
+
+```java
+public static MethodProxy create(Class c1, Class c2, String desc, String name1, String name2) {
+    // c1是UserService类
+    // c2是UserService代理类
+    // desc是⽅法的返回类型 ()V
+    // name1是⽅法名 test
+    // name2是代理类中对应的另外⼀个⽅法名，CGLIB$test$0
+    MethodProxy proxy = new MethodProxy();
+    proxy.sig1 = new Signature(name1, desc);
+    proxy.sig2 = new Signature(name2, desc);
+    proxy.createInfo = new CreateInfo(c1, c2);
+    return proxy;
+}
+```
+
