@@ -1,3 +1,14 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /netty/
+typora-root-url: ..\.vuepress\public
+---
+
+
+
 ## 客户端
 
 > 模拟Nacos的通信服务（其实它就相当客户端），nacos通过服务发送过来的查询服务实例列表，其中带有IP，udp端口，从而知道了怎么与服务进行udp通信。
