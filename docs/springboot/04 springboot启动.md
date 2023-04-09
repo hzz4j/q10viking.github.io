@@ -9,20 +9,6 @@ typora-root-url: ..\.vuepress\public
 
 
 
-### SpringBoot的jar包为什么可以直接运行
-
-maven插件spring-boot-plugin
-
-生成了MANIFEST.MF
-
-包依赖的jar包也打包进去了
-
-在java中没有提供任何标准的方式来加载嵌套jar文件中的jar,所以springboot打包成的jar包中无法被java加载，而MANIFEST.MF中的MAIN-Class:指定了JarLauncher类，spring-boot自定义的类加载器，来加载打包里面的jar包
-
-java -jar是使用Main-Class来作为应用的启动类
-
-
-
 ## Springboot启动流程
 
 1. 加载一些监听器
@@ -47,3 +33,36 @@ java -jar是使用Main-Class来作为应用的启动类
 [Link](https://www.processon.com/view/link/60d865e85653bb049a4b77ff)
 
 <common-progresson-snippet src="https://www.processon.com/view/link/60d865e85653bb049a4b77ff"/>
+
+
+
+## 选择context
+
+> 在springboot中已经在spring.factories中配置了创建相应context的factory
+
+```yml
+# Application Context Factories
+org.springframework.boot.ApplicationContextFactory=\
+org.springframework.boot.web.reactive.context.AnnotationConfigReactiveWebServerApplicationContext.Factory,\
+org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext.Factory
+```
+
+![image-20230409101441490](/images/springboot/image-20230409101441490.png)
+
+
+
+springboot在选择context的时候，主要是根据WebApplicationType来进行创建
+
+```sh
+WebApplicationType.NONE--> DefaultApplicationContextFactory--> AnnotationConfigApplicationContext
+WebApplicationType.SERVLET-->AnnotationConfigServletWebServerApplicationContext.Factory
+WebApplicationType.REACTIVE-->AnnotationConfigReactiveWebServerApplicationContext.Factory
+```
+
+
+
+## 创建webServer
+
+[Link](https://www.processon.com/view/link/5feb409a07912910e48b61c0)
+
+<common-progresson-snippet src="https://www.processon.com/view/link/5feb409a07912910e48b61c0"/>
