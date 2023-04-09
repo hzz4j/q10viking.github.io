@@ -11,6 +11,10 @@ typora-root-url: ..\.vuepress\public
 
 ## Bean的生命周期
 
+[link](https://www.processon.com/view/link/5f15341b07912906d9ae8642)
+
+<common-progresson-snippet src="https://www.processon.com/view/link/5f15341b07912906d9ae8642"/>
+
 [Source Code](https://github.com/Q10Viking/learncode/tree/main/spring/_02_spring-bean-lifecycle)
 
 [Link](https://www.processon.com/view/link/5f8588c87d9c0806f27358c1)
