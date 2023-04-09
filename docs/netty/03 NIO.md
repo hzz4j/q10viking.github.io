@@ -1,3 +1,14 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /netty/
+typora-root-url: ..\.vuepress\public
+---
+
+
+
 ::: tip
 
 NIO 库是在 JDK 1.4 中引入的。NIO 弥补了原来的 BIO 的不足，它在标准 Java 代码中提供了高速的、面向块的 I/O。NIO被称为 no-blocking io 或者 new io都说得通
@@ -396,3 +407,45 @@ public class ClientHandler implements Runnable{
 
 
 
+
+
+## SelectionKey
+
+
+
+SelectionKey是一个抽象类,表示selectableChannel在Selector中注册的标识.每个Channel向Selector注册时,都将会创建一个SelectionKey。SelectionKey将Channel与Selector建立了关系，并维护了channel事件。
+
+可以通过cancel方法取消键,取消的键不会立即从selector中移除,而是添加到cancelledKeys中,在下一次select操作时移除它.所以在调用某个key时,需要使用isValid进行校验.
+
+### **SelectionKey类型和就绪条件**
+
+| **操作类型** | **就绪条件及说明**                                           |
+| ------------ | ------------------------------------------------------------ |
+| OP_READ      | 当操作系统读缓冲区有数据可读时就绪。并非时刻都有数据可读，所以一般需要注册该操作，仅当有就绪时才发起读操作，有的放矢，避免浪费CPU。 |
+| OP_WRITE     | 当操作系统写缓冲区有空闲空间时就绪。一般情况下写缓冲区都有空闲空间，小块数据直接写入即可，没必要注册该操作类型，否则该条件不断就绪浪费CPU；但如果是写密集型的任务，比如文件下载等，缓冲区很可能满，注册该操作类型就很有必要，同时注意写完后取消注册。 |
+| OP_CONNECT   | 当SocketChannel.connect()请求连接成功后就绪。该操作只给客户端使用。 |
+| OP_ACCEPT    | 当接收到一个客户端连接请求时就绪。该操作只给服务器使用。     |
+
+
+
+### 服务端与客户端感兴趣的事件
+
+ServerSocketChannel和SocketChannel可以注册自己感兴趣的操作类型，当对应操作类型的就绪条件满足时OS会通知channel，下表描述各种Channel允许注册的操作类型，Y表示允许注册，N表示不允许注册，其中服务器SocketChannel指由服务器ServerSocketChannel.accept()返回的对象。
+
+|                           | OP_READ | OP_WRITE | OP_CONNECT | OP_ACCEPT |
+| ------------------------- | ------- | -------- | ---------- | --------- |
+| 服务器ServerSocketChannel |         |          |            | **Y**     |
+| 服务器SocketChannel       | **Y**   | **Y**    |            |           |
+| 客户端SocketChannel       | **Y**   | **Y**    | **Y**      |           |
+
+
+
+服务器启动ServerSocketChannel，关注OP_ACCEPT事件，
+
+客户端启动SocketChannel，连接服务器，关注OP_CONNECT事件
+
+服务器接受连接，启动一个服务器的SocketChannel，这个SocketChannel可以关注OP_READ、OP_WRITE事件，一般连接建立后会直接关注OP_READ事件
+
+客户端这边的客户端SocketChannel发现连接建立后，可以关注OP_READ、OP_WRITE事件，一般是需要客户端需要发送数据了才关注OP_READ事件
+
+连接建立后客户端与服务器端开始相互发送消息（读写），根据实际情况来关注OP_READ、OP_WRITE事件。
