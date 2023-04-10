@@ -1,4 +1,5 @@
 ---
+
 sidebarDepth: 3
 sidebar: auto
 prev:
@@ -34,7 +35,7 @@ typora-root-url: ..\.vuepress\public
 
 > 当NIO线程负载过重之后，处理速度将变慢，这会导致大量客户端连接超时，超时之后往往会进行重发，这更加重了NIO线程的负载，最终会导致大量消息积压和处理超时，成为系统的性能瓶颈
 
-### **多线程主从Reactor模式**
+## **多线程主从Reactor模式**
 
 > mainReactor可以只有一个，但subReactor一般会有多个。mainReactor线程主要负责接收客户端的连接请求，然后将接收到的SocketChannel传递给subReactor，由subReactor来完成和客户端的通信
 
@@ -46,3 +47,15 @@ typora-root-url: ..\.vuepress\public
 4. 当有I/O事件就绪时，相关的subReactor就将事件派发给响应的处理器处理。注意，这里subReactor线程只负责完成I/O的read()操作，在读取到数据后将业务逻辑的处理放入到线程池中完成，若完成业务逻辑后需要返回数据给客户端，则相关的I/O的write操作还是会被提交回subReactor线程来完成。
 
 > 多Reactor线程模式将“接受客户端的连接请求”和“与该客户端的通信”分在了两个Reactor线程来完成。mainReactor完成接收客户端连接请求的操作，它不负责与客户端的通信，而是将建立好的连接转交给subReactor线程来完成与客户端的通信，这样一来就不会因为read()数据量太大而导致后面的客户端连接请求得不到即时处理的情况。并且多Reactor线程模式在海量的客户端并发请求的情况下，还可以通过实现subReactor线程池来将海量的连接分发给多个subReactor线程，在多核的操作系统中这能大大提升应用的负载和吞吐量
+
+
+
+
+
+
+
+## 参考
+
+[Java NIO与Reactor – Heart.Think.Do (heartthinkdo.com)](http://www.heartthinkdo.com/?p=2241)
+
+[NIO - Multiple Reactors 模型 | 多巴胺的小站 (shadowland.cn)](https://blog.shadowland.cn/java/2018/10/06/NIO-Multiple-Reactors/)
