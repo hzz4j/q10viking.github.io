@@ -449,3 +449,11 @@ ServerSocketChannel和SocketChannel可以注册自己感兴趣的操作类型，
 客户端这边的客户端SocketChannel发现连接建立后，可以关注OP_READ、OP_WRITE事件，一般是需要客户端需要发送数据了才关注OP_READ事件
 
 连接建立后客户端与服务器端开始相互发送消息（读写），根据实际情况来关注OP_READ、OP_WRITE事件。
+
+
+
+
+
+## selector.wakeup
+
+> 唤醒阻塞的selector.select()
