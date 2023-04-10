@@ -161,6 +161,185 @@ public class Reactor implements Runnable{
 
 
 
+> 重构版
+
+:::: code-group
+::: code-group-item BasicReactor
+
+```java
+/**
+ * Basic Reactor Design
+ */
+public class BasicReactor extends Reactor{
+    final ServerSocketChannel serverSocketChannel;
+    private volatile boolean started = false;
+    public BasicReactor(int port) throws IOException {
+        serverSocketChannel = ServerSocketChannel.open();
+        serverSocketChannel.bind(new InetSocketAddress(port));
+        serverSocketChannel.configureBlocking(false);
+        serverSocketChannel.register(selector,
+                SelectionKey.OP_ACCEPT,
+                getAcceptor());
+        started = true;
+        logger.info("Server started at port: "+port);
+    }
+
+    public Acceptor getAcceptor(){
+        return new Acceptor();
+    }
+
+    public static void main(String[] args) throws IOException{
+        new BasicReactor(8080).run();
+    }
+
+
+    class Acceptor implements Runnable{
+        @Override
+        public void run() {
+            try{
+                SocketChannel socketChannel = serverSocketChannel.accept();
+                logger.info("客户端连接"+socketChannel.getRemoteAddress());
+                getHandler(socketChannel);
+            }catch (IOException e){}
+
+        }
+
+        Handler getHandler(SocketChannel socketChannel) throws IOException {
+            return new Handler(socketChannel);
+        }
+    }
+
+
+    class Handler implements Runnable{
+        protected final static int MAXIN = 65535;
+        protected final static int MAXOUT = 65535;
+        static final int READING = 0, SENDING = 1;
+        protected final SocketChannel socketChannel;
+        protected final SelectionKey selectionKey;
+        ByteBuffer input = ByteBuffer.allocate(MAXIN);
+        ByteBuffer output = ByteBuffer.allocate(MAXOUT);
+        int state = READING;
+        public Handler(SocketChannel socketChannel) throws IOException{
+            this.socketChannel = socketChannel;
+            this.socketChannel.configureBlocking(false);
+            selectionKey = this.socketChannel.register(selector, 0);
+            registerHandler();
+        }
+
+        void registerHandler(){
+            selectionKey.interestOps(SelectionKey.OP_READ);
+            selectionKey.attach(this);
+            selector.wakeup();
+        }
+
+        @Override
+        public void run() {
+            try{
+                if (state == READING) read();
+                else if(state == SENDING) send();
+            }catch (IOException e){}
+        }
+
+        void read() throws IOException{
+            // ... read data ...
+            socketChannel.read(input);
+            if(isInputComplete()){
+                process();
+                state = SENDING;
+                selectionKey.interestOps(SelectionKey.OP_WRITE);
+            }
+        }
+
+        void send() throws IOException{
+            // ... send data ...
+            output.put("hello client".getBytes(StandardCharsets.UTF_8));
+            output.flip();
+            socketChannel.write(output);
+            state = READING;
+            selectionKey.interestOps(SelectionKey.OP_READ);
+            if(isOutputComplete()){
+                logger.info(Thread.currentThread().getName()+"关闭"+socketChannel.getRemoteAddress());
+                output.clear();
+                selectionKey.cancel();
+                socketChannel.close();
+            }
+        }
+
+        boolean isInputComplete(){
+            return true;
+        }
+        boolean isOutputComplete(){
+            return true;
+        }
+
+        void process() throws IOException {
+            // ... process data ...
+            if(input.position() > 0){
+                input.flip();
+                byte[] bytes = new byte[input.limit()];
+                input.get(bytes);
+                logger.info(Thread.currentThread().getName()+": read data is "+new String(bytes, StandardCharsets.UTF_8));
+                input.clear();
+            }
+        }
+    }
+}
+```
+:::
+::: code-group-item Reactor
+
+```java
+public abstract class Reactor implements Runnable{
+    protected static Logger logger = Logger.getLogger(Reactor.class.getName());
+    protected Selector selector;
+
+    public Reactor() throws IOException {
+        this.selector = Selector.open();
+    }
+    @Override
+    public void run() {
+        try {
+            while (!Thread.interrupted()) {
+                doSelect();
+                Iterator<SelectionKey> iterator = selector.selectedKeys().iterator();
+                while (iterator.hasNext()){
+                    SelectionKey key = iterator.next();
+                    iterator.remove();
+                    dispatch(key);
+                }
+
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    protected int doSelect() throws IOException{
+        return selector.select();
+    }
+
+    protected void dispatch(SelectionKey key){
+        Runnable task = (Runnable) key.attachment();
+        if(task != null) task.run();
+    }
+}
+```
+:::
+::::
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## **单线程Reactor，工作者线程池**
 
 > WorkerThread Pools
