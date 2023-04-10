@@ -1,5 +1,4 @@
 ---
-
 sidebarDepth: 3
 sidebar: auto
 prev:
@@ -12,7 +11,7 @@ typora-root-url: ..\.vuepress\public
 
 ## **单线程Reactor模式流程**
 
-
+> Basic Reactor Design
 
 - 服务器端的Reactor是一个线程对象，该线程会启动事件循环，并使用Selector(选择器)来实现IO的多路复用。注册一个Acceptor事件处理器到Reactor中，Acceptor事件处理器所关注的事件是ACCEPT事件，这样Reactor会监听客户端向服务器端发起的连接请求事件(ACCEPT事件)
 - 客户端向服务器端发起一个连接请求，Reactor监听到了该ACCEPT事件的发生并将该ACCEPT事件派发给相应的Acceptor处理器来进行处理。Acceptor处理器通过accept()方法得到与这个客户端对应的连接(SocketChannel)，然后将该连接所关注的READ事件以及对应的READ事件处理器注册到Reactor中，这样一来Reactor就会监听该连接的READ事件了。
@@ -27,7 +26,144 @@ typora-root-url: ..\.vuepress\public
 
 
 
+```java
+public class Reactor implements Runnable{
+    protected static Logger logger = Logger.getLogger("Reactor");
+    private final static int MAXIN = 65535;
+    private final static int MAXOUT = 65535;
+    final int port;
+    final Selector selector;
+    final ServerSocketChannel serverSocketChannel;
+
+    public Reactor(int port) throws IOException {
+        this.port = port;
+        this.selector = Selector.open();
+        this.serverSocketChannel = ServerSocketChannel.open();
+        this.serverSocketChannel.socket().bind(new InetSocketAddress(port));
+        this.serverSocketChannel.configureBlocking(false);
+        SelectionKey key = serverSocketChannel.register(selector, 0);
+        key.interestOps(SelectionKey.OP_ACCEPT);
+        key.attach(new Acceptor());
+        logger.info("Reactor started on port "+port);
+    }
+    @Override
+    public void run() {     // normally in a new Thread
+        try {
+            while (!Thread.interrupted()) {
+                selector.select();
+                // ... deal with selected keys ...
+                Set<SelectionKey> selectionKeys = selector.selectedKeys();
+                if(selectionKeys.isEmpty()){
+                    logger.info(Thread.currentThread().getName()+": selectionKeys is empty");
+                    continue;
+                }
+                logger.info(Thread.currentThread().getName()+": selectionKeys size is "+selectionKeys.size());
+                Iterator<SelectionKey> iterator = selectionKeys.iterator();
+                while(iterator.hasNext()){
+                    dispatch(iterator.next());
+                    //iterator.remove();
+                }
+                selectionKeys.clear();
+
+            }
+        } catch (IOException ex) { /* ... */ }
+
+    }
+
+    void dispatch(SelectionKey key){
+        Runnable r = (Runnable) key.attachment(); // Accept or Handler 都实现了Runnable接口
+        if(r != null){
+            r.run();
+        }
+    }
+
+    class Acceptor implements Runnable{
+        @Override
+        public void run() {
+            try {
+                SocketChannel socketChannel = serverSocketChannel.accept();
+                if(socketChannel != null){
+                    logger.info("accept a new connection"+socketChannel.getRemoteAddress());
+                    new Handler(selector, socketChannel);
+                }
+            } catch (IOException e) {/*...*/}
+        }
+    }
+
+    final class Handler implements Runnable{
+        static final int READING = 0, SENDING = 1;
+        int state = READING;
+        final SocketChannel socketChannel;
+        final SelectionKey selectionKey;
+        ByteBuffer input = ByteBuffer.allocate(MAXIN);
+        ByteBuffer output = ByteBuffer.allocate(MAXOUT);
+
+        Handler(Selector selector, SocketChannel socketChannel) throws IOException {
+            this.socketChannel = socketChannel;
+            socketChannel.configureBlocking(false);
+            selectionKey = socketChannel.register(selector, 0);
+            selectionKey.attach(this);
+            selectionKey.interestOps(SelectionKey.OP_READ);
+            selector.wakeup();
+        }
+        @Override
+        public void run() {
+            try {
+                if (state == READING) read();
+                else if (state == SENDING) send();
+            } catch (IOException ex) { /* ... */ }
+        }
+
+        void read() throws IOException {
+            // ... read data ...
+            socketChannel.read(input);
+            if(isInputComplete()){
+                process();
+                state = SENDING;
+                selectionKey.interestOps(SelectionKey.OP_WRITE);
+            }
+        }
+
+        void send() throws IOException {
+            // ... send data ...
+            output.put("hello client".getBytes(StandardCharsets.UTF_8));
+            output.flip();
+            socketChannel.write(output);
+            state = READING;
+            selectionKey.interestOps(SelectionKey.OP_READ);
+            if(isOutputComplete()){
+                logger.info(Thread.currentThread().getName()+"关闭"+socketChannel.getRemoteAddress());
+                selectionKey.cancel();
+                socketChannel.close();
+            }
+        }
+
+        boolean isInputComplete(){
+            return true;
+        }
+        boolean isOutputComplete(){
+            return true;
+        }
+        void process() throws IOException {
+            // ... process data ...
+            if(input.position() > 0){
+                input.flip();
+                byte[] bytes = new byte[input.limit()];
+                input.get(bytes);
+                logger.info(Thread.currentThread().getName()+": read data is "+new String(bytes, StandardCharsets.UTF_8));
+                input.clear();
+            }
+        }
+    }
+}
+
+```
+
+
+
 ## **单线程Reactor，工作者线程池**
+
+> WorkerThread Pools
 
 单线程Reactor模式不同的是，添加了一个工作者线程池，并将非I/O操作从Reactor线程中移出转交给工作者线程池来执行。这样能够提高Reactor线程的I/O响应，不至于因为一些耗时的业务逻辑而延迟对后面I/O请求的处理
 
@@ -36,6 +172,8 @@ typora-root-url: ..\.vuepress\public
 > 当NIO线程负载过重之后，处理速度将变慢，这会导致大量客户端连接超时，超时之后往往会进行重发，这更加重了NIO线程的负载，最终会导致大量消息积压和处理超时，成为系统的性能瓶颈
 
 ## **多线程主从Reactor模式**
+
+> Using Multiple Reactors
 
 > mainReactor可以只有一个，但subReactor一般会有多个。mainReactor线程主要负责接收客户端的连接请求，然后将接收到的SocketChannel传递给subReactor，由subReactor来完成和客户端的通信
 
