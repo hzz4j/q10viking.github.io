@@ -332,14 +332,6 @@ public abstract class Reactor implements Runnable{
 
 
 
-
-
-
-
-
-
-
-
 ## **单线程Reactor，工作者线程池**
 
 > WorkerThread Pools
@@ -347,6 +339,32 @@ public abstract class Reactor implements Runnable{
 单线程Reactor模式不同的是，添加了一个工作者线程池，并将非I/O操作从Reactor线程中移出转交给工作者线程池来执行。这样能够提高Reactor线程的I/O响应，不至于因为一些耗时的业务逻辑而延迟对后面I/O请求的处理
 
 ![https://note.youdao.com/yws/public/resource/8ef33654f746921ad769ad9fe91a4c8f/xmlnote/OFFICE4A2F9D2C8A8F4220BB69B68DC0E3AFCD/10076](/images/netty/10076)
+
+```java
+class Handler implements Runnable {
+    // uses util.concurrent thread pool
+    static PooledExecutor pool = new PooledExecutor(...);
+    static final int PROCESSING = 3;
+    // ...
+    synchronized void read() { // ...
+        socket.read(input);
+        if (inputIsComplete()) {
+            state = PROCESSING;
+            pool.execute(new Processer());
+        }
+    }
+    synchronized void processAndHandOff() {
+        process();
+        state = SENDING; // or rebind attachment
+        sk.interest(SelectionKey.OP_WRITE);
+    }
+    class Processer implements Runnable {
+        public void run() { processAndHandOff(); }
+    }
+}
+```
+
+
 
 > 当NIO线程负载过重之后，处理速度将变慢，这会导致大量客户端连接超时，超时之后往往会进行重发，这更加重了NIO线程的负载，最终会导致大量消息积压和处理超时，成为系统的性能瓶颈
 
