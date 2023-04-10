@@ -716,3 +716,5 @@ public class MultipleReactor extends WorkerThreadPoolRector{
 [Java NIO与Reactor – Heart.Think.Do (heartthinkdo.com)](http://www.heartthinkdo.com/?p=2241)
 
 [NIO - Multiple Reactors 模型 | 多巴胺的小站 (shadowland.cn)](https://blog.shadowland.cn/java/2018/10/06/NIO-Multiple-Reactors/)
+
+[nio.pdf (oswego.edu)](https://gee.cs.oswego.edu/dl/cpjslides/nio.pdf)
