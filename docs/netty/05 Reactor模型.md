@@ -330,8 +330,6 @@ public abstract class Reactor implements Runnable{
 
 
 
-
-
 ## **单线程Reactor，工作者线程池**
 
 > WorkerThread Pools
@@ -339,6 +337,8 @@ public abstract class Reactor implements Runnable{
 单线程Reactor模式不同的是，添加了一个工作者线程池，并将非I/O操作从Reactor线程中移出转交给工作者线程池来执行。这样能够提高Reactor线程的I/O响应，不至于因为一些耗时的业务逻辑而延迟对后面I/O请求的处理
 
 ![https://note.youdao.com/yws/public/resource/8ef33654f746921ad769ad9fe91a4c8f/xmlnote/OFFICE4A2F9D2C8A8F4220BB69B68DC0E3AFCD/10076](/images/netty/10076)
+
+> 多线程应用的位置主要体现在读取完一个客户端的完整请求之后，将这个请求任务提交给线程池去处理
 
 ```java
 class Handler implements Runnable {
@@ -363,6 +363,206 @@ class Handler implements Runnable {
     }
 }
 ```
+
+
+
+> 实现: 注意主线成在处理完读之后就回到了selector.select()的阻塞状态。当线程池处理完请求之后，在改变selectionkey的感兴趣的事件的时候，selector是不会响应的，需要wakeup
+
+
+
+:::: code-group
+::: code-group-item WorkerThreadPoolRector
+
+```java
+public class WorkerThreadPoolRector extends BasicReactor{
+    private static ExecutorService threadPools = Executors.newFixedThreadPool(
+            Runtime.getRuntime().availableProcessors() * 4
+    );
+    public WorkerThreadPoolRector(int port) throws IOException {
+        super(port);
+    }
+
+    @Override
+    public Acceptor getAcceptor() {
+        return new Acceptor();
+    }
+
+    public static void main(String[] args) throws IOException {
+        new Thread(new WorkerThreadPoolRector(8080)).start();
+    }
+
+    class Acceptor extends BasicReactor.Acceptor{
+        @Override
+        public Handler getHandler(SocketChannel socketChannel) throws IOException {
+            return new Handler(socketChannel);
+        }
+    }
+
+    class Handler extends BasicReactor.Handler{
+        public Handler(SocketChannel socketChannel) throws IOException {
+            super(socketChannel);
+        }
+
+        synchronized void processAndHandOff() {
+            super.process();
+            setState(SENDING);
+            selectionKey.interestOps(SelectionKey.OP_WRITE);
+            // 唤醒selector,让其处理发送事件,不然的话，selector一直处于阻塞状态。上面的是select已经阻塞了
+            // 而线程池处理到这里的时候,才刚刚注册OP_WRITE,selector还是阻塞的，所以需要唤醒
+            selector.wakeup();
+        }
+
+        @Override
+        void onInputComplete() {
+            setState(PROCESSING);
+            // 读取完毕，交给线程池处理
+            threadPools.execute(new Processer());
+        }
+
+        class Processer implements Runnable{
+            @Override
+            public void run() {processAndHandOff();}
+        }
+    }
+}
+```
+:::
+::: code-group-item BasicReactor
+
+```java
+/**
+ * Basic Reactor Design
+ */
+public class BasicReactor extends Reactor{
+    final ServerSocketChannel serverSocketChannel;
+    private volatile boolean started = false;
+    public BasicReactor(int port) throws IOException {
+        serverSocketChannel = ServerSocketChannel.open();
+        serverSocketChannel.bind(new InetSocketAddress(port));
+        serverSocketChannel.configureBlocking(false);
+        serverSocketChannel.register(selector,
+                SelectionKey.OP_ACCEPT,
+                getAcceptor());
+        started = true;
+        logger.info("Server started at port: "+port);
+    }
+
+    public Acceptor getAcceptor(){
+        return new Acceptor();
+    }
+
+    public static void main(String[] args) throws IOException{
+        new BasicReactor(8080).run();
+    }
+
+
+    class Acceptor implements Runnable{
+        @Override
+        public void run() {
+            try{
+                SocketChannel socketChannel = serverSocketChannel.accept();
+                logger.info("客户端连接"+socketChannel.getRemoteAddress());
+                getHandler(socketChannel);
+            }catch (IOException e){}
+
+        }
+
+        Handler getHandler(SocketChannel socketChannel) throws IOException {
+            return new Handler(socketChannel);
+        }
+    }
+
+
+    class Handler implements Runnable{
+        protected final static int MAXIN = 65535;
+        protected final static int MAXOUT = 65535;
+        static final int READING = 0, SENDING = 1, PROCESSING = 2;
+        protected final SocketChannel socketChannel;
+        protected final SelectionKey selectionKey;
+        ByteBuffer input = ByteBuffer.allocate(MAXIN);
+        ByteBuffer output = ByteBuffer.allocate(MAXOUT);
+        volatile int state = READING;
+        public Handler(SocketChannel socketChannel) throws IOException{
+            this.socketChannel = socketChannel;
+            this.socketChannel.configureBlocking(false);
+            selectionKey = this.socketChannel.register(selector, 0);
+            registerHandler();
+        }
+
+        void registerHandler(){
+            selectionKey.interestOps(SelectionKey.OP_READ);
+            selectionKey.attach(this);
+            selector.wakeup();
+        }
+
+        @Override
+        public void run() {
+            try{
+                if (state == READING) read();
+                else if(state == SENDING) send();
+            }catch (IOException e){}
+        }
+
+        void read() throws IOException{
+            // ... read data ...
+            socketChannel.read(input);
+            if(isInputComplete()){
+                onInputComplete();
+            }
+        }
+
+        void onInputComplete() throws IOException {
+            // ... do something ...
+            process();
+            setState(SENDING);
+            selectionKey.interestOps(SelectionKey.OP_WRITE);
+        }
+
+        void send() throws IOException{
+            // ... send data ...
+            output.put("hello client".getBytes(StandardCharsets.UTF_8));
+            output.flip();
+            socketChannel.write(output);
+            setState(READING);
+            selectionKey.interestOps(SelectionKey.OP_READ);
+            if(isOutputComplete()){
+                logger.info(Thread.currentThread().getName()+"关闭"+socketChannel.getRemoteAddress());
+                output.clear();
+                selectionKey.cancel();
+                socketChannel.close();
+            }
+        }
+
+        boolean isInputComplete(){
+            return true;
+        }
+        boolean isOutputComplete(){
+            return true;
+        }
+
+
+        void process() {
+            // ... process data ...
+            if(input.position() > 0){
+                input.flip();
+                byte[] bytes = new byte[input.limit()];
+                input.get(bytes);
+                logger.info(Thread.currentThread().getName()+": read data is "+new String(bytes, StandardCharsets.UTF_8));
+                input.clear();
+            }
+        }
+
+        void setState(int state){
+            this.state = state;
+        }
+    }
+}
+
+```
+:::
+::::
+
+
 
 
 
