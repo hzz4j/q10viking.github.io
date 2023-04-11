@@ -13,7 +13,7 @@ typora-root-url: ..\.vuepress\public
 
 > 代码解耦非常巧妙，dispatch都是使用SelectionKey绑定的实现了Runnable的对象
 
-
+reactor 模式，即反应器模式，是一种高效的异步 IO 模式，特征是回调，当 IO 完成时， 回调对应的函数进行处理。这种模式并非是真正的异步，而是运用了异步的思想，当 IO 事 件触发时，通知应用程序作出 IO 处理。模式本身并不调用系统的异步 IO 函数。 reactor 模式与观察者模式有点像。不过，观察者模式与单个事件源关联，而反应器模 式则与多个事件源关联 。当一个主体发生改变时，所有依属体都得到通知
 
 [Source Code](https://github.com/Q10Viking/learncode/tree/main/Netty/NIO/reactor/reactor/src/main/java/org/hzz/template)
 
