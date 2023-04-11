@@ -1,4 +1,9 @@
 ---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /netty/
 typora-root-url: ..\.vuepress\public
 ---
 
@@ -10,25 +15,13 @@ typora-root-url: ..\.vuepress\public
 
 
 
-NioEventLoopGroup
 
-NioEventLoop
-
-构造函数分析 SelectorProvider
-
-线程池分析
-
-ChannelFuture分析
-
-bind方法
-
-initAndRegister
-
-doBind0
 
 ## ServerBootStrap启动源码分析
 
-https://www.processon.com/view/link/628d07f00e3e747f1e8d0420
+[Link](https://www.processon.com/view/link/628d07f00e3e747f1e8d0420)
+
+<common-progresson-snippet src="https://www.processon.com/view/link/628d07f00e3e747f1e8d0420"/>
 
 [(27条消息) netty 启动绑定时为什么给ServerSocketChanel注册的ops为 0 而不是OP_ACCEPT（16） 解析 + 代码位置：io.netty.channel_代码蒲蒲的博客-CSDN博客](https://blog.csdn.net/qq_41082092/article/details/114360597)
 
@@ -62,29 +55,19 @@ public abstract class ChannelInitializer<C extends Channel>{
 
 客户端发数据，服务端响应
 
-https://www.processon.com/view/link/628d07f00e3e747f1e8d0420
+[link](https://www.processon.com/view/link/628d07f00e3e747f1e8d0420)
+
+<common-progresson-snippet src="https://www.processon.com/view/link/628d07f00e3e747f1e8d0420"/>
 
 -----------
-
-Netty零拷贝
-
-
-
-
-
-![image-20220525153611042](/images/netty/image-20220525153611042.png)
-
-
 
 
 
 ## 自己画一个netty线程模型图
 
-单线程没有任务跑哪里去了
+[Link](https://www.processon.com/view/link/628f12a0e0b34d41d954a181)
 
-百万连接的分析处理
-
-https://www.processon.com/view/link/628f12a0e0b34d41d954a181
+<common-progresson-snippet src="https://www.processon.com/view/link/628f12a0e0b34d41d954a181"/>
 
 
 
