@@ -81,10 +81,6 @@ private void start() throws InterruptedException {
 
 
 
-
-
-
-
 ## Promise的阻塞与唤醒
 
 ```java
@@ -100,8 +96,6 @@ synchronized (this) {
 }
 ```
 
-
-
 ```java
 private synchronized boolean checkNotifyWaiters() {
     if (waiters > 0) {
@@ -111,7 +105,11 @@ private synchronized boolean checkNotifyWaiters() {
 }
 ```
 
-执行listener
+
+
+## Promise在Netty线程中的流转
+
+![Promise](/images/concurrency/Promise.png)
 
 
 
