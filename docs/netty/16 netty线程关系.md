@@ -61,11 +61,36 @@ ThreadPerTaskExecutor.execute
 
 
 
-### 代码模拟
+## 线程分配
+
+服务于Channel 的I/O 和事件的EventLoop 包含在EventLoopGroup 中。
+
+异步传输实现只使用了少量的EventLoop（以及和它们相关联的Thread），而且在当前的线程模型中，它们可能会被多个Channel 所共享。这使得可以通过尽可能少量的Thread 来支撑大量的Channel，而不是每个Channel 分配一个Thread。EventLoopGroup 负责为每个新创建的Channel 分配一个EventLoop。在当前实现中，使用顺序循环（round-robin）的方式进行分配以获取一个均衡的分布，并且相同的EventLoop可能会被分配给多个Channel。
+
+一旦一个Channel 被分配给一个EventLoop，它将在它的整个生命周期中都使用这个EventLoop（以及相关联的Thread）。
+
+​    ![0](/images/netty/10093.png)
 
 
 
+> 如下面的例子给server的workEventLoopGroup设置为线程数量为3，然后启动三个客户端去连接
+>
+> 就会观察到服务端处理第一个client和第三个client的线程是同一个
 
+```java
+09:22:17.188 [nioEventLoopGroup-2-1] o.h.e.EchoServerHandler - channelActive - INFO  连接： /127.0.0.1:6108
+09:22:17.188 [nioEventLoopGroup-2-1] o.h.e.EchoServerHandler - channelActive - INFO  channelActive: nioEventLoopGroup-2-1
+09:22:17.211 [nioEventLoopGroup-2-1] o.h.e.EchoServerHandler - channelRead - INFO  channelRead: nioEventLoopGroup-2-1
+09:22:26.004 [nioEventLoopGroup-2-2] o.h.e.EchoServerHandler - channelActive - INFO  连接： /127.0.0.1:6167
+09:22:26.004 [nioEventLoopGroup-2-2] o.h.e.EchoServerHandler - channelActive - INFO  channelActive: nioEventLoopGroup-2-2
+09:22:26.027 [nioEventLoopGroup-2-2] o.h.e.EchoServerHandler - channelRead - INFO  channelRead: nioEventLoopGroup-2-2
+09:22:33.354 [nioEventLoopGroup-2-1] o.h.e.EchoServerHandler - channelActive - INFO  连接： /127.0.0.1:6221
+09:22:33.354 [nioEventLoopGroup-2-1] o.h.e.EchoServerHandler - channelActive - INFO  channelActive: nioEventLoopGroup-2-1
+09:22:33.374 [nioEventLoopGroup-2-1] o.h.e.EchoServerHandler - channelRead - INFO  channelRead: nioEventLoopGroup-2-1
+```
 
+## 线程管理S
 
+在内部，当提交任务到如果**（**当前）调用线程正是支撑EventLoop 的线程，那么所提交的代码块将会被（直接）执行。否则，EventLoop 将调度该任务以便稍后执行，并将它放入到内部队列中。当EventLoop下次处理它的事件时，它会执行队列中的那些任务/事件
 
+![img](/images/netty/10094.png)
