@@ -43,6 +43,30 @@ public final class ThreadPerTaskExecutor implements Executor {
 
 
 
+## 模仿实现
+
+```java
+// 注册
+SingleThreadEventExecutor#execute
+    
+    doStartThread		注意 SingleThreadEventExecutor.this.run();
+    inEventLoop
+```
+
+[线程关系| ProcessOn免费在线作图,在线流程图,在线思维导图](https://www.processon.com/view/link/6436d71340a0dd65f6a207f6)
+
+<common-progresson-snippet src="https://www.processon.com/view/link/6436d71340a0dd65f6a207f6"/>
+
+![线程关系](/images/concurrency/线程关系.png)
+
+
+
+
+
+
+
+
+
 
 
 ## Netty是如何启动线程的
@@ -89,7 +113,7 @@ ThreadPerTaskExecutor.execute
 09:22:33.374 [nioEventLoopGroup-2-1] o.h.e.EchoServerHandler - channelRead - INFO  channelRead: nioEventLoopGroup-2-1
 ```
 
-## 线程管理S
+## 线程管理
 
 在内部，当提交任务到如果**（**当前）调用线程正是支撑EventLoop 的线程，那么所提交的代码块将会被（直接）执行。否则，EventLoop 将调度该任务以便稍后执行，并将它放入到内部队列中。当EventLoop下次处理它的事件时，它会执行队列中的那些任务/事件
 

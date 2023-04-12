@@ -23,7 +23,7 @@ typora-root-url: ..\.vuepress\public
 
 <common-progresson-snippet src="https://www.processon.com/view/link/628d07f00e3e747f1e8d0420"/>
 
-[(27条消息) netty 启动绑定时为什么给ServerSocketChanel注册的ops为 0 而不是OP_ACCEPT（16） 解析 + 代码位置：io.netty.channel_代码蒲蒲的博客-CSDN博客](https://blog.csdn.net/qq_41082092/article/details/114360597)
+[netty 启动绑定时为什么给ServerSocketChanel注册的ops为 0 而不是OP_ACCEPT](https://blog.csdn.net/qq_41082092/article/details/114360597)
 
 ![image-20230411214308635](/images/netty/image-20230411214308635.png)
 

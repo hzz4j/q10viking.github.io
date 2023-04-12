@@ -9,8 +9,6 @@ typora-root-url: ..\.vuepress\public
 
 
 
-
-
 ::: tip
 
 JDK中提供了一个FutureTask,但是Netty自己又重新写了一个Promise来处理异步获取结果.Promise功能更加强大,他能添加监听器.
@@ -109,7 +107,17 @@ private synchronized boolean checkNotifyWaiters() {
 
 ## Promise在Netty线程中的流转
 
+[link](https://www.processon.com/view/link/6436b4ac24c38d10f2ddec56)
+
+<common-progresson-snippet src="https://www.processon.com/view/link/6436b4ac24c38d10f2ddec56"/>
+
 ![Promise](/images/concurrency/Promise.png)
 
 
+
+## 实现简单的Promise
+
+
+
+## 
 

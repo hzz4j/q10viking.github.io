@@ -223,7 +223,11 @@ public class UpdateStateWithCompareAndSet {
 
 原子更新字段类都是抽象类，每次使用都时候必须使用静态方法newUpdater创建一个更新器。原子更新类的字段的必须使用**public volatile**修饰符。
 
-### AtomicIntegerFieldUpdater
+### AtomicIntegerFieldUpdater❤️
+
+
+
+#### 使用
 
 ```java
 public class AtomicIntegerFieldUpdateRunner {
@@ -263,5 +267,29 @@ public class AtomicIntegerFieldUpdateRunner {
  20
  20
  */
+```
+
+#### 案例
+
+> 在netty中关闭线程的时候`eventLoopGroup.shutdownGracefully().sync();`中改变状态
+
+```java
+// SingleThreadEventExecutor
+private static final AtomicIntegerFieldUpdater<SingleThreadEventExecutor> STATE_UPDATER =
+    AtomicIntegerFieldUpdater.newUpdater(SingleThreadEventExecutor.class, "state");
+
+
+private static final int ST_NOT_STARTED = 1;
+private static final int ST_STARTED = 2;
+private static final int ST_SHUTTING_DOWN = 3;
+private static final int ST_SHUTDOWN = 4;
+private static final int ST_TERMINATED = 5;
+
+
+private volatile int state = ST_NOT_STARTED;
+
+
+
+STATE_UPDATER.compareAndSet(this, oldState, newState)
 ```
 
