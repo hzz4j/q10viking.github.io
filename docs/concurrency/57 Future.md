@@ -64,3 +64,24 @@ public class FutureDemo {
 
 ![Future](/images/concurrency/Future.png)
 
+
+
+## 使用
+
+```java
+public class FutureTaskDemo {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        FutureTask<String> futureTask = new FutureTask<String>(new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                return "Hello World";
+            }
+        });
+
+        new Thread(futureTask).start();
+
+        System.out.println(futureTask.get());
+    }
+}
+```
+
