@@ -115,7 +115,78 @@ private synchronized boolean checkNotifyWaiters() {
 
 
 
-## 实现简单的Promise
+## 实现简单的Promise❤️
 
+1. sync等待方法有值直接返回，没有则等待
+2. get也是阻塞但是要处理中断
+3. 等待过程中的中断处理
 
+> 获取结果，指定超时时间实现
+
+```java
+@Override
+public V get(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+    if(!isDone()){
+        if(!await(timeout,unit)){ // 等待超时还没有获得结果
+            throw new TimeoutException(toString());
+        }
+    }
+    if(result == SUCCESS){
+        return null;
+    }
+    return (V)result;
+}
+```
+
+```java
+private boolean await(long timeout, TimeUnit unit ) throws InterruptedException {
+    return await0(unit.toMillis(timeout), true);
+}
+
+/**
+     *
+     * @param timeout
+     * @param interruptable 是否允许中断异常抛出 为true那么wait过程中被中断就直接抛异常，否则继续等待直到时间耗尽
+     * @return
+     * @throws InterruptedException
+     */
+private boolean await0(long timeout, boolean interruptable) throws InterruptedException {
+    long startTime = System.currentTimeMillis();
+    long waitTime = timeout;
+
+    if(interruptable && Thread.interrupted())
+        throw new InterruptedException(toString());
+    boolean interrupted = false;
+    try {
+        for (;;) {
+            synchronized (this) {
+                if (isDone()) return true;
+                try {
+                    incWaiters();
+                    wait(waitTime);
+                } catch (InterruptedException e) {
+                    if (interruptable) throw e;
+                    else interruptable = true;
+                } finally {
+                    decWaiters();
+                }
+            }
+            if (isDone()) {
+                return true;
+            } else {
+                // 由于被唤醒或者中断需要继续
+                waitTime = timeout - (System.currentTimeMillis() - startTime);
+                if(waitTime<=0) // 等待时间耗尽
+                    return isDone();
+            }
+
+        }
+    }finally {
+        // 确保中断标志被恢复
+        if (interrupted) {
+            Thread.currentThread().interrupt();
+        }
+    }
+}
+```
 

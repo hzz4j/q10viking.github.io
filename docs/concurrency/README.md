@@ -5,3 +5,6 @@ prev:
 typora-root-url: ..\.vuepress\public
 ---
 
+
+
+![timewait](/images/concurrency/timewait.png)
