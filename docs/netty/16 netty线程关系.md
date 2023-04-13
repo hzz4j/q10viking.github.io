@@ -9,6 +9,8 @@ typora-root-url: ..\.vuepress\public
 
 
 
+## Netty中线程的流转
+
 ![image-20230411214539451](/images/netty/image-20230411214539451.png)
 
 
@@ -43,8 +45,6 @@ public final class ThreadPerTaskExecutor implements Executor {
 
 
 
-## 模仿实现
-
 ```java
 // 注册
 SingleThreadEventExecutor#execute
@@ -61,8 +61,6 @@ SingleThreadEventExecutor#execute
 
 
 
-
-
 > 在源码过程中发现一个netty使用的是无锁队列MpscUnboundedArrayQueue
 
 
@@ -70,6 +68,137 @@ SingleThreadEventExecutor#execute
 [原理剖析（第 012 篇）Netty之无锁队列MpscUnboundedArrayQueue原理分析 - 简书 (jianshu.com)](https://www.jianshu.com/p/119a03332619)
 
 [JCTools | Java Concurrency Tools](http://jctools.github.io/JCTools/)
+
+
+
+### 模拟实现❤️
+
+- 实现上面线程的流转创建
+- 实现了ThreadLocal中的应用，方便获取NioEventLoop
+- 自己实现了动态添加线程的功能
+
+[Link](https://www.processon.com/view/link/6437cc8d8d9de6685f17b90a)
+
+
+
+> 只要是创建线程的过程
+
+```java
+public abstract class SingleThreadEventExecutor  extends AbstractEventExecutor implements Executor {
+    public static final int DEFAULT_MAX_PENDING_TASKS = 2;
+    // 任务队列允许最大的任务数
+    private final int maxPendingTasks;
+    private final Queue<Runnable> taskQueue;
+    private volatile Thread thread;
+    private final Executor executor;
+    private static final int ST_NOT_STARTED = 1;
+    private static final int ST_STARTED = 2;
+    private volatile int state = ST_NOT_STARTED;
+    private static final AtomicIntegerFieldUpdater<SingleThreadEventExecutor> STATE_UPDATER =
+            AtomicIntegerFieldUpdater.newUpdater(SingleThreadEventExecutor.class, "state");
+
+    public SingleThreadEventExecutor(Executor executor) {
+        this(DEFAULT_MAX_PENDING_TASKS,executor);
+    }
+
+    public SingleThreadEventExecutor(int maxPendingTasks,Executor executor) {
+        this.maxPendingTasks = Math.max(2,maxPendingTasks);
+        this.taskQueue = newTaskQueue(this.maxPendingTasks);
+        this.executor = ThreadExecutorMap.apply(executor,this);
+    }
+
+    protected Queue<Runnable> newTaskQueue(int maxPendingTasks){
+        if(maxPendingTasks <= 0){
+            throw new IllegalArgumentException("maxPendingTasks: " + maxPendingTasks + " (expected: > 0)");
+        }
+        return new LinkedBlockingQueue<Runnable>(maxPendingTasks);
+    }
+
+    protected void addTask(Runnable task){
+        if(!offerTask(task)){
+            System.out.println("任务队列繁忙，拒绝接收任务："+task);
+        }
+    }
+
+    final boolean offerTask(Runnable task){
+        return taskQueue.offer(task);
+    }
+
+    final Runnable pollTask(){
+        // taskQueue.take(); 会阻塞
+        return taskQueue.poll();    // 从队列中取出任务不会阻塞
+    }
+
+    protected void runAllTask(){
+        for(;;){
+            Runnable task = pollTask();
+            if(task == null){
+                break;
+            }
+            task.run();
+        }
+    }
+
+
+    @Override
+    public boolean inEventLoop(Thread thread) {
+        return thread == this.thread;
+    }
+
+    @Override
+    public void execute(Runnable command) {
+        addTask(command);
+        if(!inEventLoop()){
+            startThread();
+        }
+    }
+
+
+    private void startThread() {
+        if(state == ST_NOT_STARTED){
+            if(STATE_UPDATER.compareAndSet(this,ST_NOT_STARTED,ST_STARTED)){
+                boolean success = false;
+                try {
+                    doStartThread();
+                    success = true;
+                }finally {
+                    if(!success){
+                        STATE_UPDATER.compareAndSet(this,ST_STARTED,ST_NOT_STARTED);
+                    }
+                }
+            }
+        }
+    }
+
+    private void doStartThread(){
+        assert thread == null;
+        executor.execute(()->{
+            thread = Thread.currentThread();
+            try {
+                SingleThreadEventExecutor.this.run();
+            }finally {
+                thread = null;
+            }
+        });
+    }
+
+    protected abstract void run();
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -124,3 +253,30 @@ ThreadPerTaskExecutor.execute
 在内部，当提交任务到如果**（**当前）调用线程正是支撑EventLoop 的线程，那么所提交的代码块将会被（直接）执行。否则，EventLoop 将调度该任务以便稍后执行，并将它放入到内部队列中。当EventLoop下次处理它的事件时，它会执行队列中的那些任务/事件
 
 ![img](/images/netty/10094.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
