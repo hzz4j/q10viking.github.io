@@ -121,6 +121,68 @@ private synchronized boolean checkNotifyWaiters() {
 2. get也是阻塞但是要处理中断
 3. 等待过程中的中断处理
 
+### 同步
+
+> 抛出中断异常
+
+```java
+ private void await() throws InterruptedException {
+        synchronized (this){
+            while(!isDone()){
+                incWaiters();
+                try {
+                    wait();
+                } finally {
+                    decWaiters();
+                }
+            }
+        }
+    }
+```
+
+> 不抛异常的中断处理
+
+```java
+private void awaitUninterruptibly(){
+    boolean interrupted = false;
+    try {
+        synchronized (this){
+            while(!isDone()){
+                incWaiters();
+                try {
+                    wait();
+                } catch (InterruptedException e){
+                    interrupted = true;
+                } finally {
+                    decWaiters();
+                }
+            }
+        }
+    }finally {
+        if(interrupted){
+            Thread.currentThread().interrupt();
+        }
+    }
+}
+```
+
+
+
+### 唤醒
+
+```java
+    private synchronized boolean checkNotifyWaiters(){
+        if(waiters>0){
+            notifyAll();
+        }
+        return listeners != null;
+    }
+```
+
+
+
+### 超时等待
+
 > 获取结果，指定超时时间实现
 
 ```java
