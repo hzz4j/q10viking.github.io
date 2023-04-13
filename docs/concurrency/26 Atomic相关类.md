@@ -293,3 +293,22 @@ private volatile int state = ST_NOT_STARTED;
 STATE_UPDATER.compareAndSet(this, oldState, newState)
 ```
 
+
+
+```java
+private void startThread() {
+        if(state == ST_NOT_STARTED){
+            if(STATE_UPDATER.compareAndSet(this,ST_NOT_STARTED,ST_STARTED)){
+                boolean success = false;
+                try {
+                    doStartThread();
+                }finally {
+                    if(!success){
+                        STATE_UPDATER.compareAndSet(this,ST_STARTED,ST_NOT_STARTED);
+                    }
+                }
+            }
+        }
+    }
+```
+
