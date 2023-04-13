@@ -121,7 +121,7 @@ private synchronized boolean checkNotifyWaiters() {
 2. get也是阻塞但是要处理中断
 3. 等待过程中的中断处理
 
-[Source Code]()
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/threads/_03-netty-thread/netty-thread/src/main/java/org/hzz/promise)
 
 ### 同步
 
