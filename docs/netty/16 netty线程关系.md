@@ -63,7 +63,13 @@ SingleThreadEventExecutor#execute
 
 
 
+> 在源码过程中发现一个netty使用的是无锁队列MpscUnboundedArrayQueue
 
+
+
+[原理剖析（第 012 篇）Netty之无锁队列MpscUnboundedArrayQueue原理分析 - 简书 (jianshu.com)](https://www.jianshu.com/p/119a03332619)
+
+[JCTools | Java Concurrency Tools](http://jctools.github.io/JCTools/)
 
 
 
