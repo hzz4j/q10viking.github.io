@@ -27,13 +27,13 @@ VSCode Theme
 
 :::
 
-| 快捷键         | 说明             |
-| -------------- | ---------------- |
-| ctrl+b         | 打开关闭project  |
-| ctrl+k z       | 切换禅模式       |
-| ctlr+k f       | 切换 full screen |
-| ctrl+shift+F10 | 运行项目         |
-|                |                  |
+| 快捷键         | 说明                 |
+| -------------- | -------------------- |
+| ctrl+b         | 打开关闭project      |
+| ctrl+k z       | 切换禅模式           |
+| ctlr+k f       | 切换 full screen     |
+| ctrl+shift+F10 | 运行项目             |
+| ctrl+alt+u     | 查看当前类的继承关系 |
 
 
 
