@@ -76,10 +76,13 @@ SingleThreadEventExecutor#execute
 - 实现上面线程的流转创建
 - 实现了ThreadLocal中的应用，方便获取NioEventLoop
 - 自己实现了动态添加线程的功能
+- 每个线程处理的任务的时候，我本次实现的允许线程积压的任务数量最多为2个(`new LinkedBlockingQueue(2)`)，方便看到拒绝效果
+
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/threads/_03-netty-thread/netty-thread/src/main/java/org/hzz/netty)
 
 [Link](https://www.processon.com/view/link/6437cc8d8d9de6685f17b90a)
 
-
+![netty线程模拟实现](/images/concurrency/netty线程模拟实现.png)
 
 > 只要是创建线程的过程
 
@@ -188,19 +191,84 @@ public abstract class SingleThreadEventExecutor  extends AbstractEventExecutor i
 
 
 
+### 测试
+
+```java
+public class App {
+    private static final Logger log = LoggerFactory.getLogger(App.class);
+    public static void main(String[] args) {
+        // 增大线程
+        NioEventLoopGroup nioEventLoopGroup = new NioEventLoopGroup(2);
+
+        for (int i = 0; i < 10; i++) {
+            String msg = "msg" + i;
+            nioEventLoopGroup.submit(makeTask(msg));
+        }
+
+        // 增加线程
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("请输入要增加的线程数");
+        String number = scanner.nextLine();
+        int n = Integer.parseInt(number);
+        nioEventLoopGroup.addNThreads(n);
+        System.out.println("请输入任意字符继续");
+        String next = scanner.next();
+        for (int i = 0; i < 100; i++) {
+            String msg = "msg" + i;
+            nioEventLoopGroup.submit(makeTask(msg));
+        }
+    }
+
+    public static Runnable makeTask(String msg){
+        return new Task(msg);
+    }
+
+    static class Task implements Runnable{
+        private String msg;
+        public Task(String msg){
+            this.msg = msg;
+        }
+        @Override
+        public void run() {
+            // 通过ThreadExecutorMap获取当前线程的EventExecutor
+            log.info("{},msg:{}",ThreadExecutorMap.currentEventExecutor(),msg);
+        }
+
+        @Override
+        public String toString() {
+            return "Task{" +
+                    "msg='" + msg + '\'' +
+                    '}';
+        }
+    }
+}
+
+```
 
 
 
+初始阶段：线程数量只设置为2.提交10个任务，可以看到只处理了一半
+
+```sh
+任务队列繁忙，拒绝接收任务：Task{msg='msg4'}
+任务队列繁忙，拒绝接收任务：Task{msg='msg5'}
+任务队列繁忙，拒绝接收任务：Task{msg='msg6'}
+任务队列繁忙，拒绝接收任务：Task{msg='msg7'}
+任务队列繁忙，拒绝接收任务：Task{msg='msg9'}
+17:37:10.874 [nioEventLoopGroup-1-thread-1] INFO org.hzz.netty.app.App - NioEventLoop{id=1},msg:msg0
+17:37:10.874 [nioEventLoopGroup-1-thread-2] INFO org.hzz.netty.app.App - NioEventLoop{id=2},msg:msg1
+17:37:10.879 [nioEventLoopGroup-1-thread-1] INFO org.hzz.netty.app.App - NioEventLoop{id=1},msg:msg2
+17:37:10.879 [nioEventLoopGroup-1-thread-1] INFO org.hzz.netty.app.App - NioEventLoop{id=1},msg:msg8
+17:37:10.879 [nioEventLoopGroup-1-thread-2] INFO org.hzz.netty.app.App - NioEventLoop{id=2},msg:msg3
+```
+
+![image-20230413174221729](/images/concurrency/image-20230413174221729.png)
 
 
 
+接着我们继续，输入要增加的线程数，比如输入要添加8个。实现中，虽然只是添加了8个，但是没有提交任务还不会触发线程启动，所以继续提交100线程。给每个线程都轮询到
 
-
-
-
-
-
-
+![image-20230413174627952](/images/concurrency/image-20230413174627952.png)
 
 
 
