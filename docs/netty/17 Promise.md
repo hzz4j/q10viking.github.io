@@ -11,6 +11,8 @@ typora-root-url: ..\.vuepress\public
 
 ::: tip
 
+**典型的生产者消费者的应用**
+
 JDK中提供了一个FutureTask,但是Netty自己又重新写了一个Promise来处理异步获取结果.Promise功能更加强大,他能添加监听器.
 
 并且Promise和FutureTask的线程唤醒机制不同,前者时wait()和notifyall,后者时通过LockSupport.park和LockSupport.unpark.
