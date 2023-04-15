@@ -230,7 +230,7 @@ ChannelPipeline 提供了ChannelHandler 链的容器，并定义了用于在该�
 
 ![https://note.youdao.com/yws/public/resource/f71d324d40f6c4bfb67e419a8fb42862/xmlnote/OFFICEDC0ADE705AF64A3CA6E8FBA958B3FAF0/10096](/images/netty/10096.png)
 
-
+![https://note.youdao.com/yws/public/resource/b8970e44473486a48178193d68929008/xmlnote/B401EBCE53ED4A959BDD4CC702D70B6E/85302](/images/netty/85302.png)
 
 #### **ChannelPipeline上的方法**
 

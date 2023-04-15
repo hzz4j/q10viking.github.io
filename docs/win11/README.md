@@ -16,3 +16,14 @@ archlinux: pacman -S git
 mac:   brew install git
 ```
 
+
+
+## IG
+
+[instagram](https://www.instagram.com/)
+
+```sh
+hzz17801054490
+qw............
+```
+
