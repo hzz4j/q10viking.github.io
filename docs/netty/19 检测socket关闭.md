@@ -40,7 +40,7 @@ select阻塞被唤醒，然后处理key,  进行read，发现是EOF则关闭线�
 
 <common-progresson-snippet src="https://www.processon.com/diagraming/643a011740a0dd65f6a74008"/>
 
-![socket关闭](/images/netty/socket关闭.png)
+![socket关闭 (2)](/images/netty/socket关闭.png)
 
 
 
@@ -63,6 +63,8 @@ if (key.isReadable()) {
     }
 }
 ```
+
+
 
 
 
