@@ -37,6 +37,8 @@ public IdleStateHandler(int readerIdleTimeSeconds, int writerIdleTimeSeconds, in
 
 [Source Code](https://github.com/Q10Viking/learncode/tree/main/Netty/HelloWorld/src/main/java/org/hzz/idlestate)
 
+[心跳机制| ProcessOn免费在线作图,在线流程图,在线思维导图](https://www.processon.com/view/link/643aacca52b63f1f044e8022)
+
 ![心跳机制](/images/netty/心跳机制.png)
 
 > 服务端
