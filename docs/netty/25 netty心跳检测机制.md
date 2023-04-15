@@ -15,7 +15,7 @@ typora-root-url: ..\.vuepress\public
 
 所谓心跳, 即在 TCP 长连接中, 客户端和服务器之间定期发送的一种特殊的数据包, 通知对方自己还在线, 以确保 TCP 连接的有效性.
 
-是在应用层面上的服务端与客户端的交互
+是在应用层面上的服务端与客户端的交互。主要在服务端实现
 
 在 Netty 中, 实现心跳机制的关键是 IdleStateHandler, 看下它的构造器
 
@@ -233,9 +233,79 @@ public class HeartBeatClient {
 
 ## IdleStateHandler底层原理
 
+- 它是入站和出站的handler
+
+![image-20230415222513592](/images/netty/image-20230415222513592.png)
+
+[idlesate以及定时执行任务分析| ProcessOn免费在线作图,在线流程图,在线思维导图](https://www.processon.com/view/link/643ad31dcbedfb624bef258f)
+
+<common-progresson-snippet src="https://www.processon.com/view/link/643ad31dcbedfb624bef258f"/>
 
 
 
+### 定时任务分析
+
+> 定时任务的执行核心逻辑: 从优先级队列（底层是最小堆）中取出第一个任务
+>
+> 然后比较现在时间是否已经大于了延迟时间，比如现在是12点，延迟时间是11点，那么就取出该任务执行。
+
+[静默のBlog 堆排序](https://q10viking.github.io/Algorithm/十大排序算法.html#堆排序❤️)
+
+> 核心模板
+
+```java
+protected boolean runAllTasks() {
+    assert inEventLoop();
+    boolean fetchedAll;
+    boolean ranAtLeastOne = false;
+
+    // 这里的循环是确保取所有到期的任务执行。因为取出来要放到另外一个队列
+    // 因为另外一个队列可能有任务积压，取出来放不进去，所以又退回到了优先级队列。
+    // 等待另外一个普通队列任务执行完，再去优先级任务中获取
+    do {												
+        fetchedAll = fetchFromScheduledTaskQueue();
+        if (runAllTasksFrom(taskQueue)) {  // 执行队列任务
+            ranAtLeastOne = true;
+        }
+    } while (!fetchedAll); // keep on processing until we fetched all scheduled tasks.
+    return ranAtLeastOne;
+}
+```
+
+```java
+private boolean fetchFromScheduledTaskQueue() {
+    if (scheduledTaskQueue == null || scheduledTaskQueue.isEmpty()) {
+        return true;
+    }
+    long nanoTime = AbstractScheduledEventExecutor.nanoTime();
+    for (;;) {
+        Runnable scheduledTask = pollScheduledTask(nanoTime);
+        if (scheduledTask == null) {
+            return true;
+        }
+        if (!taskQueue.offer(scheduledTask)) { // 添加不进去，可能现在任务队列满了，需要先把队列挤压的任务执行
+            // No space left in the task queue add it back to the scheduledTaskQueue so we pick it up again.
+            scheduledTaskQueue.add((ScheduledFutureTask<?>) scheduledTask);
+            return false;
+        }
+    }
+}
+```
+
+```java
+    protected final Runnable pollScheduledTask(long nanoTime) {
+        assert inEventLoop();
+
+        Queue<ScheduledFutureTask<?>> scheduledTaskQueue = this.scheduledTaskQueue;
+        // 核心逻辑
+        ScheduledFutureTask<?> scheduledTask = scheduledTaskQueue == null ? null : scheduledTaskQueue.peek();
+        if (scheduledTask == null || scheduledTask.deadlineNanos() - nanoTime > 0) {
+            return null;
+        }
+        scheduledTaskQueue.remove();
+        return scheduledTask;
+    }
+```
 
 
 
