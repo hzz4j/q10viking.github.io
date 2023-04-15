@@ -9,6 +9,19 @@ typora-root-url: ..\.vuepress\public
 
 
 
+
+
+::: tip
+
+研究为什么服务端关闭了socket,客户端怎么能够立即感知到？
+
+- selector检测到了读事件
+- 读取的时候，发现读取长度为-1
+
+:::
+
+
+
 If the client has disconnected properly:
 
 - `read()` will return -1
