@@ -26,6 +26,121 @@ typora-root-url: ..\.vuepress\public
 
 
 
+:::: code-group
+::: code-group-item NettyByteBuf
+
+```java
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufUtil;
+import io.netty.buffer.Unpooled;
+
+public class NettyByteBuf {
+    static String msg = "hello";
+    public static void main(String[] args) {
+        // 创建byteBuf对象，该对象内部包含一个字节数组byte[10]
+        // 通过readerindex和writerIndex和capacity，将buffer分成三个区域
+        // 已经读取的区域：[0,readerindex)
+        // 可读取的区域：[readerindex,writerIndex)
+        // 可写的区域: [writerIndex,capacity)
+        ByteBuf buffer = Unpooled.buffer(10);
+        System.out.println(ByteBufUtil.prettyHexDump(buffer));
+        for (int i = 0; i < msg.length(); i++) {
+            buffer.writeByte(msg.charAt(i));
+        }
+        System.out.println(ByteBufUtil.prettyHexDump(buffer));
+        System.out.println("------------------");
+        for(int i = 0;i<msg.length();i++){
+            System.out.println((char)buffer.getByte(i));
+        }
+        System.out.println(ByteBufUtil.prettyHexDump(buffer));
+        System.out.println("------------------");
+
+        for(int i = 0;i<msg.length();i++){
+            System.out.println((char)buffer.readByte());
+        }
+        System.out.println(ByteBufUtil.prettyHexDump(buffer));
+        System.out.println("------------------");
+    }
+}
+/**
+ *
+ +-------------------------------------------------+
+ |  0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f |
+ +--------+-------------------------------------------------+----------------+
+ |00000000| 68 65 6c 6c 6f                                  |hello           |
+ +--------+-------------------------------------------------+----------------+
+ ------------------
+ h
+ e
+ l
+ l
+ o
+ +-------------------------------------------------+
+ |  0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f |
+ +--------+-------------------------------------------------+----------------+
+ |00000000| 68 65 6c 6c 6f                                  |hello           |
+ +--------+-------------------------------------------------+----------------+
+ ------------------
+ h
+ e
+ l
+ l
+ o
+
+ ------------------
+
+ */
+```
+:::
+::: code-group-item NettyByteBuf2
+```java
+public class NettyByteBuf2 {
+    public static void main(String[] args) {
+        ByteBuf bytebuf = Unpooled.copiedBuffer("Hello World", Charset.forName("utf-8"));
+        System.out.println(ByteBufUtil.prettyHexDump(bytebuf));
+
+        if(bytebuf.hasArray()){
+            byte[] content = bytebuf.array();
+            //将content转成字符串
+            System.out.println(new String(content, Charset.forName("utf-8")));
+            System.out.println(ByteBufUtil.prettyHexDump(bytebuf));
+
+            System.out.println("readable bytes = "+bytebuf.readableBytes());
+
+            // 范围读取
+            System.out.println(bytebuf.getCharSequence(0,5,Charset.forName("utf-8")));
+            System.out.println(bytebuf.getCharSequence(6,5,Charset.forName("utf-8")));
+            System.out.println(ByteBufUtil.prettyHexDump(bytebuf));
+        }
+    }
+}
+/**
+ *          +-------------------------------------------------+
+ *          |  0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f |
+ * +--------+-------------------------------------------------+----------------+
+ * |00000000| 48 65 6c 6c 6f 20 57 6f 72 6c 64                |Hello World     |
+ * +--------+-------------------------------------------------+----------------+
+ * Hello World
+ *          +-------------------------------------------------+
+ *          |  0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f |
+ * +--------+-------------------------------------------------+----------------+
+ * |00000000| 48 65 6c 6c 6f 20 57 6f 72 6c 64                |Hello World     |
+ * +--------+-------------------------------------------------+----------------+
+ * readable bytes = 11
+ * Hello
+ * World
+ *          +-------------------------------------------------+
+ *          |  0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f |
+ * +--------+-------------------------------------------------+----------------+
+ * |00000000| 48 65 6c 6c 6f 20 57 6f 72 6c 64                |Hello World     |
+ * +--------+-------------------------------------------------+----------------+
+ */
+```
+:::
+::::
+
+
+
 ## 使用模式
 
 ### **堆缓冲区**
