@@ -14,3 +14,4 @@ typora-root-url: ..\.vuepress\public
 
 > 这是分布式、微服务开发不可避免的问题。
 
+![https://note.youdao.com/yws/public/resource/7ccbbecd48d3f995e3e36aab39a11049/xmlnote/89993C6738024BD294B57D835A44E7DB/53021](/images/sentinel/53021,png)
