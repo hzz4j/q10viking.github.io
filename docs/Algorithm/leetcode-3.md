@@ -1,0 +1,75 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /Algorithm/
+typora-root-url: ..\.vuepress\public
+---
+
+
+
+
+[leetcode-3无重复字符的最长子串](https://leetcode.cn/problems/longest-substring-without-repeating-characters/)
+
+
+
+这个题目考察对滑动窗口算法的了解，什么是滑动窗口呢？从字面理解：
+
+滑动：说明这个窗口是移动的，也就是移动是按照一定方向来的。
+
+窗口：窗口大小并不是固定的，可以不断扩容直到满足一定的条件；也可以不断缩小，直到找到一个满足条件的最小窗口；当然也可以是固定大小。
+
+滑动窗口算法的基本思路是这样：
+
+我们在字符串（或者数组也可以）S中定义两个指针称为left和right，初始化 left = right = 0，把区间 [left, right] 称为一个「窗口」。
+
+我们先不断地增加 right 指针扩大窗口 [left, right]，直到窗口中的字符串符合要求。
+
+此时，我们停止增加 right，转而不断增加 left 指针缩小窗口 [left, right]，直到窗口中的字符串不再符合要求。同时，每次增加 left，我们都要更新一轮结果。
+
+重复第 2 和第 3 步，直到 right 到达字符串 S 的尽头。
+
+
+
+--------
+
+两个指针表示窗口。左指针表示起始位置，不断地向右移动右指针，但需要保证这两个指针对应的子串中没有重复的字符，在移动结束后，这个子串就对应着 以左指针开始的，不包含重复字符的最长子串。我们记录下这个子串的长度，然后不断移动左指针和右指针，在枚举结束后，我们找到的最长的子串的长度即为答案。
+
+还需要使用一种数据结构来判断是否有重复的字符，这样的话我们可以使用哈希集合，在左指针向右移动的时候，我们从哈希集合中移除一个字符，在右指针向右移动的时候，我们往哈希集合中添加一个字符。
+
+![image-20230418223732414](/images/algorithm/image-20230418223732414.png)
+
+当rk指向字符c时，发现rk的后一个字符a在hash集合中已经存在，于是计算rk和i之间的长度为3，并将i右移，i右移后，a字符将从hash集合中移除。
+
+![image-20230418223756610](/images/algorithm/image-20230418223756610.png)
+
+
+
+```java
+public int lengthOfLongestSubstringWithHash(String s) {
+    /*哈希集合，记录每个字符是否出现过*/
+    Set<Character> occ = new HashSet<Character>();
+    int n = s.length();
+    /*右指针，初始值为 -1，相当于我们在字符串的左边界的左侧，还没有开始移动*/
+    int rk = -1, ans = 0;
+    /*遍历字符串，i代表左指针*/
+    for (int i = 0; i < n; ++i) {
+        /*i = 0,hash集合中还没有字符，自然就不需要移除*/
+        if (i != 0) {
+            /*左指针向右移动一格，移除一个字符*/
+            occ.remove(s.charAt(i - 1));
+        }
+        /*i = 0时，rk + 1=0，从字符串第0个字符开始*/
+        while (rk + 1 < n && !occ.contains(s.charAt(rk + 1))) {
+            /*不断地移动右指针*/
+            occ.add(s.charAt(rk + 1));
+            ++rk;
+        }
+        /*第 i 到 rk 个字符是一个极长的无重复字符子串*/
+        ans = Math.max(ans, rk - i + 1);
+    }
+    return ans;
+}
+```
+
