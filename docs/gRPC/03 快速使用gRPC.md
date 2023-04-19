@@ -152,11 +152,11 @@ mvn protobuf:compile-custom
 
 
 
-## 开发
+## 开发❤️
 
 [Source Code](https://github.com/Q10Viking/learncode/tree/main/rpc/gRPCDemo/src/main)
 
-## proto文件
+### proto文件
 
 编写helloworld.proto文件
 
@@ -296,3 +296,99 @@ public class GRPCClient {
 
 
 
+
+
+## 总结gRPC的核心概念
+
+![image.png](/images/grpc/1636089243054-7937ef27-0e78-42fc-adc2-1045255dc3a4.png)
+
+.proto 文件定义了服务 RPCDateService和 API getDate
+
+```protobuf
+// 服务接口.定义请求参数和相应结果	
+service RPCDateService {
+    rpc getDate (RPCDateRequest) returns (RPCDateResponse) {
+    }
+}
+```
+
+GRPCClient 是 **Client**，是对 **Stub** 封装；通过 **Stub** 可以真正的调用 RPC 请求
+
+```java
+//1,拿到一个通信channel
+ManagedChannel channel = ManagedChannelBuilder.forAddress(host, serverPort).
+    usePlaintext()//无需加密或认证
+    .build();
+try {
+    //2.拿到stub对象
+    RPCDateServiceGrpc.RPCDateServiceBlockingStub rpcDateService  = RPCDateServiceGrpc.newBlockingStub(channel);
+    RPCDateRequest rpcDateRequest = RPCDateRequest.newBuilder()
+        .setUserName("JACK")
+        .build();
+    //3,请求
+    RPCDateResponse rpcDateResponse = rpcDateService.getDate(rpcDateRequest);
+    //4,输出结果
+    System.out.println(rpcDateResponse.getServerDate());
+} finally {
+    // 5.关闭channel, 释放资源.
+    channel.shutdown();
+}
+```
+
+**Channel** 提供一个与特定 gRPC server 的主机和端口建立的连接。
+
+**Stub** 就是在 **Channel** 的基础上创建而成的。
+
+Server 端需要实现对应的 RPC，所有的 RPC 组成了 **Service**：
+
+```java
+// RPCDateServiceGrpc.RPCDateServiceImplBase 这个就是接口.
+// RPCDateServiceImpl 我们需要继承他的,实现方法回调
+public class RPCDateServiceImpl extends RPCDateServiceGrpc.RPCDateServiceImplBase {
+    @Override
+    public void getDate(RPCDateRequest request, StreamObserver<RPCDateResponse> responseObserver) {
+        //请求结果，我们定义的
+        RPCDateResponse rpcDateResponse = null;
+        //
+        String userName = request.getUserName();
+        String response = String.format("你好:%s,今天是%s.", userName,LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        try {
+            // 定义响应,是一个builder构造器.
+            rpcDateResponse = RPCDateResponse.newBuilder()
+                .setServerDate(response)
+                .build();
+            //int i = 10/0;
+        } catch (Exception e) {
+            responseObserver.onError(e);
+        } finally {
+            // 这种写法是observer,异步写法,
+            responseObserver.onNext(rpcDateResponse);
+        }
+
+        responseObserver.onCompleted();
+
+    }
+}
+```
+
+**Server** 的创建需要一个 **Builder**，添加上监听的地址和端口，**注册**上该端口上绑定的服务，最后构建出 Server 并启动：
+
+```java
+public class GRPCServer {
+    private static final int port = 9999;
+
+    public static void main(String[] args) throws IOException, InterruptedException {
+        //设置service端口
+        Server server = ServerBuilder.forPort(port)
+                .addService(new RPCDateServiceImpl())
+                .build().start();
+        System.out.println(String.format("GRpc服务端启动成功, 端口号: %d.", port));
+
+        server.awaitTermination();
+
+
+    }
+}
+```
+
+**RPC 和 API 的区别**：RPC (Remote Procedure Call) 是一次远程过程调用的整个动作，而 API (Application Programming Interface) 是不同语言在实现 RPC 中的具体接口。一个 RPC 可能对应多种 API，比如同步的、异步的、回调的。一次 RPC 是对某个 API 的一次调用。
