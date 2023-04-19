@@ -7,13 +7,9 @@ typora-root-url: ..\.vuepress\public
 
 
 
-官网
+[官网](https://www.grpc.io/)
 
-https://www.grpc.io/
-
-gRPC 官方文档中文版
-
-http://doc.oschina.net/grpc
+[gRPC 官方文档中文版](http://doc.oschina.net/grpc)
 
 
 
