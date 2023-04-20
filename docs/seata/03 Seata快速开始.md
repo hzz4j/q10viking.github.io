@@ -389,6 +389,8 @@ metrics.exporterPrometheusPort=9898
 
 ##  **Seata Client快速开始**
 
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/seata/learnSeata/MicroServices)
+
 ::: tip
 
 **Spring Cloud Alibaba整合Seata AT模式实战**
@@ -424,19 +426,119 @@ metrics.exporterPrometheusPort=9898
 
 
 
+### 依赖
+
+```xml
+<dependency>
+    <groupId>com.alibaba.cloud</groupId>
+    <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+</dependency>
+```
+
+### 微服务对应数据库中添加undo_log表(仅AT模式)
+
+[seata/mysql.sql at 1.5.2 · seata/seata (github.com)](https://github.com/seata/seata/blob/1.5.2/script/client/at/db/mysql.sql)
+
+```sql
+-- for AT mode you must to init this sql for you business database. the seata server not need it.
+CREATE TABLE IF NOT EXISTS `undo_log`
+(
+    `branch_id`     BIGINT       NOT NULL COMMENT 'branch transaction id',
+    `xid`           VARCHAR(128) NOT NULL COMMENT 'global transaction id',
+    `context`       VARCHAR(128) NOT NULL COMMENT 'undo_log context,such as serialization',
+    `rollback_info` LONGBLOB     NOT NULL COMMENT 'rollback info',
+    `log_status`    INT(11)      NOT NULL COMMENT '0:normal status,1:defense status',
+    `log_created`   DATETIME(6)  NOT NULL COMMENT 'create datetime',
+    `log_modified`  DATETIME(6)  NOT NULL COMMENT 'modify datetime',
+    UNIQUE KEY `ux_undo_log` (`xid`, `branch_id`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 1
+  DEFAULT CHARSET = utf8mb4 COMMENT ='AT transaction mode undo table';
+```
+
+### 微服务application.yml中添加seata配
 
 
 
+```yml
+seata:
+  application-id: ${spring.application.name}
+  tx-service-group: default_tx_group
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 192.168.135.1:8848
+      namespace: c3f112d8-1c5e-419e-9c83-b0b26b987a42
+      group: SEATA_GROUP
+  config:
+    type: nacos
+    nacos:
+      server-addr: 192.168.135.1:8848
+      namespace: c3f112d8-1c5e-419e-9c83-b0b26b987a42
+      group: SEATA_GROUP
+      data-id: seataServer.properties
+```
 
-![image-20230420174648846](/images/seata/image-20230420174648846.png)
+
+
+### 在全局事务发起者中添加@GlobalTransactional注
+
+```java
+@Override
+    //@Transactional
+    @GlobalTransactional(name="createOrder")
+    public Order saveOrder(OrderVo orderVo) {
+        System.out.println(sqlSessionFactory.getConfiguration().getEnvironment().getDataSource());
+        log.info("=============用户下单=================");
+        log.info("当前 XID: {}", RootContext.getXID());
+
+        // 保存订单
+        Order order = new Order();
+        order.setUserId(orderVo.getUserId());
+        order.setCommodityCode(orderVo.getCommodityCode());
+        order.setCount(orderVo.getCount());
+        order.setMoney(orderVo.getMoney());
+        order.setStatus(OrderStatus.INIT.getValue());
+
+        Integer saveOrderRecord = orderMapper.insert(order);
+        log.info("保存订单{}", saveOrderRecord > 0 ? "成功" : "失败");
+
+        //扣减库存
+        storageFeignService.deduct(orderVo.getCommodityCode(), orderVo.getCount());
+
+        //扣减余额   服务降级  throw
+        Boolean debit= accountFeignService.debit(orderVo.getUserId(), orderVo.getMoney());
+
+//        if(!debit){
+//            // 解决 feign整合sentinel降级导致SeaTa失效的处理
+//            throw new RuntimeException("账户服务异常降级了");
+//        }
+
+        //更新订单
+        Integer updateOrderRecord = orderMapper.updateOrderStatus(order.getId(),OrderStatus.SUCCESS.getValue());
+        log.info("更新订单id:{} {}", order.getId(), updateOrderRecord > 0 ? "成功" : "失败");
+
+        return order;
+
+    }
+```
 
 
 
-![image-20230420174621267](/images/seata/image-20230420174621267.png)
+### 测试
+
+![image-20230420212526253](/images/seata/image-20230420212526253.png)
+
+## 小结
 
 
 
+![image-20230420211158758](/images/seata/image-20230420211158758.png)
 
+
+
+![image-20230420211241807](/images/seata/image-20230420211241807.png)
 
 
 
