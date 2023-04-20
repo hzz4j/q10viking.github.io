@@ -532,6 +532,10 @@ seata:
 
 ## 小结
 
+![image-20230420212644627](/images/seata/image-20230420212644627.png)
+
+> 全局事务ID与分支事务ID
+
 
 
 ![image-20230420211158758](/images/seata/image-20230420211158758.png)
