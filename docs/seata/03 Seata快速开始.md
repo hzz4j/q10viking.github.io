@@ -33,15 +33,15 @@ Seata分TC、TM和RM三个角色，TC（Server端）为单独服务端部署，T
 
 ### 下载seata server
 
-[下载安装包](https://github.com/seata/seata/releases)
+[Releases · seata/seata (github.com)](https://github.com/seata/seata/releases)
 
-![image-20230420105837580](/images/seata/image-20230420105837580.png)
+![image-20230420183959655](/images/seata/image-20230420183959655.png)
 
-> tar -zxvf seata-server-1.5.1.tar.gz
+> tar -zxvf seata-server-1.5.2.tar.gz
 
 ### **建表(db模式)**
 
-创建数据库seata，执行sql脚本，[https://github.com/seata/seata/tree/v1.5.1/script/server/db](https://github.com/seata/seata/tree/v1.5.1/script/server/db)
+创建数据库seata，执行sql脚本，[https://github.com/seata/seata/tree/v1.5.2/script/server/db](https://github.com/seata/seata/tree/v1.5.2/script/server/db)
 
 ![image-20230420110315652](/images/seata/image-20230420110315652.png)
 
@@ -129,6 +129,8 @@ INSERT INTO `distributed_lock` (lock_key, lock_value, expire) VALUES ('TxTimeout
 
 ### seata配置nacos
 
+[nacos (seata.io)](https://seata.io/zh-cn/docs/user/configuration/nacos.html)
+
 注册中心可以说是微服务架构中的”通讯录“，它记录了服务和服务地址的映射关系。在分布式架构中，服务会注册到注册中心，当服务需要调用其它服务时，就到注册中心找到服务的地址，进行调用。比如Seata Client端(TM,RM)，发现Seata Server(TC)集群的地址,彼此通信。
 
 注意：Seata的注册中心是作用于Seata自身的，和Spring  Cloud的注册中心无关
@@ -137,36 +139,50 @@ INSERT INTO `distributed_lock` (lock_key, lock_value, expire) VALUES ('TxTimeout
 
 **配置将Seata Server注册到Nacos，修改conf/application.yml文件**
 
-![image-20230420124043389](/images/seata/image-20230420124043389.png)
-
 ```yml
- registry:
+seata:
+  config:
+    # support: nacos, consul, apollo, zk, etcd3
+    type: nacos
+    nacos:
+      server-addr: 192.168.135.1:8848
+      group : "SEATA_GROUP"
+      namespace: c3f112d8-1c5e-419e-9c83-b0b26b987a42
+      dataId: seataServer.properties
+      username: nacos
+      password: nacos
+  registry:
     # support: nacos, eureka, redis, zk, consul, etcd3, sofa
     type: nacos
     nacos:
       application: seata-server
       server-addr: 192.168.135.1:8848
       group: SEATA_GROUP
-      namespace: 7e1cb2ef-3967-4fe6-b1e0-d889a01d08a8
+      namespace: c3f112d8-1c5e-419e-9c83-b0b26b987a42
       data-id: seataServer.properties
       cluster: default
-      username:
-      password:
+      username: nacos
+      password: nacos
+  store:
+    # support: file 、 db 、 redis
+    mode: db
 ```
 
 > 配置成功后nacos的显示效果
 
-![image-20230420124118968](/images/seata/image-20230420124118968.png)
+![image-20230420200742678](/images/seata/image-20230420200742678.png)
 
-![image-20230420124316544](/images/seata/image-20230420124316544.png)
+![image-20230420200720491](/images/seata/image-20230420200720491.png)
 
 ### **上传配置至Nacos配置中心**
 
-[https://github.com/seata/seata/tree/v1.5.1/script/config-center](https://github.com/seata/seata/tree/v1.5.1/script/config-center)
+[seata/config.txt at v1.5.2 · seata/seata (github.com)](https://github.com/seata/seata/blob/v1.5.2/script/config-center/config.txt)
 
 获取/seata/script/config-center/config.txt，修改为db存储模式，并修改mysql连接配置
 
-![image-20230420124631007](/images/seata/image-20230420124631007.png)
+> 使用mysql8
+
+![image-20230420195417525](/images/seata/image-20230420195417525.png)
 
 在store.mode=db，由于seata是通过jdbc的executeBatch来批量插入全局锁的，根据MySQL官网的说明，连接参数中的rewriteBatchedStatements为true时，在执行executeBatch，并且操作类型为insert时，jdbc驱动会把对应的SQL优化成`insert into () values (), ()`的形式来提升批量插入的性能。 根据实际的测试，该参数设置为true后，对应的批量插入性能为原来的10倍多，因此在数据源为MySQL时，建议把该参数设置为true。
 
@@ -192,11 +208,148 @@ INSERT INTO `distributed_lock` (lock_key, lock_value, expire) VALUES ('TxTimeout
 
 在nacos配置中心中新建配置，dataId为seataServer.properties，配置内容为上面修改后的config.txt中的配置信息
 
-从v1.4.2版本开始，seata已支持从一个Nacos dataId中获取所有配置信息,你只需要额外添加一个dataId配置项。
+> 从v1.4.2版本开始，seata已支持从一个Nacos dataId中获取所有配置信息,你只需要额外添加一个dataId配置项。
 
 ​    ![0](/images/seata/54003.png)
 
 
+
+::: details
+
+```properties
+#For details about configuration items, see https://seata.io/zh-cn/docs/user/configurations.html
+#Transport configuration, for client and server
+transport.type=TCP
+transport.server=NIO
+transport.heartbeat=true
+transport.enableTmClientBatchSendRequest=false
+transport.enableRmClientBatchSendRequest=true
+transport.enableTcServerBatchSendResponse=false
+transport.rpcRmRequestTimeout=30000
+transport.rpcTmRequestTimeout=30000
+transport.rpcTcRequestTimeout=30000
+transport.threadFactory.bossThreadPrefix=NettyBoss
+transport.threadFactory.workerThreadPrefix=NettyServerNIOWorker
+transport.threadFactory.serverExecutorThreadPrefix=NettyServerBizHandler
+transport.threadFactory.shareBossWorker=false
+transport.threadFactory.clientSelectorThreadPrefix=NettyClientSelector
+transport.threadFactory.clientSelectorThreadSize=1
+transport.threadFactory.clientWorkerThreadPrefix=NettyClientWorkerThread
+transport.threadFactory.bossThreadSize=1
+transport.threadFactory.workerThreadSize=default
+transport.shutdown.wait=3
+transport.serialization=seata
+transport.compressor=none
+
+#Transaction routing rules configuration, only for the client
+service.vgroupMapping.default_tx_group=default
+#If you use a registry, you can ignore it
+service.default.grouplist=127.0.0.1:8091
+service.enableDegrade=false
+service.disableGlobalTransaction=false
+
+#Transaction rule configuration, only for the client
+client.rm.asyncCommitBufferLimit=10000
+client.rm.lock.retryInterval=10
+client.rm.lock.retryTimes=30
+client.rm.lock.retryPolicyBranchRollbackOnConflict=true
+client.rm.reportRetryCount=5
+client.rm.tableMetaCheckEnable=true
+client.rm.tableMetaCheckerInterval=60000
+client.rm.sqlParserType=druid
+client.rm.reportSuccessEnable=false
+client.rm.sagaBranchRegisterEnable=false
+client.rm.sagaJsonParser=fastjson
+client.rm.tccActionInterceptorOrder=-2147482648
+client.tm.commitRetryCount=5
+client.tm.rollbackRetryCount=5
+client.tm.defaultGlobalTransactionTimeout=60000
+client.tm.degradeCheck=false
+client.tm.degradeCheckAllowTimes=10
+client.tm.degradeCheckPeriod=2000
+client.tm.interceptorOrder=-2147482648
+client.undo.dataValidation=true
+client.undo.logSerialization=jackson
+client.undo.onlyCareUpdateColumns=true
+server.undo.logSaveDays=7
+server.undo.logDeletePeriod=86400000
+client.undo.logTable=undo_log
+client.undo.compress.enable=true
+client.undo.compress.type=zip
+client.undo.compress.threshold=64k
+#For TCC transaction mode
+tcc.fence.logTableName=tcc_fence_log
+tcc.fence.cleanPeriod=1h
+
+#Log rule configuration, for client and server
+log.exceptionRate=100
+
+#Transaction storage configuration, only for the server. The file, DB, and redis configuration values are optional.
+store.mode=db
+store.lock.mode=db
+store.session.mode=db
+#Used for password encryption
+store.publicKey=
+
+#If `store.mode,store.lock.mode,store.session.mode` are not equal to `file`, you can remove the configuration block.
+store.file.dir=file_store/data
+store.file.maxBranchSessionSize=16384
+store.file.maxGlobalSessionSize=512
+store.file.fileWriteBufferCacheSize=16384
+store.file.flushDiskMode=async
+store.file.sessionReloadReadSize=100
+
+#These configurations are required if the `store mode` is `db`. If `store.mode,store.lock.mode,store.session.mode` are not equal to `db`, you can remove the configuration block.
+store.db.datasource=druid
+store.db.dbType=mysql
+store.db.driverClassName=com.mysql.cj.jdbc.Driver
+store.db.url=jdbc:mysql://192.168.135.130:3306/seata?useUnicode=true&rewriteBatchedStatements=true
+store.db.user=root
+store.db.password=Root.123456
+store.db.minConn=5
+store.db.maxConn=30
+store.db.globalTable=global_table
+store.db.branchTable=branch_table
+store.db.distributedLockTable=distributed_lock
+store.db.queryLimit=100
+store.db.lockTable=lock_table
+store.db.maxWait=5000
+
+#These configurations are required if the `store mode` is `redis`. If `store.mode,store.lock.mode,store.session.mode` are not equal to `redis`, you can remove the configuration block.
+store.redis.mode=single
+store.redis.single.host=127.0.0.1
+store.redis.single.port=6379
+store.redis.sentinel.masterName=
+store.redis.sentinel.sentinelHosts=
+store.redis.maxConn=10
+store.redis.minConn=1
+store.redis.maxTotal=100
+store.redis.database=0
+store.redis.password=
+store.redis.queryLimit=100
+
+#Transaction rule configuration, only for the server
+server.recovery.committingRetryPeriod=1000
+server.recovery.asynCommittingRetryPeriod=1000
+server.recovery.rollbackingRetryPeriod=1000
+server.recovery.timeoutRetryPeriod=1000
+server.maxCommitRetryTimeout=-1
+server.maxRollbackRetryTimeout=-1
+server.rollbackRetryTimeoutUnlockEnable=false
+server.distributedLockExpireTime=10000
+server.xaerNotaRetryTimeout=60000
+server.session.branchAsyncQueueSize=5000
+server.session.enableBranchAsyncRemove=false
+server.enableParallelRequestHandle=false
+
+#Metrics configuration, only for the server
+metrics.enabled=false
+metrics.registryType=compact
+metrics.exporterList=prometheus
+metrics.exporterPrometheusPort=9898
+```
+
+:::
 
 ---------
 
@@ -205,7 +358,7 @@ INSERT INTO `distributed_lock` (lock_key, lock_value, expire) VALUES ('TxTimeout
 ### 启动
 
 ```sh
-    bin/seata-server.sh 
+   seata-server.sh 
 ```
 
 
@@ -223,10 +376,14 @@ INSERT INTO `distributed_lock` (lock_key, lock_value, expire) VALUES ('TxTimeout
 比如：
 
 ```sh
-    bin/seata-server.sh -p 8091 -h 127.0.0.1 -m db              
+ seata-server.sh -p 8091 -h 127.0.0.1 -m db              
 ```
 
+### 访问界面
 
+[http://192.168.135.130:7091/](http://192.168.135.130:7091/)
+
+![image-20230420164849463](/images/seata/image-20230420164849463.png)
 
 
 
@@ -254,16 +411,46 @@ INSERT INTO `distributed_lock` (lock_key, lock_value, expire) VALUES ('TxTimeout
 
 ### **环境准备**
 
+[版本说明 · alibaba/spring-cloud-alibaba Wiki (github.com)](https://github.com/alibaba/spring-cloud-alibaba/wiki/版本说明)
+
 - 父pom指定微服务版本
 
-| Spring Cloud Alibaba Version | Spring Cloud Version     | Spring Boot Version | Seata Version |
-| ---------------------------- | ------------------------ | ------------------- | ------------- |
-| 2.2.8.RELEASE                | Spring Cloud Hoxton.SR12 | 2.3.12.RELEASE      | 1.5.1         |
+| Spring Cloud Alibaba Version | Spring Cloud Version     | Spring Boot Version | Seata Version | nacos |
+| ---------------------------- | ------------------------ | ------------------- | ------------- | ----- |
+| 2.2.9.RELEASE                | Spring Cloud Hoxton.SR12 | 2.3.12.RELEASE      | 1.5.2         | 2.1.0 |
 
 - 启动Seata Server(TC)端，Seata Server使用nacos作为配置中心和注册中心
 - 启动nacos服务
 
 
+
+
+
+
+
+![image-20230420174648846](/images/seata/image-20230420174648846.png)
+
+
+
+![image-20230420174621267](/images/seata/image-20230420174621267.png)
+
+
+
+
+
+
+
+
+
+## Seata版本
+
+> 1.5.1的版本它依赖的jar包都集成到了seata-server.jar包中，使用mysql8不方便添加lib.没有lib目录
+>
+> 1.5.2的版本，有lib目录，依赖的包都在lib目录下，并且有mysql8的jar包
+
+
+
+![image-20230420182419565](/images/seata/image-20230420182419565.png)
 
 
 
