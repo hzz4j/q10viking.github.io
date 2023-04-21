@@ -77,6 +77,8 @@ AT 模式基于 支持本地 ACID 事务的关系型数据库：
 
 ## Seata TCC实战
 
+[learncode/seata/learnSeata/seata-tcc at main · Q10Viking/learncode (github.com)](https://github.com/Q10Viking/learncode/tree/main/seata/learnSeata/seata-tcc)
+
 用户下单，整个业务逻辑由三个微服务构成：
 
 - 库存服务：对给定的商品扣除库存数量。
@@ -123,6 +125,21 @@ DEFAULT CHARSET = utf8mb4;
 
 
 
+```sh
+*************************** 1. row ***************************
+         xid: 192.168.135.130:8091:4729163079446176965
+   branch_id: 4729163079446176971
+ action_name: debit
+      status: 2
+  gmt_create: 2023-04-21 16:32:28.473
+gmt_modified: 2023-04-21 16:32:28.651
+1 row in set (0.00 sec)
+
+# 其中状态status: tried:1;committed:2;rollbacked:3;suspended:4
+```
+
+
+
 ### 依赖
 
 ```xml
@@ -137,15 +154,17 @@ DEFAULT CHARSET = utf8mb4;
 ### 配置
 
 ```yml
-
+server:
+  port: 8888
 spring:
   application:
     name: tcc-order-service
   cloud:
     nacos:
       discovery:
-        ip: 192.168.135.1:8848
+#        ip: 192.168.135.1:8848
         namespace: c3f112d8-1c5e-419e-9c83-b0b26b987a42
+        server-addr: 192.168.135.1:8848
 
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -181,19 +200,21 @@ seata:
   # seata 服务分组，要与服务端配置service.vgroup_mapping的后缀对应
   tx-service-group: default_tx_group
   config:
+    type: nacos
     nacos:
       server-addr: 192.168.135.1:8848
       group: SEATA_GROUP
       namespace: c3f112d8-1c5e-419e-9c83-b0b26b987a42
       data-id: seataServer.properties
   registry:
+    type: nacos
     nacos:
       application: seata-server
       server-addr: 192.168.135.1:8848
       group: SEATA_GROUP
       namespace: c3f112d8-1c5e-419e-9c83-b0b26b987a42
-server:
-  port: 8888
+
+
 ```
 
 
