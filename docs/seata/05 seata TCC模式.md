@@ -100,6 +100,29 @@ AT 模式基于 支持本地 ACID 事务的关系型数据库：
 
 
 
+### sql
+
+[seata/mysql.sql at 1.5.2 · seata/seata (github.com)](https://github.com/seata/seata/blob/1.5.2/script/client/tcc/db/mysql.sql)
+
+```sql
+-- -------------------------------- The script use tcc fence  --------------------------------
+CREATE TABLE IF NOT EXISTS `tcc_fence_log`
+(
+    `xid`           VARCHAR(128)  NOT NULL COMMENT 'global id',
+    `branch_id`     BIGINT        NOT NULL COMMENT 'branch id',
+    `action_name`   VARCHAR(64)   NOT NULL COMMENT 'action name',
+    `status`        TINYINT       NOT NULL COMMENT 'status(tried:1;committed:2;rollbacked:3;suspended:4)',
+    `gmt_create`    DATETIME(3)   NOT NULL COMMENT 'create time',
+    `gmt_modified`  DATETIME(3)   NOT NULL COMMENT 'update time',
+    PRIMARY KEY (`xid`, `branch_id`),
+    KEY `idx_gmt_modified` (`gmt_modified`),
+    KEY `idx_status` (`status`)
+) ENGINE = InnoDB
+DEFAULT CHARSET = utf8mb4;
+```
+
+
+
 ### 依赖
 
 ```xml
@@ -110,3 +133,72 @@ AT 模式基于 支持本地 ACID 事务的关系型数据库：
 ```
 
 ### 
+
+### 配置
+
+```yml
+
+spring:
+  application:
+    name: tcc-order-service
+  cloud:
+    nacos:
+      discovery:
+        ip: 192.168.135.1:8848
+        namespace: c3f112d8-1c5e-419e-9c83-b0b26b987a42
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.135.130:3306/seata_tcc_order?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: Root.123456
+    druid:
+      initial-size: 10
+      max-active: 100
+      min-idle: 10
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: false
+        wall:
+          config:
+            multi-statement-allow: true
+seata:
+  application-id: ${spring.application.name}
+  # seata 服务分组，要与服务端配置service.vgroup_mapping的后缀对应
+  tx-service-group: default_tx_group
+  config:
+    nacos:
+      server-addr: 192.168.135.1:8848
+      group: SEATA_GROUP
+      namespace: c3f112d8-1c5e-419e-9c83-b0b26b987a42
+      data-id: seataServer.properties
+  registry:
+    nacos:
+      application: seata-server
+      server-addr: 192.168.135.1:8848
+      group: SEATA_GROUP
+      namespace: c3f112d8-1c5e-419e-9c83-b0b26b987a42
+server:
+  port: 8888
+```
+
+
+
+### 服务
+
+![image-20230421144853834](/images/algorithm/image-20230421144853834.png)
+
