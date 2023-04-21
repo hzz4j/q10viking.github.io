@@ -39,4 +39,10 @@ typora-root-url: ..\.vuepress\public
 
 ## 动态规划
 
+- [旅游规划](https://q10viking.github.io/Algorithm/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html)
+
 - [leetcode-5](https://q10viking.github.io/Algorithm/leetcode-5.html)
+
+- [leetcode-300](https://q10viking.github.io/Algorithm/leetcode-300.html)
+
+- 
