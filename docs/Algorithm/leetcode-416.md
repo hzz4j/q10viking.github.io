@@ -9,7 +9,7 @@ typora-root-url: ..\.vuepress\public
 
 
 
-
+[416. 分割等和子集 - 力扣（LeetCode）](https://leetcode.cn/problems/partition-equal-subset-sum/)
 
 > 背包问题的变形
 

@@ -45,4 +45,9 @@ typora-root-url: ..\.vuepress\public
 
 - [leetcode-300](https://q10viking.github.io/Algorithm/leetcode-300.html)
 
-- 
+- [leetcode-416](https://q10viking.github.io/Algorithm/leetcode-416.html)
+
+
+
+## 贪心
+
