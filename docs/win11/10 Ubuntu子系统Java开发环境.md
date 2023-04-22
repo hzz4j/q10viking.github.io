@@ -181,6 +181,58 @@ OpenJDK Runtime Environment (build 1.8.0_302-b08)
 OpenJDK 64-Bit Server VM (build 25.302-b08, mixed mode)
 ```
 
+
+
+#### 离线安装
+
+> sdk安装总是很慢，我们先下载jdk包，然后通过它来处理
+
+[Java Archive Downloads - Java SE 11 (oracle.com)](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)
+
+![image-20230422112901092](/images/algorithm/image-20230422112901092.png)
+
+```sh
+# 将解压的jdk移动到/home/q10viking/.sdkman/candidates/java目录下
+mv /home/q10viking/software/jdk-11.0.18 ./11.0.18-oracle
+```
+
+效果
+
+```sh
+q10viking@LAPTOP-PJLAUUSP:~/.sdkman/candidates/java$ ll
+total 20
+drwxr-xr-x 5 q10viking q10viking 4096 Apr 22 11:17 ./
+drwxr-xr-x 5 q10viking q10viking 4096 Mar 22 16:36 ../
+drwxr-xr-x 9 q10viking q10viking 4096 Apr 22 11:02 11.0.18-oracle/
+drwxr-xr-x 9 q10viking q10viking 4096 Mar 22 03:17 17.0.6-oracle/
+drwxr-xr-x 9 q10viking q10viking 4096 Jul 16  2021 8.0.302-open/
+lrwxrwxrwx 1 q10viking q10viking   13 Mar 22 04:49 current -> 17.0.6-oracle/
+```
+
+查看安装进来
+
+```java
+q10viking@LAPTOP-PJLAUUSP:~/.sdkman/candidates/java$ sdk list java
+We periodically need to update the local cache. Please run:
+
+  $ sdk update
+
+--------------------------------------------------------------------------------
+Offline: only showing installed java versions
+--------------------------------------------------------------------------------
+ * 8.0.302-open
+ > 17.0.6-oracle
+ * 11.0.18-oracle
+--------------------------------------------------------------------------------
+* - installed
+> - currently in use
+--------------------------------------------------------------------------------
+```
+
+
+
+
+
 ### maven搭建
 
 ```sh
