@@ -133,6 +133,18 @@ PS C:\> wsl -l -v
   docker-desktop         Stopped         2
 ```
 
+### 设置默认发行版
+
+```sh
+wsl --set-default Ubuntu
+```
+
+### 停止发行版
+
+```sh
+wsl -t Ubuntu
+```
+
 
 
 ## Linux发行版

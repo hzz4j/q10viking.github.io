@@ -15,7 +15,9 @@ Docker 是一个开源的商业产品，有两个版本：社区版（Community 
 
 Docker CE 的安装请参考官方文档，**我们这里以CentOS为例**
 
-[Install Docker Engine on CentOS | Docker Documentation](https://docs.docker.com/engine/install/centos/)
+[官网Install Docker Engine on CentOS | Docker Documentation](https://docs.docker.com/engine/install/centos/)
+
+[Docker CE 镜像源站-阿里云开发者社区 (aliyun.com)](https://developer.aliyun.com/article/110806)
 
 1. 使用 root 权限登录 Centos。确保 yum 包更新到最新
 
@@ -98,6 +100,16 @@ systemctl start docker && systemctl enable docker
 ```
 
 
+
+
+
+### 配置加速镜像
+
+[容器镜像服务 (aliyun.com)](https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors)
+
+> 您可以通过修改daemon配置文件/etc/docker/daemon.json来使用加速器
+
+![image-20230423164255886](/images/Docker/image-20230423164255886.png)
 
 
 

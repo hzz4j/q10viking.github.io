@@ -60,6 +60,14 @@ Credential Helper
 [WSL 的基本命令 | Microsoft Learn： export-a-distribution-to-a-tar-file](https://learn.microsoft.com/zh-cn/windows/wsl/basic-commands#export-a-distribution-to-a-tar-file)
 
 ```sh
+# 停止
+wsl -t docker-desktop-data
+wsl -t docker-desktop
+```
+
+
+
+```sh
 # 需要停止运行
 PS C:\> wsl -l -v
   NAME                   STATE           VERSION
