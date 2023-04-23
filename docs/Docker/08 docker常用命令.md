@@ -591,6 +591,8 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
 
 ## 提交到中央仓库
 
+
+
 我们制作好了微服务镜像，一般需要发布到镜像仓库供别人使用，我们可以选择自建镜像仓库，也可以直接使用docker官方镜像仓库，这里我们选择docker官方镜像仓库
 
 需要登录认证：
@@ -598,6 +600,8 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
 ```sh
 docker login
 ```
+
+> 需要特别注意一定要打标签为自己的`用户名/docker名:标签`的格式,因为用户名像路径一样，dockerhub用来找到存储的地方
 
 ```sh
 q10viking@LAPTOP-PJLAUUSP:~/learndocker/cmak/cmak-3.0.0.6$ docker tag cmak:3.0.0.6 q10viking/cmak:3.0.0.6
