@@ -130,6 +130,8 @@ consumer消费的offset要提交到__consumer_offsets的哪个分区，这个分
 
 > 每个消费组对应一个__consumer_offsets的分区
 
+![image-20230423143111911](/images/kafka/image-20230423143111911.png)
+
 **第二阶段：加入消费组JOIN GROUP**
 
 在成功找到消费组所对应的 GroupCoordinator 之后就进入加入消费组的阶段，在此阶段的消费者会向 GroupCoordinator 发送 JoinGroupRequest 请求，并处理响应。然后GroupCoordinator 从一个consumer group中选择第一个加入group的consumer作为leader(**消费组协调器**)，把consumer group情况发送给这个leader，接着这个leader会负责制定分区方案
@@ -137,8 +139,6 @@ consumer消费的offset要提交到__consumer_offsets的哪个分区，这个分
 **第三阶段（ SYNC GROUP)**
 
 consumer leader通过给GroupCoordinator发送SyncGroupRequest，接着GroupCoordinator就把分区方案下发给各个consumer，他们会根据指定分区的leader broker进行网络连接以及消息消费。
-
-
 
 
 
