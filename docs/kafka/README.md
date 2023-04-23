@@ -9,7 +9,3 @@ typora-root-url: ..\.vuepress\public
 
 
 
-```
-www.itjc8.com^V@1^LEpwyo1!
-```
-
