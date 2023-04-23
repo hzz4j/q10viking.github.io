@@ -234,3 +234,17 @@ Kafka 一个分区的消息数据对应存储在一个文件夹下，以topic名
 Kafka Broker 有一个参数，log.segment.bytes，限定了每个日志段文件的大小，最大就是 1GB。
 
 一个日志段文件满了，就自动开一个新的日志段文件来写入，避免单个文件过大，影响文件的读写性能，这个过程叫做 log rolling，正在被写入的那个日志段文件，叫做 active log segment。
+
+
+
+
+
+
+
+## **kafka高性能的原因**
+
+- 磁盘顺序读写：kafka消息不能修改以及不会从文件中间删除保证了磁盘顺序读，kafka的消息写入文件都是追加在文件末尾，不会写入文件中的某个位置(随机写)保证了磁盘顺序写。
+- 数据传输的零拷贝
+- 读写数据的批量batch处理以及压缩传输
+
+![https://note.youdao.com/yws/public/resource/1ce32fe44f9326456e98b6e554bf6245/xmlnote/C4EFFC3047644E5AB2A15B872E90B4EC/105677](/images/kafka/105677)
