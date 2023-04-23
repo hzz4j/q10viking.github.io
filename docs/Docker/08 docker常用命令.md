@@ -589,6 +589,34 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
 
 
 
+## 提交到中央仓库
+
+我们制作好了微服务镜像，一般需要发布到镜像仓库供别人使用，我们可以选择自建镜像仓库，也可以直接使用docker官方镜像仓库，这里我们选择docker官方镜像仓库
+
+需要登录认证：
+
+```sh
+docker login
+```
+
+```sh
+q10viking@LAPTOP-PJLAUUSP:~/learndocker/cmak/cmak-3.0.0.6$ docker tag cmak:3.0.0.6 q10viking/cmak:3.0.0.6
+q10viking@LAPTOP-PJLAUUSP:~/learndocker/cmak/cmak-3.0.0.6$ docker images
+REPOSITORY                TAG       IMAGE ID       CREATED          SIZE
+cmak                      3.0.0.6   e88cbd0dfa2d   19 minutes ago   833MB
+q10viking/cmak            3.0.0.6   e88cbd0dfa2d   19 minutes ago   833MB
+hzz-microservice-server   0.0.1     176bcabc7ced   51 minutes ago   683MB
+nginx                     latest    605c77e624dd   15 months ago    141MB
+openjdk                   11        5505a9a39df1   16 months ago    659MB
+alpine                    latest    c059bfaa849c   17 months ago    5.59MB
+java                      8         d23bdf5b1b1b   6 years ago      643MB
+q10viking@LAPTOP-PJLAUUSP:~/learndocker/cmak/cmak-3.0.0.6$ docker push q10viking/cmak:3.0.0.6
+```
+
+最后可以看到：
+
+
+
 ## 参数解释👍
 
 | 选项         | 选项简写 | 说明                                                         |
