@@ -617,7 +617,7 @@ java                      8         d23bdf5b1b1b   6 years ago      643MB
 q10viking@LAPTOP-PJLAUUSP:~/learndocker/cmak/cmak-3.0.0.6$ docker push q10viking/cmak:3.0.0.6
 ```
 
-最后可以看到：
+最后可以看到：[q10viking/cmak Tags | Docker Hub](https://hub.docker.com/r/q10viking/cmak/tags) 以后就可以下载这个docker,运行起来，然后进去修改`/cmak/conf/application.conf`的配置就好。
 
 
 
