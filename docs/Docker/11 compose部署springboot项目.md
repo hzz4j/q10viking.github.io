@@ -345,3 +345,14 @@ docker compose -f docker-compose-app.yml up --scale user=3 -d
 docker compose -f docker-compose-app.yml up --scale user=3 -d
 ```
 
+
+
+## 项目小结👍
+
+::: tip
+
+docker compose部署的工程相当于一个内网，内网下的服务可以通过服务名进行访问
+
+如果一个服务有多个实例，那么通过访问服务名，docker会自己进行负载均衡。我们通过nginx来反向代理服务名
+
+:::
