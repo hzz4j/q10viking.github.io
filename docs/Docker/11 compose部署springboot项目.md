@@ -333,6 +333,21 @@ c4e20908b65e   nginx:latest              "/docker-entrypoint.…"   7 minutes ag
 
 ![image-20230424194756152](/images/Docker/image-20230424194756152.png)
 
+
+
+```sh
+q10viking@LAPTOP-PJLAUUSP:~/learndocker/mall$ docker ps
+CONTAINER ID   IMAGE                     COMMAND                  CREATED             STATUS             PORTS                               NAMES
+c4e20908b65e   nginx:latest              "/docker-entrypoint.…"   About an hour ago   Up About an hour   80/tcp, 0.0.0.0:8888->8888/tcp      nginx
+346605d38eb7   mall-user-service:0.0.1   "java -jar /app.jar"     About an hour ago   Up About an hour   8888/tcp                            mall-user-1
+2fd53aedfe13   mall-user-service:0.0.1   "java -jar /app.jar"     About an hour ago   Up About an hour   8888/tcp                            mall-user-2
+224457a0cad9   mall-user-service:0.0.1   "java -jar /app.jar"     About an hour ago   Up About an hour   8888/tcp                            mall-user-3
+7d3ac8001869   mysql:8.0-oracle          "docker-entrypoint.s…"   5 hours ago         Up 5 hours         0.0.0.0:3306->3306/tcp, 33060/tcp   mysql8
+62229f460335   redis:6.0                 "docker-entrypoint.s…"   5 hours ago         Up 5 hours         0.0.0.0:6379->6379/tcp              redis
+```
+
+
+
 ## 命令小结
 
 ```sh
