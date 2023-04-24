@@ -162,7 +162,7 @@ external_links:
  - project_db_1:postgresql
 ```
 
-**ports**
+### **ports**
 
 暴露端口信息。使用宿主端口:容器端口的格式，或者仅仅指定容器的端口（此时宿主机将会随机指定端口），类似于docker run -p ，示例：
 
