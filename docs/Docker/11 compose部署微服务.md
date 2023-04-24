@@ -169,7 +169,74 @@ docker compose -f docker-compose-env.yml up -d
 
 
 
-### 小案例
+## docker compose部署springboot项目❤️
+
+::: tip
+
+我开发一个简单的springboot的项目，依赖着mysql和redis的环境。部署的时候。采用docker compose的方式来部署。
+
+:::
+
+
+
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/docker/docker-service)
+
+### 项目配置
+
+```sh
+server:
+  port: 8888
+  servlet:
+    context-path: /docker
+spring:
+  redis:
+    host: redis  # docker compose下的redis服务名
+    port: 6379
+    database: 0
+
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # docker compose下的mysql8服务的别名db
+    url: jdbc:mysql://db:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: Root.123456
+```
+
+### 项目打包
+
+> maven打包，我们跳过test测试，因为我直接在项目中配置的redis,mysql为docker compose下的服务名。
+
+```xml
+<properties>
+    <java.version>1.8</java.version>
+    <skipTests>true</skipTests>
+</properties>
+```
+
+```sh
+mvn package -Dmaven.test.skip=true
+```
+
+将打包好的jar包上传到服务器。
+
+```sh
+q10viking@LAPTOP-PJLAUUSP:~/learndocker/mall$ tree
+.
+├── docker-compose-app.yml
+├── docker-compose-env.yml
+└── user
+    ├── Dockerfile
+    └── docker-service-0.0.1-SNAPSHOT.jar
+```
+
+在服务器中新建一个mall目录用于docker compose的工程目录。然后创建文件夹user目录，用于存放user服务的jar包
+
+### 编写相应配置文件
+
+#### 依赖环境
+
+> 依赖环境mysql和redis,`docker-compose-env.yml`
 
 ```sh
 services:
@@ -196,7 +263,11 @@ services:
       - /mydata/mysql/log:/var/log/mysql #日志文件挂载
 ```
 
+> 启动docker compose的依赖环境
 
+```sh
+ docker compose -f docker-compose-env.yml up -d
+```
 
 可以看到卷挂在到了宿主机
 
@@ -207,35 +278,62 @@ q10viking@LAPTOP-PJLAUUSP:/mydata$ ls
 mysql  redis
 ```
 
+#### 服务
 
+> 新建一个Dockerfile构建user服务的镜像
 
-
-
-
-
-
-
-## 部署服务
-
-```xml
-<properties>
-    <java.version>1.8</java.version>
-    <skipTests>true</skipTests>
-</properties>
+```dockerfile
+From java:8
+ADD docker-service-0.0.1-SNAPSHOT.jar /app.jar
+# 声明需要暴露的端口
+EXPOSE 8888
+ENTRYPOINT ["java","-jar","/app.jar"]
 ```
 
-
+> 配置docker compose 服务`docker-compose-app.yml`
 
 ```sh
-mvn package -Dmaven.test.skip=true
+services:
+  user:
+    image: mall-user-service:0.0.1 #指定Dockfile所在路径
+    build: ./user #指定Dockfile所在路径
+    container_name: mall-user-service
+    ports:
+      - 8888:8888
+    external_links:
+      - redis
+      - mysql8:db   # 定义一个别名，项目中jdbc://db:3306
 ```
 
-
-
-
+启动起来
 
 ```sh
  docker compose -f docker-compose-app.yml up -d
+ docker compose -f docker-compose-app.yml up --force-recreate -d
+```
+
+### 效果
+
+![image-20230424164059511](/images/Docker/image-20230424164059511.png)
+
+### 测试
+
+[http://localhost:8888/docker/user/select?name=q10viking](http://localhost:8888/docker/user/select?name=q10viking)
+
+![image-20230424164143026](/images/Docker/image-20230424164143026.png)
+
+> redis中
+
+![image-20230424164218153](/images/Docker/image-20230424164218153.png)
+
+
+
+### 命令小结
+
+```sh
+ docker compose -f docker-compose-env.yml up -d
+ docker compose -f docker-compose-app.yml up -d
+ # 文件有变动，需要重新创建容器 --force-recreate
  docker compose -f docker-compose-app.yml up --force-recreate -d
 ```
 
