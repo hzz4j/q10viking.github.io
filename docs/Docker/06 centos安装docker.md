@@ -88,8 +88,6 @@ yum -y update
 
    
 
-
-
 ## 启动
 
 ```sh
@@ -110,6 +108,17 @@ systemctl start docker && systemctl enable docker
 > 您可以通过修改daemon配置文件/etc/docker/daemon.json来使用加速器
 
 ![image-20230423164255886](/images/Docker/image-20230423164255886.png)
+
+```sh
+sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json <<-'EOF'
+{
+  "registry-mirrors": ["https://u8x09gus.mirror.aliyuncs.com"]
+}
+EOF
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
 
 
 
