@@ -80,8 +80,6 @@ service/nginx        NodePort    10.108.139.46   <none>        80:31448/TCP   9m
 
 
 
-
-
 ## 命令小结
 
 ```sh
