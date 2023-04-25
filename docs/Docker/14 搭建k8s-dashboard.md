@@ -306,4 +306,4 @@ secret "kubernetes-dashboard-key-holder" deleted
 
 [Kubernetes（k8s）安装以及搭建k8s-Dashboard详解 - 掘金 (juejin.cn)](https://juejin.cn/post/7107954026875977764#heading-18)
 
-[dashboard/creating-sample-user.md at master · kubernetes/dashboard · GitHub](
+[dashboard creating-sample-user GitHub](https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md)
