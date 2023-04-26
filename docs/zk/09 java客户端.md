@@ -102,3 +102,16 @@ public class ZookeepClient {
 因为代码中监听了这个节点，我们在zk上更新一下值，发现程序监听到了值的改变
 
 ![image-20230426225008409](/images/zk/image-20230426225008409.png)
+
+
+
+## 应用与zk监听的概览❤️
+
+::: tip
+
+监听与事件的触发
+
+:::
+
+<img src="/images/zk/image-20211118072058711.png" />
+
