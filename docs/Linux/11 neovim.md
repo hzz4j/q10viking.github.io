@@ -53,9 +53,22 @@ nvim
 
 
 
-### 设置
+## 常用操作
+
+### 显示行号
 
 ```sh
 :set number
 ```
 
+### 删除所有内容
+
+```sh
+:1,$d
+```
+
+- The `1` means, “starting at line 1”
+- The `,$` means, “until the end of the file”
+- The `d` means, “delete”
+
+## 
