@@ -130,6 +130,8 @@ public class ZookeepClient {
 2. Curator 把我们平时常用的很多 ZooKeeper 服务开发功能做了封装，例如 Leader 选举、分布式计数器、分布式锁。这就减少了技术人员在使用 ZooKeeper 时的大部分底层细节开发工作
 3. 在**会话重新连接、Watch 反复注册、多种异常处理等使用场景中**，用原生的 ZooKeeper 处理比较复杂。而在使用 Curator 时，由于其对这些功能都做了高度的封装，使用起来更加简单，不但减少了开发时间，而且增强了程序的可靠性。
 
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/zookeeper/curator-basic/src/test/java/org/hzz/standalone)
+
 > 依赖
 
 ```xml
@@ -374,6 +376,40 @@ public void testGetData() throws Exception {
 
 
 
+#### 异步
+
+Curator 引入了BackgroundCallback 接口，用来处理服务器端返回来的信息，这个处理过程是在异步线程中调用，默认在 **EventThread** 中调用，也可以自定义线程池。
+
+inBackground 异步处理默认在EventThread中执行
+
+```java
+@Test
+public void test() throws Exception {
+    curatorFramework.getData().inBackground((client, event) -> {
+        log.info(" background: {}", event);
+    }).forPath(ZK_NODE);
+
+    TimeUnit.SECONDS.sleep(Integer.MAX_VALUE);
+}
+```
+
+ 指定线程池
+
+```java
+@Test
+public void test() throws Exception {
+    ExecutorService executorService = Executors.newSingleThreadExecutor();
+    
+    curatorFramework.getData().inBackground((client, event) -> {
+        log.info(" background: {}", event);
+    },executorService).forPath(ZK_NODE);
+
+    TimeUnit.SECONDS.sleep(Integer.MAX_VALUE);
+}
+```
+
+
+
 ### 获取节点子列表
 
 ```java
@@ -388,3 +424,72 @@ public void testListChildren() throws Exception {
 ```
 
 ![image-20230427130920163](/images/zk/image-20230427130920163.png)
+
+
+
+### curator提供的监听器
+
+```java
+@Test
+public void testCuratorListener() throws Exception {
+    CuratorFramework curatorFramework = getCuratorFramework();
+    curatorFramework.getCuratorListenable().addListener((client, event) -> {
+        log.info("event type:{}", event.getType());
+        log.info("event path:{}", event.getPath());
+        log.info("event state:{}", event.getName());
+    });
+
+    String path = "/test";
+    createIfNeed(path);
+    log.info("start to change data for path :{}" ,path);
+    curatorFramework.setData().inBackground().forPath(path,"xxx1".getBytes());
+    log.info("start to change data for path :{} again" ,path);
+    curatorFramework.setData().inBackground().forPath(path,"xxx2".getBytes());
+    curatorFramework.create().inBackground().forPath("/test456","test456".getBytes());
+}
+/**
+     *  [main-EventThread] : event type:SET_DATA
+     *  [main-EventThread] : event path:/test
+     *  [main-EventThread] : event state:null
+     *  [main-EventThread] : event type:SET_DATA
+     *  [main-EventThread] : event path:/test
+     *  [main-EventThread] : event state:null
+     *  [main-EventThread] : event type:CREATE
+     *  [main-EventThread] : event path:/test456
+     *  [main-EventThread] : event state:/test456
+     */
+```
+
+
+
+### watch
+
+```java
+@Test
+public void testWatcher() throws Exception {
+
+    CuratorFramework curatorFramework = getCuratorFramework();
+    String path="/test";
+    createIfNeed(path);
+    byte[] bytes = curatorFramework.getData().usingWatcher(new Watcher() {
+        @Override
+        public void process(WatchedEvent event) {
+            if (event.getType() == Event.EventType.NodeDataChanged){
+                log.info("node {} data changed!",event.getPath());
+            }
+        }
+    }).forPath(path);
+    log.info(" original data: {}",new String(bytes));
+    log.info("start to change data.");
+    curatorFramework.setData().forPath(path, "test".getBytes());
+    log.info("start to change data again! ");
+    curatorFramework.setData().forPath(path, "test".getBytes());
+}
+/**
+     *  [main] :  original data: xxx2
+     *  [main] : start to change data.
+     *  [main-EventThread] : node /test data changed!
+     *  [main] : start to change data again!
+     */
+```
+
