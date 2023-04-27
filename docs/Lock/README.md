@@ -45,7 +45,7 @@ typora-root-url: ..\.vuepress\public
 
 ## 部署
 
-https://www.processon.com/view/link/62f24f5fe401fd2fc7cbe5f5
+[ProgressOn](https://www.processon.com/view/link/62f24f5fe401fd2fc7cbe5f5)
 
 ![image-20220809201246047](/images/lock/image-20220809201246047.png)
 
@@ -122,4 +122,6 @@ app2:8081
 2022-08-09 20:15:10.436  INFO 21568 --- [io-8081-exec-23] org.hzz.controller.StockController       : 扣减库存成功,剩余：291
 2022-08-09 20:15:10.446  INFO 21568 --- [io-8081-exec-14] org.hzz.controller.StockController       : 扣减库存成功,剩余：289
 ```
+
+
 
