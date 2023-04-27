@@ -274,3 +274,117 @@ public abstract class CuratorStandaloneBase {
 
 :::
 
+
+
+### 创建节点
+
+描述一个节点要包括节点的类型，即临时节点还是持久节点、节点的数据信息、节点是否是有序节点等属性和性质。
+
+```java
+ @Test
+public void testCreate() throws Exception {
+    String path = curatorFramework.create().forPath("/curator-node");
+     curatorFramework.create().withMode(CreateMode.PERSISTENT).forPath("/curator-node","some-data".getBytes())
+    log.info("curator create node :{}  successfully.",path);
+}
+```
+
+在 Curator 中，可以使用 create 函数创建数据节点，并通过 withMode 函数指定节点类型（持久化节点，临时节点，顺序节点，临时顺序节点，持久化顺序节点等），默认是持久化节点，之后调用 forPath 函数来指定节点的路径和数据信息。
+
+
+
+#### 一次性创建带层级结构的节点
+
+```java
+   // 递归创建子节点
+    @Test
+    public void testCreateWithParent() throws Exception {
+        CuratorFramework curatorFramework = getCuratorFramework();
+
+        String pathWithParent = "/node-parent/sub-node-1";
+        String path = curatorFramework.create().creatingParentsIfNeeded().forPath(pathWithParent);
+        log.info("curator create node :{}  successfully.", path);
+    }
+```
+
+
+
+#### protection模式
+
+会在节点的名称前面加上一个uuid ,
+
+```java
+// 创建的节点名称：_c_2725d4a4-e6f0-4001-885f-db60a2e39c60-curator-node0000000011
+ // protection 模式，防止由于异常原因，导致僵尸节点
+    @Test
+    public void testCreate() throws Exception {
+
+        CuratorFramework curatorFramework = getCuratorFramework();
+        String forPath = curatorFramework
+                .create()
+                .withProtection()
+                .withMode(CreateMode.EPHEMERAL_SEQUENTIAL).
+                        forPath("/curator-node", "some-data".getBytes());
+        log.info("curator create node :{}  successfully.", forPath);
+    }
+```
+
+
+
+### 删除节点
+
+```java
+@Test
+public void testDelete() throws Exception {
+    String pathWithParent="/node-parent";
+    curatorFramework.delete().guaranteed().deletingChildrenIfNeeded().forPath(pathWithParent);
+}
+```
+
+guaranteed：该函数的功能如字面意思一样，主要起到一个保障删除成功的作用，其底层工作方式是：只要该客户端的会话有效，就会在后台持续发起删除请求，直到该数据节点在 ZooKeeper 服务端被删除。
+
+deletingChildrenIfNeeded：指定了该函数后，系统在删除该数据节点的时候会以递归的方式直接删除其子节点，以及子节点的子节点。
+
+
+
+### 设置节点数据
+
+```java
+@Test
+public void testSetData() throws Exception {
+    CuratorFramework curatorFramework = getCuratorFramework();
+
+    curatorFramework.setData().forPath("/curator-node", "changed!".getBytes());
+    byte[] bytes = curatorFramework.getData().forPath("/curator-node");
+    log.info("get data from  node /curator-node :{}  successfully.", new String(bytes));
+}
+```
+
+
+
+### 获取节点数据
+
+```java
+@Test
+public void testGetData() throws Exception {
+    byte[] bytes = curatorFramework.getData().forPath("/curator-node");
+    log.info("get data from  node :{}  successfully.",new String(bytes));
+}
+```
+
+
+
+### 获取节点子列表
+
+```java
+@Test
+public void testListChildren() throws Exception {
+    CuratorFramework curatorFramework = getCuratorFramework();
+
+    String pathWithParent = "/discovery/example";
+    List<String> strings = curatorFramework.getChildren().forPath(pathWithParent);
+    strings.forEach(System.out::println);
+}
+```
+
+![image-20230427130920163](/images/zk/image-20230427130920163.png)
