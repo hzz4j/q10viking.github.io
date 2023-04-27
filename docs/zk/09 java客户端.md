@@ -257,7 +257,7 @@ public abstract class CuratorStandaloneBase {
 
 
     @After
-    public void   test(){
+    public void after(){
         try {
             TimeUnit.SECONDS.sleep(Integer.MAX_VALUE);
         } catch (InterruptedException e) {
@@ -266,10 +266,11 @@ public abstract class CuratorStandaloneBase {
     }
 
 
-    protected   String getConnectStr(){
+    protected  String getConnectStr(){
         return CONNECT_STR;
     }
 }
 ```
 
 :::
+
