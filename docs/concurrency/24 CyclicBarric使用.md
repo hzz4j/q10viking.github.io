@@ -68,3 +68,11 @@ public class CyclicBarrierRunner implements Runnable {
  */
 ```
 
+
+
+## CountDownLatch与CyclicBarrier
+
+CountDownLatch和CyclicBarrier都能够实现线程之间的等待，只不过它们侧重点不同：
+
+CountDownLatch一般用于一个或多个线程，等待其他线程执行完任务后，再才执行
+CyclicBarrier一般用于一组线程互相等待至某个状态，然后这一组线程再同时执行另外，CountDownLatch是减计数，计数减为0后不能重用,而CyclicBarrier是加计数，可置0后复用。
