@@ -15,6 +15,8 @@ typora-root-url: ..\.vuepress\public
 
 分布式架构的部署，JVM的并发锁保证不了并发的问题
 
+在单体的应用开发场景中涉及并发同步的时候，大家往往采用Synchronized（同步）或者 其他同一个JVM内Lock机制来解决多线程间的同步问题。在分布式集群工作的开发场景 中，就需要一种更加高级的锁机制来处理跨机器的进程之间的数据同步问题，这种跨机器的 锁就是分布式锁
+
 [Source Code](https://github.com/Q10Viking/learncode/tree/main/redis/_05_springboot_redis_lock)
 
 :::
