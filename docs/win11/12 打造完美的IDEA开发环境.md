@@ -46,3 +46,11 @@ VSCode Theme
 | ctrl+b   | 打开关闭project  |
 |          |                  |
 
+
+
+## 操作多行
+
+```
+shift+alt 光标
+```
+
