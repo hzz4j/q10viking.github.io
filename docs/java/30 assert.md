@@ -25,4 +25,6 @@ public class AssertDemo {
  */
 ```
 
+> 需要添加 -ea 参数
+
 ![image-20230413134028912](/images/concurrency/image-20230413134028912.png)
