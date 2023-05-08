@@ -1,22 +1,15 @@
+---
+prev:
+  text: Back To 目录
+  link: /topicNav/
+typora-root-url: ..\.vuepress\public
+---
 
 
 
 
 
-
-
-
-
-
-## HTTP2
-
-HTTP1.1在同一个socket中请求和响应是一一对应的。如果发送连续的请求，在客户端看来拿到响应就不知道该响应对应的请求是谁。（request-response模型）
-
-浏览器为了加速请求默认开了6个socket连接
-
-
-
-HTTP2基于帧的方式以流的方式发送数据
+![img](/images/dubbo.png)
 
 
 
@@ -28,7 +21,7 @@ HTTP2基于帧的方式以流的方式发送数据
 
 
 
-
+[3 - Dubbo x Spring Boot 开发微服务应用 | Apache Dubbo](https://cn.dubbo.apache.org/zh-cn/overview/mannual/java-sdk/quick-start/spring-boot/)
 
 
 
