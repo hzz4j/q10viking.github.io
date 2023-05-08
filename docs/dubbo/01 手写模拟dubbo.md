@@ -112,6 +112,8 @@ public class ProxyFactory<T> {
 
 ## zk注册中心的效果
 
+![image-20230508222432645](/images/dubbo/image-20230508222432645.png)
+
 
 
 ## 补充
