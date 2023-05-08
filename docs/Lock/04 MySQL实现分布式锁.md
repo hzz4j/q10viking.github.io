@@ -3,7 +3,7 @@ sidebarDepth: 3
 sidebar: auto
 prev:
   text: Back To 目录
-  link: /topicNav/
+  link: /Lock/
 typora-root-url: ..\.vuepress\public
 ---
 
@@ -149,3 +149,14 @@ public class LockApplicationTests {
 
 ![image-20230322230409039](/images/lock/image-20230322230409039.png)
 
+
+
+## 小结
+
+目前分布式锁，比较成熟、主流的方案：
+
+（1）基于数据库的分布式锁。db操作性能较差，并且有锁表的风险，一般不考虑。
+
+（2）基于Redis的分布式锁。适用于并发量很大、性能要求很高而可靠性问题可以通过其他方案去弥补的场景。
+
+（3）基于ZooKeeper的分布式锁。适用于高可靠（高可用），而并发量不是太高的场景。

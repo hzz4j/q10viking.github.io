@@ -1,0 +1,384 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /Lock/
+typora-root-url: ..\.vuepress\public
+---
+
+
+
+> 分布式锁实战
+
+## 非公平锁
+
+::: tip
+
+Zookeeper 分布式锁加锁原理
+
+:::
+
+如下实现方式在并发问题比较严重的情况下，性能会下降的比较厉害，主要原因是，所有的连接都在对同一个节点进行监听，❤️**当服务器检测到删除事件时，要通知所有的连接，所有的连接同时收到事件，再次并发竞争**❤️，这就是**羊群效应**。这种加锁方式是**非公平锁**的具体实现
+
+> **Zookeeper事件类型**
+
+1. `None`: 连接建立事件
+2. `NodeCreated`： 节点创建
+3. `NodeDeleted`： 节点删除
+4. `NodeDataChanged`：节点数据变化
+5. `NodeChildrenChanged`：子节点列表变化
+6. `DataWatchRemoved`：节点监听被移除
+7. `ChildWatchRemoved`：子节点监听被移除
+
+![img](/images/zk/26596.png)
+
+
+
+### 实现
+
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/zookeeper/lock/src/main/java/org/hzz/lock/zk/unfairlock)
+
+```java
+/**
+ * 非公平锁的分布式锁
+ */
+@Slf4j
+public class ZkDistributedUnFairLock extends AbstractLock {
+    private ZooKeeper zooKeeper;
+    private String lockResource;
+
+    private CountDownLatch countDownLatch = new CountDownLatch(1);
+
+    public ZkDistributedUnFairLock(String lockResource) {
+        this.zooKeeper = ZookeeperFactory.getZookeeper("localhost", 2181);
+        this.lockResource = lockResource;
+    }
+
+    @Override
+    protected boolean tryLock() {
+        try {
+            String path = zooKeeper.create(lockResource, null,
+                    ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
+            System.out.println(Thread.currentThread().getName() + " get lock");
+            return true;
+        } catch (Exception e){
+            return false;
+        }
+    }
+
+    @Override
+    protected void waitLock() {
+        try {
+            zooKeeper.getData(lockResource, (event) -> {
+                if(event.getType() == Watcher.Event.EventType.NodeDeleted){
+//                    log.info("节点被删除，被唤醒重新获取锁");
+                    countDownLatch.countDown();
+                }
+            }, null);
+            log.info("等待锁");
+            countDownLatch.await();
+            log.info("节点被删除，被唤醒重新获取锁");
+        } catch (KeeperException | InterruptedException e) {
+            // 重新竞争锁 因为上面getData的时候,如果节点不存在会抛出异常
+        }
+    }
+
+    @Override
+    public void unlock() {
+        try {
+            zooKeeper.delete(lockResource, -1);
+            log.info("释放锁");
+        } catch (InterruptedException | KeeperException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+
+
+### 测试
+
+```java
+@Slf4j
+public class ZkDistributedUnFairLockTest implements Runnable{
+
+    private static int productCount = 10;
+    private static CountDownLatch countDownLatch = new CountDownLatch(1);
+    @Override
+    public void run() {
+        Lock lock = new ZkDistributedUnFairLock("/product001");
+        try {
+            countDownLatch.await();
+            lock.lock();
+            // 模拟扣减库存
+            productCount--;
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }finally {
+            lock.unlock();
+        }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        while (!ZookeeperFactory.isStarted()){}
+        log.info("zk client is started");
+        
+        Runtime.getRuntime().addShutdownHook(new Thread(()->{
+            log.info("productCount = {}",productCount);
+        }));
+
+        for(int i=0;i<10;i++){
+            new Thread(new ZkDistributedUnFairLockTest()).start();
+        }
+
+
+        // 等待线程都到达执行点
+        TimeUnit.SECONDS.sleep(3);
+        countDownLatch.countDown();
+        //线程一直在阻塞，无法终止。自己等待自己结束
+//        Thread.currentThread().join();
+        log.info("main thread exit");
+    }
+}
+```
+
+
+
+```sh
+Thread-9 get lock
+2023-04-27 22:21:30.997 [INFO ] org.hzz.lock.AbstractLock [Thread-9] : 获取锁
+2023-04-27 22:21:31.002 [INFO ] org.hzz.lock.zk.ZkDistributedUnFairLock [Thread-9] : 释放锁
+Thread-8 get lock
+2023-04-27 22:21:31.010 [INFO ] org.hzz.lock.AbstractLock [Thread-8] : 获取锁
+2023-04-27 22:21:31.010 [INFO ] org.hzz.lock.zk.ZkDistributedUnFairLock [Thread-2] : 等待锁
+2023-04-27 22:21:31.011 [INFO ] org.hzz.lock.zk.ZkDistributedUnFairLock [Thread-11] : 等待锁
+2023-04-27 22:21:31.015 [INFO ] org.hzz.lock.zk.ZkDistributedUnFairLock [Thread-11] : 节点被删除，被唤醒重新获取锁
+2023-04-27 22:21:31.015 [INFO ] org.hzz.lock.zk.ZkDistributedUnFairLock [Thread-2] : 节点被删除，被唤醒重新获取锁
+2023-04-27 22:21:31.015 [INFO ] org.hzz.lock.zk.ZkDistributedUnFairLock [Thread-8] : 释放锁
+Thread-11 get lock
+2023-04-27 22:21:31.018 [INFO ] org.hzz.lock.AbstractLock [Thread-11] : 获取锁
+2023-04-27 22:21:31.023 [INFO ] org.hzz.lock.zk.ZkDistributedUnFairLock [Thread-11] : 释放锁
+Thread-2 get lock
+2023-04-27 22:21:31.025 [INFO ] org.hzz.lock.AbstractLock [Thread-2] : 获取锁
+2023-04-27 22:21:31.028 [INFO ] org.hzz.lock.zk.ZkDistributedUnFairLock [Thread-2] : 释放锁
+```
+
+
+
+## 公平锁
+
+借助于临时顺序节点，可以避免向上面非公平锁带来的同时多个节点的并发竞争锁的羊群效应，从而缓解了服务端压力。这种实现方式所有加锁请求都进行排队加锁，是**公平锁**的具体实现。
+
+![img](/images/zk/26594.png)
+
+
+
+### 实现
+
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/zookeeper/lock/src/main/java/org/hzz/lock/zk/fairlock)
+
+> 采用容器节点
+
+```java
+@Slf4j
+public class ZkDistributedFairLock extends AbstractLock {
+    private ZooKeeper zookeeper = ZookeeperFactory.getZookeeper("localhost", 2181);
+
+    // 如果Container节点下面没有子节点，则Container节点在未来会被Zookeeper**自动清除**,定时任务默认60s 检查一次
+    private String lockResource;
+    private String currentPath;
+    public ZkDistributedFairLock(String lockResource) {
+        this.lockResource = lockResource;
+        try {
+            if(zookeeper.exists(this.lockResource,false) == null){
+                // 不存在创建一个容器节点
+                zookeeper.create(this.lockResource,"".getBytes(),
+                        ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.CONTAINER);
+            }
+        } catch (KeeperException | InterruptedException e) {
+
+        }
+    }
+
+    @Override
+    protected boolean tryLock() {
+        try {
+            // 创建临时有序节点
+            //   /product001/0000000000
+            if(currentPath == null){
+                currentPath = zookeeper.create(lockResource + "/", "".getBytes(),
+                        ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
+            }
+
+            // 获取容器节点下面的所有子节点
+            // ["0000000001","0000000002"]
+            List<String> childrens = zookeeper.getChildren(lockResource, false);
+
+            // 排序
+            childrens.sort(String::compareTo);
+            if(isFirstOne(childrens)){
+                return true;
+            }
+            // 获取当前节点的前一个节点
+            String preNode = childrens.get(childrens.indexOf(currentPath.substring(lockResource.length()+1))-1);
+            // 监听前一个节点的删除事件
+            zookeeper.getData(lockResource+"/"+preNode, event -> {
+                if(event.getType() == Watcher.Event.EventType.NodeDeleted){
+                    synchronized (this){
+                        notifyAll();
+                    }
+                }
+            }, null);
+            return false;
+        } catch (KeeperException | InterruptedException e) {
+            // 前一个节点不存在，继续获取锁
+            return tryLock();
+        }
+    }
+
+    private boolean isFirstOne(List<String> childrens) {
+        // 获取当前节点的位置
+        int index = childrens.indexOf(currentPath.substring(lockResource.length()+1));
+        switch (index){
+            case -1:
+                System.out.println(Thread.currentThread().getName()+": 节点不存在");
+                return false;
+            case 0:
+                System.out.println(Thread.currentThread().getName()+": 当前节点为第1个节点");
+                return true;
+            default:
+                System.out.println(Thread.currentThread().getName()+": 当前节点排在第"+(index+1)+"位");
+                return false;
+        }
+    }
+
+    @Override
+    protected synchronized void waitLock() {
+        try {
+            this.wait();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void unlock() {
+        try {
+            System.out.println(Thread.currentThread().getName()+": 释放锁");
+            zookeeper.delete(currentPath,-1);
+        } catch (InterruptedException | KeeperException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+
+
+### 测试
+
+```java
+@Slf4j
+public class ZkDistributedFairLockTest implements Runnable{
+
+    private static int productCount = 10;
+    private static CountDownLatch countDownLatch = new CountDownLatch(1);
+    @Override
+    public void run() {
+        Lock lock = new ZkDistributedFairLock("/product002");
+        try {
+            countDownLatch.await();
+            lock.lock();
+            // 模拟扣减库存
+            productCount--;
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }finally {
+            lock.unlock();
+        }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        while (!ZookeeperFactory.isStarted()){}
+        log.info("zk client is started");
+
+        Runtime.getRuntime().addShutdownHook(new Thread(()->{
+            log.info("productCount = {}",productCount);
+        }));
+
+        for(int i=1;i<=5;i++){
+            new Thread(new ZkDistributedFairLockTest(),"[hzz-thread-"+i+"]").start();
+        }
+
+
+        // 等待线程都到达执行点
+        TimeUnit.SECONDS.sleep(3);
+        countDownLatch.countDown();
+        //线程一直在阻塞，无法终止。自己等待自己结束
+//        Thread.currentThread().join();
+        log.info("main thread exit");
+    }
+}
+```
+
+
+
+::: details
+
+```sh
+[hzz-thread-4]: 当前节点排在第2位
+[hzz-thread-2]: 当前节点为第1个节点
+[hzz-thread-2]: 获取锁
+[hzz-thread-2]: 释放锁
+[hzz-thread-3]: 当前节点排在第3位
+[hzz-thread-5]: 当前节点排在第5位
+[hzz-thread-1]: 当前节点排在第4位
+[hzz-thread-4]: 当前节点为第1个节点
+[hzz-thread-4]: 获取锁
+[hzz-thread-4]: 释放锁
+[hzz-thread-3]: 当前节点为第1个节点
+[hzz-thread-3]: 获取锁
+[hzz-thread-3]: 释放锁
+[hzz-thread-1]: 当前节点为第1个节点
+[hzz-thread-1]: 获取锁
+[hzz-thread-1]: 释放锁
+[hzz-thread-5]: 当前节点为第1个节点
+[hzz-thread-5]: 获取锁
+[hzz-thread-5]: 释放锁
+2023-04-28 00:44:10.791 [INFO ] org.hzz.lock.zk.fairlock.ZkDistributedFairLockTest [Thread-1] : productCount = 5
+```
+
+:::
+
+![carbon](/images/zk/carbon.png)
+
+## 共享锁
+
+前面这两种加锁方式有一个共同的特质，就是都是**互斥锁**，同一时间只能有一个请求占用，如果是大量的并发上来，性能是会急剧下降的，所有的请求都得加锁，那是不是真的所有的请求都需要加锁呢？答案是否定的，比如如果数据没有进行任何修改的话，是不需要加锁的，但是如果读数据的请求还没读完，这个时候来了一个写请求，怎么办呢？有人已经在读数据了，这个时候是不能写数据的，不然数据就不正确了。直到前面读锁全部释放掉以后，写请求才能执行，所以需要给这个读请求加一个标识（读锁），让写请求知道，这个时候是不能修改数据的。不然数据就不一致了。如果已经有人在写数据了，再来一个请求写数据，也是不允许的，这样也会导致数据的不一致，所以所有的写请求，都需要加一个写锁，是为了避免同时对共享数据进行写操作。
+
+
+
+### 实现原理
+
+![https://note.youdao.com/yws/public/resource/80d7bcb710a0e21616248239b9dfd40d/xmlnote/0548B5F80E2A41C789C60B12964C1103/26598](/images/zk/26598.png)
+
+
+
+
+
+
+
+> 主要是缓存带来的影响
+
+### 读写并发不一致
+
+![https://note.youdao.com/yws/public/resource/80d7bcb710a0e21616248239b9dfd40d/xmlnote/76C2BF0AD6F549AEA860EC9C411D835B/26597](/images/zk/26597.png)
+
+
+
+### 双写不一致情况
+
+​    ![0](/images/zk/26595.png)
+
