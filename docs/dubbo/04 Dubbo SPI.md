@@ -146,3 +146,38 @@ public class SPIMain {
  */
 ```
 
+
+
+### dubbo如何判断类是一个wrapper
+
+```java
+
+/**
+     * test if clazz is a wrapper class
+     * <p>
+     * which has Constructor with given class type as its only argument
+     */
+protected boolean isWrapperClass(Class<?> clazz) {
+    Constructor<?>[] constructors = clazz.getConstructors();
+    for (Constructor<?> constructor : constructors) {
+        if (constructor.getParameterTypes().length == 1 && constructor.getParameterTypes()[0] == type) {
+            return true;
+        }
+    }
+    return false;
+}
+```
+
+
+
+## 原理
+
+```java
+public class DubboLoadingStrategy implements LoadingStrategy {
+
+    @Override
+    public String directory() {
+        return "META-INF/dubbo/";
+    }
+```
+

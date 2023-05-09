@@ -33,6 +33,8 @@ public class Holder<T> {
 
 ## 实现
 
+> 多线程，只需要一个线程去创建
+
 ```java
 
 import java.util.concurrent.ConcurrentHashMap;
