@@ -11,9 +11,13 @@ typora-root-url: ..\.vuepress\public
 
 ::: tip
 
-Dubbo中的SPI与Java本身的SPI的优势。能够根据指定的参数，加载具体的类。
+Dubbo中的SPI与Java本身的SPI的优势。能够根据指定的参数，加载具体的类。并且提供了属性注入的功能
+
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/dubbo/dubbo-SPI/spi)
 
 :::
+
+![image-20230509144422461](/images/dubbo/image-20230509144422461.png)
 
 
 
@@ -285,6 +289,14 @@ public interface Person {
 > 依赖注入的时候，根据名字和类型，会从Spring容器中获取，获取不到再从SPI中获取，spi会产生一个代理对象Adaptive
 
 ![image-20230509131907068](/images/dubbo/image-20230509131907068.png)
+
+Dubbo框架依赖了Spring框架
+
+![image-20230509144904455](/images/dubbo/image-20230509144904455.png)
+
+
+
+
 
 走SPI和生成一个代理对象赋值给属性Car。下面的代码是`AdaptiveClassCodeGenerator`生成的
 
