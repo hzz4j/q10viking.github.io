@@ -256,7 +256,17 @@ mysql> SELECT * FROM player LEFT JOIN team on player.team_id = team.team_id;
   +-----------+---------+------------------------------------+--------+---------+-----------------------+
   ```
 
-  可以看到右边表球队全部查询出来了，左边没有对应的球员数据，显示为NULL
+  可以看到右边表球队全部查询出来了，左边没有对应的球员数据，显示为NULL.
+
+
+
+## 小结
+
+主流 RDBMS，比如 MySQL、Oracle、SQL Sever、DB2、PostgreSQL 等都支持 SQL 语言，也就是说它们的使用符合大部分 SQL 标准，但很难完全符合，因为这些数据库管理系统都在 SQL 语言的基础上，根据自身产品的特点进行了扩充。即使这样，SQL 语言也是目前所有语言中半衰期最长的，在 1992 年，Windows3.1 发布，SQL92 标准也同时发布，如今我们早已不使用 Windows3.1 操作系统，而 SQL92 标准却一直持续至今。
+
+注意到 SQL 标准的变化，以及不同数据库管理系统使用时的差别，比如 Oracle 对 SQL92 支持较好，而 MySQL 则不支持 SQL92 的外连接。
+
+
 
 
 
@@ -340,7 +350,7 @@ INSERT INTO `team` VALUES (1003, '亚特兰大老鹰');
 ```
 :::
 
-::: code-group-item height_grades
+::: code-group-item height_grades表
 
 ```sql
 DROP TABLE IF EXISTS `height_grades`;
