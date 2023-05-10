@@ -30,7 +30,7 @@ DESCRIBE course
 
 
 
-## duplicate
+## on duplicate key update
 
 > 业务上有这样的需求，A、B 两个用户，如果互相关注，则成为好友。设计上是有两张表，一个是 like 表，一个是 friend 表，like 表有 user_id、liker_id 两个字段，我设置为复合唯一索引即 uk_user_id_liker_id。语句执行逻辑是这样的：
 >
