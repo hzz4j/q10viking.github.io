@@ -15,8 +15,6 @@ typora-root-url: ..\.vuepress\public
 
 :::
 
-
-
 ## SQL标准
 
 SQL 有两个主要的标准，分别是 SQL92 和 SQL99。92 和 99 代表了标准提出的时间，SQL92 就是 92 年提出的标准规范。当然除了 SQL92 和 SQL99 以外，还存在 SQL-86、SQL-89、SQL:2003、SQL:2008、SQL:2011 和 SQL:2016 等其他的标准
@@ -122,8 +120,6 @@ SELECT * FROM t1 CROSS JOIN t2 CROSS JOIN t3;
 
 
 ## 等值连接👍
-
-
 
 ### SQL92
 
