@@ -409,7 +409,7 @@ mysql> SELECT * FROM player LEFT JOIN team on player.team_id = team.team_id;
 
 ## 测试SQL资源
 
-[cystanford/sql_nba_data: NBA球员表 (github.com)](https://github.com/cystanford/sql_nba_data)
+[NBA球员表 ](https://github.com/cystanford/sql_nba_data)
 
 :::: code-group
 ::: code-group-item play表
