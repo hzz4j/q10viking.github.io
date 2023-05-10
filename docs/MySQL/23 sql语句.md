@@ -9,9 +9,13 @@ typora-root-url: ..\.vuepress\public
 
 
 
-## 删除
+## DDL
 
-## 删除表所有数据
+DDL 的英文全称是 Data Definition Language，中文是数据定义语言。它定义了数据库的结构和数据表的结构。
+
+在 DDL 中，我们常用的功能是增删改，分别对应的命令是 CREATE、DROP 和 ALTER。需要注意的是，在执行 DDL 的时候，不需要 COMMIT，就可以完成执行任务
+
+### 删除表所有数据
 
 ```sql
 TRUNCATE table course_1;
@@ -19,14 +23,20 @@ TRUNCATE table course_1;
 
 
 
-## 获取表信息
+### 获取表信息
 
 ```sql
 # course是表名称
-DESCRIBE course
+DESCRIBE course;
 ```
 
 
+
+### 添加表字段
+
+```sql
+ALTER TABLE `table-name` ADD COLUMN `column-name` datatype;
+```
 
 
 
@@ -160,6 +170,17 @@ insert into `like`(user_id, liker_id, relation_ship) values(3, 10, 2) on duplica
 [ON DUPLICATE KEY UPDATE 用法与说明](https://blog.csdn.net/qq_22771739/article/details/84668620)
 
 
+
+
+
+## replace语句
+
+- 如果给定行数据不存在，那么MySQL REPLACE语句会[插入一个新行](http://www.yiibai.com/mysql/insert-statement.html)。
+  - `REPLACE`语句的第一种形式类似于`INSERT`语句
+
+- 如果给定行数据存在，则`REPLACE`语句首先[删除](http://www.yiibai.com/mysql/delete-statement.html)旧行，然后[插入](http://www.yiibai.com/mysql/insert-statement.html)一个新行。 在某些情况下，`REPLACE`语句仅更新现有行。
+
+[MySQL replace语句 - MySQL教程 (yiibai.com)](https://www.yiibai.com/mysql/replace.html)
 
 
 
