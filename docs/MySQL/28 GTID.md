@@ -74,6 +74,8 @@ mysql> select @@server_uuid;
 
 ## GTID工作原理
 
+![image-20230510174257121](/images/MySQL/image-20230510174257121.png)
+
 1. master更新数据时，会在事务前产生GTID，一同记录到binlog日志中。 
 2. slave端的i/o 线程将变更的binlog，写入到本地的relay log中。 
 3. sql线程从relay log中获取GTID，然后对比slave端的binlog是否有记录。 
