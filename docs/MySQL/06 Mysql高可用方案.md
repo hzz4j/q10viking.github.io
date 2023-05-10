@@ -16,7 +16,7 @@ typora-root-url: ..\.vuepress\public
 常见的MySQL集群方案有三种: MMM、MHA、MGR。这三种高可用框架都有一些共同点：
 
 - 对主从复制集群中的Master节点进行监控
-- 自动的对Master进行迁移，通过VIP。
+- 自动的对Master进行迁移，通过VIP(虚拟IP)。
 - 重新配置集群中的其它slave对新的Master进行同步
 
 ## MMM
