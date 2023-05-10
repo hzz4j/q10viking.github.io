@@ -11,7 +11,7 @@ typora-root-url: ..\.vuepress\public
 
 ## 问题
 
-> 先看一段代码,发现。本文就是重点分析为什么a==b 为true,而c == d为false
+> 先看一段代码,发现a==b 为true,而c == d为false。本文就是重点分析为什么a==b 为true,而c == d为false
 
 ```java
 public class IntegerTest {
