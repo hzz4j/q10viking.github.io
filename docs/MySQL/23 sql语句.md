@@ -171,8 +171,6 @@ insert into `like`(user_id, liker_id, relation_ship) values(3, 10, 2) on duplica
 
 
 
-
-
 ## replace语句
 
 - 如果给定行数据不存在，那么MySQL REPLACE语句会[插入一个新行](http://www.yiibai.com/mysql/insert-statement.html)。
