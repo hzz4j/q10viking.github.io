@@ -76,7 +76,7 @@ public static Integer valueOf(int i) {
 }
 ```
 
-其中缓存了[-128, 127]的Integer
+其中**IntegerCache常量池**缓存了[-128, 127]的Integer
 
 ```java
 static final int low = -128;
@@ -135,16 +135,54 @@ public class org.hzz.autobox.IntegerSimpleTest2 {
 >
 > 而Integer类型赋值给int类型时，会进行自动拆箱，调用`Integer.intValue`
 
+经过上面的分析，再来看一个例子，就非常清楚了
+
+```java
+public class IntegerSimpleTest2 {
+    public static void main(String[] args) {
+        Integer a = 200;
+        int b = 200;
+        Integer c = 200;
+        // a会进行拆箱操作，所以a == b为true
+        System.out.println("a == b " + (a == b));
+        // a和c经过自动装箱，都超过了Integer.cache,都是new出来的新Integer对象，所以a == c为false
+        System.out.println("a == c " + (a == c));
+    }
+}
+/**
+ * a == b true
+ * a == c false
+ */
+```
+
+
+
+
+
+## IntegerCache常量池设计的目的？
+
+> Integer为什么这么设计？ 但凡涉及到Cache的，一定和性能有关，在Integer这个对象中，常用的数值区间是在-128到127之间，所以为了避免对这个区间范围内的数据频繁创建和销毁对象，所以构建了一个缓存
+
+
+
+![image-20211029101125958](/images/MySQL/1666682-20211030200051573-1064638876.png)
+
 
 
 ## 为什么需要Integer?
 
 > 有了int为什么还需要Integer类型？
+>
+> Java 中的基础数据类型有8 种：**byte, boolean, short, char int, float, long double**
 
-主要是因为面向对象的思想，因为Java语言是面向对象的，这也是它只所以流行的原因之一，对象封装有很多好处，可以把属性也就是数据跟处理这些数据的方法结合在一起。
+主要是因为面向对象的思想，因为**Java语言是面向对象**的，这也是它只所以流行的原因之一，对象封装有很多好处，可以把属性也就是数据跟处理这些数据的方法结合在一起。
 
 Integer将int包装起来，并且提供了很多方法来操作这个int。
 
 [Integer (Java Platform SE 8 ) (oracle.com)](https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html)
 
 ![image-20230510192509014](/images/MySQL/image-20230510192509014.png)
+
+
+
+## 
