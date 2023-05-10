@@ -26,3 +26,5 @@ typora-root-url: ..\.vuepress\public
 [MySQL Full Course for free 🐬 (2023) - YouTube](https://www.youtube.com/watch?v=5OdVJbNCSso)
 
 [MySQL教程 (yiibai.com)](https://www.yiibai.com/mysql)
+
+[MySQL :: MySQL Community Downloads](https://dev.mysql.com/downloads/)
