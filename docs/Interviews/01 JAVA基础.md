@@ -20,4 +20,5 @@ typora-root-url: ..\.vuepress\public
 - [List与Set区别](https://q10viking.github.io/java/42%20List%20Set%20Map.html#list%E4%B8%8Eset%E7%9A%84%E5%8C%BA%E5%88%AB)
 - [ArrayList与LinkedList区别](https://q10viking.github.io/java/42%20List%20Set%20Map.html#arraylist%E5%92%8Clinkedlist%E5%8C%BA%E5%88%AB)
 - [HashMap和HashTable有什么区别？其底层实现是什么？](https://q10viking.github.io/concurrency/44%20HashMap%20&%20HashTable%20&%20SynchronizedMap%20&%20CurrentHashMap.md.html)
+- 什么是字节码？好处是什么
 
