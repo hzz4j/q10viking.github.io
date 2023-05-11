@@ -12,7 +12,21 @@ typora-root-url: ..\.vuepress\public
 
 
 - 修饰类：表示类不可被继承
-- 修饰方法：表示方法不可被子类覆盖，但是可以重载
+- 修饰方法：表示方法不可被子类覆盖（重写），但是可以重载
+
+  ```java
+  public class A {
+      public final void test(){};
+      public final void test(String a){}; // 允许重载
+  }
+  
+  class B extends A{
+    @Override
+    public final void test(){};  // 不允许重写，编译报错
+  }
+  ```
+
+  
 - 修饰变量：表示变量一旦被赋值就不可以更改它的值。
 
 
