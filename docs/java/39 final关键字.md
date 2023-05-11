@@ -72,3 +72,69 @@ public class FinalReferenceTest {
  */
 ```
 
+
+
+## 为什么局部内部类和匿名内部类只能访问final?
+
+
+
+```java
+public class Test {
+    public static void main(String[] args) {
+        Test test = new Test();
+        test.test(3);
+    }
+
+    // 局部变量a,b
+    public void test(final int b){ // jdk8在这里做了优化，不用写,语法糖，但实际上也是有的，也不能修改
+        final int a = 1;
+        // 匿名内部类
+        new Thread(){
+            public void run(){
+                System.out.println("a="+a);
+                System.out.println("b="+b);
+            }
+        }.start();
+    }
+}
+```
+
+
+
+```java
+public class OutClass {
+    private int age = 18;
+
+    public static void main(String[] args) {
+        OutClass outClass = new OutClass();
+        outClass.outprint(3);
+    }
+    public void outprint(final int a){
+        final int b = 5;
+        class InnerClass{
+            public void innerPrint(){
+                System.out.println("a="+a);
+                System.out.println("b="+b);
+                System.out.println("age="+age);
+            }
+        }
+
+        new InnerClass().innerPrint();
+    }
+}
+```
+
+
+
+首先需要知道的一点是: 内部类和外部类是处于同一个级别的，内部类不会因为定义在方法中就会随着方法的执行完毕就被销毁。
+
+这里就会产生问题：当外部类的方法结束时，局部变量就会被销毁了，但是内部类对象可能还存在(只有没有人再引用它时，才会死亡)。
+
+这里就出现了一个矛盾：内部类对象访问了一个不存在的变量。为了解决这个问题，就将局部变量复制了一份作为内部类的成员变量，这样当局部变量死亡后，内部类仍可以访问它，实际访问的是局部变量的"copy"。这样就好像延长了局部变量的生命周期
+
+将局部变量复制为内部类的成员变量时，必须保证这两个变量是一样的，也就是如果我们在内部类中修改了成员变量，方法中的局部变量也得跟着改变，怎么解决问题呢？
+
+就将局部变量设置为final，对它初始化后，我就不让你再去修改这个变量，就保证了内部类的成员变量和方法的局部变量的一致性。这实际上也是一种妥协。使得局部变量与内部类内建立的拷贝保持一致
+
+
+
