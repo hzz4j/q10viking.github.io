@@ -57,7 +57,8 @@ const titles = {
   skywalking: "Skywalking",
   Ribbon: "Ribbon",
   Feign: "Feign",
-  ShardingJDBC: "ShardingJDBC"
+  ShardingJDBC: "ShardingJDBC",
+  Interviews: "面试",
 };
 
 module.exports = titles;
