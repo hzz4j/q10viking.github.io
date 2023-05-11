@@ -17,6 +17,8 @@ typora-root-url: ..\.vuepress\public
 
 
 
+通过阅读和修改源码，为了日后方便，我提交到了[framework-code-learn: 框架源码学习 ](https://github.com/Q10Viking/framework-code-learn)仓库
+
 ## 导入到IDEA
 
 将源码导入IDEA后，需要先对源码进行编译。编译指令 `clean install - Dmaven.test.skip=true`
@@ -73,10 +75,6 @@ abortFile=E:\\RocketMQ\\data\\rocketmq\\dataDir\\abort
 
 
 
-
-
-
-
 ## Windows
 
 界面准备
@@ -125,15 +123,34 @@ if (null == namesrvConfig.getRocketmqHome()) {
 配置环境变量
 
 ```sh
-ROCKETMQ_HOME=D:\learncode\RocketMQ\rocketmq-all-4.9.1-source-release
+ROCKETMQ_HOME=D:\Github\framework-code-learn\rocketmq-all-4.9.2
 ```
 
-![image-20220613164943279](/images/RocketMQ/image-20220613164943279.png)
+![image-20230511231341204](/images/RocketMQ/image-20230511231341204.png)
 
 
 
-## BrokerStartup
+```sh
+The Name Server boot success. serializeType=JSON
+```
 
-启动Broker时，同样需要ROCETMQ_HOME环境变量，并且还需要配置一个-c 参 数，指向broker.conf配置文件。
+出现上面这句话，代表启动成功
 
-![image-20220613165741676](/images/RocketMQ/image-20220613165741676.png)
+## BrokerStartup启动
+
+启动Broker时，同样需要ROCETMQ_HOME环境变量，并且还需要配置一个`-c `参 数，指向broker.conf配置文件。
+
+```sh
+-c D:\Github\framework-code-learn\rocketmq-all-4.9.2\conf\broker.conf
+ROCKETMQ_HOME=D:\Github\framework-code-learn\rocketmq-all-4.9.2
+```
+
+![image-20230511232035446](/images/RocketMQ/image-20230511232035446.png)
+
+
+
+```sh
+The broker[broker-a, 172.29.96.1:10911] boot success. serializeType=JSON and name server is localhost:9876
+```
+
+代表启动成功
