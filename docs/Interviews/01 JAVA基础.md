@@ -10,3 +10,4 @@ typora-root-url: ..\.vuepress\public
 
 
 - JDK  JRE JVM
+- == 和 equals
