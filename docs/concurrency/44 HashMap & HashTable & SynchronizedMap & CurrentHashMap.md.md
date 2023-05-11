@@ -7,6 +7,33 @@ prev:
 typora-root-url: ..\.vuepress\public
 ---
 
+
+
+## HashMap和HashTable
+
+- HashMap方法没有synchronized修饰，线程非安全，HashTable线程安全；
+- HashMap允许key和value为null，而HashTable不允许
+
+```java
+#HashTable
+public synchronized V put(K key, V value) {}
+```
+
+### 底层实现
+
+底层实现：数组+链表实现
+
+jdk8开始链表高度到8、数组长度超过64，链表转变为红黑树，元素以内部类Node节点存在
+
+- 计算key的hash值，二次hash然后对数组长度取模，对应到数组下标，
+- 如果没有产生hash冲突(下标位置没有元素)，则直接创建Node存入数组，
+- 如果产生hash冲突，先进行equal比较，相同则取代该元素，不同，则判断链表高度插入链表，链表高度达到8，并且数组长度到64则转变为红黑树，长度低于6则将红黑树转回链表
+- key为null，存在下标0的位置
+
+
+
+
+
 ![image-20210630161931174](/images/concurrency/image-20210630161931174.png)
 
 ```java
