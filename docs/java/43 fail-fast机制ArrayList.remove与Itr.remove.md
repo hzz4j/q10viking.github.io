@@ -1,0 +1,133 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /java/
+typora-root-url: ..\.vuepress\public
+---
+
+
+
+## foreach删除fail-fast原因
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+
+        for (Integer integer : list) {
+            list.remove(integer);
+        }
+
+    }
+}
+/**
+ Exception in thread "main" java.util.ConcurrentModificationException
+ at java.util.ArrayList$Itr.checkForComodification(ArrayList.java:911)
+ at java.util.ArrayList$Itr.next(ArrayList.java:861)
+ at org.hzz.Main.main(Main.java:14)
+ */
+```
+
+### ConcurrentModificationException抛出原因
+
+```java
+final void checkForComodification() {
+    if (modCount != expectedModCount)
+        throw new ConcurrentModificationException();
+}
+```
+
+1. modCount:  记录结构上被修改的次数，用于fast-fail
+
+   1. add(E)操作中有，modCount++;
+   2. remove(Object)操作中有，modCount++;
+
+2. expectedModCount再Itr的属性中，ArrayLIst.iterator会创建一个新的Itr对象
+
+   1. ```java
+      public Iterator<E> iterator() {
+           return new Itr();
+      }
+      ```
+
+   2. Itr对象创建时，expectedModCount的值被赋值为modCount
+
+3. 在forEach语法糖中，会默认创建一个Itr对象，并且调用Itr.next()方法,来获取到下一个元素，在这里用于remove(obj)
+
+   1. 并且在next()方法中就有调用checkForComodification方法进行检查
+
+4. 回到代码里面，list前面4次add操作，后此时的modCount=4,通过forEach语法糖创建了Itr对象,此时expectedModCount被赋值等于modCount 4
+
+   1. 第一获取元素Itr.next时,此时不会抛出异常
+   2. 此时进入到循环体中,执行remove(integer),执行完后，modCount++,变成了5
+   3. 当下一次循环时继续调用Itr.next()，就会进行判断，发现此时modCount(5) !== expectedModCount(4) 则抛出异常
+
+需要而外注意的是：在迭代器删除的过程中，**list.size是动态变化的**，如下面的判断，如果list只有一个元素，第一个元素删除后，cursor=1(往前移准备删除下一个)，size=0，同样会返回true.
+
+```java
+public boolean hasNext() {
+	return cursor != size;
+}
+```
+
+
+
+## fail-fast机制简介
+
+它只能被用来检测错误，因为JDK并不保证fail-fast机制一定会发生。当多个线程对同一个集合的内容进行操作时，就可能会产生fail-fast事件。例如：**当某一个线程A通过iterator去遍历某集合的过程中，若该集合的内容被其他线程所改变了**；那么线程A访问集合时，就会抛出ConcurrentModificationException异常，产生fail-fast事件。
+
+
+
+## ArrayList正确remove的方式
+
+### Itr.remove
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+
+        Iterator<Integer> iterator = list.iterator();
+        while (iterator.hasNext()){
+            iterator.next();
+            iterator.remove();
+        }
+    }
+}
+```
+
+原因：Itr每次执行remove操作之后，都会重新赋值给expectCount
+
+```java
+// Itr.remove()
+expectedModCount = modCount;
+```
+
+### 不用迭代器，倒着删除
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        //  应对size动态变化
+        for(int i=list.size()-1;i>=0;i--){
+            list.remove(i);
+        }
+    }
+}
+```
+
