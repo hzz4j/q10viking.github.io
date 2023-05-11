@@ -48,8 +48,6 @@ springboot在配置日志文件的时候，可以通过el表达式，设置文�
 
 
 
-## 
-
 ## 其他参数
 
 | 参数                          | 说明                              |
@@ -82,3 +80,25 @@ springboot在配置日志文件的时候，可以通过el表达式，设置文�
 | user.name                     | 用户的账户名称                    |
 | user.home                     | 用户的主目录                      |
 | user.dir                      | 用户的当前工作目录                |
+
+
+
+## Rocket中的环境变量
+
+NamesrvConfig这个类在初始化没有获得相应的配置
+
+```java
+// MixAll.ROCKETMQ_HOME_PROPERTY = "rocketmq.home.dir"
+// MixAll.ROCKETMQ_HOME_ENV = "ROCKETMQ_HOME"
+private String rocketmqHome = System.getProperty(MixAll.ROCKETMQ_HOME_PROPERTY, System.getenv(MixAll.ROCKETMQ_HOME_ENV));
+```
+
+当没有配置该环境时退出程序`System.exit(-2)`
+
+```java
+if (null == namesrvConfig.getRocketmqHome()) {
+    System.out.printf("Please set the %s variable in your environment to match the location of the RocketMQ installation%n", MixAll.ROCKETMQ_HOME_ENV);
+    System.exit(-2); // Process finished with exit code -2
+}
+```
+
