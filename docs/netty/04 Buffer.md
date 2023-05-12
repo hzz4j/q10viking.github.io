@@ -19,7 +19,7 @@ typora-root-url: ..\.vuepress\public
 
 当你写数据到Buffer中时，position表示当前能写的位置。初始的position值为0.当一个byte、long等数据写到Buffer后， position会向前移动到下一个可插入数据的Buffer单元。position最大可为capacity – 1.
 
-当读取数据时，也是从某个特定位置读。当将Buffer从写模式切换到读模式，position会被重置为0. 当从Buffer的position处读取数据时，position向前移动到下一个可读的位置。
+**当读取数据时，也是从某个特定位置读。当将Buffer从写模式切换到读模式，position会被重置为0. 当从Buffer的position处读取数据时，position向前移动到下一个可读的位置**。❤️（RocketMO就是利用这个在加载commitLog文件的时候，来确定顺序写的位置）❤️
 
 ### limit
 
