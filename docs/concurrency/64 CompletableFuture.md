@@ -25,7 +25,7 @@ typora-root-url: ..\.vuepress\public
 
 [CompletableFuture (Java Platform SE 8 ) (oracle.com)](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html)
 
-
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/javabasic/src/org/hzz/completablefuture)
 
 ## 创建异步操作
 
@@ -93,7 +93,7 @@ public class AsyncDemo {
 
 
 
-## 结果处理
+## 结果处理(监听器)
 
 CompletableFuture的计算结果完成，或者抛出异常的时候，我们可以执行特定的 Action。主要是下面的方法：
 
@@ -106,4 +106,98 @@ public CompletableFuture<T> whenCompleteAsync(BiConsumer<? super T,? super Throw
 - Action的类型是BiConsumer，它可以处理正常的计算结果，或者异常情况。
 - 方法不以Async结尾，意味着Action使用相同的线程执行，而Async可能会使用其它的线程去执行(如果使用相同的线程池，也可能会被同一个线程选中执行)。
 - 这几个方法都会返回CompletableFuture，当Action执行完毕后它的结果返回原始的CompletableFuture的计算结果或者返回异常
+
+
+
+> 测试
+
+```java
+public class WhenCompleteOrExceptionallyDemo {
+    public static void main(String[] args) {
+        CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+            System.out.println(Thread.currentThread().getName() + "执行有返回结果的任务");
+            try {
+                Thread.sleep(1000);
+                int i = new Random().nextInt(10);
+                System.out.println("i = " + i);
+                if (i % 2 == 0) {
+                    return 12 / 0;
+                }
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            return 12;
+        });
+
+        // 相当于监听器，当future执行完毕后，会回调whenComplete方法
+        CompletableFuture<Integer> whenComplete = future.whenComplete((s, throwable) -> {
+            if (throwable == null) {
+                System.out.println(Thread.currentThread().getName() + ": whenComplete->Result: " + s);
+            } else {
+                System.out.println(Thread.currentThread().getName() + ": whenComplete->Exception: " + throwable.getMessage());
+            }
+        });
+
+        // 相当于监听器，当future执行过程抛出异常，会回调exceptionally方法
+        CompletableFuture<Integer> exceptionally = future.exceptionally(throwable -> {
+            System.out.println(Thread.currentThread().getName() + ": exceptionally->Exception: " + throwable.getMessage());
+            System.out.println(Thread.currentThread().getName() + ": exceptionally->异常：" + throwable.getMessage() + "，返回默认值");
+            return -1;
+        });
+
+        // 如果使用join()方法，会抛出runtime异常，不受检查
+        // 如果不catch会导致main线程退出
+        // Integer result = future.join();
+        // 所以使用get方法比较好
+
+        Integer result = null;
+        try {
+            Thread.sleep(3000);
+            result = future.get();  // 获取不到异常后的返回值，只能获取到异常
+            System.out.println("Result: " + result);
+        } catch (InterruptedException | ExecutionException e) {
+            System.out.println("main->Exception: " + e.getMessage());
+        }
+
+        try{
+            System.out.println("whenComplete: " + whenComplete.get()); // 和上面一样
+        }catch (InterruptedException | ExecutionException e) {
+            System.out.println("main->Exception: " + e.getMessage());
+        }
+
+        try{
+            System.out.println("exceptionally: " + exceptionally.get()); // 获取到异常后的返回值
+        }catch (InterruptedException | ExecutionException e) {
+            System.out.println("main->Exception: " + e.getMessage());
+        }
+        System.out.println("main end");
+    }
+}
+```
+
+> 运行结果
+
+```sh
+ForkJoinPool.commonPool-worker-9执行有返回结果的任务
+i = 5
+ForkJoinPool.commonPool-worker-9: whenComplete->Result: 12
+Result: 12
+whenComplete: 12
+exceptionally: 12
+main end
+```
+
+或者
+
+```sh
+ForkJoinPool.commonPool-worker-9执行有返回结果的任务
+i = 6
+ForkJoinPool.commonPool-worker-9: exceptionally->Exception: java.lang.ArithmeticException: / by zero
+ForkJoinPool.commonPool-worker-9: exceptionally->异常：java.lang.ArithmeticException: / by zero，返回默认值
+ForkJoinPool.commonPool-worker-9: whenComplete->Exception: java.lang.ArithmeticException: / by zero
+main->Exception: java.lang.ArithmeticException: / by zero
+main->Exception: java.lang.ArithmeticException: / by zero
+exceptionally: -1
+main end
+```
 

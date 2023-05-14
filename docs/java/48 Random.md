@@ -20,6 +20,8 @@ new Random().nextInt(10)
 
 ## 种子(伪随机数问题)
 
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/javabasic/src/org/hzz/random)
+
 > 如果seed固定了，那么产生的随机数是伪随机数
 
 ```java
