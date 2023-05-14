@@ -144,6 +144,33 @@ Spring Validation是在Hibernate Validation基础之上的二次封装，以满�
 
 
 
+## Java项目使用
+
+[hibernate validator 6.2官网文档](https://docs.jboss.org/hibernate/validator/6.2/reference/en-US/html_single/)
+
+依赖
+
+```java
+
+<dependency>
+    <groupId>org.hibernate.validator</groupId>
+    <artifactId>hibernate-validator</artifactId>
+    <version>6.2.5.Final</version>
+</dependency>
+    
+<dependency>
+    <groupId>org.glassfish</groupId>
+    <artifactId>jakarta.el</artifactId>
+    <version>3.0.3</version>
+</dependency>
+```
+
+
+
+
+
+
+
 ## 参考
 
 [The Java Community Process(SM) Program - JSRs: Java Specification Requests - detail JSR# 380 (jcp.org)](https://jcp.org/en/jsr/detail?id=380)
