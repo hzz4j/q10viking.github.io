@@ -270,6 +270,8 @@ ValidationMessages_zh_TW.properties
 
 ### 实现自定国际化与hibernate validator兼容👍
 
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/validation/hibernate-use/src/main/java/org/hzz/i18n)
+
 > 创建
 
 ```java
