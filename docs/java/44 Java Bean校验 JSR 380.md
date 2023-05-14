@@ -487,6 +487,8 @@ public class Address {
 
 ## 分组验证❤️
 
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/validation/hibernate-use/src/main/java/org/hzz/group)
+
 比如在User中，
 
 - 用户登录的时候是需要userId的，并不需要email.
@@ -505,8 +507,8 @@ public class User {
 
     // 需要验证
     @NotBlank(message = "用户名不能为空",groups = {LoginGroup.class,RegisterGroup.class})
-    // 不能写成
-    //@NotBlank(message = "用户名不能为空")
+    // 不能写成 因为如果写成下面这样，属于默认组Default.class
+    //@NotBlank(message = "用户名不能为空") 
     private String userName;
 
     @NotBlank(message = "邮箱不能为空", groups = {RegisterGroup.class})
@@ -537,27 +539,45 @@ public void validate() {
 
 
 
-## 组序列
+## 组序列❤️
 
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/validation/hibernate-use/src/main/java/org/hzz/order)
 
+> 有一个默认组Hibernate validation提供的
 
+```java
+import lombok.Data;
 
+import javax.validation.GroupSequence;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.groups.Default;
 
+@Data
+public class User {
+    public interface LoginGroup{}
+    public interface RegisterGroup{}
 
+    // 组排序,先验证Default.class,再验证LoginGroup.class,最后验证RegisterGroup.class
+    // 如果前面的验证失败,后面的验证不会执行
+    @GroupSequence({
+            Default.class,
+            LoginGroup.class,
+            RegisterGroup.class
+    })
+    public interface Group{}
 
+    @NotNull(message = "用户ID不能为空", groups = {LoginGroup.class})
+    private String userId;
 
+    // 需要验证 属于默认组
+    @NotBlank(message = "用户名不能为空")
+    private String userName;
 
-
-
-
-
-
-
-
-
-
-
-
+    @NotBlank(message = "邮箱不能为空", groups = {RegisterGroup.class})
+    private String email;
+}
+```
 
 
 
