@@ -581,7 +581,122 @@ public class User {
 
 
 
+## 方法参数校验💕
 
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/validation/hibernate-use/src/main/java/org/hzz/complex)
+
+> 在方法参数前面加上@Valid
+
+```java
+public interface IUserService {
+    void saveUser(@Valid User user);
+}
+
+
+public class UserService implements IUserService{
+    // 直接在方法里面加@Valid也是可以的，这里主要
+    // 这里主要是想试一下如果在接口中加了，还会不会生效
+    @Override
+    public void saveUser(User user) {
+    }
+}
+```
+
+
+
+> 测试
+
+```java
+@Test
+public void validateMethodParameters() throws NoSuchMethodException {
+    UserService userService = new UserService();
+    Method method = userService.getClass().getMethod("saveUser", User.class);
+    // 验证
+    result  = validator.forExecutables()
+        .validateParameters(userService, method, new Object[]{new User()});
+}
+/**output
+     * 用户ID不能为空
+     * 用户名不能为空
+     */
+```
+
+
+
+## 构造方法参数校验
+
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/validation/hibernate-use/src/main/java/org/hzz/complex)
+
+```java
+public UserService(@Valid User user) {
+}
+```
+
+> 测试
+
+```java
+@Test
+public void validateConstructorParameters() throws NoSuchMethodException {
+    Constructor<UserService> method = UserService.class.getConstructor(User.class);
+    //        User user = new User();
+    //        user.setUserId("001");
+    //        user.setUserName("hzz");
+    // 验证
+    result  = validator.forExecutables()
+        .validateConstructorParameters(method, new Object[]{new User()});
+}
+/**output
+     * 用户ID不能为空
+     * 用户名不能为空
+     */
+```
+
+
+
+## 返回值校验
+
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/validation/hibernate-use/src/main/java/org/hzz/complex)
+
+```java
+public interface IUserService {
+    void saveUser(@Valid User user);
+
+    @Valid User getUser();
+}
+
+
+public class UserService implements IUserService{
+
+    // 直接在方法上加@Valid也是可以的，这里主要
+    // 这里主要是想试一下如果在接口中加了，还会不会生效
+    @Override
+    public User getUser() {
+        User user = new User();
+        user.setUserName("Q10Viking");
+        return user;
+    }
+
+}
+
+```
+
+
+
+> 测试
+
+```java
+@Test
+public void validateMethodReturnValue() throws NoSuchMethodException {
+    UserService userService = new UserService();
+    Method method = userService.getClass().getMethod("getUser");
+    // 验证
+    result  = validator.forExecutables()
+        .validateReturnValue(userService, method, userService.getUser());
+}
+/**output
+     * 用户ID不能为空
+     */
+```
 
 
 
