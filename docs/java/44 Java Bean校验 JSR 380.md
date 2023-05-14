@@ -270,20 +270,123 @@ ValidationMessages_zh_TW.properties
 
 ### 实现自定国际化与hibernate validator兼容👍
 
+> 创建
+
 ```java
+/**
+ * 继承它ResourceBundleMessageInterpolator
+ * 是为了使用hirbernate validator提供的默认的国际化,因为他们的文件是ValidationMessages_zh.properties
+ * 不像我们自己的文件是user_zh.properties
+ * 也就是说我们既能使用我们自己国际化，又能使用hibernate validator提供的默认的国际化
+ */
+public class MyMessageInterpolator extends ResourceBundleMessageInterpolator {
+    private static final String path = "i18n/user";
+    // hibernate validator的写法
+//    private static final String path = "i18n.user";
+    public MyMessageInterpolator(){
+        // 指定ResourceBundleLocator
+        super(new PlatformResourceBundleLocator(path));
+    }
 
+    @Override
+    public String interpolate(String messageTemplate, Context context) {
+        String result = super.interpolate(messageTemplate, context);
+        return result;
+    }
+
+    @Override
+    public String interpolate(String messageTemplate, Context context, Locale locale) {
+        // 这个方法没用到
+        return null;
+    }
+}
+```
+
+> User
+
+```java
+@Data
+public class User {
+
+    @NotNull(message = "{user.id.notnull}")
+    private String userId;
+    @NotNull
+    // 未指定,使用hibernate validator提供的默认的国际化
+    // "{javax.validation.constraints.NotNull.message}"
+    private String userName;
+}
+```
+
+
+
+> 测试
+
+```java
+public class ValidatorUserDemo {
+
+    // 验证器
+    private Validator validator;
+    // 待验证的对象
+    private User user;
+    // 验证结果
+    private Set<ConstraintViolation<User>> result;
+
+
+    @BeforeEach
+    public void init(){
+        // 设置默认的locale
+        // 因为Hibernator的ResourceBundleMessageInterpolator默认使用的是Locale.getDefault()
+//        Locale.setDefault(Locale.JAPAN);
+//        Locale.setDefault(Locale.ENGLISH);
+        Locale.setDefault(Locale.CHINESE);
+
+        validator = Validation.byDefaultProvider()
+                .configure()
+                .messageInterpolator(new MyMessageInterpolator())
+                .buildValidatorFactory()
+                .getValidator();
+
+        user = new User();
+    }
+
+    @Test
+    public void test(){
+        // 验证
+       result = validator.validate(user);
+    }
+
+    @AfterEach
+    public void print(){
+        result.forEach(System.out::println);
+        System.out.println("-------------------------");
+        result.forEach(r->{
+            System.out.println(r.getMessage());
+        });
+    }
+}
+/**
+ * ConstraintViolationImpl{interpolatedMessage='不得为 null', propertyPath=userName, rootBeanClass=class org.hzz.i18n.User, messageTemplate='{javax.validation.constraints.NotNull.message}'}
+ * ConstraintViolationImpl{interpolatedMessage='userID不能为null', propertyPath=userId, rootBeanClass=class org.hzz.i18n.User, messageTemplate='{user.id.notnull}'}
+ * -------------------------
+ * 不得为 null
+ * userID不能为null
+ */
 ```
 
 
 
 
 
-```
-userResourceBundleLocator--->
-defaultResourceBundleLocator---> 
+### 能够兼容的原理
+
+我们的类继承了ResourceBundleMessageInterpolator，在继承类中我们指定了user ResourceBundle的位置。而hibernate validator默认也有个位置，所以就有了两个位置
+
+```java
+userResourceBundleLocator--->  i18n.user
+defaultResourceBundleLocator---> org.hibernate.validator.ValidationMessages
 ```
 
-
+先从用户的指定的ResourceBundle获取，获取不到再从default的获取
 
 ## TODO
 
