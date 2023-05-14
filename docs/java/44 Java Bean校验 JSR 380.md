@@ -390,14 +390,6 @@ defaultResourceBundleLocator---> org.hibernate.validator.ValidationMessages
 
 先从用户的指定的ResourceBundle获取，获取不到再从default的获取
 
-## TODO
-
-研究参数是如何设置进去的
-
-```sh
-大小必须在 {min} 和 {max} 之间
-```
-
 
 
 
@@ -433,6 +425,21 @@ defaultResourceBundleLocator---> org.hibernate.validator.ValidationMessages
 [IDEA中properties配置文件的创建及中文乱码问题](https://blog.csdn.net/weixin_41685100/article/details/79292785)
 
 ![image-20230514190555571](/images/java/image-20230514190555571.png)
+
+
+
+## 值替换研究👍
+
+研究参数是如何设置进去的
+
+```sh
+@Size(min = 1, max = 5, message = "用户密码长度必须在{min}和{max}之间")
+private String somv = "123456789";
+```
+
+为什么最终能够输出：`用户密码长度必须在1和5之间`,为什么能够替换
+
+底层原理是在解析Size这个注解的时候，会存储一个map,里面的值是`<min,1>`，`<max,5>`,在解析message的时候会进行替换。
 
 
 
