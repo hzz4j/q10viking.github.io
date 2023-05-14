@@ -27,7 +27,7 @@ typora-root-url: ..\.vuepress\public
 
 [Source Code](https://github.com/Q10Viking/learncode/tree/main/javabasic/src/org/hzz/completablefuture)
 
-## 创建异步操作
+## 创建异步操作😘
 
 > CompletableFuture 提供了四个静态方法来创建一个异步操作
 
@@ -201,3 +201,145 @@ exceptionally: -1
 main end
 ```
 
+
+
+## 结果转换😘
+
+所谓结果转换，就是将上一段任务的执行结果作为下一阶段任务的入参参与重新计算，产生新的结果
+
+### thenApply
+
+> RocketMQ大量使用了这个代码
+
+thenApply 接收一个函数作为参数，使用该函数处理上一个CompletableFuture 调用的结果，并返回一个具有处理结果的Future对象。
+
+```java
+public <U> CompletableFuture<U> thenApply(Function<? super T,? extends U> fn)
+public <U> CompletableFuture<U> thenApplyAsync(Function<? super T,? extends U> fn)
+```
+
+```java
+public class ThenApplyDemo {
+    public static void main(String[] args) {
+        CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+            int result = 100;
+            System.out.println("一阶段：" + result);
+            return result;
+        }).thenApply(number -> {
+            int result = number * 3;
+            System.out.println("二阶段：" + result);
+            return result;
+        });
+
+        System.out.println("最终结果" + future.join());
+    }
+}
+/**
+ * 一阶段：100
+ * 二阶段：300
+ * 最终结果300
+ */
+```
+
+
+
+
+
+### thenCompose
+
+thenCompose 的参数为一个返回 CompletableFuture 实例的函数，该函数的参数是先前计算步骤的结果
+
+```java
+public <U> CompletableFuture<U> thenCompose(Function<? super T, ? extends CompletionStage<U>> fn);
+public <U> CompletableFuture<U> thenComposeAsync(Function<? super T, ? extends CompletionStage<U>> fn) ;
+```
+
+
+
+```java
+public class ThenComposeDemo {
+    public static void main(String[] args) {
+        CompletableFuture<Integer> future = CompletableFuture
+                .supplyAsync(new Supplier<Integer>() {
+                    @Override
+                    public Integer get() {
+                        int number = new Random().nextInt(30);
+                        System.out.println("第一阶段：" + number);
+                        return number;
+                    }
+                })
+                .thenCompose(new Function<Integer, CompletionStage<Integer>>() {
+
+                    // CompletableFuture继承了CompletionStage
+                    @Override
+                    public CompletionStage<Integer> apply(Integer param) {
+                        return CompletableFuture.supplyAsync(new Supplier<Integer>() {
+                            @Override
+                            public Integer get() {
+                                int number = param * 2;
+                                System.out.println("第二阶段：" + number);
+                                return number;
+                            }
+                        });
+                    }
+                });
+
+        System.out.println("最终结果：" + future.join());
+    }
+}
+/**
+ * 第一阶段：18
+ * 第二阶段：36
+ * 最终结果：36
+ */
+```
+
+
+
+### thenApply 和 thenCompose的区别
+
+- thenApply 转换的是泛型中的类型，返回的是同一个CompletableFuture；
+- thenCompose 将内部的 CompletableFuture 调用展开来并使用上一个CompletableFutre 调用的结果在下一步的 CompletableFuture 调用中进行运算，是生成一个新的CompletableFuture。
+
+
+
+```java
+public class ThenapplyVsThenComposeDemo {
+    public static void main(String[] args) {
+        CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> "Hello");
+
+        CompletableFuture<String> result1 = future.thenApply(param -> param + " World");
+        CompletableFuture<String> result2 = future
+                .thenCompose(param -> CompletableFuture.supplyAsync(() -> param + " World"));
+
+        System.out.println(future.join());
+        System.out.println(result1.join());
+        System.out.println(result2.join());
+        System.out.println("===========================================");
+        System.out.println("future == result1: " + (future == result1));
+        System.out.println("future == result2: " + (future == result2));
+    }
+}
+/**
+ * Hello
+ * Hello World
+ * Hello World
+ * ===========================================
+ * future == result1: false
+ * future == result2: false
+ */
+```
+
+
+
+
+
+## 常用方法总结
+
+![img](/images/java/1936.png)
+
+
+
+## 
+
+[有道云笔记 (youdao.com)](https://note.youdao.com/ynoteshare/index.html?id=0e961b20b4e7a0b21fab4ed9f88c1ac5&type=note&_time=1684074552031)
