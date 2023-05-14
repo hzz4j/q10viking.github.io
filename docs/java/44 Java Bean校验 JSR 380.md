@@ -167,9 +167,50 @@ Spring Validation是在Hibernate Validation基础之上的二次封装，以满�
 
 
 
+### 国际化
 
+```java
+// 这样指定只能是中文
+@NotNull(message = "用户ID不能为空")
+private String userId;
+//-------------------------------------------------------
+@NotNull  // message默认的值是"{javax.validation.constraints.NotNull.message}"
+private String userId;
+```
 
+上面的代码这样第一个只能写定为中文了，而第二我们不指定，默认会使用`{}`包裹的hibernate validation提供的国际化.
 
+```sh
+ValidationMessages.properties
+ValidationMessages_ar.properties
+ValidationMessages_cs.properties
+ValidationMessages_da.properties
+ValidationMessages_de.properties
+ValidationMessages_en.properties
+ValidationMessages_es.properties
+ValidationMessages_fa.properties
+ValidationMessages_fr.properties
+ValidationMessages_hu.properties
+ValidationMessages_it.properties
+ValidationMessages_ja.properties
+ValidationMessages_ko.properties
+ValidationMessages_mn_MN.properties
+ValidationMessages_nl.properties
+ValidationMessages_pl.properties
+ValidationMessages_pt_BR.properties
+ValidationMessages_ro.properties
+ValidationMessages_ru.properties
+ValidationMessages_sk.properties
+ValidationMessages_tr.properties
+ValidationMessages_uk.properties
+ValidationMessages_zh.properties
+ValidationMessages_zh_CN.properties
+ValidationMessages_zh_TW.properties
+```
+
+> 但是我们要实现我们自定义的国际化内容。
+
+[这可能是你见过hibernate-validator最全国际化方案（下）-阿里云开发者社区 (aliyun.com)](https://developer.aliyun.com/article/972246)
 
 ## 参考
 
