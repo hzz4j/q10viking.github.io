@@ -135,6 +135,15 @@ Spring Validation是在Hibernate Validation基础之上的二次封装，以满�
 
 
 
+### 其他
+
+| 约束            | 说明                         |
+| --------------- | ---------------------------- |
+| @Pattern(Value) | 限制必须符合指定的正则表达式 |
+| @Email          | 限制必须为email格式          |
+
+
+
 ## 参考
 
 [The Java Community Process(SM) Program - JSRs: Java Specification Requests - detail JSR# 380 (jcp.org)](https://jcp.org/en/jsr/detail?id=380)
