@@ -141,6 +141,7 @@ Spring Validation是在Hibernate Validation基础之上的二次封装，以满�
 | --------------- | ---------------------------- |
 | @Pattern(Value) | 限制必须符合指定的正则表达式 |
 | @Email          | 限制必须为email格式          |
+| @Valid          | 级联验证                     |
 
 
 
@@ -442,6 +443,77 @@ private String somv = "123456789";
 为什么最终能够输出：`用户密码长度必须在1和5之间`,为什么能够替换
 
 底层原理是在解析Size这个注解的时候，会存储一个map,里面的值是`<min,1>`，`<max,5>`,在解析message的时候会进行替换。
+
+
+
+----------
+
+
+
+## 级联验证❤️
+
+```java
+@Data
+public class User {
+    @NotNull(message = "用户ID不能为空")
+    private String userId;
+   // -------------级联验证---------------------------
+//    @Valid
+//    private Address address;
+
+//    @Valid
+//    private List<Address> addressList;
+    private List< @Valid Address> addressList;
+}
+
+@Data
+public class Address {
+    @NotBlank(message = "省份不能为空")
+    private String province;
+    @NotBlank(message = "城市不能为空")
+    private String city;
+}
+```
+
+```java
+城市不能为空
+省份不能为空
+用户ID不能为空
+```
+
+
+
+## 分组验证
+
+
+
+
+
+## 组序列
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
