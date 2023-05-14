@@ -452,6 +452,8 @@ private String somv = "123456789";
 
 ## 级联验证❤️
 
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/validation/hibernate-use/src/main/java/org/hzz/cascade)
+
 ```java
 @Data
 public class User {
@@ -483,9 +485,55 @@ public class Address {
 
 
 
-## 分组验证
+## 分组验证❤️
+
+比如在User中，
+
+- 用户登录的时候是需要userId的，并不需要email.
+- 用户注册的时候需要email，而并不需要userId
+
+那么这时候，就使用到了分组验证
+
+```java
+@Data
+public class User {
+    public interface LoginGroup{}
+    public interface RegisterGroup{}
+
+    @NotNull(message = "用户ID不能为空", groups = {LoginGroup.class})
+    private String userId;
+
+    // 需要验证
+    @NotBlank(message = "用户名不能为空",groups = {LoginGroup.class,RegisterGroup.class})
+    // 不能写成
+    //@NotBlank(message = "用户名不能为空")
+    private String userName;
+
+    @NotBlank(message = "邮箱不能为空", groups = {RegisterGroup.class})
+    private String email;
+}
+```
 
 
+
+> 测试
+
+```java
+@Test
+public void validate() {
+    /**
+         * 邮箱不能为空
+         * 用户名不能为空
+         */
+    //result = validator.validate(user, User.RegisterGroup.class);
+
+    /**
+         * 用户ID不能为空
+         * 用户名不能为空
+         */
+    result = validator.validate(user, User.LoginGroup.class);
+}
+```
 
 
 
