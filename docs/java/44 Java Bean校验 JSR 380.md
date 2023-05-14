@@ -165,6 +165,66 @@ Spring Validation是在Hibernate Validation基础之上的二次封装，以满�
 </dependency>
 ```
 
+> 定义一个User Java Bean对象
+
+```java
+@Data
+public class User {
+    @NotNull(message = "用户ID不能为空")
+    private String userId;
+    @NotNull
+    private String userName;
+}
+```
+
+
+
+> 测试
+
+```java
+public class ValidatorUserDemo {
+
+    // 验证器
+    private Validator validator;
+    // 待验证的对象
+    private User user;
+    // 验证结果
+    private Set<ConstraintViolation<User>> result;
+
+
+    @BeforeEach
+    public void init(){
+        System.out.println("init");
+        validator = Validation.buildDefaultValidatorFactory().getValidator();
+        user = new User();
+    }
+
+    @Test
+    public void test(){
+        // 验证
+       result = validator.validate(user);
+    }
+
+    @AfterEach
+    public void print(){
+        result.forEach(System.out::println);
+        System.out.println("-------------------------");
+        result.forEach(r->{
+            System.out.println(r.getMessage());
+        });
+    }
+}
+/**
+ * ConstraintViolationImpl{interpolatedMessage='用户ID不能为空', propertyPath=userId, rootBeanClass=class org.hzz.basic.User, messageTemplate='用户ID不能为空'}
+ * ConstraintViolationImpl{interpolatedMessage='不能为null', propertyPath=userName, rootBeanClass=class org.hzz.basic.User, messageTemplate='{javax.validation.constraints.NotNull.message}'}
+ * -------------------------
+ * 用户ID不能为空
+ * 不能为null
+ */
+```
+
+
+
 
 
 ### 国际化
@@ -175,7 +235,7 @@ Spring Validation是在Hibernate Validation基础之上的二次封装，以满�
 private String userId;
 //-------------------------------------------------------
 @NotNull  // message默认的值是"{javax.validation.constraints.NotNull.message}"
-private String userId;
+private String userName;
 ```
 
 上面的代码这样第一个只能写定为中文了，而第二我们不指定，默认会使用`{}`包裹的hibernate validation提供的国际化.

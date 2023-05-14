@@ -34,8 +34,29 @@ typora-root-url: ..\.vuepress\public
         <artifactId>junit-jupiter</artifactId>
         <scope>test</scope>
     </dependency>
+
+    <!-- idea的支持，因为我们使用的版本是5.9.3 -->
+    <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-launcher</artifactId>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.junit.vintage</groupId>
+        <artifactId>junit-vintage-engine</artifactId>
+        <scope>test</scope>
+    </dependency>
 </dependencies>
 ```
+
+> IntelliJ IDEA supports running tests on the JUnit Platform。In order to use a different JUnit 5 version (e.g., 5.9.3)（本次项目我们使用的是5.9.3）, you may need to include the corresponding versions of the `junit-platform-launcher`, `junit-jupiter-engine`, and `junit-vintage-engine` JARs in the classpath.
+>
+> 还需要添加上面提到的三个依赖到IDEA中，方便IDEA运行Junit[JUnit 5 User Guide running-tests-ide-intellij-idea](https://junit.org/junit5/docs/current/user-guide/#running-tests-ide-intellij-idea)
 
 
 
