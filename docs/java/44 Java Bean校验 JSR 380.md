@@ -144,13 +144,15 @@ Spring Validation是在Hibernate Validation基础之上的二次封装，以满�
 
 
 
-## Java项目使用
+## Java项目使用❤️
 
 [hibernate validator 6.2官网文档](https://docs.jboss.org/hibernate/validator/6.2/reference/en-US/html_single/)
 
 依赖
 
 [Source Code](https://github.com/Q10Viking/learncode/tree/main/validation/hibernate-use/src/main/java/org/hzz/basic)
+
+hiberate validator需要`jakarta.el`依赖是因为，message在定义的时候，可能会使用到表达式，如`必须小于${inclusive == true ? '或等于' : ''}{value}`
 
 ```java
 
