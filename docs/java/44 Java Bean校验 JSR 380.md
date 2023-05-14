@@ -150,6 +150,8 @@ Spring Validation是在Hibernate Validation基础之上的二次封装，以满�
 
 依赖
 
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/validation/hibernate-use/src/main/java/org/hzz/basic)
+
 ```java
 
 <dependency>
@@ -223,11 +225,7 @@ public class ValidatorUserDemo {
  */
 ```
 
-
-
-
-
-### 国际化
+## 国际化
 
 ```java
 // 这样指定只能是中文
@@ -270,7 +268,68 @@ ValidationMessages_zh_TW.properties
 
 > 但是我们要实现我们自定义的国际化内容。
 
-[这可能是你见过hibernate-validator最全国际化方案（下）-阿里云开发者社区 (aliyun.com)](https://developer.aliyun.com/article/972246)
+### 实现自定国际化与hibernate validator兼容👍
+
+```java
+
+```
+
+
+
+
+
+```
+userResourceBundleLocator--->
+defaultResourceBundleLocator---> 
+```
+
+
+
+## TODO
+
+研究参数是如何设置进去的
+
+```sh
+大小必须在 {min} 和 {max} 之间
+```
+
+
+
+
+
+### IDEA操作Resouce Bundle
+
+[Resource bundles | IntelliJ IDEA Documentation (jetbrains.com)](https://www.jetbrains.com/help/idea/resource-bundle.html)
+
+![image-20230514165634260](/images/java/image-20230514165634260.png)
+
+效果
+
+![image-20230514165702356](/images/java/image-20230514165702356.png)
+
+
+
+安装一个`Resource Bundle Editor`，方便我们快速编辑
+
+![image-20230514165953524](/images/java/image-20230514165953524.png)
+
+
+
+> 效果: 没有语言的为默认的
+
+![image-20230514170103501](/images/java/image-20230514170103501.png)
+
+![image-20230514170615440](/images/java/image-20230514170615440.png)
+
+
+
+### 中文ISO-8859-1idea显示
+
+[IDEA中properties配置文件的创建及中文乱码问题](https://blog.csdn.net/weixin_41685100/article/details/79292785)
+
+![image-20230514190555571](/images/java/image-20230514190555571.png)
+
+
 
 ## 参考
 
@@ -279,3 +338,7 @@ ValidationMessages_zh_TW.properties
 [Java Bean Validation Basics | Baeldung](https://www.baeldung.com/javax-validation)
 
 [Method Constraints with Bean Validation 2.0 | Baeldung](https://www.baeldung.com/javax-validation-method-constraints)
+
+[这可能是你见过hibernate-validator最全国际化方案（下）-阿里云开发者社区 (aliyun.com)](https://developer.aliyun.com/article/972246)
+
+[Bean Validation完结篇：你必须关注的边边角角（约束级联、自定义约束、自定义校验器、国际化失败消息...） - YourBatman - 博客园 (cnblogs.com)](https://www.cnblogs.com/yourbatman/p/11285677.html)
