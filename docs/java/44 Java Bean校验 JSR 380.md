@@ -700,6 +700,89 @@ public void validateMethodReturnValue() throws NoSuchMethodException {
 
 
 
+## 自定义验证😘
+
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/validation/hibernate-use/src/main/java/org/hzz/phone)
+
+> 定义
+
+```java
+@Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })
+@Retention(RUNTIME)
+@Documented
+@Constraint(validatedBy = { PhoneConstraintValidator.class})
+public @interface MyPhone {
+    String message() default "手机必须以178开头";
+
+    Class<?>[] groups() default { };
+
+    Class<? extends Payload>[] payload() default { };
+}
+
+
+public class PhoneConstraintValidator implements ConstraintValidator<MyPhone,String> {
+    @Override
+    public boolean isValid(String value, ConstraintValidatorContext context) {
+        // 空值处理
+        String phoneValue = Optional.ofNullable(value).orElse("");
+        Pattern pattern = Pattern.compile("178\\d{8}");
+        System.out.println("phoneValue = " + phoneValue);
+        return pattern.matcher(phoneValue).matches();
+    }
+}
+```
+
+> 使用
+
+```java
+@Data
+public class User {
+
+    @MyPhone
+    private String phonenumber;
+}
+```
+
+
+
+> 测试
+
+```java
+public class ValidatePhone {
+    // 验证器
+    private Validator validator;
+    // 待验证的对象
+    private User user;
+    // 验证结果
+    private Set<ConstraintViolation<User>> result;
+
+    @BeforeEach
+    public void init() {
+        validator = Validation.buildDefaultValidatorFactory().getValidator();
+        user = new User();
+        user.setPhonenumber("13618881234");
+    }
+
+    @AfterEach
+    public void print() {
+        result.forEach(r -> {
+            System.out.println(r.getMessage());
+        });
+    }
+
+    @Test
+    public void validate() {
+        result = validator.validate(user);
+    }
+    /**
+     * phoneValue = 13618881234
+     * 手机必须以178开头
+     */
+}
+```
+
+
+
 ## 参考
 
 [The Java Community Process(SM) Program - JSRs: Java Specification Requests - detail JSR# 380 (jcp.org)](https://jcp.org/en/jsr/detail?id=380)
