@@ -528,8 +528,6 @@ public CompletionStage<Void> runAfterEither(CompletionStage<?> other,Runnable ac
 public CompletionStage<Void> runAfterEitherAsync(CompletionStage<?> other,Runnable action);
 ```
 
-
-
 ```java
 public class RunAfterEitherDemo {
     public static void main(String[] args) throws InterruptedException {
@@ -646,7 +644,11 @@ public class AnyOfDemo {
         );
 
         CompletableFuture.anyOf(future1, future2)
-                .thenAccept(result -> System.out.println("任务完成了，结果是：" + result));
+                .thenAccept(result -> {
+                    System.out.println("future1 isDone = " + future1.isDone());
+                    System.out.println("future2 isDone = " + future2.isDone());
+                    System.out.println("任务完成了，结果是：" + result);
+                });
 
         Thread.currentThread().join();
 
@@ -660,17 +662,22 @@ public class AnyOfDemo {
     }
 }
 /**
- * 任务完成了，结果是：HuangZhuangzhuang
- * * 或者
+ * future1 isDone = false
+ * future2 isDone = true
  * 任务完成了，结果是：Q10Viking
+ * * 或者
+ * future1 isDone = true
+ * future2 isDone = false
+ * 任务完成了，结果是：HuangZhuangzhuang
  */
 ```
 
 
 
-### allOf
+### allOf😘
 
-allOf方法用来实现多 CompletableFuture 的同时返回。
+- allOf方法用来实现多 CompletableFuture 的同时返回。
+- **allOf与anyOf的区别是，前者返回的结果是一个void,为null,后者是一个具体的结果**
 
 ```java
 public static CompletableFuture<Void> allOf(CompletableFuture<?>... cfs)
@@ -682,34 +689,50 @@ public static CompletableFuture<Void> allOf(CompletableFuture<?>... cfs)
 public class AllOfDemo {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         CompletableFuture<String> future1 = CompletableFuture
-                .supplyAsync(getSupplier("HuangZhuangzhuang"));
+                .supplyAsync(getSupplier("Q10Viking"));
 
         CompletableFuture<String> future2 = CompletableFuture.supplyAsync(
-                getSupplier("Q10Viking")
+                getSupplier("is")
         );
 
+        CompletableFuture<String> future3 = CompletableFuture.supplyAsync(
+                getSupplier("a great java programmer.")
+        );
+
+        System.out.println("all of start");
         CompletableFuture<Void> combineFuture = CompletableFuture.allOf(future1, future2);
-        combineFuture.thenAccept(result -> System.out.println("任务完成了，结果是：" + result));
+        System.out.println("all of end");
 
         System.out.println(combineFuture.get());
-        Thread.currentThread().join();
+        System.out.println("future1 isDone = "+future1.isDone());
+        System.out.println("future2 isDone = "+future2.isDone());
+        System.out.println("future3 isDone = "+future3.isDone());
+
+        String result = Stream.of(future1, future2, future3)
+                .map(CompletableFuture::join)
+                .collect(Collectors.joining(" "));
+        System.out.println(result);
     }
 
     private static Supplier<String> getSupplier(final String msg){
         return ()->{
             Utils.sleepRandomSeconds();
-            System.out.println(msg + " end");
             return msg;
         };
     }
 }
 /**
- * Q10Viking end
- * HuangZhuangzhuang end
- * 任务完成了，结果是：null
+ * all of start
+ * all of end
  * null
+ * future1 isDone = true
+ * future2 isDone = true
+ * future3 isDone = true
+ * Q10Viking is a great java programmer.
  */
 ```
+
+
 
 
 
