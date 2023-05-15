@@ -93,7 +93,7 @@ public class AsyncDemo {
 
 
 
-## 结果处理(监听器)
+## 结果处理(监听器)😘
 
 CompletableFuture的计算结果完成，或者抛出异常的时候，我们可以执行特定的 Action。主要是下面的方法：
 
@@ -377,6 +377,61 @@ public class ThenapplyVsThenComposeDemo {
 
 
 
+## 结果组合
+
+### thenCombine
+
+thenCombine 方法，合并两个线程任务的结果，并进一步处理
+
+```java
+public <U,V> CompletionStage<V> thenCombine(CompletionStage<? extends U> other,BiFunction<? super T,? super U,? extends V> fn);
+public <U,V> CompletionStage<V> thenCombineAsync(CompletionStage<? extends U> other,BiFunction<? super T,? super U,? extends V> fn);
+```
+
+```java
+public class ThenCombineDemo {
+    public static void main(String[] args) throws InterruptedException {
+        CompletableFuture<Integer> future1 = CompletableFuture
+                .supplyAsync(new Supplier<Integer>() {
+                    @Override
+                    public Integer get() {
+                        int number = new Random().nextInt(10);
+                        System.out.println("第一阶段：" + number);
+                        return number;
+                    }
+                });
+        CompletableFuture<Integer> future2 = CompletableFuture
+                .supplyAsync(new Supplier<Integer>() {
+                    @Override
+                    public Integer get() {
+                        int number = new Random().nextInt(10);
+                        System.out.println("第二阶段：" + number);
+                        return number;
+                    }
+                });
+        CompletableFuture<Integer> result = future1
+                .thenCombine(future2, new BiFunction<Integer, Integer, Integer>() {
+                    @Override
+                    public Integer apply(Integer x, Integer y) {
+                        return x + y;
+                    }
+                });
+
+        System.out.println("最终结果：" + result.join());
+        Thread.currentThread().join();
+    }
+}
+/**
+ * 第一阶段：6
+ * 第二阶段：3
+ * 最终结果：9
+ */
+```
+
+
+
+
+
 
 
 ## 常用方法总结
@@ -385,6 +440,6 @@ public class ThenapplyVsThenComposeDemo {
 
 
 
-## 
+
 
 [有道云笔记 (youdao.com)](https://note.youdao.com/ynoteshare/index.html?id=0e961b20b4e7a0b21fab4ed9f88c1ac5&type=note&_time=1684074552031)
