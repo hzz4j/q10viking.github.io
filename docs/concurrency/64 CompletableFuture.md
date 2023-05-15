@@ -27,7 +27,7 @@ typora-root-url: ..\.vuepress\public
 
 [Source Code](https://github.com/Q10Viking/learncode/tree/main/javabasic/src/org/hzz/completablefuture)
 
-## 创建异步操作😘
+## 创建异步操作❤️
 
 > CompletableFuture 提供了四个静态方法来创建一个异步操作
 
@@ -377,6 +377,35 @@ public class ThenapplyVsThenComposeDemo {
 
 
 
+### thenAccept
+
+- thenAccept接收一个函数作为参数，使用该函数处理上一个CompletableFuture 调用的结果
+- thenAccept与thenApply相比的区别是，前者接收结果，进行消费，并不返回结果。后者是消费结果，并且还有返回一个结果
+
+```java
+public CompletionStage<Void> thenAccept(Consumer<? super T> action);
+public CompletionStage<Void> thenAcceptAsync(Consumer<? super T> action);
+```
+
+```java
+public class ThenAcceptDemo {
+    public static void main(String[] args) throws InterruptedException {
+        CompletableFuture.supplyAsync(()->{
+            Utils.sleepRandomSeconds();
+            return "hello";
+        }).thenAccept(result->{
+            System.out.println("任务完成了，结果是：" + result);
+        });
+        Thread.currentThread().join();
+    }
+}
+/**
+ * 任务完成了，结果是：hello
+ */
+```
+
+
+
 ## 结果组合
 
 ### thenCombine
@@ -593,6 +622,92 @@ public class RunAfterBothDemo {
  * future2 end, result = 5
  * future1 end, result = 7
  * 任务全部完成了
+ */
+```
+
+
+
+### anyOf
+
+anyOf 方法的参数是多个给定的 CompletableFuture，当其中的任何一个完成时，方法返回这个 CompletableFuture。
+
+```java
+public static CompletableFuture<Object> anyOf(CompletableFuture<?>... cfs)
+```
+
+```java
+public class AnyOfDemo {
+    public static void main(String[] args) throws InterruptedException {
+        CompletableFuture<String> future1 = CompletableFuture
+                .supplyAsync(getSupplier("HuangZhuangzhuang"));
+
+        CompletableFuture<String> future2 = CompletableFuture.supplyAsync(
+                getSupplier("Q10Viking")
+        );
+
+        CompletableFuture.anyOf(future1, future2)
+                .thenAccept(result -> System.out.println("任务完成了，结果是：" + result));
+
+        Thread.currentThread().join();
+
+    }
+
+    private static Supplier<String> getSupplier(final String msg){
+        return ()->{
+            Utils.sleepRandomSeconds();
+            return msg;
+        };
+    }
+}
+/**
+ * 任务完成了，结果是：HuangZhuangzhuang
+ * * 或者
+ * 任务完成了，结果是：Q10Viking
+ */
+```
+
+
+
+### allOf
+
+allOf方法用来实现多 CompletableFuture 的同时返回。
+
+```java
+public static CompletableFuture<Void> allOf(CompletableFuture<?>... cfs)
+```
+
+
+
+```java
+public class AllOfDemo {
+    public static void main(String[] args) throws InterruptedException, ExecutionException {
+        CompletableFuture<String> future1 = CompletableFuture
+                .supplyAsync(getSupplier("HuangZhuangzhuang"));
+
+        CompletableFuture<String> future2 = CompletableFuture.supplyAsync(
+                getSupplier("Q10Viking")
+        );
+
+        CompletableFuture<Void> combineFuture = CompletableFuture.allOf(future1, future2);
+        combineFuture.thenAccept(result -> System.out.println("任务完成了，结果是：" + result));
+
+        System.out.println(combineFuture.get());
+        Thread.currentThread().join();
+    }
+
+    private static Supplier<String> getSupplier(final String msg){
+        return ()->{
+            Utils.sleepRandomSeconds();
+            System.out.println(msg + " end");
+            return msg;
+        };
+    }
+}
+/**
+ * Q10Viking end
+ * HuangZhuangzhuang end
+ * 任务完成了，结果是：null
+ * null
  */
 ```
 
