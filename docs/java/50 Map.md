@@ -1,0 +1,106 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /java/
+typora-root-url: ..\.vuepress\public
+---
+
+
+
+集合有两个大接口：Collection 和 Map
+
+![11](/images/java/e9786a20-e691-11e9-80c2-21d8cc9d922e)
+
+
+
+## EnumMap
+
+因为`HashMap`是一种通过对key计算`hashCode()`，通过空间换时间的方式，直接定位到value所在的内部数组的索引，因此，查找效率非常高。
+
+如果作为key的对象是`enum`类型，那么，还可以使用Java集合库提供的一种`EnumMap`，它在内部以一个非常紧凑的数组存储value，并且根据`enum`类型的key直接定位到内部数组的索引，并不需要计算`hashCode()`，不但效率最高，而且没有额外的空间浪费
+
+但是一般不建议使用，比如Android的官网
+
+> 不建议使用enums，占用内存多（Enums often require more than twice as much memory as static constants.）
+
+```java
+public enum DayOfWeek {
+    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY;
+}
+```
+
+完全可以用静态常量替换
+
+```java
+public interface DayOfWeekConsts {
+    int MONDAY = 0; int TUESDAY = 1; int WEDNESDAY = 2; 
+    int THURSDAY = 3;int FRIDAY = 4; int SATURDAY = 5; int SUNDAY = 6;
+}
+```
+
+
+
+> 测试
+
+```java
+public class EnumMapTest {
+    public static void main(String[] args) {
+        Map<DayOfWeek,String> map = new EnumMap<>(DayOfWeek.class);
+        map.put(DayOfWeek.MONDAY,"星期一");
+        map.put(DayOfWeek.TUESDAY, "星期二");
+        map.put(DayOfWeek.WEDNESDAY, "星期三");
+        map.put(DayOfWeek.THURSDAY, "星期四");
+        map.put(DayOfWeek.FRIDAY, "星期五");
+        map.put(DayOfWeek.SATURDAY, "星期六");
+        map.put(DayOfWeek.SUNDAY, "星期日");
+        System.out.println(map);
+        System.out.println(map.get(DayOfWeek.MONDAY));
+    }
+}
+/**
+ * {MONDAY=星期一, TUESDAY=星期二, WEDNESDAY=星期三, THURSDAY=星期四, FRIDAY=星期五, SATURDAY=星期六, SUNDAY=星期日}
+ * 星期一
+ */
+```
+
+----------
+
+```java
+private static void test2(){
+    Map<Integer,String> map = new HashMap<>();
+    map.put(DayOfWeekConsts.MONDAY,"星期一");
+    map.put(DayOfWeekConsts.TUESDAY, "星期二");
+    map.put(DayOfWeekConsts.WEDNESDAY, "星期三");
+    map.put(DayOfWeekConsts.THURSDAY, "星期四");
+    map.put(DayOfWeekConsts.FRIDAY, "星期五");
+    map.put(DayOfWeekConsts.SATURDAY, "星期六");
+    map.put(DayOfWeekConsts.SUNDAY, "星期日");
+    System.out.println(map);
+    System.out.println(map.get(DayOfWeekConsts.MONDAY));
+}
+/**
+     * {0=星期一, 1=星期二, 2=星期三, 3=星期四, 4=星期五, 5=星期六, 6=星期日}
+     * 星期一
+     */
+```
+
+
+
+## TreeMap
+
+
+
+## HashMap 和 Hashtable 有什么区别
+
+HashMap 和 Hashtable 区别如下：
+
+  * Hashtable 使用了 synchronized 关键字来保障线程安全，而 HashMap 是非线程安全的；
+  * HashMap 允许 K/V 都为 null，而 Hashtable K/V 都不允许 null；
+  * HashMap 继承自 AbstractMap 类；而 Hashtable 继承自 Dictionary 类。
+
+
+
+### TreeMap 怎么实现根据 value 值倒序
+

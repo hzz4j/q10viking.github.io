@@ -122,6 +122,14 @@ public class HashSetDemo {
 
 ## TreeSet
 
+底层是通过TreeMap实现的
+
+```java
+public TreeSet() {
+    this(new TreeMap<E,Object>());
+}
+```
+
 TreeSet 集合实现了自动排序，也就是说 TreeSet 会把你插入数据进行自动排序
 
 ```java
@@ -351,3 +359,12 @@ Book(name=C++, price=50.0, sales=2000)
 Book(name=Python, price=200.0, sales=2000)
 ```
 
+
+
+## 周边问题
+
+### Vector、ArrayList、LinkedList 使用场景有什么区别
+
+Vector 和 ArrayList的内部结构是以数组形式存储的，因此非常适合随机访问，但非尾部的删除或新增性能较差，比如我们在中间插入一个元素，就需要把后续的所有元素都进行移动。
+
+LinkedList 插入和删除元素效率比较高，但随机访问性能会比以上两个动态数组慢
