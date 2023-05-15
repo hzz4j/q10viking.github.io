@@ -430,7 +430,63 @@ public class ThenCombineDemo {
 
 
 
+## 任务交互
 
+所谓线程交互，是指将两个线程任务获取结果的速度相比较，按一定的规则进行下一步处理。
+
+### acceptEither
+
+两个线程任务相比较，先获得执行结果的，就对该结果进行下一步的转化操作。
+
+```java
+public <U> CompletionStage<U> applyToEither(CompletionStage<? extends T> other,Function<? super T, U> fn);
+public <U> CompletionStage<U> applyToEitherAsync(CompletionStage<? extends T> other,Function<? super T, U> fn);
+```
+
+```java
+public class ApplyToEitherDemo {
+    public static void main(String[] args) throws InterruptedException {
+
+        CompletableFuture<Integer> future1 = CompletableFuture.supplyAsync(
+                integerSupplier("future1")
+        );
+
+        CompletableFuture<Integer> future2 = CompletableFuture.supplyAsync(
+                integerSupplier("future2")
+        );
+
+        CompletableFuture<Integer> result = future1.applyToEither(future2, i -> {
+            System.out.println("最快的结果: " + i);
+            return i * 2;
+        });
+
+        System.out.println("最终结果：" + result.join());
+        Thread.currentThread().join();
+    }
+
+    private static Supplier<Integer> integerSupplier(final String name){
+        final Random random = new Random();
+        return new Supplier<Integer>() {
+            @Override
+            public Integer get() {
+                System.out.println(name + " start");
+                int seconds = random.nextInt(10);
+                Utils.sleepSeconds(seconds);
+                System.out.println(name + " end, result = "+ seconds);
+                return seconds;
+            }
+        };
+    }
+}
+/**
+ * future2 start
+ * future1 start
+ * future1 end, result = 1
+ * 最快的结果: 1
+ * 最终结果：2
+ * future2 end, result = 7
+ */
+```
 
 
 
