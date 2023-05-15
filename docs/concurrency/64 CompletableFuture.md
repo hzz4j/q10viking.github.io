@@ -203,6 +203,51 @@ main end
 
 
 
+### 监听器
+
+> 和Netty实现的Promise效果的，难怪RocketMQ不自己实现一个Promise直接使用CompletableFuture
+
+```java
+public class ListenerTest {
+
+    public static void main(String[] args) throws InterruptedException {
+        CompletableFuture<Integer> completableFuture = CompletableFuture.supplyAsync(() -> {
+           sleepSeconds(5);
+            System.out.println("开始执行任务");
+            return 8;
+        });
+
+        completableFuture.whenComplete((result, throwable) -> {
+            System.out.println("监听器1,执行，result=" + result);
+        });
+
+        completableFuture.whenComplete((result, throwable) -> {
+            System.out.println("监听器2,执行，hello Q10Viking");
+        });
+
+        Thread.currentThread().join();
+    }
+
+
+    public static void sleepSeconds(int seconds) {
+        try {
+            TimeUnit.SECONDS.sleep(seconds);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+/**
+ * 开始执行任务
+ * 监听器2,执行，hello Q10Viking
+ * 监听器1,执行，result=8
+ */
+```
+
+
+
+
+
 ## 结果转换😘
 
 所谓结果转换，就是将上一段任务的执行结果作为下一阶段任务的入参参与重新计算，产生新的结果
