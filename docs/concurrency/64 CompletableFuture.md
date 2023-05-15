@@ -395,6 +395,35 @@ public class ThenapplyVsThenComposeDemo {
 
 
 
+> thenApply返回的是同一个CompletableFuturen类型
+>
+> 而thenCombine可以返回一个不同的CompletableFuture类型
+
+
+
+```java
+public class ThenapplyVsThenComposeDemo2 {
+    public static void main(String[] args) {
+
+        // 同一个CompletableFuture类型都是String
+        CompletableFuture<String> future1 = CompletableFuture.completedFuture("Hello");
+        CompletableFuture<String> result1 = future1.thenApply(param -> param + " World");
+
+        // 两个CompletableFuture类型不一样
+        CompletableFuture<Void> future2 = CompletableFuture.runAsync(() -> {});
+        CompletableFuture<LocalDate> result2 = future2.thenCompose((Void) -> CompletableFuture.completedFuture(LocalDate.now()));
+        System.out.println(result1.join());
+        System.out.println(result2.join());
+    }
+}
+/**
+ * Hello World
+ * 2023-05-15
+ */
+```
+
+
+
 ### thenAccept
 
 - thenAccept接收一个函数作为参数，使用该函数处理上一个CompletableFuture 调用的结果
