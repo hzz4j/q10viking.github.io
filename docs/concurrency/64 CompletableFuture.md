@@ -82,6 +82,24 @@ public class AsyncDemo {
 
 
 
+### 特别的completedFuture
+
+```java
+public class CompleteFutureDemo {
+    public static void main(String[] args) {
+        CompletableFuture.completedFuture("Love Java")
+                .thenAccept(System.out::println);
+    }
+}
+/**
+ * Love Java
+ */
+```
+
+
+
+
+
 ## 获取结果
 
 **join&get**
@@ -290,7 +308,7 @@ public class ThenApplyDemo {
 
 
 
-### thenCompose
+### thenCompose❤️
 
 thenCompose 的参数为一个返回 CompletableFuture 实例的函数，该函数的参数是先前计算步骤的结果
 
@@ -341,10 +359,10 @@ public class ThenComposeDemo {
 
 
 
-### thenApply 和 thenCompose的区别
+### thenApply 和 thenCompose的区别❤️
 
 - thenApply 转换的是泛型中的类型，返回的是同一个CompletableFuture；
-- thenCompose 将内部的 CompletableFuture 调用展开来并使用上一个CompletableFutre 调用的结果在下一步的 CompletableFuture 调用中进行运算，是生成一个新的CompletableFuture。
+- thenCompose 将内部的 CompletableFuture 调用展开来并使用上一个CompletableFutre 调用的结果在下一步的 CompletableFuture 调用中进行运算，是**生成一个新的CompletableFuture**。如`CompletableFuture<Void>`调用thenCompose可以返回一个`CompletableFuture<String>`
 
 
 
@@ -406,9 +424,82 @@ public class ThenAcceptDemo {
 
 
 
+### thenAcceptBoth
+
+接收两个CompletableFuture返回的结果。
+
+```java
+public class ThenAcceptBothDemo {
+    public static void main(String[] args) throws InterruptedException {
+        CompletableFuture<String> future1 = CompletableFuture
+                .supplyAsync(getSupplier("HuangZhuangzhuang"));
+
+        CompletableFuture<String> future2 = CompletableFuture.supplyAsync(
+                getSupplier("call")
+        );
+
+        CompletableFuture<String> future3 = CompletableFuture.supplyAsync(
+                getSupplier("Q10Viking")
+        );
+
+        future1.thenAcceptBoth(future2, (result1, result2) -> {
+                    System.out.println("future1 isDone = " + future1.isDone());
+                    System.out.println("future2 isDone = " + future2.isDone());
+                    System.out.println("任务完成了，结果是：" + result1 + " " + result2);
+        });
+//        }).thenAcceptBoth(future3, (result1, result2) -> {
+//            System.out.println("future3 isDone = " + future3.isDone());
+//            System.out.println("任务完成了，结果是：" + result1 + " " + result2);
+//        });
+        Thread.currentThread().join();
+    }
+
+    private static Supplier<String> getSupplier(final String msg){
+        return ()->{
+            Utils.sleepRandomSeconds();
+            return msg;
+        };
+    }
+}
+/**
+ * future1 isDone = true
+ * future2 isDone = true
+ * 任务完成了，结果是：HuangZhuangzhuang call
+ */
+```
+
+> 但是处理三个future，就不太行，还是使用allOf的方式进行处理。
+
+
+
+## 不关心结果thenRun❤️
+
+```java
+public CompletionStage<Void> thenRun(Runnable action);
+public CompletionStage<Void> thenRunAsync(Runnable action);
+```
+
+```java
+public class ThenRunDemo {
+    public static void main(String[] args) {
+        CompletableFuture.completedFuture("Love Java Programming")
+                .thenRun(()-> System.out.println("I am running...don't care about the result"));
+    }
+}
+/**
+ * I am running...don't care about the result
+ */
+```
+
+
+
+
+
+-------------
+
 ## 结果组合
 
-### thenCombine
+### thenCombine❤️
 
 thenCombine 方法，合并两个线程任务的结果，并进一步处理
 
@@ -416,6 +507,11 @@ thenCombine 方法，合并两个线程任务的结果，并进一步处理
 public <U,V> CompletionStage<V> thenCombine(CompletionStage<? extends U> other,BiFunction<? super T,? super U,? extends V> fn);
 public <U,V> CompletionStage<V> thenCombineAsync(CompletionStage<? extends U> other,BiFunction<? super T,? super U,? extends V> fn);
 ```
+> 虽然thenAcceptBoth和thenCombine都有等待两个future完成的功能。但是从语义上来讲。thenCombine是结合，更确切的说，我认为从语义上来讲
+>
+> 如果两个future关联度高，比如都是返回Integer类型的结果，使用thenAcceptBoth
+>
+> 如果两个future一个是`CompletableFuture<Void>`另一个是`CompletableFuture<String>`,那么建议使用thenCombine
 
 ```java
 public class ThenCombineDemo {
@@ -463,7 +559,7 @@ public class ThenCombineDemo {
 
 所谓线程交互，是指将两个线程任务获取结果的速度相比较，按一定的规则进行下一步处理。
 
-### acceptEither
+### applyToEither
 
 两个线程任务相比较，先获得执行结果的，就对该结果进行下一步的转化操作。
 
@@ -595,7 +691,7 @@ public class RunAfterBothDemo {
 
        future1.runAfterBoth(future2, () -> {
            System.out.println("任务全部完成了");
-        }); // 并关心返回结果
+        }); // 不关心返回结果
 
         Thread.currentThread().join();
     }
@@ -624,6 +720,8 @@ public class RunAfterBothDemo {
 ```
 
 
+
+> 要想关心结果,可以使用thenAcceptBoth
 
 ### anyOf
 
@@ -742,6 +840,71 @@ public class AllOfDemo {
 
 
 
+## 实现最优的“烧水泡茶”程序
+
+[Source Code]()
+
+![https://note.youdao.com/yws/public/resource/0e961b20b4e7a0b21fab4ed9f88c1ac5/xmlnote/FC145BB4E0E14E96B1AF81AF6F47F103/1939](/images/java/1939.png)
+
+烧水泡茶这个程序，一种最优的分工方案：用两个线程 T1 和 T2 来完成烧水泡茶程序，T1 负责洗水壶、烧开水、泡茶这三道工序，T2 负责洗茶壶、洗茶杯、拿茶叶三道工序，其中 T1 在执行泡茶这道工序时需要等待 T2 完成拿茶叶的工序
+
+```java
+public class TeaDemo {
+    private static Logger LOG = LoggerFactory.getLogger(TeaDemo.class);
+    public static void main(String[] args) {
+        LOG.info("=================泡茶START===========================");
+        //任务1：洗水壶->烧开水
+        CompletableFuture<Void> futureTask1 = CompletableFuture.runAsync(() -> {
+            LOG.info("T1:洗水壶...");
+            Utils.sleepSeconds(1);
+        }).thenRun(() -> {
+            LOG.info("T1:烧开水...");
+            Utils.sleepSeconds(15);
+        });
+
+        //任务2：洗茶壶->洗茶杯->拿茶叶
+        CompletableFuture<String> futureTask2 = CompletableFuture.runAsync(() -> {
+            LOG.info("T2:洗茶壶...");
+            Utils.sleepSeconds(1);
+        }).thenRun(() -> {
+            LOG.info("T2:洗茶杯...");
+            Utils.sleepSeconds(2);
+        }).thenCompose((Void) -> CompletableFuture.supplyAsync(() -> { // 返回一个结果
+            LOG.info("T2:拿茶叶...");
+            Utils.sleepSeconds(1);
+            return "龙井";
+        }));
+
+        //任务3：任务1和任务2完成后执行：泡茶
+        CompletableFuture<Void> teaTask = futureTask1.thenCombine(futureTask2, (Void, tf) -> {
+            LOG.info("T3:拿到茶叶:" + tf);
+            LOG.info("T3:泡茶...");
+            LOG.info("T3: 上茶...");
+            return tf;
+        }).thenAccept(result -> {
+            LOG.info("Q10Viking 喝茶..." + result);
+        });
+
+        // 等待任务3执行完成
+        teaTask.join();
+        LOG.info("=================泡茶END===========================");
+    }
+}
+```
 
 
-[有道云笔记 (youdao.com)](https://note.youdao.com/ynoteshare/index.html?id=0e961b20b4e7a0b21fab4ed9f88c1ac5&type=note&_time=1684074552031)
+
+```java
+2023-05-15 13:10:46.319  [main] : =================泡茶START===========================
+2023-05-15 13:10:46.383  [ForkJoinPool.commonPool-worker-9] : T1:洗水壶...
+2023-05-15 13:10:46.384  [ForkJoinPool.commonPool-worker-2] : T2:洗茶壶...
+2023-05-15 13:10:47.399  [ForkJoinPool.commonPool-worker-9] : T1:烧开水...
+2023-05-15 13:10:47.399  [ForkJoinPool.commonPool-worker-2] : T2:洗茶杯...
+2023-05-15 13:10:49.405  [ForkJoinPool.commonPool-worker-2] : T2:拿茶叶...
+2023-05-15 13:11:02.411  [ForkJoinPool.commonPool-worker-9] : T3:拿到茶叶:龙井
+2023-05-15 13:11:02.411  [ForkJoinPool.commonPool-worker-9] : T3:泡茶...
+2023-05-15 13:11:02.411  [ForkJoinPool.commonPool-worker-9] : T3: 上茶...
+2023-05-15 13:11:02.411  [ForkJoinPool.commonPool-worker-9] : Q10Viking 喝茶...龙井
+2023-05-15 13:11:02.412  [main] : =================泡茶END===========================
+```
+
