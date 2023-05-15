@@ -399,8 +399,6 @@ public class ThenapplyVsThenComposeDemo {
 >
 > 而thenCombine可以返回一个不同的CompletableFuture类型
 
-
-
 ```java
 public class ThenapplyVsThenComposeDemo2 {
     public static void main(String[] args) {
@@ -921,7 +919,7 @@ public class TeaDemo {
 }
 ```
 
-
+> 运行结果
 
 ```java
 2023-05-15 13:10:46.319  [main] : =================泡茶START===========================
