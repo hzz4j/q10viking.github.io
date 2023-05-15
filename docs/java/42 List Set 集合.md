@@ -244,3 +244,110 @@ public class ComparableTest {
  */
 ```
 
+
+
+### Comparator
+
+Comparator 是一个外部比较器，位于 java.util 包下，之所以说 Comparator 是一个外部比较器，是因为它无需在比较类中实现
+Comparator 接口，而是要新创建一个比较器类来进行比较和排序。
+
+Comparator 接口包含的主要方法为 compare()，定义如下：
+
+```java
+package java.util;
+
+@FunctionalInterface
+public interface Comparator<T> {
+    int compare(T o1, T o2);
+}
+```
+
+> 测试
+
+```java
+@Data
+@AllArgsConstructor
+public class User {
+    private String name;
+    private Double salary;
+}
+
+public class ComparatorTest {
+    public static void main(String[] args) {
+        List<User> users = Arrays.asList(
+                new User("张三", 1000.0),
+                new User("李四", 2000.0),
+                new User("王五", 900.0)
+        );
+
+        // 外部比较器定义
+        Comparator<User> comparator = (user1,user2)-> user1.getSalary().compareTo(user2.getSalary());
+        users.sort(comparator);
+
+        System.out.println(Arrays.toString(users.toArray()));
+    }
+}
+/**
+ * [User(name=王五, salary=900.0), User(name=张三, salary=1000.0), User(name=李四, salary=2000.0)]
+ */
+```
+
+
+
+> 如果两个都存在以谁为准？通过下面的例子可以看出以外部排序为准
+
+```java
+public class CombineTest {
+    public static void main(String[] args) {
+        Book[] books = new Book[]{
+            new Book("Java", 100.0, 1000),
+                new Book("Python", 200.0, 2000),
+                new Book("C++", 50.0, 2000),
+                new Book("C", 50.0, 3000),
+                new Book("C#", 350.0, 2500),
+                new Book("PHP", 350.0, 100),
+        };
+
+        Comparator<Book> bookSalesComparator = (book1,book2)->book1.getSales().compareTo(book2.getSales());
+        // 内部根据价格
+        // 外部根据销量
+        Arrays.sort(books, bookSalesComparator);
+        Stream.of(books).forEach(System.out::println);
+    }
+}
+/**
+ * Book(name=PHP, price=350.0, sales=100)
+ * Book(name=Java, price=100.0, sales=1000)
+ * Book(name=Python, price=200.0, sales=2000)
+ * Book(name=C++, price=50.0, sales=2000)
+ * Book(name=C#, price=350.0, sales=2500)
+ * Book(name=C, price=50.0, sales=3000)
+ */
+```
+
+
+
+> 如果我们需要先按销量，在按照价格排序，可以在一个比较器中实现就可以了
+
+```java
+Comparator<Book> bookComparator = (book1,book2)->{
+    // 先根据销量，如果销量相同再根据价格
+    if (book1.getSales().equals(book2.getSales())) {
+        return book1.getPrice().compareTo(book2.getPrice());
+    } else {
+        return book1.getSales().compareTo(book2.getSales());
+    }
+};
+```
+
+> 效果
+
+```java
+//=================之前===========================
+Book(name=Python, price=200.0, sales=2000)
+Book(name=C++, price=50.0, sales=2000)
+//=================之后============================
+Book(name=C++, price=50.0, sales=2000)
+Book(name=Python, price=200.0, sales=2000)
+```
+
