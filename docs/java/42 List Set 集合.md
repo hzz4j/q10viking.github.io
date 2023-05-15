@@ -192,3 +192,55 @@ public HashSet(Collection<? extends E> c) {}
 Set<T> mySet = new HashSet<>(Arrays.asList(someArray));
 ```
 
+
+
+## 集合排序😊
+
+在 Java 语言中排序提供了两种方式：Comparable 和 Comparator
+
+
+
+### Comparable
+
+Comparable 位于 `java.lang` 包下，是一个排序接口，也就是说如果一个类实现了 Comparable 接口，就意味着该类有了排序功能。
+
+Comparable 接口只包含了一个函数，定义如下：
+
+```java
+package java.lang;
+public interface Comparable<T> {
+    public int compareTo(T o);
+}
+```
+
+> 测试
+
+```java
+@Data
+@AllArgsConstructor
+public class Dog implements Comparable<Dog> {
+    private String name;
+    private Integer age;
+    @Override
+    public int compareTo(Dog o) {
+        return this.age.compareTo(o.age);
+    }
+}
+
+public class ComparableTest {
+    public static void main(String[] args) {
+        Dog[] dogs = new Dog[]{
+                new Dog("老旺财", 10),
+                new Dog("小旺财", 3),
+                new Dog("二旺财", 5),
+        };
+
+        Arrays.sort(dogs);
+        System.out.println(Arrays.toString(dogs));
+    }
+}
+/**
+ * [Dog(name=小旺财, age=3), Dog(name=二旺财, age=5), Dog(name=老旺财, age=10)]
+ */
+```
+
