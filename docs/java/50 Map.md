@@ -11,7 +11,7 @@ typora-root-url: ..\.vuepress\public
 
 集合有两个大接口：Collection 和 Map
 
-![11](/images/java/e9786a20-e691-11e9-80c2-21d8cc9d922e)
+![](/images/java/e9786a20-e691-11e9-80c2-21d8cc9d922e)
 
 
 
@@ -90,9 +90,47 @@ private static void test2(){
 
 ## TreeMap
 
+> 默认是根据key升序排序
+
+```java
+Map<String, Integer> map = new TreeMap<>();
+map.put("orange", 1);
+map.put("apple", 2);
+map.put("pear", 3);
+System.out.println(map); // {apple=2, orange=1, pear=3}
+```
+
+### TreeMap 怎么实现根据 value 值倒序
+
+先把 TreeMap 转换为 ArrayList，在使用 Collections.sort() 根据 value进行倒序牌排序
+
+```java
+public class TreeMapDemo {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new TreeMap<>();
+        map.put("orange", 1);
+        map.put("apple", 2);
+        map.put("pear", 3);
+        System.out.println(map); // {apple=2, orange=1, pear=3}
+        orderValueDesc(map);
+    }
+
+    private static void orderValueDesc(Map<String,Integer> map){
+        List<Map.Entry<String, Integer>> list = new ArrayList(map.entrySet());
+
+        // 定义一个比较器Comparator
+        Comparator<Map.Entry<String, Integer>> descValue = (item1,item2)
+                -> item2.getValue().compareTo(item1.getValue());
+
+        list.sort(descValue);
+        System.out.println(list); // [pear=3, apple=2, orange=1]
+    }
+}
+```
 
 
-## HashMap 和 Hashtable 有什么区别
+
+### HashMap 和 Hashtable 有什么区别
 
 HashMap 和 Hashtable 区别如下：
 
@@ -102,5 +140,5 @@ HashMap 和 Hashtable 区别如下：
 
 
 
-### TreeMap 怎么实现根据 value 值倒序
+### 
 
