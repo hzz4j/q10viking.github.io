@@ -9,7 +9,9 @@ typora-root-url: ..\.vuepress\public
 
 
 
-[alibaba/fastjson2: 🚄 FASTJSON2 is a Java JSON library with excellent performance. (github.com)](https://github.com/alibaba/fastjson2)
+[fastjson 2](https://github.com/alibaba/fastjson2/wiki)的wiki文档目前看还比较少，没有[fastjson1 wike](https://github.com/alibaba/fastjson/wiki)全面，比如`TypeReference`的介绍使用都没有
+
+
 
 `FASTJSON 2`是一个性能极致并且简单易用的Java JSON库。
 
@@ -87,6 +89,18 @@ public class Entity {
 ```
 
 
+
+### TypeReference泛型处理
+
+[TypeReference · alibaba/fastjson Wiki (github.com)](https://github.com/alibaba/fastjson/wiki/TypeReference)
+
+
+
+
+
+
+
+## 通过Features配置序列化和反序列化的行为
 
 
 

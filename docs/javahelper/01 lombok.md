@@ -34,7 +34,7 @@ typora-root-url: ..\.vuepress\public
 
 ![img](/images/modernmall/13390)
 
-## **@EqualsAndHashCode**
+## **@EqualsAndHashCode**❤️
 
 自动生成 equals(Object other) 和 hashcode() 方法，包括所有非静态变量和非 transient 的变量
 
@@ -45,6 +45,117 @@ typora-root-url: ..\.vuepress\public
 Q : 为什么只有一个整体的 @EqualsAndHashCode 注解，而不是分开的两个 @Equals 和 @HashCode？
 
 A : 在 Java 中有规定，当两个对象 equals 时，他们的 hashcode 一定要相同，反之，当 hashcode 相同时，对象不一定 equals。所以 equals 和 hashcode 要一起实现，免得发生违反 Java 规定的情形发生
+
+
+
+### 注意泛型或者Object数组的问题
+
+在下面的情况equals是相等的
+
+```java
+@EqualsAndHashCode
+@AllArgsConstructor
+public class ResultC {
+    private int[] data;
+}
+
+@Test
+public void testResultC() {
+    ResultC result1 = new ResultC(new int[]{3, 20});
+    ResultC result2 = new ResultC(new int[]{3, 20});
+    assertEquals(result1, result2); // 成功
+}
+```
+
+但是如果使用泛型或者Object类的时候，equals就不会相等了
+
+```java
+@AllArgsConstructor
+@EqualsAndHashCode
+public class ResultA {
+    private Object data;
+}
+
+@AllArgsConstructor
+@EqualsAndHashCode
+public class ResultB<T> {
+    private T data;
+}
+
+@Test
+    public void testResultA() {
+        ResultA result1 = new ResultA(new int[]{3, 20});
+        ResultA result2 = new ResultA(new int[]{3, 20});
+        assertEquals(result1, result2); // 失败
+    }
+
+    @Test
+    public void testResultB() {
+        ResultB result1 = new ResultB(new int[]{3, 20});
+        ResultB result2 = new ResultB(new int[]{3, 20});
+        assertEquals(result1, result2); // 失败
+    }
+```
+
+### 原因分析
+
+lombok生成数组类型的比较,使用了`Arrays.equals`方法,会逐个比较元素
+
+```java
+if (!java.util.Arrays.equals(this.data, other.data)) return false;
+```
+
+而使用泛型和Object生成的都是
+
+```java
+final Object this$data = this.data;
+final Object other$data = other.data;
+if (this$data == null ? other$data != null : !this$data.equals(other$data)) return false;
+```
+
+而Object的equals方法比较的是堆上的地址引用
+
+```java
+public boolean equals(Object obj) {
+    return (this == obj);
+}
+```
+
+
+
+### 解决
+
+> 将数组转化成List，使用List的equals方法，它会逐个比较元素里面的内容
+
+```java
+@AllArgsConstructor
+@EqualsAndHashCode
+public class ResultA {
+    private Object data;
+}
+
+@AllArgsConstructor
+@EqualsAndHashCode
+public class ResultB<T> {
+    private T data;
+}
+
+@Test
+public void testResultASolved(){
+    ResultA result1 = new ResultA(Arrays.toString(new int[]{3, 20}));
+    ResultA result2 = new ResultA(Arrays.toString(new int[]{3, 20}));
+    assertEquals(result1, result2); // 成功
+}
+
+@Test
+public void testResultBSolved() {
+    ResultB<List<Integer>> result1 = new ResultB(Arrays.toString(new int[]{3, 20}));
+    ResultB<List<Integer>> result2 = new ResultB(Arrays.toString(new int[]{3, 20}));
+    assertEquals(result1, result2); // 成功
+}
+```
+
+
 
 
 
@@ -140,3 +251,13 @@ private static final org.apache.log4j.Logger log = org.apache.log4j.Logger.getLo
 ​            
 
 SpringBoot默认支持的就是 slf4j + logback 的日志框架，所以也不用再多做啥设定，直接就可以用在 SpringBoot project上，log 系列注解最常用的就是 @Slf4j
+
+
+
+
+
+## idea 将lombok注解转换成代码
+
+可以通过`refactor`菜单的`delombok`选项将lombok的注解转换为java代码
+
+![image-20230516174859076](/images/javahelper/image-20230516174859076.png)
