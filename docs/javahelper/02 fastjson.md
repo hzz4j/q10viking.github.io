@@ -64,11 +64,38 @@ public void test_object(){
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Book {
     private String name;
     private String author;
 }
 ```
+
+> 注意属性为null，fastjson默认是不会输出这个json字段的
+
+```java
+@Test
+public void test_object2(){
+    Book book = new Book();
+    book.setName("Thinking in Java");
+    System.out.println(JSON.toJSONString(book)); // {"name":"Thinking in Java"}
+}
+```
+
+那么前端如果需要这个字段，如何输出呢？使用[Features_· alibaba/fastjson2 Wiki (github.com)](https://github.com/alibaba/fastjson2/wiki/Features_cn)
+
+```java
+    @Test
+    public void test_object3(){
+        Book book = new Book();
+        book.setName("Thinking in Java");
+        System.out.println(JSON.toJSONString(book, JSONWriter.Feature.WriteNulls)); // {"author":null,"name":"Thinking in Java"}
+    }
+```
+
+`null`在json中是合法的字段
+
+![image-20230516225739888](/images/javahelper/image-20230516225739888.png)
 
 
 
@@ -359,11 +386,276 @@ public void test_enum_reader(){
 
 [fastjson2_annotations · alibaba/fastjson2 Wiki (github.com)](https://github.com/alibaba/fastjson2/wiki/fastjson2_annotations#11-定制名字序列化和反序列化)
 
+### @JSONField
+
+> 重命名
+
+```java
+// 配置在属性上
+@JSONField(name = "ID")
+public int id;
+
+// 配置在getter/setter上
+private int id;
+
+@JSONField(name = "ID")
+public int getId() {return id;}
+
+@JSONField(name = "ID")
+public void setId(int value) {this.id = id;}
+```
+
+>  忽略字段
+>
+> 可以通过JSONField.serialize配置该字段是否要序列化，通过JSONField.deserialize配置该字段是否需要反序列化
+
+```java
+@JSONField(serialize = false,deserialize = false)
+public Date date;
+```
+
+
+
+> 配置字段的序列化输出的的顺序
+>
+> 可以通过JSONField.ordinal来配置序列化输出的顺序
+
+```java
+@JSONField(ordinal = 1)
+public String type;
+
+@JSONField(ordinal = 2)
+public String templateId;
+```
+
+
+
+### @JSONType
+
+可以配置改类型的所有字段的NamingStrategy、序列化和反序列化忽略的字段、JSONReader/JSONWriter的Features等
+
+> 序列化和反序列化忽略的字段
+
+```java
+@JSONType(ignores = {"id2", "id3"})
+public static class Bean {
+    public int getId() {
+        return 101;
+    }
+
+    public int getId2() {
+        return 102;
+    }
+
+    public int getId3() {
+        return 103;
+    }
+}
+```
+
+
+
+## Feature
+
+**可以全局配置**
+
+```java
+JSON.toJSONString(book, JSONWriter.Feature.WriteNulls)
+```
+
+也可以局部配置，在具体的类上,但是我在测试的时候，只有驼峰生效了，feature并没有生效。所以**推荐使用全局配置**也方便前端做统一
+
+```java
+@JSONType(
+    naming = PropertyNamingStrategy.SnakeCase, // 驼峰转下划线
+    serializeFeatures = {
+        JSONWriter.Feature.NullAsDefaultValue,
+        JSONWriter.Feature.PrettyFormat,
+        JSONWriter.Feature.UseSingleQuotes
+    })
+public class Goods {}
+```
+
+[Features_cn · alibaba/fastjson2 Wiki (github.com)](https://github.com/alibaba/fastjson2/wiki/Features_cn)
+
+在fastjson 2.x中，有两个Feature，分别用来配置序列化和反序列化的行为。
+
+- JSONWriter.Feature 配置序列化的行为
+- JSONReader.Feature 配置反序列化的行为
+
+### 序列化常用
+
+| JSONWriter.Feature   | 介绍                                                         |
+| -------------------- | ------------------------------------------------------------ |
+| WriteNulls           | 序列化输出空值字段                                           |
+| NullAsDefaultValue   | 将空置输出为缺省值，Number类型的null都输出为0，String类型的null输出为""，数组和Collection类型的输出为[] |
+| WriteBooleanAsNumber | 将true输出为1，false输出为0                                  |
+| PrettyFormat         | 格式化输出                                                   |
+| UseSingleQuotes      | 使用单引号（但是注意字段key单引号不符合规范）如会生成这样子`{'pass_word':'123456'}` 所以不建议使用这个，使用默认的双引号就好 |
+
+
+
+---------
+
+| JSONReader.Feature     | 介绍                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| SupportSmartMatch      | ❤️默认下是camel case精确匹配，打开这个后，能够智能识别`camel/upper/pascal/snake/Kebab`五中case |
+| IgnoreSetNullValue     | 忽略输入为null的字段                                         |
+| InitStringFieldAsEmpty | 初始化String字段为空字符串""                                 |
 
 
 
 
-## 通过Features配置序列化和反序列化的行为
+
+
+
+### 常用配置😊😊
+
+::: tip
+
+通过全局配置进行试验
+
+:::
+
+> 序列化
+
+```java
+@Getter
+@Setter
+public class Goods {
+    @JSONField(ordinal = 1)
+    private String name;
+
+    // 不会转驼峰，优先级更高
+    @JSONField(name = "authorAlias", ordinal = 2)
+    private String author;
+
+    @JSONField(serialize = false)
+    private Double price;
+
+    private List<Integer> subGoods;
+}
+
+@Test
+public void test_context(){
+    //配置
+    // 使用下划线命名法
+    ObjectWriterProvider provider = new ObjectWriterProvider(PropertyNamingStrategy.SnakeCase);
+    // 配置feature
+    JSONWriter.Context context = new JSONWriter.Context(provider,
+                                                        JSONWriter.Feature.NullAsDefaultValue,
+                                                        JSONWriter.Feature.PrettyFormat
+                                                       );
+
+    Goods goods = new Goods();
+    goods.setName("Java编程思想");
+    goods.setPrice(100d);
+    goods.setAuthor("Bruce Eckel");
+
+    System.out.println(JSON.toJSONString(goods, context));
+}
+
+/**
+     * {
+     * 	"sub_goods":[],
+     * 	"name":"Java编程思想",
+     * 	"authorAlias":"Bruce Eckel"
+     * }
+     */
+```
+
+
+
+> 反序列化
+
+```java
+@Test
+public void test_context2(){
+    // 配置feature
+    JSONReader.Context context = new JSONReader.Context(
+        JSONReader.Feature.SupportSmartMatch, // 自动匹配snake, camel等
+        JSONReader.Feature.IgnoreSetNullValue,
+        JSONReader.Feature.InitStringFieldAsEmpty
+    );
+
+    String json = "{\"sub_goods\":[],\"name\":\"Java编程思想\",\"authorAlias\":\"Bruce Eckel\"}";
+    Goods goods = JSON.parseObject(json, Goods.class,context);
+    System.out.println(goods);
+    // Goods(name=Java编程思想, author=Bruce Eckel, price=null, subGoods=[])
+}
+```
+
+如果没有sub_goods,则为null
+
+```java
+String json = "{\"name\":\"Java编程思想\",\"authorAlias\":\"Bruce Eckel\"}";
+// Goods(name=Java编程思想, author=Bruce Eckel, price=null, subGoods=null)
+```
+
+
+
+## 属性命名策略❤️
+
+[PropertyNamingStrategy_cn · alibaba/fastjson Wiki (github.com)](https://github.com/alibaba/fastjson/wiki/PropertyNamingStrategy_cn)
+
+常用
+
+- 驼峰转下划线PropertyNamingStrategy.SnakeCase
+- 下划线转驼峰PropertyNamingStrategy.PascalCase
+
+```
+SnakeCase: 所有字母都是小写并以下划线分隔，如number_of_donuts
+KebabCase：和Snake很像只不过分隔符不同：如 number-of-donuts
+CamelCase：java常用的驼峰形式：如 numberOfDonuts
+PascalCase：与CamelCase很像，只不过首字母大写，如: NumberOfDonuts
+```
+
+
+
+```java
+@Data
+@AllArgsConstructor
+public class User {
+    private String userName;
+    private String passWord;
+}
+
+
+
+@Test
+public void test_camel_to_snakeCase(){
+    //配置
+    // 使用下划线命名法
+    ObjectWriterProvider provider = new ObjectWriterProvider(PropertyNamingStrategy.SnakeCase);
+    // 配置feature
+    JSONWriter.Context context = new JSONWriter.Context(provider, JSONWriter.Feature.PrettyFormat);
+
+    User user = new User("Q10Viking", "123456");
+    System.out.println(JSON.toJSONString(user, context));
+}
+
+/**
+     * {
+     * 	"pass_word":"123456",
+     * 	"user_name":"Q10Viking"
+     * }
+     */
+
+@Test
+public void test_snake_to_camel_case(){
+    // 配置feature
+    JSONReader.Context context = new JSONReader.Context(
+        JSONReader.Feature.SupportSmartMatch, // 自动匹配snake, camel等
+        JSONReader.Feature.IgnoreSetNullValue,
+        JSONReader.Feature.InitStringFieldAsEmpty
+    );
+
+    String json = "{\"pass_word\":\"123456\",\"user_name\":\"Q10Viking\"}";
+    User user = JSON.parseObject(json, User.class,context);
+    System.out.println(user); // User(userName=Q10Viking, passWord=123456)
+}
+
+```
 
 
 
