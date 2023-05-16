@@ -44,7 +44,7 @@ typora-root-url: ..\.vuepress\public
 
 ::: tip
 
-本次试验使用fastjson2的2.0.32版本
+本次试验使用fastjson2的2.0.32版本,[Source Code](https://github.com/Q10Viking/learncode/tree/main/javahelper/fastjson2-demo/src/main/java/org/hzz)
 
 :::
 
@@ -231,7 +231,7 @@ fastjson在序列化枚举类型的时候，会使用枚举字面常量。比如
 
 这里我们使用fastjson2,ObjectWriter替换了ObjectSerializer，但是兼容版本还保留着ObjectSerializer
 
-[Source Code]()
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/javahelper/fastjson2-demo/src/main/java/org/hzz/enumm)
 
 > 定义一个枚举类型，然后实现一个接口，方便我们接下来实现的ObjectWriter和ObjectReader通用。
 

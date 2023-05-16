@@ -112,3 +112,85 @@ public enum ResultCode implements ICode{
 
 
 
+
+
+## 泛型遍历枚举😘
+
+[Iterate enum values using java generics - Stack Overflow](https://stackoverflow.com/questions/2205891/iterate-enum-values-using-java-generics)
+
+```java
+public <T extends Enum<T>> void enumValues(Class<T> enumType) {
+        for (T c : enumType.getEnumConstants()) {
+             System.out.println(c.name());
+        }
+}
+```
+
+在实现反序列化泛型的时候，我遇到了这个问题,根据上面的方法解决了
+
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/javahelper/fastjson2-demo/src/main/java/org/hzz/enumm)
+
+```java
+public interface  Status {
+    Integer getCode();
+}
+
+public enum HttpStatus implements Status{
+    OK(200,"OK"),
+    BAD_REQUEST(400,"Bad Request"),
+    NOT_FOUND(404,"Not Found");
+    private Integer code;
+    private String desc;
+    private HttpStatus(Integer code, String desc){
+        this.code = code;
+        this.desc = desc;
+    }
+
+    @Override
+    public Integer getCode(){
+        return this.code;
+    }
+}
+```
+
+
+
+```java
+import com.alibaba.fastjson2.JSONReader;
+import com.alibaba.fastjson2.reader.ObjectReader;
+
+import java.lang.reflect.Type;
+
+public class StatusEnumReader implements ObjectReader {
+
+    /**
+     * 读取json中的status字段，转换为枚举类型
+     * @param jsonReader
+     * @param fieldType 比如：class org.hzz.enumm.HttpStatus
+     * @param fieldName 比如：status
+     * @param features 一个标识位 6755399441055744
+     * @return
+     */
+    @Override
+    public Object readObject(JSONReader jsonReader, Type fieldType, Object fieldName, long features) {
+        // 读取json中的status字段，转换为枚举类型
+        Integer code = jsonReader.read(Integer.class);
+        if(code == null) return null;
+
+        // 从class转变为枚举类型
+        if (fieldType instanceof Class && Enum.class.isAssignableFrom((Class<?>) fieldType)) {
+            Class<?> clazz = (Class<?>) fieldType;
+            Enum<?>[] enums = (Enum<?>[]) clazz.getEnumConstants();
+            for (Enum<?> e : enums) {
+                if (e instanceof Status && ((Status) e).getCode().equals(code)) {
+                    return e;
+                }
+            }
+        }
+        return null;
+    }
+}
+```
+
+
+
