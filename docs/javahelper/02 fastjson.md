@@ -32,6 +32,62 @@ typora-root-url: ..\.vuepress\public
 
 ## 常用语法
 
+### 普通对象
+
+```java
+@Test
+public void test_object(){
+    Book book = new Book("Thinking in Java", "Bruce Eckel");
+    String json = JSON.toJSONString(book); // {"author":"Bruce Eckel","name":"Thinking in Java"}
+    Book book1 = JSON.parseObject(json, Book.class);
+    // assertSame(book, book1); // 失败，报错
+    assertEquals(book, book1); // 成功
+}
+
+@Data
+@AllArgsConstructor
+public class Book {
+    private String name;
+    private String author;
+}
+```
+
+
+
+### 序列化集合
+
+```java
+@Test
+public void test_list_tojson(){
+    List<Entity> entities = new ArrayList<Entity>();
+    entities.add(new Entity(1,"Q10Viking"));
+    entities.add(new Entity("hzz"));
+    System.out.println(JSON.toJSONString(entities)); // [{"id":1,"name":"Q10Viking"},{"name":"hzz"}]
+}
+
+@Test
+public void test_json_tolist(){
+    String json = "[{\"id\":1,\"name\":\"Q10Viking\"},{\"name\":\"hzz\"}]";
+    List<Entity> entities = JSON.parseArray(json, Entity.class);
+    // [Entity(id=1, name=Q10Viking, value=null), Entity(id=null, name=hzz, value=null)]
+    System.out.println(Arrays.toString(entities.toArray()));
+}
+
+@Data
+public class Entity {
+    private Integer id;
+    private String name;
+    private Object value;
+
+    public Entity() {}
+    public Entity(Integer id, Object value) { this.id = id; this.value = value; }
+    public Entity(Integer id, String name) { this.id = id; this.name = name; }
+    public Entity(String name) { this.name = name; }
+}
+```
+
+
+
 
 
 ## mixin
@@ -44,11 +100,11 @@ typora-root-url: ..\.vuepress\public
 
 
 
-## JSONPath
+## JSONPath❤️
 
 [fastjson2/jsonpath_cn.md at main · alibaba/fastjson2 · GitHub](https://github.com/alibaba/fastjson2/blob/main/docs/jsonpath_cn.md)
 
-- 在FASTJSON2中，JSONPath是一等公民，支持通过JSONPath在不完整解析JSON Document的情况下，根据JSONPath读取内容
+- 在FASTJSON2中，JSONPath是一等公民，支持**通过JSONPath在不完整解析JSON Document的情况下，根据JSONPath读取内容**
 - 也支持用JSONPath对JavaBean求值，可以在Java框架中当做对象查询语言（OQL）来使用
 
 ### 支持语法
@@ -154,9 +210,16 @@ $['store']['book'][0]['title']
 
 
 
-### API
+### 使用
 
-> 重点是`JSONPath.eval`执行表达式
+> 重点是`JSONPath.eval`执行表达式,它有两个方法，通过jsonpath表达式既能从java对象也能从json字符串获取数据
+
+```java
+public static Object eval(String str, String path)
+public static Object eval(Object rootObject, String path)
+```
+
+
 
 ```java
 @Data
@@ -172,9 +235,7 @@ public class Entity {
 }
 ```
 
-
-
-> 简单对象
+#### 简单对象
 
 ```java
 @Test
@@ -193,6 +254,8 @@ public void test_jsonpath(){
 }
 ```
 
+#### 集合❤️
+
 > 读取集合所有元素的name
 
 ```java
@@ -203,6 +266,17 @@ public void read_list_name(){
     entities.add(new Entity("hzz"));
     List<String> result = (List<String>)JSONPath.eval(entities, "$[*].name");
     System.out.println(Arrays.toString(result.toArray())); // [Q10Viking, hzz]
+}
+```
+
+> 读取json的所有name
+
+```json
+@Test
+public void readNameFromJsonList(){
+    String json = "[{\"id\":1,\"name\":\"Q10Viking\"},{\"name\":\"hzz\"}]";
+    List<String> list = (List<String>)JSONPath.eval(json, "$[*].name");
+System.out.println(Arrays.toString(list.toArray())); // [Q10Viking, hzz]
 }
 ```
 

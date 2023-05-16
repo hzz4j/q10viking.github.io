@@ -97,3 +97,26 @@ typora-root-url: ..\.vuepress\public
 - Assumptions
   - `assumeTrue`
   - `assumeFalse`
+
+
+
+> assertEquals与assertSame的区别
+
+```java
+@Test
+public void test_object(){
+    Book book = new Book("Thinking in Java", "Bruce Eckel");
+    String json = JSON.toJSONString(book); // {"author":"Bruce Eckel","name":"Thinking in Java"}
+    Book book1 = JSON.parseObject(json, Book.class);
+    // assertSame(book, book1); // 失败，报错
+    assertEquals(book, book1); // 成功
+}
+
+@Data
+@AllArgsConstructor
+public class Book {
+    private String name;
+    private String author;
+}
+```
+
