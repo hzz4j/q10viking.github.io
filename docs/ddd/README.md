@@ -1,2 +1,3 @@
-[sabyrzhan/ddd-in-practice-in-java: 📖 🤓 🖥 My implementation of "Domain Driven Design in Practice" C# code in Java (github.com)](https://github.com/sabyrzhan/ddd-in-practice-in-java)
 
+
+[learning-note/DDD.md at master · rbmonster/learning-note · GitHub](https://github.com/rbmonster/learning-note/blob/master/src/main/java/com/toc/DDD.md)

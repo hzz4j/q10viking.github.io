@@ -59,6 +59,7 @@ const titles = {
   Feign: "Feign",
   ShardingJDBC: "ShardingJDBC",
   Interviews: "面试",
+  javahelper: "Java Helper"
 };
 
 module.exports = titles;
