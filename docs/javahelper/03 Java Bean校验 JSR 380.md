@@ -3,8 +3,9 @@ sidebarDepth: 3
 sidebar: auto
 prev:
   text: Back To 目录
-  link: /java/
+  link: /javahelper/
 typora-root-url: ..\.vuepress\public
+
 ---
 
 
@@ -156,7 +157,6 @@ Spring Validation是在Hibernate Validation基础之上的二次封装，以满�
 hiberate validator需要`jakarta.el`依赖是因为，message在定义的时候，可能会使用到表达式，如`必须小于${inclusive == true ? '或等于' : ''}{value}`
 
 ```java
-
 <dependency>
     <groupId>org.hibernate.validator</groupId>
     <artifactId>hibernate-validator</artifactId>
