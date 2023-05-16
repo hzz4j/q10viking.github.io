@@ -11,7 +11,7 @@ typora-root-url: ..\.vuepress\public
 
 [fastjson 2](https://github.com/alibaba/fastjson2/wiki)的wiki文档目前看还比较少，没有[fastjson1 wike](https://github.com/alibaba/fastjson/wiki)全面，比如`TypeReference`的介绍使用都没有
 
-
+[fastjson2 2.0.32 javadoc (com.alibaba.fastjson2)](https://javadoc.io/doc/com.alibaba.fastjson2/fastjson2/latest/index.html)
 
 `FASTJSON 2`是一个性能极致并且简单易用的Java JSON库。
 
@@ -22,6 +22,8 @@ typora-root-url: ..\.vuepress\public
 
 ## 依赖
 
+
+
 ```java
 <dependency>
     <groupId>com.alibaba.fastjson2</groupId>
@@ -30,7 +32,21 @@ typora-root-url: ..\.vuepress\public
 </dependency>
 ```
 
+与fastjson1兼容的版本：官网说-》如果原来使用`fastjson 1.2.x`版本，可以使用兼容包，兼容包不能保证100%兼容，请仔细测试验证，发现问题请及时反馈
 
+```java
+<dependency>
+    <groupId>com.alibaba</groupId>
+    <artifactId>fastjson</artifactId>
+    <version>2.0.32</version>
+</dependency>
+```
+
+::: tip
+
+本次试验使用fastjson2的2.0.32版本
+
+:::
 
 ## 常用语法
 
@@ -56,7 +72,7 @@ public class Book {
 
 
 
-### 序列化集合
+### 集合
 
 ```java
 @Test
@@ -186,6 +202,164 @@ Map<Integer, Model> map = parseToMap(json, Integer.class, Model.class);
 assertEquals("ddd", map.get(1).name);
 assertEquals("zzz", map.get(2).name);
 ```
+
+
+
+### 枚举❤️
+
+fastjson在序列化枚举类型的时候，会使用枚举字面常量。比如
+
+```json
+{"data":"hello","status":"OK"}
+```
+
+但是我们期望的是具体的值，比如
+
+```json
+{"data":"hello","status": 200}
+```
+
+
+
+#### 实现
+
+> 使用serializeUsing，我在实验的时候，使用的是2.0.31版本，这个版本没有ObjectSerializer接口[[QUESTION\]fastjson2 的 serializeUsing属性 不再支持了？ · Issue #1449 · alibaba/fastjson2 (github.com)](https://github.com/alibaba/fastjson2/issues/1449)
+
+然后11小时之前，发布了2.0.32版本，其中修复了这个问题。[Release fastjson 2.0.32发布 · alibaba/fastjson2 (github.com)](https://github.com/alibaba/fastjson2/releases/tag/2.0.32)
+
+版本1的ObjectSerializer使用，参考[Fastjson处理枚举 - 个人文章 - SegmentFault 思否](https://segmentfault.com/a/1190000039984173)
+
+这里我们使用fastjson2,ObjectWriter替换了ObjectSerializer，但是兼容版本还保留着ObjectSerializer
+
+[Source Code]()
+
+> 定义一个枚举类型，然后实现一个接口，方便我们接下来实现的ObjectWriter和ObjectReader通用。
+
+```java
+public interface  Status {
+    Integer getCode();
+}
+
+public enum HttpStatus implements Status{
+    OK(200,"OK"),
+    BAD_REQUEST(400,"Bad Request"),
+    NOT_FOUND(404,"Not Found");
+    private Integer code;
+    private String desc;
+    private HttpStatus(Integer code, String desc){
+        this.code = code;
+        this.desc = desc;
+    }
+
+    @Override
+    public Integer getCode(){
+        return this.code;
+    }
+}
+```
+
+
+
+> 序列化与反序列化实现
+
+```java
+import com.alibaba.fastjson2.JSONReader;
+import com.alibaba.fastjson2.reader.ObjectReader;
+
+import java.lang.reflect.Type;
+
+public class StatusEnumReader implements ObjectReader {
+
+    /**
+     * 读取json中的status字段，转换为枚举类型
+     * @param jsonReader
+     * @param fieldType 比如：class org.hzz.enumm.HttpStatus
+     * @param fieldName 比如：status
+     * @param features 一个标识位 6755399441055744
+     * @return
+     */
+    @Override
+    public Object readObject(JSONReader jsonReader, Type fieldType, Object fieldName, long features) {
+        // 读取json中的status字段，转换为枚举类型
+        Integer code = jsonReader.read(Integer.class);
+        if(code == null) return null;
+
+        // 从class转变为枚举类型
+        if (fieldType instanceof Class && Enum.class.isAssignableFrom((Class<?>) fieldType)) {
+            Class<?> clazz = (Class<?>) fieldType;
+            Enum<?>[] enums = (Enum<?>[]) clazz.getEnumConstants();
+            for (Enum<?> e : enums) {
+                if (e instanceof Status && ((Status) e).getCode().equals(code)) {
+                    return e;
+                }
+            }
+        }
+        return null;
+    }
+}
+```
+
+```java
+public class StatusEnumWriter implements ObjectWriter {
+    @Override
+    public void write(JSONWriter jsonWriter, Object object, Object fieldName, Type fieldType, long features) {
+        if(object == null) jsonWriter.writeNull();
+        if(object instanceof Status){
+            jsonWriter.writeInt32(((Status)object).getCode());
+        }else{
+            throw new RuntimeException("not support type"+object.getClass().getName());
+        }
+    }
+}
+```
+
+
+
+> 使用
+
+```java
+@Data
+@AllArgsConstructor
+public class R<T>  {
+    T data;
+
+    @JSONField(serializeUsing = StatusEnumWriter.class,
+               deserializeUsing = StatusEnumReader.class)
+    HttpStatus status;
+
+    public static <T> R<T> ok(T t){
+        return new R<T>(t,HttpStatus.OK);
+    }
+}
+```
+
+
+
+> 测试
+
+```java
+@Test
+public void test_enum_writer(){
+    String json = JSON.toJSONString(R.ok("hello"));
+    System.out.println(json); // {"data":"hello","status":200}
+}
+
+@Test
+public void test_enum_reader(){
+    String json = "{\"data\":\"hello\",\"status\":200}";
+    R<String> r = JSON.parseObject(json,R.class);
+    System.out.println(r); // R(data=hello, status=OK)
+    assertEquals(r.getStatus(),HttpStatus.OK); // true
+}
+```
+
+
+
+## Annotations❤️
+
+[fastjson2_annotations · alibaba/fastjson2 Wiki (github.com)](https://github.com/alibaba/fastjson2/wiki/fastjson2_annotations#11-定制名字序列化和反序列化)
+
+
 
 
 
