@@ -90,13 +90,102 @@ public class Entity {
 
 
 
-### TypeReference泛型处理
+### TypeReference泛型处理❤️
 
 [TypeReference · alibaba/fastjson Wiki (github.com)](https://github.com/alibaba/fastjson/wiki/TypeReference)
 
 
 
+#### 单参数
 
+```java
+@Data
+public class Result<T>{
+    T data;
+    Status status;
+    public Result(T t,Status status){
+        this.data = t;
+        this.status = status;
+    }
+}
+
+@Test
+public void single_test(){
+    Result<List<Integer>> result = new Result(Arrays.asList(3,20), Status.OK);
+    String json = JSON.toJSONString(result);
+    // 反序列化
+    Result<List<Integer>> result1 = JSON.parseObject(json, new TypeReference<Result<List<Integer>>>() {
+    });
+    assertEquals(result, result1); // 成功
+}
+```
+
+> 官方建议使用如下的方式，性能更高
+
+```java
+private static final Type type = new TypeReference<Result<List<Integer>>>(){}.getType();
+@Test
+public void single_test2(){
+    Result<List<Integer>> result = new Result(Arrays.asList(3,20), Status.OK);
+    String json = JSON.toJSONString(result);
+    // 反序列化
+    Result<List<Integer>> result1 = JSON.parseObject(json, type);
+    assertEquals(result, result1); // 成功
+}
+```
+
+#### 多参数
+
+```java
+@Data
+public class MultiResult <T,R>{
+    final T data1;
+    final R data2;
+}
+private static final Type type2 = new TypeReference<MultiResult<List<Integer>,List<String>>>() {}.getType();
+@Test
+public void multi_test(){
+    MultiResult<List<Integer>,List<String>> multiResult = new MultiResult(Arrays.asList(3,20),
+                                                                          Arrays.asList("hzz","Q10Viking"));
+    String json = JSON.toJSONString(multiResult);
+    System.out.println(json); // {"data1":[3,20],"data2":["hzz","Q10Viking"]}
+    // 反序列化
+    MultiResult<List<Integer>,List<String>> multiResult1 = JSON.parseObject(json,type2);
+    assertEquals(multiResult, multiResult1); // 成功
+}
+```
+
+
+
+#### 封装
+
+```java
+public class Response<T> {
+     public T data;
+}
+public static <T> Response<T> parseToMap(String json, Class<T> type) {
+     return JSON.parseObject(json, 
+                            new TypeReference<Response<T>>(type) {});
+}
+```
+
+
+
+```java
+public static <K, V> Map<K, V> parseToMap(String json, 
+                                            Class<K> keyType, 
+                                            Class<V> valueType) {
+     return JSON.parseObject(json, 
+                            new TypeReference<Map<K, V>>(keyType, valueType) {
+                            });
+}
+
+// 可以这样使用
+String json = "{1:{name:\"ddd\"},2:{name:\"zzz\"}}";
+Map<Integer, Model> map = parseToMap(json, Integer.class, Model.class);
+assertEquals("ddd", map.get(1).name);
+assertEquals("zzz", map.get(2).name);
+```
 
 
 
