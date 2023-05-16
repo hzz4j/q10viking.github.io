@@ -79,3 +79,21 @@ typora-root-url: ..\.vuepress\public
 | @BeforeEach | 相当于Junit4的@Before |
 | @AfterEach  | 相当于Junit4的@After  |
 
+
+
+## assert
+
+- Assertions
+  - `assertTrue`
+  - `assertFalse`
+  - `assertNull`
+  - `assertNotNull`
+  - `assertEquals` 内容相同
+  - `assertNotEquals`
+  - `assertArrayEquals`
+  - `assertSame` 一样的引用地址
+  - `assertNotSame`
+  - `assertThrows`
+- Assumptions
+  - `assumeTrue`
+  - `assumeFalse`

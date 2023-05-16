@@ -152,4 +152,57 @@ $['store']['book'][0]['title']
 | $[1:]    | 第2个之后所有元素 |
 | $[1,2,3] | 集合中1,2,3个元素 |
 
-## 
+
+
+### API
+
+> 重点是`JSONPath.eval`执行表达式
+
+```java
+@Data
+public class Entity {
+    private Integer id;
+    private String name;
+    private Object value;
+
+    public Entity() {}
+    public Entity(Integer id, Object value) { this.id = id; this.value = value; }
+    public Entity(Integer id, String name) { this.id = id; this.name = name; }
+    public Entity(String name) { this.name = name; }
+}
+```
+
+
+
+> 简单对象
+
+```java
+@Test
+public void test_jsonpath(){
+    Entity entity = new Entity(123, new Object());
+    System.out.println(JSONPath.eval(entity,"$.id")); // 123
+    assertSame(entity.getValue(), JSONPath.eval(entity, "$.value"));
+    assertTrue(JSONPath.contains(entity, "$.value"));
+    // fastjson版本2中没有containsValue方法和size方法
+    // fastjson版本1中有containsValue方法和size方法
+
+    //assertTrue(JSONPath.containsValue(entity, "$.id", 123));
+    //assertTrue(JSONPath.containsValue(entity, "$.value", entity.getValue()));
+    //assertEquals(2, JSONPath.size(entity, "$"));
+    //assertEquals(0, JSONPath.size(new Object[], "$"));
+}
+```
+
+> 读取集合所有元素的name
+
+```java
+@Test
+public void read_list_name(){
+    List<Entity> entities = new ArrayList<Entity>();
+    entities.add(new Entity("Q10Viking"));
+    entities.add(new Entity("hzz"));
+    List<String> result = (List<String>)JSONPath.eval(entities, "$[*].name");
+    System.out.println(Arrays.toString(result.toArray())); // [Q10Viking, hzz]
+}
+```
+
