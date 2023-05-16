@@ -256,7 +256,7 @@ SpringBoot默认支持的就是 slf4j + logback 的日志框架，所以也不�
 
 
 
-## idea 将lombok注解转换成代码
+## idea 将lombok注解转换成代码❤️
 
 可以通过`refactor`菜单的`delombok`选项将lombok的注解转换为java代码
 
