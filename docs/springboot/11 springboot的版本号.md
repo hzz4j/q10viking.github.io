@@ -51,3 +51,6 @@ For example , the following dependency would always download the latest 1.8 deve
     </dependency>
 ```
 
+
+
+https://stackoverflow.com/questions/2107484/what-is-the-difference-between-springs-ga-rc-and-m2-releases
