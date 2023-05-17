@@ -17,7 +17,7 @@ typora-root-url: ..\.vuepress\public
 
 ## springboot工程约定
 
-![8821](https://gitee.com/q10viking/PictureRepos/raw/master/images//202112151249225.jpg)
+![8821](/images/springboot/202112151249225.png)
 
 ## Application启动类
 
@@ -97,4 +97,33 @@ public class Application {
     </plugins>
 </build>
 ```
+
+
+
+### 推荐这样配置
+
+> 因为parent只允许一个，推荐在development中配置
+
+```xml
+<dependencyManagement>
+        <dependencies>
+            <!--SpringBoot的版本管理-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-parent</artifactId>
+                <version>2.7.11</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+    </dependencies>
+```
+
+[Developing with Spring Boot-starters](https://docs.spring.io/spring-boot/docs/2.7.11/reference/html/using.html#using.build-systems.starters)提供了很多starters
 
