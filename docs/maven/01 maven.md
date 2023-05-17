@@ -9,9 +9,48 @@ typora-root-url: ..\.vuepress\public
 
 
 
+
+
+## Maven项目管理工具
+
+**maven** 是一个**项目管理工具**，主要作用是在项目开发阶段对Java项目进行**依赖管理**和**项目构建**
+
+**依赖管理**：就是对jar包的管理。通过导入maven坐标，就相当于将仓库中的jar包导入了当前项目中。
+
+**项目构建**：通过maven的一个命令就可以完成项目从清理、编译、测试、报告、打包，部署整个过程
+
+<img src="/images/maven/image-20201230110306512.png" alt="image-20201230110306512" style="zoom:67%;" />
+
+
+
+
+
 ## mvn命令
 
-- mvn install 从远程仓库下载jar到本地仓库
+- mvn install命令完成了项目编译、单元测试、打包功能，同时把打好的可执行jar包（war包或其它形式的包）布署到本地maven仓库，但没有布署到远程maven私服仓库
+- mvn deploy命令完成了项目编译、单元测试、打包功能，同时把打好的可执行jar包（war包或其它形式的包）布署到本地maven仓库和远程maven私服仓库
+  
+
+
+
+## 依赖范围scope
+
+
+
+![image-20230517201733989](/images/maven/image-20230517201733989.png)
+
+- compile 默认scope
+
+
+
+## optional可选依赖
+
+> 在Springboot中自动配置大量使用到了
+
+[Maven实战-maven中的可选依赖](https://blog.csdn.net/lovejj1994/article/details/80283240)
+
+- A引入依赖B，B里面又引入依赖C，如果在B中设置依赖C为optional 为true,那么A不会看到C
+- 如果A与B是父子关系，如B是父工程，A继承了这个工程，那么无论B中引入的依赖C，那么不管C是否设置为optional，A都能看到C
 
 
 
