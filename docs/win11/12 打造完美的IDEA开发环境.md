@@ -11,6 +11,8 @@ typora-root-url: ..\.vuepress\public
 
 
 
+### 
+
 ## Theme
 
 VSCode Theme
@@ -52,5 +54,29 @@ VSCode Theme
 
 ```
 shift+alt 光标
+```
+
+
+
+## 插件
+
+
+
+### maven helper
+
+[Maven Helper插件的Dependency Analyzer来分析工程的多级依赖关系](https://blog.csdn.net/qq_25809317/article/details/109506462)
+
+
+
+### editStarter
+
+[IntelliJ IDEA中如何再次调出springboot的依赖窗口，随时可以根据喜好导入和移除插件](https://blog.csdn.net/qq_38138069/article/details/102528587)
+
+方便添加spring boot starter
+
+```
+https://start.spring.io/
+可以替换成阿里的
+https://start.aliyun.com/
 ```
 

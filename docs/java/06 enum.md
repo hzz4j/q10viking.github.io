@@ -76,6 +76,24 @@ public class Main {
 
 
 
+### 父类
+
+```java
+public abstract class Enum<E extends Enum<E>>
+        implements Comparable<E>, Serializable {
+
+    // 字面常量
+    private final String name;
+
+    public final String name() {
+        return name;
+    }
+
+    private final int ordinal;
+```
+
+
+
 ## 信息的聚合
 
 ```java
@@ -191,6 +209,8 @@ public class StatusEnumReader implements ObjectReader {
     }
 }
 ```
+
+
 
 
 
