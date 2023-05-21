@@ -783,6 +783,12 @@ public class ValidatePhone {
 
 
 
+## SpringBoot集成
+
+
+
+
+
 ## 参考
 
 [The Java Community Process(SM) Program - JSRs: Java Specification Requests - detail JSR# 380 (jcp.org)](https://jcp.org/en/jsr/detail?id=380)

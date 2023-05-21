@@ -39,12 +39,12 @@ VSCode Theme
 
 
 
-| 快捷键   | 说明             |
-| -------- | ---------------- |
-| ctrl+g   | go to line       |
-| ctrl+F12 | 查看当前类的方法 |
-| ctrl+b   | 打开关闭project  |
-|          |                  |
+| 快捷键     | 说明             |
+| ---------- | ---------------- |
+| ctrl+g     | go to line       |
+| ctrl+F12   | 查看当前类的方法 |
+| ctrl+b     | 打开关闭project  |
+| ctrl+alt+b | 右边工具栏       |
 
 
 

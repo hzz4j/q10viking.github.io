@@ -21,6 +21,25 @@ typora-root-url: ..\.vuepress\public
 
 
 
+
+
+```sql
+`created` datetime DEFAULT NULL COMMENT '创建时间',
+```
+
+对应
+
+```
+@TableField(value = "created")
+private Date created;
+```
+
+
+
+
+
+
+
 ## 资源
 
 [MySQL Full Course for free 🐬 (2023) - YouTube](https://www.youtube.com/watch?v=5OdVJbNCSso)
