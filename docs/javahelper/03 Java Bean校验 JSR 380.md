@@ -785,6 +785,8 @@ public class ValidatePhone {
 
 ## SpringBoot集成
 
+[java - Difference between @Valid and @Validated in Spring - Stack Overflow](https://stackoverflow.com/questions/36173332/difference-between-valid-and-validated-in-spring)
+
 ```xml
 <dependency>
     <groupId>org.springframework.boot</groupId>
@@ -793,6 +795,110 @@ public class ValidatePhone {
 ```
 
 ![image-20230521205346332](/images/springboot/image-20230521205346332.png)
+
+> `@Validated` annotation is a class-level annotation that we can use to tell `Spring` to validate parameters that are passed into a method of the annotated class.
+
+and
+
+> `@Valid` annotation on method parameters and fields to tell `Spring` that we want a method parameter or field to be validated.
+
+
+
+### 测试
+
+#### 参数直接加@NotNull之类
+
+![image-20230522185910101](/images/springboot/image-20230522185910101.png)
+
+> 成功
+
+```java
+@RequestMapping("/user")
+@Tag(name = "用户管理",description = "用户管理(增删改查)",
+        externalDocs = @ExternalDocumentation(url = "https://q10viking.github.io",description = "我的博客"))
+@Validated
+public interface UserApi {
+
+
+    @Operation(summary = "查询用户信息",description = "根据用户id查询用户信息")
+    @GetMapping("/queryById")
+    Result<UserVO> queryById(@Valid @NotNull @RequestParam(name="userid",required = false) Long userId);
+}
+
+```
+
+
+
+> 成功
+
+```java
+@RequestMapping("/user")
+@Tag(name = "用户管理",description = "用户管理(增删改查)",
+        externalDocs = @ExternalDocumentation(url = "https://q10viking.github.io",description = "我的博客"))
+@Validated
+public interface UserApi {
+
+
+    @Operation(summary = "查询用户信息",description = "根据用户id查询用户信息")
+    @GetMapping("/queryById")
+    Result<UserVO> queryById(@NotNull @RequestParam(name="userid",required = false) Long userId);
+}
+```
+
+
+
+> 不会进行校验
+
+```java
+@RequestMapping("/user")
+@Tag(name = "用户管理",description = "用户管理(增删改查)",
+        externalDocs = @ExternalDocumentation(url = "https://q10viking.github.io",description = "我的博客"))
+public interface UserApi {
+
+
+    @Operation(summary = "查询用户信息",description = "根据用户id查询用户信息")
+    @GetMapping("/queryById")
+    Result<UserVO> queryById(@NotNull @RequestParam(name="userid",required = false) Long userId);
+}
+```
+
+
+
+> 不会进行校验
+
+```java
+@RequestMapping("/user")
+@Tag(name = "用户管理",description = "用户管理(增删改查)",
+        externalDocs = @ExternalDocumentation(url = "https://q10viking.github.io",description = "我的博客"))
+public interface UserApi {
+
+
+    @Operation(summary = "查询用户信息",description = "根据用户id查询用户信息")
+    @GetMapping("/queryById")
+    Result<UserVO> queryById(@Valid @NotNull @RequestParam(name="userid",required = false) Long userId);
+}
+```
+
+
+
+> 不会进行校验
+
+```java
+@RequestMapping("/user")
+@Tag(name = "用户管理",description = "用户管理(增删改查)",
+        externalDocs = @ExternalDocumentation(url = "https://q10viking.github.io",description = "我的博客"))
+public interface UserApi {
+
+
+    @Operation(summary = "查询用户信息",description = "根据用户id查询用户信息")
+    @GetMapping("/queryById")
+    Result<UserVO> queryById(@Validated @NotNull @RequestParam(name="userid",required = false) Long userId);
+}
+```
+
+
+
+
 
 
 

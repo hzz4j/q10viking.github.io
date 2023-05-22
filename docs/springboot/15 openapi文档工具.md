@@ -86,5 +86,64 @@ public class AppSpringdocConfig {
 
 
 
+## 常用注解
+
+[OpenAPI规范](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md)
+
+### @Tag
+
+一般用在用在类上
+
+```java
+@RestController
+@RequestMapping("/user")
+@Tag(name = "用户管理",description = "用户管理(增删改查)",
+        externalDocs = @ExternalDocumentation(url = "https://q10viking.github.io",description = "我的博客"))
+public class UserController {
+}
+```
+
+![image-20230522152028202](/images/springboot/image-20230522152028202.png)
+
+
+
+### @Operation
+
+方法描述
+
+```java
+@Operation(summary = "查询用户信息",description = "根据用户id查询用户信息")
+@GetMapping("/queryById")
+default Result<UserVO> queryById(
+    @Valid @NotNull @RequestParam(name="userid",required = false)
+    Long userId){
+    throw new NotImplementedException("接口未实现");
+}
+```
+
+![image-20230522190936620](/images/springboot/image-20230522190936620.png)
+
+
+
+
+
+## open api
+
+[OpenAPI Specification - Version 3.0.3 | Swagger](https://swagger.io/specification/)
+
+> An OpenAPI definition can then be used by **documentation generation tools to display the API**, **code generation tools** to generate servers and clients in various programming languages, testing tools, and many other use cases.
+
+
+
+
+
+
+
+## 参考
+
+[OpenAPI规范](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md)
+
+[OpenAPI 3 Library for spring-boot  springdoc](https://springdoc.org/)
+
 
 
