@@ -24,6 +24,10 @@ docker pull mysql:8.0.32
 -e MYSQL_ROOT_PASSWORD=Root.123456
 ```
 
+![image-20230522225615217](/images/Docker/image-20230522225615217.png)
+
+
+
 打开终端
 
 ```sql

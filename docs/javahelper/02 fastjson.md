@@ -485,15 +485,30 @@ public class Goods {}
 
 ### 序列化常用
 
-| JSONWriter.Feature   | 介绍                                                         |
-| -------------------- | ------------------------------------------------------------ |
-| WriteNulls           | 序列化输出空值字段                                           |
-| NullAsDefaultValue   | 将空置输出为缺省值，Number类型的null都输出为0，String类型的null输出为""，数组和Collection类型的输出为[] |
-| WriteBooleanAsNumber | 将true输出为1，false输出为0                                  |
-| PrettyFormat         | 格式化输出                                                   |
-| UseSingleQuotes      | 使用单引号（但是注意字段key单引号不符合规范）如会生成这样子`{'pass_word':'123456'}` 所以不建议使用这个，使用默认的双引号就好 |
+| JSONWriter.Feature     | 介绍                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| WriteNulls             | 序列化输出空值字段                                           |
+| NullAsDefaultValue     | 将空置输出为缺省值，Number类型的null都输出为0，String类型的null输出为""，数组和Collection类型的输出为[] |
+| WriteBooleanAsNumber   | 将true输出为1，false输出为0                                  |
+| PrettyFormat           | 格式化输出                                                   |
+| UseSingleQuotes        | 使用单引号（但是注意字段key单引号不符合规范）如会生成这样子`{'pass_word':'123456'}` 所以不建议使用这个，使用默认的双引号就好 |
+| BrowserCompatible      | 在大范围超过JavaScript支持的整数，输出为字符串格式           |
+| WriteBigDecimalAsPlain | 序列化BigDecimal使用toPlainString，避免科学计数法            |
 
 
+
+> BrowserCompatible 在大范围超过JavaScript支持的整数，输出为字符串格式。因为前端会将大整形处理成精度丢失
+>
+> 还提供了一个类WriteLongAsString。文档中却没有写
+
+```js
+a = 1220708537638920191
+1220708537638920200
+```
+
+![img](/images/springboot/format,png)
+
+> 最好用String来处理
 
 ---------
 
