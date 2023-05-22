@@ -26,6 +26,8 @@ typora-root-url: ..\.vuepress\public
 ## 依赖
 
 > 基本上引入依赖，就能访问Swagger UI界面：`http://server:port/context-path/swagger-ui.html`，并且能看到Controller的入口
+>
+> OpenAPI 描述json.`http://server:port/context-path/v3/api-docs`这个我们在后面集成ReDoc的时候有用
 
 ```xml
 <properties>
@@ -127,6 +129,79 @@ default Result<UserVO> queryById(
 
 
 
+### @ApiResponse
+
+> 使用@ApiResponse的时候不要使用content,让swagger-ui自己去识别。因为我们返回的Result是一个泛型，而java不允许我们使用`Result<UserVo>.class`的形式
+
+```java
+@Operation(summary = "查询用户信息", description = "根据用户id查询用户信息")
+    @ApiResponse(responseCode = "200", description = "查询成功"
+            , content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Result.class))
+    })
+    @GetMapping("/queryById")
+    default Result<UserVO> queryById(
+            @Valid @NotNull @RequestParam(name="userid",required = false)
+            Long userId){
+        throw new NotImplementedException("接口未实现");
+    }
+```
+
+::: tip
+
+正确使用的方式
+
+:::
+
+```java
+@Operation(summary = "查询用户信息", description = "根据用户id查询用户信息")
+@ApiResponse(responseCode = "200", description = "查询成功")
+@GetMapping("/queryById")
+default Result<UserVO> queryById(
+    @Valid @NotNull @RequestParam(name="userid",required = false)
+    Long userId){
+    throw new NotImplementedException("接口未实现");
+}
+
+
+@Data
+public class Result<T>  {
+
+    @Schema(description = "返回码",example = "200")
+    @JSONField(ordinal = 0)
+    private String code;
+
+    @Schema(description = "返回信息",example = "success")
+    @JSONField(ordinal = 1)
+    private String msg;
+
+    @Schema(description = "返回数据")
+    @JSONField(ordinal = 2)
+    private T data;
+}
+
+@Data
+public class UserVO {
+
+    @Schema(description = "用户名",example = "q10viking",title = "用户名t")
+    private String name;
+
+    @Schema(description = "密码",example = "123456")
+    private String password;
+}
+
+
+```
+
+> swagger-ui的显示
+
+![image-20230522215545732](/images/springboot/image-20230522215545732.png)
+
+> ReDoc的显示
+
+![image-20230522220125965](/images/springboot/image-20230522220125965.png)
+
+
+
 
 
 ## open api
@@ -136,6 +211,24 @@ default Result<UserVO> queryById(
 > An OpenAPI definition can then be used by **documentation generation tools to display the API**, **code generation tools** to generate servers and clients in various programming languages, testing tools, and many other use cases.
 
 
+
+
+
+## ReDoc
+
+> 替换Swagger-UI的方案
+
+[Redocly/redoc: 📘 OpenAPI/Swagger-generated API Reference Documentation (github.com)](https://github.com/Redocly/redoc)
+
+
+
+
+
+
+
+只是文档提供,但是却并不像swagger-ui那样可以直接执行接口。 但是我还是觉得不错，因为，可以浏览文档，并且Schema显示比较清楚。
+
+[http://localhost:8080/api/redoc-ui/index.html](http://localhost:8080/api/redoc-ui/index.html)
 
 
 
