@@ -810,7 +810,7 @@ and
 
 ![image-20230522185910101](/images/springboot/image-20230522185910101.png)
 
-> 成功
+> 检验生效
 
 ```java
 @RequestMapping("/user")
@@ -829,7 +829,7 @@ public interface UserApi {
 
 
 
-> 成功
+> 检验生效
 
 ```java
 @RequestMapping("/user")
@@ -847,7 +847,7 @@ public interface UserApi {
 
 
 
-> 不会进行校验
+> 检验未生效
 
 ```java
 @RequestMapping("/user")
@@ -864,7 +864,7 @@ public interface UserApi {
 
 
 
-> 不会进行校验
+> 检验未生效
 
 ```java
 @RequestMapping("/user")
@@ -881,7 +881,7 @@ public interface UserApi {
 
 
 
-> 不会进行校验
+> 检验未生效
 
 ```java
 @RequestMapping("/user")
@@ -898,7 +898,174 @@ public interface UserApi {
 
 
 
+#### 参数为pojo
 
+```java
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class UserDTO {
+    @NotBlank(message = "用户名不能为空")
+    private String username;
+    private String password;
+    @NotNull(message = "邮箱不能为空")
+    private String email;
+    private Date created;
+}
+```
+
+![image-20230522191525069](/images/springboot/image-20230522191525069.png)
+
+> 检验生效
+
+```java
+@RequestMapping("/user")
+@Tag(name = "用户管理",description = "用户管理(增删改查)",
+        externalDocs = @ExternalDocumentation(url = "https://q10viking.github.io",description = "我的博客"))
+@Validated
+public interface UserApi {
+
+    @Operation(summary = "保存用户信息",description = "保存用户信息到数据库")
+    @PostMapping("/save")
+    default public Result<String> save( @Valid @RequestBody UserDTO userDTO) {
+        throw new NotImplementedException("接口未实现");
+    }
+    
+}
+```
+
+> 校验生效
+
+```java
+@RequestMapping("/user")
+@Tag(name = "用户管理",description = "用户管理(增删改查)",
+        externalDocs = @ExternalDocumentation(url = "https://q10viking.github.io",description = "我的博客"))
+public interface UserApi {
+
+    @Operation(summary = "保存用户信息",description = "保存用户信息到数据库")
+    @PostMapping("/save")
+    default public Result<String> save( @Valid @RequestBody UserDTO userDTO) {
+        throw new NotImplementedException("接口未实现");
+    }
+    
+}
+```
+
+
+
+> 校验未生效
+
+```java
+@RequestMapping("/user")
+@Tag(name = "用户管理",description = "用户管理(增删改查)",
+        externalDocs = @ExternalDocumentation(url = "https://q10viking.github.io",description = "我的博客"))
+@Validated
+public interface UserApi {
+
+    @Operation(summary = "保存用户信息",description = "保存用户信息到数据库")
+    @PostMapping("/save")
+    default public Result<String> save(@RequestBody UserDTO userDTO) {
+        throw new NotImplementedException("接口未实现");
+    }
+    
+}
+```
+
+
+
+> 检验生效
+
+```java
+@RequestMapping("/user")
+@Tag(name = "用户管理",description = "用户管理(增删改查)",
+        externalDocs = @ExternalDocumentation(url = "https://q10viking.github.io",description = "我的博客"))
+@Validated
+public interface UserApi {
+
+    @Operation(summary = "保存用户信息",description = "保存用户信息到数据库")
+    @PostMapping("/save")
+    default public Result<String> save(@Validated @RequestBody UserDTO userDTO) {
+        throw new NotImplementedException("接口未实现");
+    }
+    
+}
+```
+
+
+
+> 检验生效
+
+```java
+@RequestMapping("/user")
+@Tag(name = "用户管理",description = "用户管理(增删改查)",
+        externalDocs = @ExternalDocumentation(url = "https://q10viking.github.io",description = "我的博客"))
+public interface UserApi {
+
+    @Operation(summary = "保存用户信息",description = "保存用户信息到数据库")
+    @PostMapping("/save")
+    default public Result<String> save(@Validated @RequestBody UserDTO userDTO) {
+        throw new NotImplementedException("接口未实现");
+    }
+    
+}
+```
+
+
+
+### 小结👍
+
+@valid有级联效果
+
+@validated是告诉spring，对@NotNull和@NotBlank等进行校验。
+
+>  对于Pojo，正常使用检验规则就好
+
+```java
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class UserDTO {
+    @NotBlank(message = "用户名不能为空")
+    private String username;
+    private String password;
+    @NotNull(message = "邮箱不能为空")
+    private String email;
+    private Date created;
+}
+```
+
+> 对于Controller,建议在类上加上@Validated，告诉spring要检验方法中的@NotNull等，对于方法统一加上@Valid，来统一方法参数的POJO与当个使用校验规则@NotNull等
+
+```java
+import org.springframework.validation.annotation.Validated;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
+@RequestMapping("/user")
+@Tag(name = "用户管理",description = "用户管理(增删改查)",
+        externalDocs = @ExternalDocumentation(url = "https://q10viking.github.io",description = "我的博客"))
+@Validated
+public interface UserApi {
+
+    @Operation(summary = "查询用户信息",description = "根据用户id查询用户信息")
+    @GetMapping("/queryById")
+    default Result<UserVO> queryById(
+            @Valid @NotNull @RequestParam(name="userid",required = false)
+            Long userId){
+        throw new NotImplementedException("接口未实现");
+    }
+
+
+    @Operation(summary = "保存用户信息",description = "保存用户信息到数据库")
+    @PostMapping("/save")
+    default public Result<String> save(@Valid @RequestBody UserDTO userDTO) {
+        throw new NotImplementedException("接口未实现");
+    }
+
+}
+```
 
 
 
