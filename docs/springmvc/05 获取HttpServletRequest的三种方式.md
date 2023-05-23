@@ -65,8 +65,8 @@ public class TestController implements TestApi{
 
 ## 区别
 
-[(2条消息) Spring注入的成员属性HttpServletRequest是线程安全的吗？【享学Spring MVC】_YourBatman的博客-CSDN博客](https://blog.csdn.net/f641385712/article/details/104579949)
+参考[Spring注入的成员属性HttpServletRequest是线程安全的吗](https://blog.csdn.net/f641385712/article/details/104579949)，里面有关于属性注入为request代理的代码分析
 
-属性注入的是一个代理类。所以不会有安全问题
+属性注入的是一个代理类。底层是通过RequestContextHolder获取的，所以不会有安全问题
 
 ![image-20230523231151252](/images/springboot/image-20230523231151252.png)
