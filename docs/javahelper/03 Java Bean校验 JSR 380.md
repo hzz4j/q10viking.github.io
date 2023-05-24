@@ -783,6 +783,48 @@ public class ValidatePhone {
 
 
 
+## getter起作用
+
+> 一般我们都会这样定义
+
+```java
+@Data
+public class EmailQueryDTO {
+    @Email(message = "邮箱格式不正确")
+    private String email;
+}
+```
+
+```java
+public class EmailQueryDTO {
+    private String email;
+
+    public @Email(message = "getter邮箱不正确") String getEmail() {
+        return email;
+    }
+
+    public void setEmail(@Email(message = "setter邮箱不正确") String email) {
+        this.email = email;
+    }
+}
+```
+
+通过测试，起作用的是getter方法
+
+```json
+{
+    "Current Timestamp": "2023-05-24 14:34:47",
+    "Status": 400,
+    "Errors": [
+        "email:getter邮箱不正确"
+    ]
+}
+```
+
+
+
+
+
 ## SpringBoot集成
 
 [Source Code](https://github.com/Q10Viking/learncode/tree/main/ddd/multi-layers)
