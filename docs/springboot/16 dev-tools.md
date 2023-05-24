@@ -23,3 +23,10 @@ typora-root-url: ..\.vuepress\public
 </dependencies>
 ```
 
+
+
+## IDEA设置
+
+[2021版IDEA+SpringBoot中Devtools无效问题_idea devtools无效](https://blog.csdn.net/weixin_43326050/article/details/123169825)
+
+> 记得重启idea
