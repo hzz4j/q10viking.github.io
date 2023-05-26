@@ -94,3 +94,11 @@ DDD 的分层架构在不断发展。最早是传统的四层架构；后来四�
 ![image-20230526201335344](/images/ddd/image-20230526201335344.png)
 
 在服务设计时，你并不一定能完整预测有哪些下层服务会被多少个上 层服务组装，因此领域层通常只提供一些原子服务，比如领域服务 a、b、c。但随着系统功 能增强和外部接入越来越多，应用服务会不断丰富。有一天你会发现领域服务 b 和 c 同时 多次被多个应用服务调用了，执行顺序也基本一致。这时你可以考虑将 b 和 c 合并，再将 应用服务中 b、c 的功能下沉到领域层，演进为新的领域服务（b+c）。这样既减少了服务 的数量，也减轻了上层服务组合和编排的复杂度
+
+
+
+## 实战
+
+[springboot-ddd-demo/demo/src/main at master · xlorne/springboot-ddd-demo · GitHub](https://github.com/xlorne/springboot-ddd-demo/tree/master/demo/src/main)
+
+[sandokandias/spring-boot-ddd: Spring boot with domain driven design (github.com)](https://github.com/sandokandias/spring-boot-ddd)
