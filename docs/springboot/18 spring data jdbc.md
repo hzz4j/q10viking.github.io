@@ -9,7 +9,7 @@ typora-root-url: ..\.vuepress\public
 
 
 
-[Spring Data JPA 的启动载入方式_安迪源文的博客-CSDN博客](https://blog.csdn.net/andy_zhang2007/article/details/95774766)
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/springboot/spring-data-jdbc-with-h2)
 
 ## 依赖
 
@@ -29,6 +29,50 @@ typora-root-url: ..\.vuepress\public
 ![image-20230527004201865](/images/ddd/image-20230527004201865.png)
 
 
+
+::: details
+
+```xml
+<dependencyManagement>
+    <dependencies>
+        <!--SpringBoot的版本管理-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-dependencies</artifactId>
+            <version>2.7.12</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jdbc</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <scope>runtime</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.18</version>
+    </dependency>
+</dependencies>
+```
+
+:::
 
 ## 使用H2作为内存数据库
 
