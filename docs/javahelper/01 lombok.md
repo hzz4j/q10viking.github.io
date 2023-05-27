@@ -198,7 +198,7 @@ public void testResultBSolved() {
 
 
 
-## **@Value**
+## **@Value**👍
 
 也是整合包，但是他会把所有的变量都设成 final 的，其他的就跟 @Data 一样，等于同时加了以下注解
 
@@ -212,6 +212,112 @@ public void testResultBSolved() {
 上面那个 @Data 适合用在 POJO 或 DTO 上，而这个 @Value 注解，则是适合加在值不希望被改变的类上，像是某个类的值当创建后就不希望被更改，只希望我们读它而已，就适合加上 @Value 注解，也就是 @Value for immutable class
 
 另外注意一下，此 lombok 的注解 @Value 和另一个 Spring 的注解 @Value 撞名，在 import 时不要 import 错了
+
+
+
+### 举例
+
+> 注意staticConstructor属性
+
+```java
+@Value(staticConstructor = "commandOf")
+public class PerformPayment implements PaymentCommand{
+    private final CustomerId customerId;
+    private final PaymentIntent paymentIntent;
+    private final PaymentMethod paymentMethod;
+    private final Transaction transaction;
+    private final LocalDateTime timestamp = LocalDateTime.now();
+}
+```
+
+生成的代码
+
+```java
+public final class PerformPayment implements PaymentCommand{
+    private final CustomerId customerId;
+    private final PaymentIntent paymentIntent;
+    private final PaymentMethod paymentMethod;
+    private final Transaction transaction;
+    private final LocalDateTime timestamp = LocalDateTime.now();
+
+    private PerformPayment(CustomerId customerId, PaymentIntent paymentIntent, PaymentMethod paymentMethod, Transaction transaction) {
+        this.customerId = customerId;
+        this.paymentIntent = paymentIntent;
+        this.paymentMethod = paymentMethod;
+        this.transaction = transaction;
+    }
+
+    public static PerformPayment commandOf(CustomerId customerId, PaymentIntent paymentIntent, PaymentMethod paymentMethod, Transaction transaction) {
+        return new PerformPayment(customerId, paymentIntent, paymentMethod, transaction);
+    }
+
+    public CustomerId getCustomerId() {
+        return this.customerId;
+    }
+
+    public PaymentIntent getPaymentIntent() {
+        return this.paymentIntent;
+    }
+
+    public PaymentMethod getPaymentMethod() {
+        return this.paymentMethod;
+    }
+
+    public Transaction getTransaction() {
+        return this.transaction;
+    }
+
+    public LocalDateTime getTimestamp() {
+        return this.timestamp;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof PerformPayment)) return false;
+        final PerformPayment other = (PerformPayment) o;
+        final Object this$customerId = this.getCustomerId();
+        final Object other$customerId = other.getCustomerId();
+        if (this$customerId == null ? other$customerId != null : !this$customerId.equals(other$customerId))
+            return false;
+        final Object this$paymentIntent = this.getPaymentIntent();
+        final Object other$paymentIntent = other.getPaymentIntent();
+        if (this$paymentIntent == null ? other$paymentIntent != null : !this$paymentIntent.equals(other$paymentIntent))
+            return false;
+        final Object this$paymentMethod = this.getPaymentMethod();
+        final Object other$paymentMethod = other.getPaymentMethod();
+        if (this$paymentMethod == null ? other$paymentMethod != null : !this$paymentMethod.equals(other$paymentMethod))
+            return false;
+        final Object this$transaction = this.getTransaction();
+        final Object other$transaction = other.getTransaction();
+        if (this$transaction == null ? other$transaction != null : !this$transaction.equals(other$transaction))
+            return false;
+        final Object this$timestamp = this.getTimestamp();
+        final Object other$timestamp = other.getTimestamp();
+        if (this$timestamp == null ? other$timestamp != null : !this$timestamp.equals(other$timestamp)) return false;
+        return true;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $customerId = this.getCustomerId();
+        result = result * PRIME + ($customerId == null ? 43 : $customerId.hashCode());
+        final Object $paymentIntent = this.getPaymentIntent();
+        result = result * PRIME + ($paymentIntent == null ? 43 : $paymentIntent.hashCode());
+        final Object $paymentMethod = this.getPaymentMethod();
+        result = result * PRIME + ($paymentMethod == null ? 43 : $paymentMethod.hashCode());
+        final Object $transaction = this.getTransaction();
+        result = result * PRIME + ($transaction == null ? 43 : $transaction.hashCode());
+        final Object $timestamp = this.getTimestamp();
+        result = result * PRIME + ($timestamp == null ? 43 : $timestamp.hashCode());
+        return result;
+    }
+
+    public String toString() {
+        return "PerformPayment(customerId=" + this.getCustomerId() + ", paymentIntent=" + this.getPaymentIntent() + ", paymentMethod=" + this.getPaymentMethod() + ", transaction=" + this.getTransaction() + ", timestamp=" + this.getTimestamp() + ")";
+    }
+}
+```
 
 
 
