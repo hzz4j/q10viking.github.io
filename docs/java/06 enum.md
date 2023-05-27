@@ -76,6 +76,37 @@ public class Main {
 
 
 
+### valueOf
+
+> Returns the enum constant of this type with the specified name. The string must match exactly an identifier used to declare an enum constant in this type. (Extraneous whitespace characters are not permitted.)
+>
+> 返回具有指定名称的此类型的枚举常量。参数字符串必须与用于声明此类型中的枚举常量的标识符完全匹配。（不允许使用额外的空白字符。）
+
+```java
+public class PaymentMethodTest {
+    public enum PaymentMethod {
+        CREDIT_CARD("信用卡"),
+        ALIPAY("支付宝"),
+        WECHATPAY("微信支付");
+        private String name;
+        PaymentMethod(String name) {
+            this.name = name;
+        }
+    }
+
+    public static void main(String[] args) {
+        PaymentMethod creditCard = PaymentMethod.valueOf("CREDIT_CARD");
+        
+        System.out.println(creditCard.name);
+        // 非法参数：No enum constant org.hzz.test.PaymentMethodTest.PaymentMethod.支付宝
+        //PaymentMethod 支付宝 = PaymentMethod.valueOf("支付宝");
+        //System.out.println(支付宝.name);
+    }
+}
+```
+
+
+
 ### 父类
 
 ```java
