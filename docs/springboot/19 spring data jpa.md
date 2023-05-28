@@ -23,11 +23,373 @@ springdata data jpa的优点：通过实体映射数据库，并且有DDD聚合�
 
 本次试验，通过实体映射的优势，我们采用了两个不同的关系型数据库，一个是H2一个是Mysql.
 
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/springboot/spring-boot-jpa-ddd)
+
+## 配置
+
+> application.yml
+
+```yaml
+spring:
+  profiles:
+    active: '@spring-boot.profiles.active@'
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+
+logging:
+  level:
+    org.hibernate.sql: debug
+    org.hibernate.type: trace
+```
+
+> application-mysql.yml
+
+```yaml
+hzz:
+  use: mysql
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ddd?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: Root.123456
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+
+```
 
 
 
+> application-h2.yml
 
-### ddl-auto
+```yaml
+hzz:
+  use: h2
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: root
+    password: Root.123456
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.H2Dialect
+
+```
+
+
+
+> pom.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.hzz</groupId>
+    <artifactId>spring-boot-jpa-ddd</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <resource.delimiter>@</resource.delimiter>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!--SpringBoot的版本管理-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.7.12</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.18</version>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>mysql</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <spring-boot.profiles.active>mysql</spring-boot.profiles.active>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                    <version>8.0.25</version>
+                    <scope>runtime</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>h2</id>
+            <properties>
+                <spring-boot.profiles.active>h2</spring-boot.profiles.active>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>com.h2database</groupId>
+                    <artifactId>h2</artifactId>
+                    <scope>runtime</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.7.12</version>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+</project>
+```
+
+
+
+## 实体
+
+> Student.java
+
+```java
+package org.hzz.entity;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+@Data
+@NoArgsConstructor
+@Entity
+@Table(name = "student")
+public class Student {
+    @Id
+    @Column
+    private String id;
+
+    @Column
+    private String name;
+
+    @Column
+    private String grade;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "student_hobbies", joinColumns = @JoinColumn(name = "student_id"))
+    private Set<String> hobbies = new HashSet<>();
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "student_book", joinColumns = @JoinColumn(name = "student_id"))
+    private List<Book> books = new ArrayList<>();
+
+    public void addBook(Book book) {
+        books.add(book);
+    }
+
+    public void addHobby(String hobby) {
+        hobbies.add(hobby);
+    }
+}
+
+```
+
+> Book.java
+
+```java
+package org.hzz.entity;
+
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Embeddable
+public class Book {
+    private String name;
+    private String author;
+}
+
+```
+
+
+
+## Repository
+
+```java
+package org.hzz.repository;
+
+import org.hzz.entity.Student;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface StudentCrudRepository extends JpaRepository<Student, String> {
+}
+
+```
+
+
+
+## 测试
+
+```java
+@SpringBootApplication
+@EnableJpaRepositories(basePackages = "org.hzz.repository")
+@EntityScan(basePackages = "org.hzz.entity")
+public class Application implements CommandLineRunner {
+    @Value("${hzz.use}")
+    private String databaseName;
+
+    @Autowired
+    private StudentCrudRepository studentCrudRepository;
+
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class);
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        System.out.println("Hzz Use: " + databaseName);
+        System.out.println("增加学生信息：");
+        Student student = new Student();
+        student.setId(UUID.randomUUID().toString());
+        student.setName("hzz");
+        student.setGrade("六年级");
+        student.addBook(new Book("领域驱动设计", "Eric Evans"));
+        student.addBook(new Book("Java编程思想", "Bruce Eckel"));
+        student.addBook(new Book("Java并发编程实战", "Brian Goetz"));
+
+        student.addHobby("篮球");
+        student.addHobby("足球");
+        student.addHobby("乒乓球");
+        studentCrudRepository.save(student);
+        System.out.println("查询所有学生信息：");
+        studentCrudRepository.findAll().forEach(System.out::println);
+    }
+}
+```
+
+
+
+> controller rest api测试 [localhost:8080/student/findAll](http://localhost:8080/student/findAll)
+
+```json
+[
+    {
+        "id": "2990dbe2-ca21-405d-92ef-cf67ef329b90",
+        "name": "hzz",
+        "grade": "六年级",
+        "hobbies": [
+            "足球",
+            "篮球",
+            "乒乓球"
+        ],
+        "books": [
+            {
+                "name": "领域驱动设计",
+                "author": "Eric Evans"
+            },
+            {
+                "name": "Java编程思想",
+                "author": "Bruce Eckel"
+            },
+            {
+                "name": "Java并发编程实战",
+                "author": "Brian Goetz"
+            }
+        ]
+    }
+]
+```
+
+
+
+### h2
+
+
+
+![image-20230529011718001](/images/maven/image-20230529011718001.png)
+
+[http://localhost:8080/h2-console](http://localhost:8080/h2-console)
+
+
+
+![image-20230529011838779](/images/maven/image-20230529011838779.png)
+
+![image-20230529011903372](/images/maven/image-20230529011903372.png)
+
+![image-20230529011932618](/images/maven/image-20230529011932618.png)
+
+### mysql
+
+![image-20230529011420191](/images/maven/image-20230529011420191.png)
+
+![image-20230529011623124](/images/maven/image-20230529011623124.png)
+
+![image-20230529011557645](/images/maven/image-20230529011557645.png)
+
+
+
+![image-20230529011652442](/images/maven/image-20230529011652442.png)
+
+## ddl-auto
 
 ```yaml
 spring:
