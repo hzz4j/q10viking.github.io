@@ -201,6 +201,28 @@ spring:
 
 
 
+### Bug
+
+```sh
+# 经过很多测试发现这种方式很多都是失效的
+mvn spring-boot:run -Dspring-boot.run.profiles=h2
+#对应在pom.xml的配置
+<plugin>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+    <configuration>
+        <profiles>
+        	<profile>h2</profile>
+        </profiles>
+    </configuration>
+</plugin>
+
+# 还是采用maven比较舒服
+mvn spring-boot:run -Ph2
+```
+
+
+
 > 在idea中直接运行项目，激活的是mysql
 
 ```sql
@@ -210,19 +232,17 @@ The following 1 profile is active: "mysql"
 > 指定使用profile
 
 ```sql
-mvn spring-boot:run -Dspring-boot.profiles.active=h2
+mvn spring-boot:run -Ph2
 
 The following 1 profile is active: "h2"
 ```
-
-![image-20230528153834224](/images/maven/image-20230528153834224.png)
 
 ---------
 
 
 
 ```sh
-mvn spring-boot:run -Dspring-boot.profiles.active=mysql
+mvn spring-boot:run -Pmysql
 
 The following 1 profile is active: "mysql"
 ```
@@ -270,24 +290,4 @@ mvn spring-boot:run -Dspring-boot.profiles.active=mysql
 --------------
 
 
-
-## Bug
-
-```sh
-# 经过很多测试发现这种方式很多都是失效的
-mvn spring-boot:run -Dspring-boot.run.profiles=staging
-#对应在pom.xml的配置
-<plugin>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-maven-plugin</artifactId>
-    <configuration>
-        <profiles>
-        	<profile>staging</profile>
-        </profiles>
-    </configuration>
-</plugin>
-
-# 还是采用比较舒服
-mvn spring-boot:run -Pstaging
-```
 
