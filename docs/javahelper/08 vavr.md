@@ -19,6 +19,8 @@ typora-root-url: ..\.vuepress\public
 
 :::
 
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/javahelper/vavr-tutorial)
+
 ## 依赖
 
 > 目前该教程基于最新的版本，[Vavr User Guide](https://docs.vavr.io/#_maven)

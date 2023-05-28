@@ -20,3 +20,20 @@ typora-root-url: ..\.vuepress\public
 
 
 ![image-20230526195709786](/images/ddd/image-20230526195709786.png)
+
+
+
+[Persisting DDD Aggregates | Baeldung](https://www.baeldung.com/spring-persisting-ddd-aggregates)
+
+[Citerus AB (github.com)](https://github.com/citerus)
+
+[meixuesong/aggregate-persistence (github.com)](https://github.com/meixuesong/aggregate-persistence)
+
+
+
+
+
+## 参考
+
+[sandokandias/spring-boot-ddd: Spring boot with domain driven design (github.com)](https://github.com/sandokandias/spring-boot-ddd)
+
