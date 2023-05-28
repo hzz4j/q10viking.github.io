@@ -264,3 +264,11 @@ public interface StuRepository  extends Repository<Student, Long> {
 [Spring Data JDBC: Implementing Domain Driven Design Aggregate | by Tahir Naqash | Medium](https://medium.com/@techphile/spring-data-jdbc-implementing-domain-driven-design-aggregate-4d6bac13c728)
 
 [领域设计：聚合与聚合根 (qq.com)](https://mp.weixin.qq.com/s?__biz=MzA4MjQ1ODIzMA==&mid=504716494&idx=1&sn=5e1616b133730e9b8c4e6008bad06947&chksm=04649fd7331316c16fac4e20b63396c766ffb7b6e81b3193cfa91f129deb971ecfce88afc78c#rd)
+
+
+
+### 日志
+
+[Show Hibernate SQL with Parameter Values in Spring Boot (howtodoinjava.com)](https://howtodoinjava.com/spring-boot/spring-data-jpa-sql-logging/)
+
+[Show Hibernate/JPA SQL Statements in Spring Boot | Baeldung](https://www.baeldung.com/sql-logging-spring-boot)
