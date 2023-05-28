@@ -19,7 +19,7 @@ typora-root-url: ..\.vuepress\public
 
 :::
 
-[Source Code]()
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/maven/spring-boot-profile-demo)
 
 ![image-20230528153116403](/images/maven/image-20230528153116403.png)
 
@@ -246,6 +246,12 @@ mvn spring-boot:run -Pmysql
 
 The following 1 profile is active: "mysql"
 ```
+
+
+
+在IDEA中也可以直接勾选需要激活的profile
+
+![image-20230528230247933](/images/maven/image-20230528230247933.png)
 
 
 
