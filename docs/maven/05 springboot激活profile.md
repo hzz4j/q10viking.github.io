@@ -66,7 +66,7 @@ spring中的profile和maven的profile还是有些区别的，要想上面的配�
 
 ### 默认配置application.yml
 
-> `spring-boot.profiles.active` 对应profile中property
+> `spring-boot.profiles.active` 对应profile中property,用于替换maven pom.xml中的值
 
 ```yaml
 spring:
@@ -231,6 +231,10 @@ The following 1 profile is active: "mysql"
 
 ## 小结
 
+> the most important profiles-related feature that Spring Boot brings is **profile-specific properties files.** These have to be named in the format *application-{profile}.properties*.
+>
+> Spring Boot will automatically load the properties in an *application.properties* file for all profiles and the ones in profile-specific *.properties* files only for the specified profile.
+
 ```java
 application.yml
 application-h2.yml
@@ -246,4 +250,44 @@ mvn spring-boot:run -Dspring-boot.profiles.active=mysql
 ```
 
 那么加入默认的配置文件`application.yml`，然后是`application-mysql.yml`.配置会覆盖。
+
+
+
+## 参考
+
+[Activating Spring Boot profile with Maven profile | Dev in Web (dolszewski.com)](http://dolszewski.com/spring/spring-boot-properties-per-maven-profile/)
+
+[Spring Boot Maven Plugin Documentation](https://docs.spring.io/spring-boot/docs/2.7.12/maven-plugin/reference/htmlsingle/#using.overriding-command-line)
+
+[maven - Using Spring Boot profiles with command line arguments - Stack Overflow](https://stackoverflow.com/questions/58641770/using-spring-boot-profiles-with-command-line-arguments)
+
+[How to configure Profiles in Spring Boot - DEV Community](https://dev.to/mhdzaid/how-to-configure-profiles-in-spring-boot-16jo)
+
+
+
+
+
+--------------
+
+
+
+## Bug
+
+```sh
+# 经过很多测试发现这种方式很多都是失效的
+mvn spring-boot:run -Dspring-boot.run.profiles=staging
+#对应在pom.xml的配置
+<plugin>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+    <configuration>
+        <profiles>
+        	<profile>staging</profile>
+        </profiles>
+    </configuration>
+</plugin>
+
+# 还是采用比较舒服
+mvn spring-boot:run -Pstaging
+```
 
