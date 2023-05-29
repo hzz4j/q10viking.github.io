@@ -377,9 +377,77 @@ public class Application implements CommandLineRunner {
 
 ![image-20230529011932618](/images/maven/image-20230529011932618.png)
 
+
+
+### mysql
+
+![image-20230529011420191](/images/maven/image-20230529011420191.png)
+
+![image-20230529011623124](/images/maven/image-20230529011623124.png)
+
+![image-20230529011557645](/images/maven/image-20230529011557645.png)
+
+
+
+![image-20230529011652442](/images/maven/image-20230529011652442.png)
+
+
+
+### 执行的sql
+
+> 无论是mysql还是h2数据库，hibernate插入的sql都是一样的，本案例中插入学生与查询学生，展示的sql
+
 ```sql
 -- 打印h2插入的sql
+insert 
+    into
+        student
+        (grade, name, id) 
+    values
+        (?, ?, ?)
+-- 3本书分别插入了一次，一共三次
+insert 
+    into
+        student_book
+        (student_id, author, name) 
+    values
+        (?, ?, ?)
+        
+insert 
+    into
+        student_book
+        (student_id, author, name) 
+    values
+        (?, ?, ?)
+        
+insert 
+    into
+        student_book
+        (student_id, author, name) 
+    values
+        (?, ?, ?)
 
+-- 3个hobby分别插入一次，一共三次
+insert 
+    into
+        student_hobbies
+        (student_id, hobbies) 
+    values
+        (?, ?)
+
+insert 
+    into
+        student_hobbies
+        (student_id, hobbies) 
+    values
+        (?, ?)
+        
+insert 
+    into
+        student_hobbies
+        (student_id, hobbies) 
+    values
+        (?, ?)
 -- 打印h2查询的sql,可以看到底层是没有使用join查询而是分批次
 select
         student0_.id as id1_0_,
@@ -408,18 +476,6 @@ select
 ```
 
 
-
-### mysql
-
-![image-20230529011420191](/images/maven/image-20230529011420191.png)
-
-![image-20230529011623124](/images/maven/image-20230529011623124.png)
-
-![image-20230529011557645](/images/maven/image-20230529011557645.png)
-
-
-
-![image-20230529011652442](/images/maven/image-20230529011652442.png)
 
 ## ddl-auto
 
