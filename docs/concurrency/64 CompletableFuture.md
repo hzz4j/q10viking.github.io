@@ -397,7 +397,7 @@ public class ThenapplyVsThenComposeDemo {
 
 > thenApply返回的是同一个CompletableFuturen类型
 >
-> 而thenCombine可以返回一个不同的CompletableFuture类型
+> 而thenCompose可以返回一个不同的CompletableFuture类型😘😘😘
 
 ```java
 public class ThenapplyVsThenComposeDemo2 {

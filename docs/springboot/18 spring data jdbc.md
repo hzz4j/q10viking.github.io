@@ -255,6 +255,39 @@ public interface StuRepository  extends Repository<Student, Long> {
 
 
 
+## 实体映射
+
+```java
+@Table("CLIENT")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Client {
+    @Id
+    private int id;
+    private String name;
+    private Set<Project> projects = new HashSet<>();
+
+    public void addProject(Project project){
+        projects.add(project);
+    }
+}
+```
+
+```java
+@Table("PROJECT")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Project {
+    @Id
+    private int id;
+    private String name;
+}
+```
+
+
+
 ## 测试
 
 ```java
