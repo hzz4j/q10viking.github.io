@@ -377,6 +377,38 @@ public class Application implements CommandLineRunner {
 
 ![image-20230529011932618](/images/maven/image-20230529011932618.png)
 
+```sql
+-- 打印h2插入的sql
+
+-- 打印h2查询的sql,可以看到底层是没有使用join查询而是分批次
+select
+        student0_.id as id1_0_,
+        student0_.grade as grade2_0_,
+        student0_.name as name3_0_ 
+    from
+        student student0_
+        
+
+select
+        hobbies0_.student_id as student_1_2_0_,
+        hobbies0_.hobbies as hobbies2_2_0_ 
+    from
+        student_hobbies hobbies0_ 
+    where
+        hobbies0_.student_id=?
+        
+select
+        books0_.student_id as student_1_1_0_,
+        books0_.author as author2_1_0_,
+        books0_.name as name3_1_0_ 
+    from
+        student_book books0_ 
+    where
+        books0_.student_id=?
+```
+
+
+
 ### mysql
 
 ![image-20230529011420191](/images/maven/image-20230529011420191.png)
