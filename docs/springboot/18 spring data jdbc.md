@@ -255,6 +255,38 @@ public interface StuRepository  extends Repository<Student, Long> {
 
 
 
+## 测试
+
+```java
+@SpringBootTest
+public class ClientRepositoryTest {
+
+    @Autowired
+    private ClientRepository clientRepository;
+
+    @Test
+    public void testAddClient() throws InterruptedException {
+        Client client = new Client();
+        client.setName("DDD-learning");
+        client.addProject(new Project(1, "Java"));
+        client.addProject(new Project(2, "GoLang"));
+        clientRepository.save(client);
+        clientRepository.findAll().forEach(System.out::println);
+        // Client(id=1, name=DDD-learning, projects=[Project(id=1, name=Java), Project(id=2, name=GoLang)])
+    }
+}
+```
+
+### 执行的sql
+
+```sql
+INSERT INTO "CLIENT" ("NAME") VALUES (?)
+INSERT INTO "PROJECT" ("CLIENT", "ID", "NAME") VALUES (?, ?, ?)
+INSERT INTO "PROJECT" ("CLIENT", "ID", "NAME") VALUES (?, ?, ?)
+```
+
+
+
 ## 参考
 
 [Spring Data JDBC - Reference Documentation](https://docs.spring.io/spring-data/jdbc/docs/current/reference/html/#jdbc.repositories)
