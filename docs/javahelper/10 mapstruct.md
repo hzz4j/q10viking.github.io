@@ -291,7 +291,7 @@ public class Employee {
     private int id;
     private String name;
     private Division division;
-    private Date startDt;
+    private String startDt;
 }
 
 @Data
@@ -359,7 +359,7 @@ public class EmployAndDTOTest {
 
         Employee employee = employeeAndDTOMapper.employeeDTOToEmployee(employeeDTO);
         log.info(employee.toString());
-        // Employee(id=1, name=Q10Viking, division=Division(id=1, name=IT), startDt=Fri Jun 02 21:53:09 GMT+08:00 2023)
+        // org.hzz.mapper.EmployAndDTOTest          : Employee(id=1, name=Q10Viking, division=Division(id=1, name=IT), startDt=02-06-2023 22:02:46)
     }
 
 }
@@ -382,7 +382,10 @@ public class EmployeeAndDTOMapperImpl extends EmployeeAndDTOMapper {
             Employee employee = new Employee();
             employee.setId(dto.getEmployeeId());
             employee.setName(dto.getEmployeeName());
-            employee.setStartDt(dto.getEmployeeStartDt());
+            if (dto.getEmployeeStartDt() != null) {
+                employee.setStartDt((new SimpleDateFormat("dd-MM-yyyy HH:mm:ss")).format(dto.getEmployeeStartDt()));
+            }
+
             employee.setDivision(this.divisionDTOtoDivision(dto.getDivision()));
             return employee;
         }
@@ -399,6 +402,40 @@ public class EmployeeAndDTOMapperImpl extends EmployeeAndDTOMapper {
         }
     }
 }
+```
+
+
+
+### 日期转换
+
+```java
+public class Employee {
+    // other fields
+    private Date startDt;
+    // getters and setters
+}
+
+public class EmployeeDTO {
+    // other fields
+    private String employeeStartDt;
+    // getters and setters
+}
+```
+
+> mapper
+
+```java
+@Mapping(target="employeeId", source = "entity.id")
+@Mapping(target="employeeName", source = "entity.name")
+@Mapping(target="employeeStartDt", source = "entity.startDt",
+         dateFormat = "dd-MM-yyyy HH:mm:ss")
+EmployeeDTO employeeToEmployeeDTO(Employee entity);
+
+@Mapping(target="id", source="dto.employeeId")
+@Mapping(target="name", source="dto.employeeName")
+@Mapping(target="startDt", source="dto.employeeStartDt",
+         dateFormat="dd-MM-yyyy HH:mm:ss")
+Employee employeeDTOtoEmployee(EmployeeDTO dto);
 ```
 
 
