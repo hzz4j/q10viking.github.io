@@ -208,7 +208,7 @@ public  void test() {
 
 
 
-## 与springboot集成
+## 与springboot集成😘
 
 > mapper可以注册成bean,交给spring管理
 
@@ -260,7 +260,7 @@ public class CarAndCarDTOMapperTest {
 
 
 
-### 中间生成的代码的形式
+### 中间生成的代码的形式👍
 
 ```java
 @Component
@@ -276,6 +276,126 @@ public class CarandCarDTOMapperImpl extends CarandCarDTOMapper {
             car.setDetails(carDto.getDescription());
             car.setName(this.carService.enrichName(carDto.getCarName()));
             return car;
+        }
+    }
+}
+```
+
+
+
+## 带有子对象
+
+```java
+@Data
+public class Employee {
+    private int id;
+    private String name;
+    private Division division;
+    private Date startDt;
+}
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Division {
+    private int id;
+    private String name;
+}
+
+// =========================================================
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class EmployeeDTO {
+    private int employeeId;
+    private String employeeName;
+    private DivisionDTO division;
+    private Date employeeStartDt;
+}
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class DivisionDTO {
+    private int id;
+    private String name;
+}
+```
+
+> mapper转换
+
+```java
+@Mapper(componentModel = "spring")
+public abstract class EmployeeAndDTOMapper {
+    @Mapping(target = "id", source = "dto.employeeId")
+    @Mapping(target = "name", source = "dto.employeeName")
+    @Mapping(target = "startDt", source = "dto.employeeStartDt", dateFormat = "dd-MM-yyyy HH:mm:ss")
+    public abstract Employee employeeDTOToEmployee(EmployeeDTO dto);
+
+    public abstract Division divisionDTOtoDivision(DivisionDTO dto);
+}
+```
+
+
+
+测试
+
+```java
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@Slf4j
+public class EmployAndDTOTest {
+    @Autowired
+    private EmployeeAndDTOMapper employeeAndDTOMapper;
+
+    @Test
+    public void testChildren(){
+        EmployeeDTO employeeDTO = new EmployeeDTO();
+        employeeDTO.setEmployeeId(1);
+        employeeDTO.setEmployeeName("Q10Viking");
+        employeeDTO.setEmployeeStartDt(new Date());
+        employeeDTO.setDivision(new DivisionDTO(1,"IT"));
+
+        Employee employee = employeeAndDTOMapper.employeeDTOToEmployee(employeeDTO);
+        log.info(employee.toString());
+        // Employee(id=1, name=Q10Viking, division=Division(id=1, name=IT), startDt=Fri Jun 02 21:53:09 GMT+08:00 2023)
+    }
+
+}
+```
+
+
+
+### 中间生成的对象
+
+```java
+@Component
+public class EmployeeAndDTOMapperImpl extends EmployeeAndDTOMapper {
+    public EmployeeAndDTOMapperImpl() {
+    }
+
+    public Employee employeeDTOToEmployee(EmployeeDTO dto) {
+        if (dto == null) {
+            return null;
+        } else {
+            Employee employee = new Employee();
+            employee.setId(dto.getEmployeeId());
+            employee.setName(dto.getEmployeeName());
+            employee.setStartDt(dto.getEmployeeStartDt());
+            employee.setDivision(this.divisionDTOtoDivision(dto.getDivision()));
+            return employee;
+        }
+    }
+
+    public Division divisionDTOtoDivision(DivisionDTO dto) {
+        if (dto == null) {
+            return null;
+        } else {
+            Division division = new Division();
+            division.setId(dto.getId());
+            division.setName(dto.getName());
+            return division;
         }
     }
 }
