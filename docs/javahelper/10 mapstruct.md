@@ -206,6 +206,79 @@ public  void test() {
 
 
 
+## 与springboot集成
+
+> mapper可以注册成bean,交给spring管理
+
+```java
+@Mapper(componentModel = "spring")
+public abstract class CarandCarDTOMapper {
+    //  not to make the injected bean private
+    // 如： private CarService carService; 因为mapstruct要继承这个类，所以不能private
+    @Autowired
+    protected CarService carService;
+
+    @Mapping(target = "details", source = "description")
+    @Mapping(target = "name", expression = "java(carService.enrichName(carDto.getCarName()))")
+    public abstract Car carDtoToCar(CarDto carDto);
+}
+
+@Service
+public class CarService {
+    public String enrichName(String name) {
+        return "-:: " + name + " ::-";
+    }
+}
+```
+
+> 测试
+
+```java
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@Slf4j
+public class CarAndCarDTOMapperTest {
+
+    @Autowired
+    private CarandCarDTOMapper carandCarDTOMapper;
+
+    @Test
+    public void test() {
+        CarDto carDto = new CarDto();
+        carDto.setCarName("大众奔驰");
+        carDto.setDescription("不怕奔驰和路虎，就怕大众带字母");
+
+        Car car = carandCarDTOMapper.carDtoToCar(carDto);
+        log.info(car.toString());
+        assertEquals(car.getName(), "-:: 大众奔驰 ::-");
+        assertEquals(car.getDetails(), carDto.getDescription());
+    }
+}
+```
+
+
+
+### 中间生成的代码的形式
+
+```java
+@Component
+public class CarandCarDTOMapperImpl extends CarandCarDTOMapper {
+    public CarandCarDTOMapperImpl() {
+    }
+
+    public Car carDtoToCar(CarDto carDto) {
+        if (carDto == null) {
+            return null;
+        } else {
+            Car car = new Car();
+            car.setDetails(carDto.getDescription());
+            car.setName(this.carService.enrichName(carDto.getCarName()));
+            return car;
+        }
+    }
+}
+```
+
 
 
 ## 参考
