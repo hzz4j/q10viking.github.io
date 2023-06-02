@@ -22,11 +22,15 @@ typora-root-url: ..\.vuepress\public
 ## 依赖配置
 
 ```xml
+<properties>
+    <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
+</properties>
+
 <dependencies>
     <dependency>
         <groupId>org.mapstruct</groupId>
         <artifactId>mapstruct</artifactId>
-        <version>1.5.3.Final</version>
+        <version>${org.mapstruct.version}</version>
     </dependency>
 </dependencies>
 
@@ -35,7 +39,7 @@ typora-root-url: ..\.vuepress\public
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.5.1</version>
+            <version>3.8.1</version>
             <configuration>
                 <source>1.8</source>
                 <target>1.8</target>
@@ -43,7 +47,7 @@ typora-root-url: ..\.vuepress\public
                     <path>
                         <groupId>org.mapstruct</groupId>
                         <artifactId>mapstruct-processor</artifactId>
-                        <version>1.5.3.Final</version>
+                        <version>${org.mapstruct.version}</version>
                     </path>
                 </annotationProcessorPaths>
             </configuration>
@@ -52,15 +56,162 @@ typora-root-url: ..\.vuepress\public
 </build>
 ```
 
+### 与lombok集成🍎
 
+[MapStruct 与lombok工作](https://mapstruct.org/documentation/stable/reference/html/#lombok)
 
+```xml
+<properties>
+    <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
+    <org.projectlombok.version>1.18.16</org.projectlombok.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+</properties>
 
+<dependencies>
+    <dependency>
+        <groupId>org.mapstruct</groupId>
+        <artifactId>mapstruct</artifactId>
+        <version>${org.mapstruct.version}</version>
+    </dependency>
 
+    <!-- lombok dependency should not end up on classpath -->
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${org.projectlombok.version}</version>
+        <scope>provided</scope>
+    </dependency>
+</dependencies>
 
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.8.1</version>
+            <configuration>
+                <source>1.8</source>
+                <target>1.8</target>
+                <annotationProcessorPaths>
+                    <path>
+                        <groupId>org.mapstruct</groupId>
+                        <artifactId>mapstruct-processor</artifactId>
+                        <version>${org.mapstruct.version}</version>
+                    </path>
+                    <path>
+                        <groupId>org.projectlombok</groupId>
+                        <artifactId>lombok</artifactId>
+                        <version>${org.projectlombok.version}</version>
+                    </path>
 
-
+                    <!-- additional annotation processor required as of Lombok 1.18.16 -->
+                    <path>
+                        <groupId>org.projectlombok</groupId>
+                        <artifactId>lombok-mapstruct-binding</artifactId>
+                        <version>0.2.0</version>
+                    </path>
+                </annotationProcessorPaths>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+```
 
 ## idea插件
 
 [MapStruct Support - IntelliJ IDEs Plugin | Marketplace (jetbrains.com)](https://plugins.jetbrains.com/plugin/10036-mapstruct-support)
 
+## Basic
+
+> 目标将`SimpleSource`转换成`SimpleDestination`
+
+```java
+@Data
+public class SimpleSource {
+    private String name;
+    private String description;
+}
+
+@Data
+public class SimpleDestination {
+    private String anotherName;
+    private String anotherDescription;
+}
+```
+
+> 编写一个mapper
+
+```java
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
+
+@Mapper
+public interface SimpleSourceToDestinationMapper {
+
+    @Mappings(
+            {
+                    @Mapping(source = "name", target = "anotherName"),
+                    @Mapping(source = "description", target = "anotherDescription")
+            }
+    )
+    SimpleDestination sourceToDestination(SimpleSource source);
+}
+```
+
+
+
+### 查看生成的中间代码
+
+> `mvn clean install`会生成一个实现类 `SimpleSourceToDestinationMapperImpl`  实现了`SimpleSourceToDestinationMapper`
+
+![image-20230602192326805](/images/javahelper/image-20230602192326805.png)
+
+```java
+public class SimpleSourceToDestinationMapperImpl implements SimpleSourceToDestinationMapper {
+    public SimpleSourceToDestinationMapperImpl() {
+    }
+
+    public SimpleDestination sourceToDestination(SimpleSource source) {
+        if (source == null) {
+            return null;
+        } else {
+            SimpleDestination simpleDestination = new SimpleDestination();
+            simpleDestination.setAnotherName(source.getName());
+            simpleDestination.setAnotherDescription(source.getDescription());
+            return simpleDestination;
+        }
+    }
+}
+```
+
+
+
+### 测试
+
+```java
+@Test
+public  void test() {
+    SimpleSourceToDestinationMapper mapper = Mappers.getMapper(SimpleSourceToDestinationMapper.class);
+    SimpleSource simpleSource = new SimpleSource();
+    simpleSource.setName("hzz");
+    simpleSource.setDescription("Q10Viking learning mapstruct tutorial");
+
+    SimpleDestination simpleDestination = mapper.sourceToDestination(simpleSource);
+    assertEquals(simpleSource.getName(), simpleDestination.getAnotherName());
+    assertEquals(simpleSource.getDescription(), simpleDestination.getAnotherDescription());
+}
+```
+
+
+
+
+
+## 参考
+
+[Quick Guide to MapStruct | Baeldung](https://www.baeldung.com/mapstruct)
+
+[MapStruct 1.5.5.Final Reference Guide官方文档](https://mapstruct.org/documentation/stable/reference/html/)
+
+[MapStruct 与lombok工作](https://mapstruct.org/documentation/stable/reference/html/#lombok)

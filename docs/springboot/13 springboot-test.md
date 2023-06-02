@@ -67,6 +67,37 @@ public class App {
 
 
 
+## 在不同包下
+
+![image-20230602203223534](/images/springboot/image-20230602203223534.png)
+
+> 要想成功注入，需要加上`@RunWith(SpringRunner.class)`
+
+```java
+import org.hzz.spring.service.CarService;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class CarAndCarDTOMapperTest {
+
+    @Autowired
+    private CarService carService;
+
+    @Test
+    public void test() {
+        System.out.println(carService);
+        System.out.println(carService.enrichName("success"));
+    }
+}
+```
+
+
+
 ## 参考
 
 [Testing in Spring Boot | Baeldung](https://www.baeldung.com/spring-boot-testing)
