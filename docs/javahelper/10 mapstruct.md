@@ -21,6 +21,8 @@ typora-root-url: ..\.vuepress\public
 
 ## 依赖配置
 
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/javahelper/mapstruct-tutorial)
+
 ```xml
 <properties>
     <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
