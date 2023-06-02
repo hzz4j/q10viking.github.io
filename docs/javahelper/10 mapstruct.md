@@ -440,6 +440,216 @@ Employee employeeDTOtoEmployee(EmployeeDTO dto);
 
 
 
+## 自定义转换
+
+
+
+```java
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Transaction {
+    private Long id;
+    private String uuid = UUID.randomUUID().toString();
+    private BigDecimal total;
+}
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class TransactionDTO {
+    private String uuid;
+    private Long totalInCents;
+}
+```
+
+
+
+> Mapper
+
+```java
+@Mapper(componentModel = "spring")
+public abstract class TransactionMapper {
+
+    public TransactionDTO transactionToTransactionDTO(Transaction transaction) {
+        if ( transaction == null ) {
+            return null;
+        }
+        TransactionDTO transactionDTO = new TransactionDTO();
+
+        transactionDTO.setUuid( transaction.getUuid() );
+        transactionDTO.setTotalInCents(transaction.getTotal().multiply(
+                new BigDecimal("100")
+        ).longValue());
+
+        return transactionDTO;
+    }
+
+    public  abstract List<TransactionDTO> toTransactionDTO(Collection<Transaction> transactions);
+}
+```
+
+
+
+### 中间生成的代码
+
+```java
+@Component
+public class TransactionMapperImpl extends TransactionMapper {
+    public TransactionMapperImpl() {
+    }
+
+    public List<TransactionDTO> toTransactionDTO(Collection<Transaction> transactions) {
+        if (transactions == null) {
+            return null;
+        } else {
+            List<TransactionDTO> list = new ArrayList(transactions.size());
+            Iterator var3 = transactions.iterator();
+
+            while(var3.hasNext()) {
+                Transaction transaction = (Transaction)var3.next();
+                list.add(this.transactionToTransactionDTO(transaction));
+            }
+
+            return list;
+        }
+    }
+}
+```
+
+
+
+### List转换⬆️
+
+
+
+## @BeforeMapping&@AfterMapping
+
+```java
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class AnotherCar {
+    protected int id;
+    protected String name;
+}
+
+public class BioDieselCar extends AnotherCar{
+    public BioDieselCar(int id, String name) {
+        super(id, name);
+    }
+}
+
+public class ElectricCar extends AnotherCar{
+    public ElectricCar(int id, String name) {
+        super(id, name);
+    }
+}
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class AnotherCarDTO {
+    private int id;
+    private String name;
+    private FuelType fuelType;
+}
+
+public enum FuelType {
+    ELECTRIC, BIO_DIESEL
+}
+```
+
+
+
+> mapper
+
+```java
+@Mapper(componentModel = "spring")
+public abstract class AnotherCarMapper {
+
+    @BeforeMapping
+    protected void enrichDTOWithFuelType(AnotherCar car,
+                                      @MappingTarget AnotherCarDTO carDTO){
+        if (car instanceof ElectricCar) {
+            carDTO.setFuelType(FuelType.ELECTRIC);
+        }
+
+        if (car instanceof BioDieselCar){
+            carDTO.setFuelType(FuelType.BIO_DIESEL);
+        }
+    }
+
+    public abstract AnotherCarDTO carToCarDto(AnotherCar car);
+
+    @AfterMapping
+    protected void convertNameToUpperCase(@MappingTarget AnotherCarDTO carDTO){
+        carDTO.setName(carDTO.getName().toUpperCase());
+    }
+}
+```
+
+
+
+> 测试
+
+```java
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@Slf4j
+public class AnotherCarMapperTest {
+
+    @Autowired
+    private AnotherCarMapper anotherCarMapper;
+
+    @Test
+    public void test(){
+        AnotherCar car = new BioDieselCar(1001, "q10_car");
+        AnotherCarDTO anotherCarDTO = anotherCarMapper.carToCarDto(car);
+        System.out.println(anotherCarDTO);
+        // AnotherCarDTO(id=1001, name=Q10_CAR, fuelType=BIO_DIESEL)
+    }
+}
+```
+
+
+
+### 生成的代码
+
+```java
+@Component
+public class AnotherCarMapperImpl extends AnotherCarMapper {
+    public AnotherCarMapperImpl() {
+    }
+
+    public AnotherCarDTO carToCarDto(AnotherCar car) {
+        if (car == null) {
+            return null;
+        } else {
+            AnotherCarDTO anotherCarDTO = new AnotherCarDTO();
+            this.enrichDTOWithFuelType(car, anotherCarDTO);
+            anotherCarDTO.setId(car.getId());
+            anotherCarDTO.setName(car.getName());
+            this.convertNameToUpperCase(anotherCarDTO);
+            return anotherCarDTO;
+        }
+    }
+}
+```
+
+
+
+### 
+
+
+
+## 使用建议
+
+- Springboot+lombok
+- mapstruct可以使用接口和抽象类，但是在spring结合下使用abstract.
+
+
+
 ## 参考
 
 [Quick Guide to MapStruct | Baeldung](https://www.baeldung.com/mapstruct)
