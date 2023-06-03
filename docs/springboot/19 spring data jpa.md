@@ -13,7 +13,7 @@ typora-root-url: ..\.vuepress\public
 
 ::: tip
 
-springdata data jpa的优点：通过实体映射数据库，并且有DDD聚合持久化的功能。
+springdata data jpa(**Java Persistence API**)的优点：通过实体映射数据库，并且有DDD聚合持久化的功能。
 
 :::
 
@@ -509,5 +509,3 @@ spring:
 ### 日志
 
 [Show Hibernate SQL with Parameter Values in Spring Boot (howtodoinjava.com)](https://howtodoinjava.com/spring-boot/spring-data-jpa-sql-logging/)
-
-[Show Hibernate/JPA SQL Statements in Spring Boot | Baeldung](

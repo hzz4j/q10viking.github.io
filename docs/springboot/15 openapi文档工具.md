@@ -35,14 +35,15 @@ typora-root-url: ..\.vuepress\public
 </properties>
 
 <dependencyManagement>
-    <!-- OpenAPI 3 -->
-    <dependency>
-        <groupId>org.springdoc</groupId>
-        <artifactId>springdoc-openapi</artifactId>
-        <version>${springdoc.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-    </dependency>
+    <dependencies>
+        <!-- OpenAPI 3 -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi</artifactId>
+            <version>${springdoc.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
     </dependencies>
 </dependencyManagement>
 
@@ -54,7 +55,7 @@ typora-root-url: ..\.vuepress\public
 </dependencies>
 ```
 
-
+![image-20230603115651236](/images/springboot/image-20230603115651236.png)
 
 
 

@@ -11,11 +11,11 @@ typora-root-url: ..\.vuepress\public
 
 ::: tip
 
-ORM 是 Object Relational Mapping 的缩写，译为“对象关系映射”框架。
+ORM 是 Object Relational Mapping 的缩写，译为“对象关系映射”框架。ORM最流行的框架非Hibernate莫属
 
 :::
 
-
+![image-20230603110039308](/images/springboot/image-20230603110039308.png)
 
 ## @Entity与@Table
 
