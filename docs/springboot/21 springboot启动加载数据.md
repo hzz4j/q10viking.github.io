@@ -17,7 +17,7 @@ springboot data jpa 启动加载数据data.sql和schema.sql
 
 :::
 
-
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/springboot/springboot-loading-initial-data)
 
 ## 依赖
 
