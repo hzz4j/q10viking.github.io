@@ -67,6 +67,46 @@ public class Clazz {
 
 
 
+## @Column
+
+@Column 注解用于指定字段或属性将映射到的列的详细信息。 我们可以使用具有以下最常用属性的列注解
+
+- **name** 属性允许明确指定列的名称。
+- **length** 属性允许用于映射值的列的大小，特别是对于 String 值。
+- **nullable**可空属性允许在生成模式时将该列标记为 NOT NULL。
+- **unique** 属性允许将列标记为仅包含唯一值。
+
+
+
+## @Id 和 @GeneratedValue 注解
+
+每个实体 bean 都有一个主键，我们可以使用 `@Id` 注解在类上对其进行注解。 主键可以是单个字段或多个字段的组合，具体取决于表结构。
+
+默认情况下，`@Id` 注解将自动确定要使用的最合适的主键生成策略，但我们可以通过应用 `@GeneratedValue` 注解来覆盖它，它带有两个参数 strategy 和 generator
+
+- TABLE：使用一个特定的数据库表格来保存主键。 
+- SEQUENCE：根据底层数据库的序列来生成主键，条件是数据库支持序列。 
+- **IDENTITY**：主键由数据库自动生成（主要是自动增长型） 
+- **AUTO**：主键由程序控制。
+
+```java
+@Entity
+public class User {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    
+    @Column(name = "fullname", length = "200")
+    private String name;
+    private String email;
+    
+    //constructors, getters, and setters
+}
+```
+
+
+
 ## 参看
 
 [@Entity 和 @Table 注解的用法](https://blog.csdn.net/u013517229/article/details/89307158)
