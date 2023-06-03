@@ -30,6 +30,7 @@ typora-root-url: ..\.vuepress\public
 - mvn install命令完成了项目编译、单元测试、打包功能，同时把打好的可执行jar包（war包或其它形式的包）布署到本地maven仓库，但没有布署到远程maven私服仓库
 - mvn deploy命令完成了项目编译、单元测试、打包功能，同时把打好的可执行jar包（war包或其它形式的包）布署到本地maven仓库和远程maven私服仓库
 - `mvn package -Dmaven.test.skip=true`跳过测试
+- `mvn spring-boot:run -Ph2`激活指定的profile
 
 
 
@@ -66,6 +67,6 @@ typora-root-url: ..\.vuepress\public
 
 
 
-### pom.xml文件详解
+## pom.xml文件详解
 
 [Maven: settings.xml、pom.xml完整配置-阿里云开发者社区 (aliyun.com)](https://developer.aliyun.com/article/813478)
