@@ -37,3 +37,22 @@ public class MainTest {
 }
 ```
 
+
+
+## common-lang
+
+```xml
+<dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-lang3</artifactId>
+    <version>3.12.0</version>
+</dependency>
+```
+
+```java
+@Override
+public String toString() {
+    return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+}
+```
+

@@ -55,6 +55,20 @@ typora-root-url: ..\.vuepress\public
 
 
 
+## `<relativePath/>`
+
+- 查找顺序：relativePath元素中的地址–本地仓库–远程仓库
+- 设定一个空值将始终从仓库中获取，不从本地路径获取
+
+```xml
+<parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.7.12</version>
+    <relativePath/> <!-- lookup parent from repository -->
+</parent>
+```
+
 
 
 ## dependencyManagement版本依赖管理
