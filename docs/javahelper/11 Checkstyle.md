@@ -7,7 +7,7 @@ prev:
 typora-root-url: ..\.vuepress\public
 ---
 
-Checkstyle是一种静态代码分析工具，可以帮助程序员编写符合编码标准的Java代码。
+[Checkstyle](https://checkstyle.org/)是一种静态代码分析工具，可以帮助程序员编写符合编码标准的Java代码。
 
 ## IDEA插件
 
@@ -17,7 +17,9 @@ Checkstyle是一种静态代码分析工具，可以帮助程序员编写符合�
 
 ## checkstyle.xml
 
-> 这个插件默认提供了两种检查Sun checks和Google checks.在这里我们使用自己的
+> 这个插件默认提供了两种检查Sun checks和Google checks.[checkstyle/src/main/resources at master · checkstyle/checkstyle · GitHub](https://github.com/checkstyle/checkstyle/tree/master/src/main/resources)
+>
+> 在这里我们使用自己的
 
 ![image-20230605204708861](/images/springboot/image-20230605204708861.png)
 
