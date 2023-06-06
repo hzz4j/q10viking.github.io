@@ -494,6 +494,101 @@ spring:
 
 
 
+## 扩展
+
+### 自定义接口在继承
+
+```java
+public interface CargoRepository {
+    /**
+     * Finds a cargo using given id.
+     *
+     * @param trackingId Id
+     * @return Cargo if found, else {@code null}
+     */
+    Cargo find(TrackingId trackingId);
+
+    /**
+     * Finds all cargo.
+     *
+     * @return All cargo.
+     */
+    List<Cargo> getAll();
+
+    /**
+     * Saves given cargo.
+     *
+     * @param cargo cargo to save
+     */
+    void store(Cargo cargo);
+
+    /**
+     * @return A unique, generated tracking Id.
+     */
+    TrackingId nextTrackingId();
+}
+```
+
+
+
+```java
+public interface CargoRepositoryJPA extends JpaRepository<Cargo,Long>, CargoRepository {
+
+    @Override
+    default Cargo find(TrackingId trackingId) {
+        return findByTrackingId(trackingId.idString());
+    }
+
+    @Override
+    default void store(Cargo cargo){
+        save(cargo);
+    }
+
+    @Query("SELECT c FROM Cargo c WHERE c.trackingId = :trackingId")
+    Cargo findByTrackingId(String trackingId);
+
+    @Override
+    default List<Cargo> getAll(){
+        return findAll();
+    }
+
+
+
+    @Query(value = "SELECT UPPER(SUBSTRING(REPLACE(CAST(UUID() AS CHAR),'-',''),1,9)) AS id",
+    nativeQuery = true)
+    String nextTrackingIdString();
+
+    @Override
+    default TrackingId nextTrackingId(){
+        return new TrackingId(nextTrackingIdString());
+    }
+}
+```
+
+
+
+### nativeQuery
+
+- nativeQuery默认是false
+
+> 下面这个语句表示，这个sql语句放入数据库中能够直接运行
+
+```java
+@Query(value = "SELECT UPPER(SUBSTRING(REPLACE(CAST(UUID() AS CHAR),'-',''),1,9)) AS id",
+       nativeQuery = true)
+String nextTrackingIdString();
+
+```
+
+> 默认为false,代表我们可以使用entity来进行查询
+
+```java
+@Query("select he from HandlingEvent he where he.cargo.trackingId = :trackingId and he.location != NULL")
+List<HandlingEvent> getHandlingHistoryOfCargo(String trackingId);
+```
+
+
+
 ## 参考
 
 [Spring Data JPA - Reference Documentation](https://docs.spring.io/spring-data/jpa/docs/2.7.12/reference/html/)
