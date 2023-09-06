@@ -1,0 +1,60 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /Algorithm/
+typora-root-url: ..\.vuepress\public
+---
+
+
+
+
+
+::: tip
+
+[搜索二维矩阵 II](https://leetcode.cn/problems/search-a-2d-matrix-ii/)
+
+:::
+
+
+
+## 搜索
+
+> 从右上角开始搜索，找到规律后，更新搜索的行和列
+
+![img](/images/algorithm/searchgrid2.jpg)
+
+```java
+public class Solution {
+    public static void main(String[] args) {
+        int[][] matrix = new int[][]{
+                {1,4,7,11,15},
+                {2,5,8,12,19},
+                {3,6,9,16,22},
+                {10,13,14,17,24},
+                {18,21,23,26,30},
+        };
+        Solution solution = new Solution();
+        System.out.println(solution.searchMatrix(matrix,5));
+
+    }
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int cols = matrix[0].length - 1;
+        int rows = matrix.length - 1;
+        int currentCol = cols,currentRow = 0;
+        while(currentRow <= rows && currentCol >= 0){
+            int currentVal = matrix[currentRow][currentCol];
+            if(target == currentVal) {
+                return true;
+            }else if(target > currentVal){
+                currentRow++;
+            }else if(target < currentVal){
+                currentCol--;
+            }
+        }
+        return false;
+    }
+}
+```
+
