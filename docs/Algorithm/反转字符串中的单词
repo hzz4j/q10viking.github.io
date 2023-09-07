@@ -1,0 +1,52 @@
+---
+sidebarDepth: 3
+sidebar: auto
+prev:
+  text: Back To 目录
+  link: /Algorithm/
+typora-root-url: ..\.vuepress\public
+---
+
+
+
+::: tip
+
+ [151. 反转字符串中的单词 - 力扣（LeetCode）](https://leetcode.cn/problems/reverse-words-in-a-string/description/)
+
+:::
+
+```java
+public class Solution {
+    public static void main(String[] args) {
+        Solution  solution = new Solution();
+        System.out.println(solution.reverseWords("a good   example"));
+
+        // Java JDK
+        String[] words = "a good   example".trim().split(" +");
+        Collections.reverse(Arrays.asList(words));
+        System.out.println(String.join(" ",words));
+    }
+    public String reverseWords(String s) {
+        Deque<String> deque = new ArrayDeque<>();
+        StringBuilder word = new StringBuilder();
+        s = s.trim();
+        for(int i = 0;i < s.length(); i++){
+            char c = s.charAt(i);
+            if(c != ' '){
+                word.append(c);
+            }else if(c == ' ' && (word.length() != 0)){
+                // 到了分割字符的时刻
+                deque.offerFirst(word.toString());
+                word.setLength(0);
+            }
+        }
+        deque.offerFirst(word.toString());
+        return String.join(" ",deque);
+    }
+}
+/**
+ * example good a
+ * example good a
+ */
+```
+
