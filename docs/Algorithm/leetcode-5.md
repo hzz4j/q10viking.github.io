@@ -7,9 +7,11 @@ prev:
 typora-root-url: ..\.vuepress\public
 ---
 
+::: tip
+
 [5. 最长回文子串 - 力扣（LeetCode）](https://leetcode.cn/problems/longest-palindromic-substring/)
 
-
+:::
 
 ## 暴力解法
 
@@ -70,10 +72,11 @@ public class LongestPalindromic_5 {
 
 那对于这个DP数组而言，状态转移公式是什么呢？是
 
-`dp[i][j] = （dp[i][j-1]相关）||（dp[i-1][j-1]相关）||（dp[i-1][j]相关）`吗？都不是，仔细看看示例，aba是回文子串，此时i=1，j=3。按照前面所说根据头尾字符是否相等且i和j是递增量，我们可以知道，b是回文子串，当i=2，j=2时。那就说明状态转移公式应该是：
+`dp[i][j] = （dp[i][j-1]相关）||（dp[i-1][j-1]相关）||（dp[i-1][j]相关）`吗？都不是，仔细看看示例"babad"，aba是回文子串，此时i=1，j=3。按照前面所说根据头尾字符是否相等且i和j是递增量，我们可以知道，b是回文子串，当i=2，j=2时。那就说明状态转移公式应该是：
 
 ```
 dp[i][j] = (s[i] == s[j]) and dp[i + 1][j - 1]
+dp[1][3] = (s[1] == s[3]) and dp[2][2]
 ```
 
 每当`dp[i][j] = true`，就需要记录子串的「长度」和「起始位置」，并且保存长度最大的那个。
