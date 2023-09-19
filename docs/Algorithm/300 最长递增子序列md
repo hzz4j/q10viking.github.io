@@ -7,9 +7,13 @@ prev:
 typora-root-url: ..\.vuepress\public
 ---
 
+
+
+::: tip
+
 [300. 最长递增子序列 - 力扣（LeetCode）](https://leetcode.cn/problems/longest-increasing-subsequence/)
 
-
+:::
 
 这个问题用动态规划怎么解决呢？定义数组为dp[i]，i表示了当前遍历到原始数组nums中的第i个元素，dp[i]自然就表示到达DP数组当前元素目前最长上升子序列的长度，那状态转移公式呢？根据我们以往的做题经验和直觉，dp[i]应该和dp[i-1]相关，更远一点，可能还和dp[i-2]相关。
 
