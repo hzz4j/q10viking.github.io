@@ -40,11 +40,8 @@ typora-root-url: ..\.vuepress\public
 ## 动态规划
 
 - [旅游规划](https://q10viking.github.io/Algorithm/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html)
-
-- [leetcode-5](https://q10viking.github.io/Algorithm/leetcode-5.html)
-
+- [5 最长回文子串](https://q10viking.github.io/Algorithm/5%20%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2.html#%E6%9A%B4%E5%8A%9B%E8%A7%A3%E6%B3%95)
 - [leetcode-300](https://q10viking.github.io/Algorithm/leetcode-300.html)
-
 - [leetcode-416](https://q10viking.github.io/Algorithm/leetcode-416.html)
 
 
@@ -74,7 +71,9 @@ typora-root-url: ..\.vuepress\public
 
 [228 汇总区间](https://q10viking.github.io/Algorithm/228%20%E6%B1%87%E6%80%BB%E5%8C%BA%E9%97%B4.html#%E5%8F%8C%E6%8C%87%E9%92%88%E8%BF%9B%E8%A1%8C%E6%A0%87%E8%AE%B0)
 
-165 比较版本号(❤ ω ❤)
+[165 比较版本号(❤ ω ❤)](https://q10viking.github.io/Algorithm/165%20%E6%AF%94%E8%BE%83%E7%89%88%E6%9C%AC%E5%8F%B7.html#%E5%8F%8C%E6%8C%87%E9%92%88%E5%A4%84%E7%90%86)
+
+
 
 
 ## 二分法
@@ -99,7 +98,7 @@ typora-root-url: ..\.vuepress\public
 
 [3 无重复字符的最长子串](https://q10viking.github.io/Algorithm/3%20%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2.html)
 
-5 最长回文子串
+[76 最小覆盖子串 (❤ ω ❤)](https://q10viking.github.io/Algorithm/76%20%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2.html#%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3)
 
 ## 计数
 
@@ -123,12 +122,6 @@ typora-root-url: ..\.vuepress\public
 
 [1 两数之和](https://q10viking.github.io/Algorithm/1%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C.html)
 
-## 动态规划
-
-[5 最长回文子串](https://q10viking.github.io/Algorithm/5%20%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2.html#%E6%9A%B4%E5%8A%9B%E8%A7%A3%E6%B3%95)
-
-
-
 ## 栈
 
 151 反转字符串里的单词
@@ -138,6 +131,8 @@ typora-root-url: ..\.vuepress\public
 ## 字典
 
 [1 两数之和](https://q10viking.github.io/Algorithm/1%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C.html)
+
+[76 最小覆盖子串 (❤ ω ❤)](https://q10viking.github.io/Algorithm/76%20%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2.html#%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3)
 
 ## 参考
 
