@@ -61,7 +61,7 @@ typora-root-url: ..\.vuepress\public
 
 [67 二进制求和](https://q10viking.github.io/Algorithm/67%20%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%B1%82%E5%92%8C.html#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%A4%84%E7%90%86)
 
-8 字符串转换整数 (atoi)
+[8 字符串转换整数 (atoi)](https://q10viking.github.io/Algorithm/8%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E6%95%B4%E6%95%B0%20(atoi).html)
 
 
 ## 数组
@@ -101,21 +101,41 @@ typora-root-url: ..\.vuepress\public
 
 ## 计数
 
-
-
 [169 多数元素](https://q10viking.github.io/Algorithm/169%20%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0.html#%E6%9A%B4%E5%8A%9B%E8%A7%A3%E6%B3%95) --> 摩尔投票思路
 
 
 
+## 回溯
+
+[全排序](https://q10viking.github.io/Algorithm/46%20%E5%85%A8%E6%8E%92%E5%88%97%E4%B8%8E47%20%E5%85%A8%E6%8E%92%E5%88%972.html)
+
+[括号生成](https://q10viking.github.io/Algorithm/22%20%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90.html#%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95)
+
+[电话号码组合](https://q10viking.github.io/Algorithm/17%20%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88.html)
+
+[子集](https://q10viking.github.io/Algorithm/78%20%E5%AD%90%E9%9B%86%E5%90%88.html)
+
+[搜素单词](https://q10viking.github.io/Algorithm/79%20%E6%90%9C%E7%B4%A2%E5%8D%95%E8%AF%8D.html)
+
+[组合总和](https://q10viking.github.io/Algorithm/39%20%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C.html)
+
+1 两数之和
+
 ## 动态规划
 
-5 最长回文子串
+[5 最长回文子串](https://q10viking.github.io/Algorithm/5%20%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2.html#%E6%9A%B4%E5%8A%9B%E8%A7%A3%E6%B3%95)
 
 
 
 ## 栈
 
-151 翻转字符串里的单词
+151 反转字符串里的单词
+
+
+
+## 字典
+
+1 两数之和
 
 ## 参考
 
