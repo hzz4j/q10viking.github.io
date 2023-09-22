@@ -71,6 +71,11 @@ typora-root-url: ..\.vuepress\public
 
 
 
+## 双指针
+
+[228 汇总区间](https://q10viking.github.io/Algorithm/228%20%E6%B1%87%E6%80%BB%E5%8C%BA%E9%97%B4.html#%E5%8F%8C%E6%8C%87%E9%92%88%E8%BF%9B%E8%A1%8C%E6%A0%87%E8%AE%B0)
+
+
 ## 二分法
 
 [69 x的平方根](https://q10viking.github.io/Algorithm/69%20x%20%E7%9A%84%E5%B9%B3%E6%96%B9%E6%A0%B9.html#%E4%BA%8C%E5%88%86%E6%B3%95)
@@ -99,7 +104,7 @@ typora-root-url: ..\.vuepress\public
 
 
 
-169 多数元素 --> 摩尔投票思路
+[169 多数元素](https://q10viking.github.io/Algorithm/169%20%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0.html#%E6%9A%B4%E5%8A%9B%E8%A7%A3%E6%B3%95) --> 摩尔投票思路
 
 
 
