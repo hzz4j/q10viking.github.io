@@ -124,7 +124,7 @@ typora-root-url: ..\.vuepress\public
 
 ## 栈
 
-151 反转字符串里的单词
+[151 反转字符串里的单词](https://q10viking.github.io/Algorithm/151%20%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%8D%95%E8%AF%8D.html#%E6%A0%88%E5%AE%9E%E7%8E%B0)
 
 
 
