@@ -63,6 +63,8 @@ typora-root-url: ..\.vuepress\public
 
 58 最后一个单词的长度
 
+67 二进制和
+
 
 
 ## 数组
