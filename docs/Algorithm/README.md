@@ -96,7 +96,7 @@ typora-root-url: ..\.vuepress\public
 
 [3 无重复字符的最长子串](https://q10viking.github.io/Algorithm/3%20%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2.html)
 
-
+5 最长回文子串
 
 ## 计数
 
@@ -105,6 +105,10 @@ typora-root-url: ..\.vuepress\public
 [169 多数元素](https://q10viking.github.io/Algorithm/169%20%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0.html#%E6%9A%B4%E5%8A%9B%E8%A7%A3%E6%B3%95) --> 摩尔投票思路
 
 
+
+## 动态规划
+
+5 最长回文子串
 
 
 
