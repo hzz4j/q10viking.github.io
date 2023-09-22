@@ -15,6 +15,12 @@ typora-root-url: ..\.vuepress\public
 
 :::
 
+
+
+## 栈实现
+
+> 这里用队列来实现，但实际的效果是队列。找到一个单词之后就加入到栈中
+
 ```java
 public class Solution {
     public static void main(String[] args) {
@@ -40,7 +46,9 @@ public class Solution {
                 word.setLength(0);
             }
         }
-        deque.offerFirst(word.toString());
+        // 字符串遍历结束，处理剩下的最后的单词
+        if(word.length() != 0)
+            deque.offerFirst(word.toString());
         return String.join(" ",deque);
     }
 }
@@ -48,5 +56,16 @@ public class Solution {
  * example good a
  * example good a
  */
+```
+
+
+
+## JDK
+
+```java
+// Java JDK
+String[] words = "a good   example".trim().split("\\s+");
+Collections.reverse(Arrays.asList(words));
+System.out.println(String.join(" ",words));
 ```
 

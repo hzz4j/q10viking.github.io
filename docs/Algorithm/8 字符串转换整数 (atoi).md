@@ -45,6 +45,7 @@ class Solution {
                 break;
 
             int d = c-'0';
+            // 注意超过最大范围的处理方式
             if(tmp>(Integer.MAX_VALUE - d)/10){
                 return (isnegtive)? Integer.MIN_VALUE:Integer.MAX_VALUE;
             }
