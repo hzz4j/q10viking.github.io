@@ -61,6 +61,7 @@ typora-root-url: ..\.vuepress\public
 
 [67 二进制求和](https://q10viking.github.io/Algorithm/67%20%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%B1%82%E5%92%8C.html#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%A4%84%E7%90%86)
 
+8 字符串转换整数 (atoi)
 
 
 ## 数组

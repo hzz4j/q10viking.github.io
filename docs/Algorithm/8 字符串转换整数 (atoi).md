@@ -15,6 +15,8 @@ typora-root-url: ..\.vuepress\public
 
 :::
 
+> 循环处理
+
 ```java
 class Solution {
 
@@ -43,7 +45,7 @@ class Solution {
                 break;
 
             int d = c-'0';
-            if(tmp>(Integer.MAX_VALUE-d)/10){
+            if(tmp>(Integer.MAX_VALUE - d)/10){
                 return (isnegtive)? Integer.MIN_VALUE:Integer.MAX_VALUE;
             }
             tmp = tmp*10+d;
