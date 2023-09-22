@@ -119,7 +119,7 @@ typora-root-url: ..\.vuepress\public
 
 [组合总和](https://q10viking.github.io/Algorithm/39%20%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C.html)
 
-1 两数之和
+[1 两数之和](https://q10viking.github.io/Algorithm/1%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C.html)
 
 ## 动态规划
 
@@ -135,7 +135,7 @@ typora-root-url: ..\.vuepress\public
 
 ## 字典
 
-1 两数之和
+[1 两数之和](https://q10viking.github.io/Algorithm/1%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C.html)
 
 ## 参考
 
