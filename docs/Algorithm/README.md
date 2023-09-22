@@ -41,7 +41,9 @@ typora-root-url: ..\.vuepress\public
 
 ### 递归
 
-70 爬楼梯
+[70 爬楼梯](https://q10viking.github.io/Algorithm/70%20%E7%88%AC%E6%A5%BC%E6%A2%AF.html#%E9%80%92%E5%BD%92)
+
+LCR 126 斐波那契数
 
 ### 动态规划
 
