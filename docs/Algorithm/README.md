@@ -97,7 +97,9 @@ typora-root-url: ..\.vuepress\public
 
 ## 计数
 
-169 多数元素
+
+
+169 多数元素 --> 摩尔投票思路
 
 
 
