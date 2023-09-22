@@ -61,12 +61,18 @@ typora-root-url: ..\.vuepress\public
 
 ## 字符串
 
-58 最后一个单词的长度
+[58 最后一个单词的长度](https://q10viking.github.io/Algorithm/58%20%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E5%8D%95%E8%AF%8D%E7%9A%84%E9%95%BF%E5%BA%A6.html)
 
-67 二进制和
+[67 二进制求和](https://q10viking.github.io/Algorithm/67%20%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%B1%82%E5%92%8C.html#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%A4%84%E7%90%86)
 
 
 
 ## 数组
 
-66 加一
+[66 加一](https://q10viking.github.io/Algorithm/66%20%E5%8A%A0%E4%B8%80.html#%E6%95%B0%E7%BB%84%E7%9A%84%E6%93%8D%E4%BD%9C)
+
+
+
+## 二分法
+
+69 x的平方根
