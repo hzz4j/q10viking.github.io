@@ -19,7 +19,7 @@ typora-root-url: ..\.vuepress\public
 
 ## 栈实现
 
-> 这里用队列来实现，但实际的效果是队列。找到一个单词之后就加入到栈中
+> 这里用队列来实现，但实际的效果是队列。找到一个单词之后就加入到栈中.
 
 ```java
 public class Solution {
