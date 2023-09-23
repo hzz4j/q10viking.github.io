@@ -138,15 +138,17 @@ typora-root-url: ..\.vuepress\public
 
 
 
-## 栈
+### 栈
 
 [151 反转字符串里的单词](https://q10viking.github.io/Algorithm/151%20%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%8D%95%E8%AF%8D.html#%E6%A0%88%E5%AE%9E%E7%8E%B0)
 
-232 用栈实现队列
+[232 用栈实现队列](https://q10viking.github.io/Algorithm/232%20%E7%94%A8%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97.html)
+
+394 字符串解码❤️
 
 
 
-## 字符串
+### 字符串
 
 [58 最后一个单词的长度](https://q10viking.github.io/Algorithm/58%20%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E5%8D%95%E8%AF%8D%E7%9A%84%E9%95%BF%E5%BA%A6.html)
 
@@ -154,7 +156,7 @@ typora-root-url: ..\.vuepress\public
 
 [8 字符串转换整数 (atoi)](https://q10viking.github.io/Algorithm/8%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E6%95%B4%E6%95%B0%20(atoi).html)
 
-
+394 字符串解码❤️
 
 
 
