@@ -47,7 +47,7 @@ typora-root-url: ..\.vuepress\public
 
 [21 合并两个有序链表(❤ ω ❤)](https://q10viking.github.io/Algorithm/21%20%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8.html)
 
-83 删除排序链表中的重复元素(❤ ω ❤)
+[83 删除排序链表中的重复元素(❤ ω ❤)](https://q10viking.github.io/Algorithm/83%20%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0.html)
 
 ### 动态规划
 
@@ -108,11 +108,15 @@ typora-root-url: ..\.vuepress\public
 
 [21 合并两个有序链表](https://q10viking.github.io/Algorithm/21%20%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8.html)
 
-83 删除排序链表中的重复元素
+[83 删除排序链表中的重复元素](https://q10viking.github.io/Algorithm/83%20%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0.html)
 
+141 环形列表
 
+142 环形链表 II
 
-## Hash表
+### hash
+
+141 环形列表
 
 
 
@@ -139,6 +143,8 @@ typora-root-url: ..\.vuepress\public
 [165 比较版本号(❤ ω ❤)](https://q10viking.github.io/Algorithm/165%20%E6%AF%94%E8%BE%83%E7%89%88%E6%9C%AC%E5%8F%B7.html#%E5%8F%8C%E6%8C%87%E9%92%88%E5%A4%84%E7%90%86)
 
 [283 移动零(❤ ω ❤)](https://q10viking.github.io/Algorithm/283%20%E7%A7%BB%E5%8A%A8%E9%9B%B6.html)
+
+141 环形列表(快慢指针)
 
 
 ## 二分法
