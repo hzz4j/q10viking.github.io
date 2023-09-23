@@ -43,7 +43,7 @@ typora-root-url: ..\.vuepress\public
 
 [70 爬楼梯](https://q10viking.github.io/Algorithm/70%20%E7%88%AC%E6%A5%BC%E6%A2%AF.html#%E9%80%92%E5%BD%92)
 
-LCR 126 斐波那契数
+[LCR 126 斐波那契数](https://q10viking.github.io/Algorithm/LCR%20126%20%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0.html)
 
 ### 动态规划
 
@@ -90,9 +90,11 @@ LCR 126 斐波那契数
 
 [1 两数之和](https://q10viking.github.io/Algorithm/1%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C.html)
 
-88 合并两个有序数组
+[88 合并两个有序数组](https://q10viking.github.io/Algorithm/88%20%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84.html)
 
-283 移动零(❤ ω ❤)
+[283 移动零(❤ ω ❤)](https://q10viking.github.io/Algorithm/283%20%E7%A7%BB%E5%8A%A8%E9%9B%B6.html)
+
+448 找到所有数组中消失的数字(❤ ω ❤)
 
 ## 字符串
 
@@ -116,7 +118,7 @@ LCR 126 斐波那契数
 
 [165 比较版本号(❤ ω ❤)](https://q10viking.github.io/Algorithm/165%20%E6%AF%94%E8%BE%83%E7%89%88%E6%9C%AC%E5%8F%B7.html#%E5%8F%8C%E6%8C%87%E9%92%88%E5%A4%84%E7%90%86)
 
-283 移动零(❤ ω ❤)
+[283 移动零(❤ ω ❤)](https://q10viking.github.io/Algorithm/283%20%E7%A7%BB%E5%8A%A8%E9%9B%B6.html)
 
 
 ## 二分法
