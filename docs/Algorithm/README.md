@@ -74,7 +74,7 @@ typora-root-url: ..\.vuepress\public
 
 [28 找出字符串中第一个匹配项的下标](https://q10viking.github.io/Algorithm/28%20%E6%89%BE%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8C%B9%E9%85%8D%E9%A1%B9%E7%9A%84%E4%B8%8B%E6%A0%87.html)
 
-## 双指针
+### 双指针
 
 [228 汇总区间](https://q10viking.github.io/Algorithm/228%20%E6%B1%87%E6%80%BB%E5%8C%BA%E9%97%B4.html#%E5%8F%8C%E6%8C%87%E9%92%88%E8%BF%9B%E8%A1%8C%E6%A0%87%E8%AE%B0)
 
@@ -85,6 +85,8 @@ typora-root-url: ..\.vuepress\public
 [141 环形列表(快慢指针)(❤ ω ❤)](https://q10viking.github.io/Algorithm/141%20%E7%8E%AF%E5%BD%A2%E5%88%97%E8%A1%A8.html)
 
 [160 相交链表(❤ ω ❤)](https://q10viking.github.io/Algorithm/160%20%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8.html)
+
+876 链表的中间结点❤
 
 -----------
 
@@ -122,7 +124,9 @@ typora-root-url: ..\.vuepress\public
 
 [206 反转链表❤️](https://q10viking.github.io/Algorithm/206%20%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8.html)
 
-234 回文链表❤
+[234 回文链表❤](https://q10viking.github.io/Algorithm/234%20%E5%9B%9E%E6%96%87%E9%93%BE%E8%A1%A8.html)
+
+876 链表的中间结点
 
 ### hash
 
