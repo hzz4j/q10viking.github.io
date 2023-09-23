@@ -45,7 +45,9 @@ typora-root-url: ..\.vuepress\public
 
 [LCR 126 斐波那契数](https://q10viking.github.io/Algorithm/LCR%20126%20%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0.html)
 
-[21 合并两个有序链表(❤ ω ❤)]
+[21 合并两个有序链表(❤ ω ❤)](https://q10viking.github.io/Algorithm/21%20%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8.html)
+
+83 删除排序链表中的重复元素(❤ ω ❤)
 
 ### 动态规划
 
@@ -104,7 +106,9 @@ typora-root-url: ..\.vuepress\public
 
 ### 链表
 
-21 合并两个有序链表
+[21 合并两个有序链表](https://q10viking.github.io/Algorithm/21%20%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8.html)
+
+83 删除排序链表中的重复元素
 
 ## 字符串
 
