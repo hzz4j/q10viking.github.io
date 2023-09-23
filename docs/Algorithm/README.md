@@ -66,6 +66,18 @@ LCR 126 斐波那契数
 
 
 
+### 滑动窗口
+
+[3 无重复字符的最长子串](https://q10viking.github.io/Algorithm/3%20%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2.html) (❤ ω ❤)
+
+[76 最小覆盖子串 (❤ ω ❤)](https://q10viking.github.io/Algorithm/76%20%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2.html#%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3)
+
+### 暴力解法
+
+[28 找出字符串中第一个匹配项的下标](https://q10viking.github.io/Algorithm/28%20%E6%89%BE%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8C%B9%E9%85%8D%E9%A1%B9%E7%9A%84%E4%B8%8B%E6%A0%87.html)
+
+
+
 ## 字符串
 
 [58 最后一个单词的长度](https://q10viking.github.io/Algorithm/58%20%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E5%8D%95%E8%AF%8D%E7%9A%84%E9%95%BF%E5%BA%A6.html)
@@ -102,17 +114,11 @@ LCR 126 斐波那契数
 
 [240 搜索二维矩阵 II](https://q10viking.github.io/Algorithm/240%20%E6%90%9C%E7%B4%A2%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5%20II.html)
 
-## 暴力解法
-
-[28 找出字符串中第一个匹配项的下标](https://q10viking.github.io/Algorithm/28%20%E6%89%BE%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8C%B9%E9%85%8D%E9%A1%B9%E7%9A%84%E4%B8%8B%E6%A0%87.html)
 
 
 
-## 滑动窗口
 
-[3 无重复字符的最长子串](https://q10viking.github.io/Algorithm/3%20%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2.html)
 
-[76 最小覆盖子串 (❤ ω ❤)](https://q10viking.github.io/Algorithm/76%20%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2.html#%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3)
 
 ## 计数
 
@@ -142,7 +148,7 @@ LCR 126 斐波那契数
 
 
 
-## 字典
+## 哈希表
 
 [1 两数之和](https://q10viking.github.io/Algorithm/1%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C.html)
 
