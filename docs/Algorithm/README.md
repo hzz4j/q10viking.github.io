@@ -86,7 +86,9 @@ typora-root-url: ..\.vuepress\public
 
 [160 相交链表(❤ ω ❤)](https://q10viking.github.io/Algorithm/160%20%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8.html)
 
-876 链表的中间结点❤
+[876 链表的中间结点❤](https://q10viking.github.io/Algorithm/876%20%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E7%BB%93%E7%82%B9.html)
+
+LCR 22 链表中倒数第k个节点❤
 
 -----------
 
@@ -126,7 +128,9 @@ typora-root-url: ..\.vuepress\public
 
 [234 回文链表❤](https://q10viking.github.io/Algorithm/234%20%E5%9B%9E%E6%96%87%E9%93%BE%E8%A1%A8.html)
 
-876 链表的中间结点
+[876 链表的中间结点](https://q10viking.github.io/Algorithm/876%20%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E7%BB%93%E7%82%B9.html)
+
+LCR 22 链表中倒数第k个节点❤
 
 ### hash
 
