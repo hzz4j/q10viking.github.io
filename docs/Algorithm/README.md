@@ -7,14 +7,6 @@ typora-root-url: ..\.vuepress\public
 
 
 
-::: tip
-
-[leetcode-cn](https://leetcode.cn/)
-
-:::
-
-
-
 
 
 数据结构+算法，将思路落地代码
@@ -80,7 +72,17 @@ typora-root-url: ..\.vuepress\public
 
 [28 找出字符串中第一个匹配项的下标](https://q10viking.github.io/Algorithm/28%20%E6%89%BE%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8C%B9%E9%85%8D%E9%A1%B9%E7%9A%84%E4%B8%8B%E6%A0%87.html)
 
+## 双指针
 
+[228 汇总区间](https://q10viking.github.io/Algorithm/228%20%E6%B1%87%E6%80%BB%E5%8C%BA%E9%97%B4.html#%E5%8F%8C%E6%8C%87%E9%92%88%E8%BF%9B%E8%A1%8C%E6%A0%87%E8%AE%B0)
+
+[165 比较版本号(❤ ω ❤)](https://q10viking.github.io/Algorithm/165%20%E6%AF%94%E8%BE%83%E7%89%88%E6%9C%AC%E5%8F%B7.html#%E5%8F%8C%E6%8C%87%E9%92%88%E5%A4%84%E7%90%86)
+
+[283 移动零(❤ ω ❤)](https://q10viking.github.io/Algorithm/283%20%E7%A7%BB%E5%8A%A8%E9%9B%B6.html)
+
+[141 环形列表(快慢指针)(❤ ω ❤)](https://q10viking.github.io/Algorithm/141%20%E7%8E%AF%E5%BD%A2%E5%88%97%E8%A1%A8.html)
+
+[160 相交链表(❤ ω ❤)](https://q10viking.github.io/Algorithm/160%20%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8.html)
 
 -----------
 
@@ -112,9 +114,9 @@ typora-root-url: ..\.vuepress\public
 
 [141 环形列表](https://q10viking.github.io/Algorithm/141%20%E7%8E%AF%E5%BD%A2%E5%88%97%E8%A1%A8.html)
 
-142 环形链表 II
+[142 环形链表 II](https://q10viking.github.io/Algorithm/142%20%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%20II.html)
 
-160 相交链表
+[160 相交链表](https://q10viking.github.io/Algorithm/160%20%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8.html)
 
 ### hash
 
@@ -133,22 +135,6 @@ typora-root-url: ..\.vuepress\public
 
 
 
-
-
-
-
-
-## 双指针
-
-[228 汇总区间](https://q10viking.github.io/Algorithm/228%20%E6%B1%87%E6%80%BB%E5%8C%BA%E9%97%B4.html#%E5%8F%8C%E6%8C%87%E9%92%88%E8%BF%9B%E8%A1%8C%E6%A0%87%E8%AE%B0)
-
-[165 比较版本号(❤ ω ❤)](https://q10viking.github.io/Algorithm/165%20%E6%AF%94%E8%BE%83%E7%89%88%E6%9C%AC%E5%8F%B7.html#%E5%8F%8C%E6%8C%87%E9%92%88%E5%A4%84%E7%90%86)
-
-[283 移动零(❤ ω ❤)](https://q10viking.github.io/Algorithm/283%20%E7%A7%BB%E5%8A%A8%E9%9B%B6.html)
-
-[141 环形列表(快慢指针)(❤ ω ❤)](https://q10viking.github.io/Algorithm/141%20%E7%8E%AF%E5%BD%A2%E5%88%97%E8%A1%A8.html)
-
-160 相交链表(❤ ω ❤)
 
 
 ## 二分法
