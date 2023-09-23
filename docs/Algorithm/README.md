@@ -45,6 +45,8 @@ typora-root-url: ..\.vuepress\public
 
 [LCR 126 斐波那契数](https://q10viking.github.io/Algorithm/LCR%20126%20%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0.html)
 
+[21 合并两个有序链表(❤ ω ❤)]
+
 ### 动态规划
 
 - [旅游规划](https://q10viking.github.io/Algorithm/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html)
