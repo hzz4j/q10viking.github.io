@@ -90,6 +90,8 @@ LCR 126 斐波那契数
 
 [1 两数之和](https://q10viking.github.io/Algorithm/1%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C.html)
 
+88 合并两个有序数组
+
 ## 字符串
 
 [58 最后一个单词的长度](https://q10viking.github.io/Algorithm/58%20%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E5%8D%95%E8%AF%8D%E7%9A%84%E9%95%BF%E5%BA%A6.html)
