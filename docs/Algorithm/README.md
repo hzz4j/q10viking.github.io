@@ -41,6 +41,8 @@ typora-root-url: ..\.vuepress\public
 
 [83 删除排序链表中的重复元素(❤ ω ❤)](https://q10viking.github.io/Algorithm/83%20%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0.html)
 
+206 反转链表❤️
+
 ### 动态规划
 
 - [旅游规划](https://q10viking.github.io/Algorithm/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html)
@@ -117,6 +119,8 @@ typora-root-url: ..\.vuepress\public
 [142 环形链表 II](https://q10viking.github.io/Algorithm/142%20%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%20II.html)
 
 [160 相交链表](https://q10viking.github.io/Algorithm/160%20%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8.html)
+
+206 反转链表❤️
 
 ### hash
 
