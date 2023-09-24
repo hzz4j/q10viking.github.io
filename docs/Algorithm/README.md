@@ -100,7 +100,7 @@ typora-root-url: ..\.vuepress\public
 
 [338 比特位计数](https://q10viking.github.io/Algorithm/338%20%E6%AF%94%E7%89%B9%E4%BD%8D%E8%AE%A1%E6%95%B0.html)
 
-461 汉明距离
+[461 汉明距离](https://q10viking.github.io/Algorithm/461%20%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB.html)
 
 -----------
 
