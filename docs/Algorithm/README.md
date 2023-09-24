@@ -104,7 +104,9 @@ typora-root-url: ..\.vuepress\public
 
 -----------
 
+### 数学趣味题
 
+470 用 Rand7() 实现 Rand10()
 
 ## 数据结构
 
