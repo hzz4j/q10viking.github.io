@@ -144,7 +144,7 @@ typora-root-url: ..\.vuepress\public
 
 [232 用栈实现队列](https://q10viking.github.io/Algorithm/232%20%E7%94%A8%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97.html)
 
-394 字符串解码❤️
+[394 字符串解码❤️](https://q10viking.github.io/Algorithm/394%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E7%A0%81.html)
 
 
 
@@ -156,7 +156,7 @@ typora-root-url: ..\.vuepress\public
 
 [8 字符串转换整数 (atoi)](https://q10viking.github.io/Algorithm/8%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E6%95%B4%E6%95%B0%20(atoi).html)
 
-394 字符串解码❤️
+[394 字符串解码❤️](https://q10viking.github.io/Algorithm/394%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E7%A0%81.html)
 
 
 
@@ -172,10 +172,6 @@ typora-root-url: ..\.vuepress\public
 [153 寻找旋转排序数组中的最小值](https://q10viking.github.io/Algorithm/153%20%E5%AF%BB%E6%89%BE%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC.html#%E4%BA%8C%E5%88%86%E6%B3%95)
 
 [240 搜索二维矩阵 II](https://q10viking.github.io/Algorithm/240%20%E6%90%9C%E7%B4%A2%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5%20II.html)
-
-
-
-
 
 
 
