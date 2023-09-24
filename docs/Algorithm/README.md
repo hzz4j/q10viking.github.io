@@ -148,9 +148,9 @@ typora-root-url: ..\.vuepress\public
 
 ### 队列
 
-101 对称二叉树❤️
+[101 对称二叉树❤️](https://q10viking.github.io/Algorithm/101%20%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91.html)
 
-104 二叉树的最大深度❤️
+[104 二叉树的最大深度❤️](https://q10viking.github.io/Algorithm/104%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6.html)
 
 ### 字符串
 
@@ -172,9 +172,9 @@ typora-root-url: ..\.vuepress\public
 
 [145 二叉树的后序遍历](https://q10viking.github.io/Algorithm/145%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86.html)
 
-101 对称二叉树❤️
+[101 对称二叉树❤️](https://q10viking.github.io/Algorithm/101%20%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91.html)
 
-104 二叉树的最大深度❤️
+[104 二叉树的最大深度❤️](https://q10viking.github.io/Algorithm/104%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6.html)
 
 
 ## 二分法
