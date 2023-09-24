@@ -43,6 +43,8 @@ typora-root-url: ..\.vuepress\public
 
 [206 反转链表❤️](https://q10viking.github.io/Algorithm/206%20%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8.html)
 
+在树的遍历过程中，经常使用到递归
+
 ### 动态规划
 
 - [旅游规划](https://q10viking.github.io/Algorithm/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html)
@@ -176,9 +178,9 @@ typora-root-url: ..\.vuepress\public
 
 [104 二叉树的最大深度❤️](https://q10viking.github.io/Algorithm/104%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6.html)
 
-[110 平衡二叉树](https://q10viking.github.io/Algorithm/104%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6.html)
+[110 平衡二叉树❤️](https://q10viking.github.io/Algorithm/104%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6.html)
 
-
+[226 翻转二叉树❤️](https://q10viking.github.io/Algorithm/226%20%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91.html)
 
 ## 二分法
 
