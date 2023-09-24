@@ -52,7 +52,9 @@ typora-root-url: ..\.vuepress\public
 - [leetcode-300](https://q10viking.github.io/Algorithm/leetcode-300.html)
 - [leetcode-416](https://q10viking.github.io/Algorithm/leetcode-416.html)
 
-53 最大子数组和
+[53 最大子数组和❤](https://q10viking.github.io/Algorithm/53%20%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E7%BB%84%E5%92%8C.html)
+
+[121 买卖股票的最佳时机❤](https://q10viking.github.io/Algorithm/121%20%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA.html)
 
 ### 贪心算法
 
@@ -194,9 +196,9 @@ typora-root-url: ..\.vuepress\public
 
 [394 字符串解码❤️](https://q10viking.github.io/Algorithm/394%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E7%A0%81.html)
 
-415 字符串相加❤
+[415 字符串相加❤](https://q10viking.github.io/Algorithm/415%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E5%8A%A0.html)
 
-20 有效括号
+[20 有效括号](https://q10viking.github.io/Algorithm/20%20%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7.html) ❤
 
 ### 树
 
