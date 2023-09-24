@@ -96,9 +96,11 @@ typora-root-url: ..\.vuepress\public
 
 ### 位运算
 
-136 只出现一次的数字
+[136 只出现一次的数字](https://q10viking.github.io/Algorithm/136%20%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97.html)
 
-338 比特位计数
+[338 比特位计数](https://q10viking.github.io/Algorithm/338%20%E6%AF%94%E7%89%B9%E4%BD%8D%E8%AE%A1%E6%95%B0.html)
+
+461 汉明距离
 
 -----------
 
