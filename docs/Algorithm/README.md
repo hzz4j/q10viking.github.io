@@ -106,7 +106,7 @@ typora-root-url: ..\.vuepress\public
 
 ### 数学趣味题
 
-470 用 Rand7() 实现 Rand10()
+[470 用 Rand7() 实现 Rand10()](https://q10viking.github.io/Algorithm/470%20%E7%94%A8%20Rand7()%20%E5%AE%9E%E7%8E%B0%20Rand10().html)
 
 ## 数据结构
 
@@ -176,7 +176,7 @@ typora-root-url: ..\.vuepress\public
 
 [394 字符串解码❤️](https://q10viking.github.io/Algorithm/394%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E7%A0%81.html)
 
-
+415 字符串相加❤
 
 ### 树
 
