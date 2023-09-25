@@ -150,6 +150,8 @@ typora-root-url: ..\.vuepress\public
 
 [15 三数之和 ❤](https://q10viking.github.io/Algorithm/15%20%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C.html)
 
+[31 下一个排列](https://q10viking.github.io/Algorithm/31%20%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%8E%92%E5%88%97.html)
+
 ### 链表
 
 [21 合并两个有序链表](https://q10viking.github.io/Algorithm/21%20%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8.html)
@@ -237,10 +239,6 @@ typora-root-url: ..\.vuepress\public
 ## 计数
 
 [169 多数元素](https://q10viking.github.io/Algorithm/169%20%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0.html#%E6%9A%B4%E5%8A%9B%E8%A7%A3%E6%B3%95) --> 摩尔投票思路
-
-
-
-
 
 
 
