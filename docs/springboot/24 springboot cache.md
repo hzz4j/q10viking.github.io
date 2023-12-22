@@ -9,6 +9,8 @@ typora-root-url: ..\.vuepress\public
 
 ## spring
 
+[Source Code](https://github.com/Q10Viking/learncode/tree/main/springbootcache)
+
 在spring中就已经引入了本地缓存，spring-context中就有了`CacheEvict`等注解
 
 在springboot中，自动配置类中就配置了ConcurrentMapCacheManager，默认的。
@@ -224,3 +226,5 @@ public String getData(Integer id){
 [Caching Data with Spring](https://spring.io/guides/gs/caching/)
 
 [“8个步骤”手把手带你用SpringBoot操作Redis，实现数据缓存](https://cloud.tencent.com/developer/article/1824707)
+
+![image-20231222202239204](/images/springboot/image-20231222202239204.png)
