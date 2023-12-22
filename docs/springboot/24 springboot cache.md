@@ -122,6 +122,31 @@ springboot自动配置类配置了`RedisCacheConfiguration`,引入下面的依�
 </dependency>
 ```
 
+```yml
+# redis连接配置
+spring:
+  redis:
+    host: 192.168.135.130
+    port: 6379
+    jedis:
+      pool:
+        # 连接池最大连接数（使用负值表示没有限制）
+        max-active: 8
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1ms
+        # 连接池中的最大空闲连接
+        max-idle: 8
+        # 连接池中的最小空闲连接
+        min-idle: 0
+      # 连接超时时间（毫秒）默认是2000ms
+    timeout: 2000ms
+  cache:
+    redis:
+      ## Entry expiration in milliseconds. By default the entries never expire.
+      time-to-live: 1d
+    type: redis
+```
+
 ![image-20231222194901593](/images/springboot/image-20231222194901593.png)
 
 由于出现乱码，我们需要配置一下,首先需要引入jackson
@@ -157,6 +182,37 @@ public class RedisConfig {
 public String getData(Integer id){
     return "msg"+count.incrementAndGet();
 }
+```
+
+
+
+### 小结
+
+```xml
+<dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.18</version>
+        </dependency>
+
+        <!--   redis cache     -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!--   解决乱码     -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.16.0</version>
+        </dependency>
+
+    </dependencies>
 ```
 
 
