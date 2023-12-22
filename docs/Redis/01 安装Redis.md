@@ -98,7 +98,7 @@ firewall-cmd --reload
 > redis-server 指定不同的配置文件，可以在一台机器上启动多个实例
 
 ```sh
-cd /usr/redis/redis-6.2.6
+cd /usr/local/redis/redis-6.2.6
 # 启动服务
 src/redis-server redis.conf
 ```

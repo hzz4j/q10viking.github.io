@@ -57,9 +57,25 @@ typora-root-url: ..\.vuepress\public
 
 ![image-20230603115651236](/images/springboot/image-20230603115651236.png)
 
+引入依赖在Controller上配置相关信息就可以访问了`http://localhost:8082/swagger-ui/index.html`，没有配置context-path,默认就是`/`
+
+```java
+@RestController
+@RequestMapping("/account")
+@Tag(name = "管理界面用户管理",description = "用户管理登录等等")
+@Slf4j
+public class AccountController extends BaseController{
+    @Operation(summary = "保存用户信息", description = "保存用户信息到数据库")
+    @PostMapping("/save")
+    public void save() {
+        throw new NotImplementedException("接口未实现");
+    }
+}
+```
 
 
-## 额外信息配置
+
+## 额外信息配置（非强制）
 
 ![image-20230522135222296](/images/springboot/image-20230522135222296.png)
 
