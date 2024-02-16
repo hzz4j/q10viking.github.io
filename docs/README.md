@@ -1,6 +1,6 @@
 ---
 home: true
-heroText: 'Hi :)'
+heroText: '2024 Come on,Mr Zhuangzhuang success :)'
 tagline: 'Love❤️Open Source'
 actions:
   - text: 👉ENTRY

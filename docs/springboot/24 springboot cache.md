@@ -227,4 +227,3 @@ public String getData(Integer id){
 
 [“8个步骤”手把手带你用SpringBoot操作Redis，实现数据缓存](https://cloud.tencent.com/developer/article/1824707)
 
-![image-20231222202239204](/images/springboot/image-20231222202239204.png)
