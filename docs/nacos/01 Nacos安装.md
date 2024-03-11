@@ -59,3 +59,7 @@ netstat -nltp
 Linux中nacos启动成功了，但是浏览器不能访问则需要开放防火墙端口
 ![image-20211029181020804](/images/nacos/image-20211029181020804.png)
 
+```
+firewall-cmd --zone=public --add-port=8848/tcp --permanent
+```
+

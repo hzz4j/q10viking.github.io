@@ -181,6 +181,12 @@ seata:
 获取/seata/script/config-center/config.txt，修改为db存储模式，并修改mysql连接配置
 
 > 使用mysql8
+>
+> ```sh
+> 上传方式在：nacos配置中心自己创建一个配置，然后粘贴上去
+> ```
+> 
+>
 
 ![image-20230420195417525](/images/seata/image-20230420195417525.png)
 
@@ -206,7 +212,7 @@ seata:
 
 ----------
 
-在nacos配置中心中新建配置，dataId为seataServer.properties，配置内容为上面修改后的config.txt中的配置信息
+**在nacos配置中心中新建配置，dataId为seataServer.properties**，配置内容为上面修改后的config.txt中的配置信息
 
 > 从v1.4.2版本开始，seata已支持从一个Nacos dataId中获取所有配置信息,你只需要额外添加一个dataId配置项。
 
@@ -358,7 +364,9 @@ metrics.exporterPrometheusPort=9898
 ### 启动
 
 ```sh
-   seata-server.sh 
+  # 需要进入bin目录下执行，否则找不到SpringBootApplication等类
+  cd /usr/local/seata/bin
+  seata-server.sh 
 ```
 
 
@@ -376,7 +384,11 @@ metrics.exporterPrometheusPort=9898
 比如：
 
 ```sh
- seata-server.sh -p 8091 -h 127.0.0.1 -m db              
+# 需要进入bin目录下执行，否则找不到SpringBootApplication等类
+cd /usr/local/seata/bin
+# 制定ip
+./seata-server.sh -h 192.168.135.130 -p 8091
+seata-server.sh -p 8091 -h 127.0.0.1 -m db 
 ```
 
 ### 访问界面
@@ -522,6 +534,28 @@ seata:
         return order;
 
     }
+```
+
+
+
+```java
+@Transactional
+@Override
+public void debit(String userId, int money){
+    log.info("=============用户账户扣款=================");
+    log.info("当前 XID: {}", RootContext.getXID());
+
+    checkBalance(userId, money);
+
+    log.info("开始扣减用户 {} 余额", userId);
+    Integer record = accountMapper.reduceBalance(userId,money);
+
+    if (ERROR_USER_ID.equals(userId)) {
+        // 模拟异常
+        throw new RuntimeException("account branch exception");
+    }
+    log.info("扣减用户 {} 余额结果:{}", userId, record > 0 ? "操作成功" : "扣减余额失败");
+}
 ```
 
 

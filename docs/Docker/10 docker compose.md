@@ -68,7 +68,24 @@ Attaching to learncompose-eureka-1
 
 > docker compose会做以下几件事
 
-- 创建一个默认的网络`learncompose_default`，默认以compose所在文件目录名加"_default"命名，compose内的所有容器都会加入此网络，可以相互用服务名访问
+- 创建一个默认的网络`learncompose_default`，默认以compose所在文件目录名加"_default"命名，compose内的所有容器都会加入此网络，可以相互用服务名访问。最好自定义一个网络。
+
+  ```yaml
+    redis-node6:
+      image: redis:5.0
+      command: redis-server --port 7005 --cluster-enabled yes --cluster-config-file /data/nodes.conf --appendonly yes --bind 0.0.0.0
+      ports:
+        - "7005:7005"
+        - "17005:17005"
+      volumes:
+        - ./data/node6:/data
+      networks:
+        - mynet		# 服务加入该网络
+  
+  networks:
+    mynet:		# 自定义网络
+      driver: bridge	# 使用桥接驱动
+  ```
 - 如果镜像 `hzz-microservice-server:0.0.1` 不存在先构建镜像，如果镜像存在则不构建，加上 **--build** 参数可以强制先构建镜像，如果镜像之前构建过且构建文件没有变化或构建的内容没有变化，就算加上 **--build** 参数也不会重新构建
 - 根据构建的镜像创建一个名称叫 `learncompose-eureka-1` 的容器
 - 启动容器

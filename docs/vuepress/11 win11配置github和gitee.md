@@ -117,6 +117,20 @@ git config --global  user.email "cau1403090523@gmail.com"
 
 
 
+## gitee常用操作
+
+```sh
+cd hello-gitee              #定位到 hello-gitee 文件夹
+touch 记录.doc               #新建一个记录.doc文件
+git add 记录.doc             #新增“记录.doc”至暂存区
+git commit -m "新纪录"       #确认新增“记录.doc”至数据目录
+git push -u origin master
+```
+
+
+
 ## 参考
 
 [connecting to github with-ssh](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/checking-for-existing-ssh-keys)
+
+[Gitee操作极速上手指南: 使用 Git 进行本地与远程之间的推送，拉取，修改，删除等操作](https://gitee.com/mvphp/gitee_yes)

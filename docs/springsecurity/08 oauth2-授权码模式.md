@@ -102,7 +102,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin().permitAll()
                 .and().authorizeRequests()
-                .antMatchers("/oauth/**").permitAll()
+                .antMatchers("/oauth/**").permitAll() //允许
                 .antMatchers("/order/**").permitAll()
                 .anyRequest().authenticated()
                 .and().logout().permitAll()

@@ -37,6 +37,18 @@ Credential Helper
 
 [Install on Windows | Docker Documentation](https://docs.docker.com/desktop/install/windows-install/)
 
+## 启动
+
+启动docker-desktop软件后，子系统会启动类两个：docker-desktop和docker-desktop-data.这样在windows系统docker相关的命令才能使用,比如`docker version`命令。
+
+```
+PS C:\Users\11930\Desktop> wsl -l -v
+  NAME                   STATE           VERSION
+* docker-desktop         Running         2
+  golang-centos          Stopped         2
+  docker-desktop-data    Running         2
+```
+
 这是我之前在windows安装的ubuntu
 
 ![image-20221110202310663](/images/Docker/image-20221110202310663.png)
@@ -177,7 +189,9 @@ Server: Docker Desktop 4.13.1 (90346)
 
 ![image-20221111010315477](/images/Docker/image-20221111010315477.png)
 
-## 问题启动DockerDesktop
+## 问题
+
+### 启动DockerDesktop连带启动了其他子系统
 
 启动DockerDesktop我的ubuntu也启动起来了
 
@@ -200,3 +214,6 @@ PS C:\Users\11930\Desktop> wsl -l -v
   docker-desktop-data    Running         2
 ```
 
+### Hytep-v
+
+win11系统的更新导致hyper-v关闭。需要开启这个选项。其中windows系统会将hyper-v隐藏。需要我们自己处理给它显示出来。

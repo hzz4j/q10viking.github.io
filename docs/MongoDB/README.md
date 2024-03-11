@@ -45,11 +45,11 @@ mongosh "mongodb+srv://sandbox.he3gsda.mongodb.net/myFirstDatabase" --username m
 mongodb+srv://m001-q10viking:<password>@sandbox.he3gsda.mongodb.net/myFirstDatabase
 ```
 
-## windows环境配置
+## windows下安装mongodb
 
 MongoDB中所有的工具下载链接[Download MongoDB Software Locally for Free | MongoDB](https://www.mongodb.com/try/download)
 
-
+只需要下载一个server.msi即可，里面带有GUI，在安装的时候记得勾选即可。
 
 ### MongoDB Server
 
@@ -59,11 +59,17 @@ MongoDB中所有的工具下载链接[Download MongoDB Software Locally for Free
 
 :::
 
-[Install MongoDB Community Edition on Windows — MongoDB Manual](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/#install-mongodb-community-edition)
+下载地址[Install MongoDB Community Edition on Windows — MongoDB Manual](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/#install-mongodb-community-edition)，用谷歌浏览器下载速度比edge快。
 
-在安装的过程会出现提示是否安装**MongoDB Compass**，很好用的GUI工具，建议安装。
+在安装的过程会出现提示是否安装**MongoDB Compass**，**很好用的GUI工具**，建议安装。
+
+### 启动
 
 
+
+
+
+-----------
 
 ### MongoDB Shell
 

@@ -73,7 +73,7 @@ bin/seata-server.sh
 
 ## 项目代码
 
-D:\learncode\seata\learnSeata\MicroServices
+`D:\learncode\seata\learnSeata\MicroServices`
 
 
 

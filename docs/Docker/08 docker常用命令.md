@@ -532,13 +532,44 @@ root                2124                2030                0                   
 docker exec -it 6180a4fd4a11 /bin/bash  #(有的容器需要把 /bin/bash 换成 sh)   
 ```
 
-
-
-
-
-
-
 ## **容器内安装vim、ping、ifconfig等指令**👍
+
+使用apt-get的国内镜像，加快下载速度
+
+```shell
+#1.进入容器
+docker exec -it <容器名称/id> bash
+#2.执行命令apt-get update 发现缓慢
+#3.进入apt-get 配置目录
+cd /etc/apt
+#4.执行备份命令 --避免修改失败无法使用
+cp sources.list sources.list.bak
+
+#5.同时执行echo下的4行命令，修改成国内镜像源
+echo "">sources.list
+echo "deb http://ftp2.cn.debian.org/debian/ buster main">>sources.list
+echo "deb http://ftp2.cn.debian.org/debian/debian-security buster/updates main">>sources.list
+echo "deb http://ftp2.cn.debian.org/debian/debian buster-updates main">>sources.list
+
+#6.查看文件 是否修改成功
+cat sources.list
+###############################
+root@62be94cc90e7:/etc/apt# cat sources.list
+
+deb http://ftp2.cn.debian.org/debian/ buster main
+deb http://ftp2.cn.debian.org/debian/debian-security buster/updates main
+deb http://ftp2.cn.debian.org/debian/debian buster-updates main
+root@62be94cc90e7:/etc/apt#
+###############################
+#7.更新apt-get
+apt-get update
+#修改完成
+#如果发现安装vim 缓慢或者失败，说明本教程不适合你
+apt-get install vim
+#将备份完成的文件改回来，即可。
+rm sources.list
+mv sources.list.bak sources.list
+```
 
 ```sh
 容器内安装vim、ping、ifconfig等指令
@@ -585,6 +616,17 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
 
 ```sh
  docker rm -f $(docker ps -a -q)             
+```
+
+
+
+## 😘从宿主机上传文件到容器
+
+```
+# 传递文件到docker
+docker cp .\elasticsearch-analysis-ik-7.6.1.zip b1f3ff28344d:/usr/share/elasticsearch/plugins/ik
+
+docker cp [本地文件名] [容器id]:[容器下路径]
 ```
 
 
