@@ -11,6 +11,10 @@ typora-root-url: ..\.vuepress\public
 
 
 > 在看nacos服务注册时，求服务实例集合的交集
+>
+> equals相等，则hashCode一定相等；
+>
+> hashCode相等，则equals不一定相等（哈希冲突）
 
 ## 重写hashcode与equals方法
 

@@ -39,6 +39,9 @@ public synchronized int length() {
 
 ## StringBuilder线程不安全演示
 
+- 扩容时会数组越界
+- 添加字符时会出现覆盖
+
 ```java
 public class StringBuilderNotSafeDemo {
     public static void main(String[] args) throws InterruptedException {
@@ -156,3 +159,4 @@ ensureCapacityInternal(count + len);  // 线程不安全，多个线程都读取
 [ProgressOn](https://www.processon.com/view/link/645cc06be18d2f06805c8d20)
 
 ![StringBuilder线程不安全的原因](/images/java/StringBuilder线程不安全的原因.png)
+
