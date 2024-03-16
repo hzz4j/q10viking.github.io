@@ -530,6 +530,8 @@ root                2124                2030                0                   
 
 ```sh
 docker exec -it 6180a4fd4a11 /bin/bash  #(有的容器需要把 /bin/bash 换成 sh)   
+# 以root用户进入
+docker exec -it --user root <container id> /bin/bash
 ```
 
 ## **容器内安装vim、ping、ifconfig等指令**👍
