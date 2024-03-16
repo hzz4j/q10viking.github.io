@@ -131,6 +131,26 @@ public class Main {
 }
 ```
 
+正着删除会有什么问题？会发现删除不干净
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        //  应对size动态变化
+        for(int i=0;i<list.size();i++){
+            list.remove(i);
+        }
+        System.out.println(list);
+    }
+}
+// [2, 4]
+```
+
 
 
 ## for与for-each
