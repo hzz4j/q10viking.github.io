@@ -307,7 +307,7 @@ public class TimeWaitingDemo {
 
 ### yield方法
 
-- yield会释放CPU资源，让当前线程从 Running 进入 Runnable状态，让优先级更高（至少是相同）的线程获得执行机会，不会释放对象锁；
+- yield会释放CPU资源，让当前线程从 Running 进入 Runnable状态，**让优先级更高（至少是相同）的线程获得执行机会，不会释放对象锁**；
 - 假设当前进程只有main线程，当调用yield之后，main线程会继续运行，因为没有比它优先级更高的线程；
 - 具体的实现依赖于操作系统的任务调度器
 
