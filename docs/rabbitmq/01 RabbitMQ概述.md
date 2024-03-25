@@ -55,7 +55,7 @@ RabbitMQ 和 AMQP 有着非常密切的关系，但是他们是属于完全不�
 6. **Queue**：消息最终被送到这里等待 consumer 取走
 7. **Binding**: exchange 和 queue 之间的虚拟连接，binding 中可以包含 routing key。**Binding 信息被保存到 exchange 中的查询表中，用于 message 的分发依据**
 
-## 六大工作模式
+## 六大工作模式（消息模式）
 
 RabbitMQ 提供了 6 种工作模式：简单模式、work queues、Publish/Subscribe 发布与订阅模式、Routing 路由模式、Topics 主题模式、RPC 远程调用模式（远程调用，不太算 MQ；暂不作介绍）。
 
