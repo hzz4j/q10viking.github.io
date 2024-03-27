@@ -5,6 +5,12 @@ prev:
 typora-root-url: ..\.vuepress\public
 ---
 
+
+
+![img](/images/designpattern/epub_41787798_7.png)
+
+
+
 ## 依赖倒置原则（Dependency Inversion Principle ）
 
 假设我们设计一辆汽车：先设计轮子，然后根据轮子大小设计底盘，接着根据底盘设计车身，最后根据车身设计好整个汽车。这里就出现了一个“依赖”关系：汽车依赖车身，车身依赖底盘，底盘依赖轮子
@@ -31,3 +37,30 @@ typora-root-url: ..\.vuepress\public
 
 <img src="/images/designpattern/image-20210328145415502.png" alt="image-20210328145415502"  />
 
+
+
+
+
+## 资源
+
+### 设计模式的艺术
+
+[配书籍代码](https://github.com/zzk123/design_patterns)
+
+[设计模式的艺术](https://weread.qq.com/web/reader/c4032270727da196c40104ak16732dc0161679091c5aeb1)
+
+[相关博客](https://zzk123.github.io/design/001_Preface.html#%E5%88%86%E7%B1%BB)
+
+----------
+
+### 设计模式之禅
+
+[github 代码](https://github.com/nivance/DPModel)
+
+
+
+### springboot结合设计模式
+
+[springboot结合设计模式github](https://github.com/kobeyk/SpringBoot-DesignMode/tree/v0.1.2)
+
+[springboot结合设计模式gitee](https://gitee.com/appleyk/SpringBoot-DesignMode/tree/v0.1.2/)
